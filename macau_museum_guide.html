@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>마카오 박물관 — 역사 스토리텔링 가이드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1a1209;--gold:#c8973a;--gold-light:#e8c068;--red:#8b1a1a;
+  --cream:#f5efe0;--parchment:#ede3cc;--stone:#6b5e4e;--mist:#f9f5ed;
+  --border:rgba(200,151,58,.3);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--mist);color:var(--ink);font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.8;}
+.hero{background:linear-gradient(160deg,#1a1209 0%,#2d1e0f 50%,#3d2810 100%);color:var(--cream);padding:80px 40px 60px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c8973a' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");opacity:.4;}
+.hero-badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);font-size:11px;letter-spacing:4px;text-transform:uppercase;padding:6px 20px;margin-bottom:28px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,58px);font-weight:700;color:var(--cream);line-height:1.2;margin-bottom:12px;}
+.hero h1 span{color:var(--gold);font-style:italic;}
+.hero-sub{font-size:13px;color:rgba(245,239,224,.6);letter-spacing:2px;margin-bottom:24px;}
+.hero-desc{max-width:600px;margin:0 auto;font-size:13px;color:rgba(245,239,224,.75);line-height:1.9;}
+.nav-bar{background:var(--ink);position:sticky;top:0;z-index:100;overflow-x:auto;white-space:nowrap;scrollbar-width:none;border-bottom:1px solid var(--border);}
+.nav-bar::-webkit-scrollbar{display:none;}
+.nav-bar ul{display:inline-flex;list-style:none;padding:0 16px;}
+.nav-bar ul li a{display:block;padding:14px 16px;color:rgba(245,239,224,.6);text-decoration:none;font-size:11px;letter-spacing:.5px;transition:color .2s;white-space:nowrap;}
+.nav-bar ul li a:hover{color:var(--gold);}
+.container{max-width:920px;margin:0 auto;padding:0 20px;}
+.section{padding:64px 0 36px;border-bottom:1px solid var(--border);}
+.section-number{font-family:'Playfair Display',serif;font-size:64px;color:rgba(200,151,58,.1);line-height:1;margin-bottom:-16px;font-weight:700;}
+.section-tag{display:inline-block;background:var(--red);color:#fff;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;margin-bottom:10px;}
+.section h2{font-family:'Playfair Display',serif;font-size:clamp(20px,3.5vw,30px);font-weight:700;color:var(--ink);margin-bottom:4px;line-height:1.3;}
+.section h2 .zh{font-size:.62em;color:var(--stone);font-weight:400;margin-left:8px;}
+.source-note{font-size:11px;color:var(--stone);border-left:2px solid var(--gold);padding-left:10px;margin:14px 0 24px;letter-spacing:.5px;}
+.fact-box{background:var(--parchment);border:1px solid var(--border);border-left:3px solid var(--gold);padding:18px 22px;margin:18px 0;font-size:13.5px;line-height:1.9;}
+.fact-box .fact-label{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;font-weight:500;}
+.story-block{background:#fff;border:1px solid var(--border);padding:28px 32px;margin:24px 0;position:relative;}
+.story-block::before{content:'스토리텔링 (사실 기반)';position:absolute;top:-11px;left:20px;background:var(--red);color:#fff;font-size:10px;letter-spacing:1.5px;padding:2px 10px;}
+.story-block p{font-size:14px;line-height:2;color:#2a1f14;margin-bottom:14px;}
+.story-block p:last-child{margin-bottom:0;}
+.story-fact{font-size:11px;color:var(--stone);font-style:italic;margin-bottom:4px;}
+.story-highlight{display:block;border-top:1px solid var(--border);margin-top:18px;padding-top:14px;font-size:13px;color:var(--red);font-weight:500;}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:18px 0;}
+th{background:var(--ink);color:var(--gold);padding:9px 13px;text-align:left;font-weight:400;letter-spacing:.5px;font-size:11px;}
+td{padding:9px 13px;border-bottom:1px solid var(--border);vertical-align:top;font-size:13px;}
+tr:nth-child(even) td{background:var(--parchment);}
+.timeline{position:relative;padding-left:26px;margin:22px 0;}
+.timeline::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:1px;background:var(--gold);opacity:.4;}
+.timeline-item{position:relative;margin-bottom:18px;}
+.timeline-item::before{content:'';position:absolute;left:-23px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--gold);}
+.timeline-year{font-size:11px;color:var(--gold);letter-spacing:1px;font-weight:500;margin-bottom:2px;}
+.timeline-text{font-size:13.5px;color:var(--ink);line-height:1.6;}
+.quote{border-left:3px solid var(--red);padding:12px 18px;margin:14px 0;background:rgba(139,26,26,.04);font-size:13.5px;font-style:italic;color:var(--stone);line-height:1.8;}
+.summary-box{background:var(--ink);color:var(--cream);padding:22px 26px;margin-top:24px;}
+.summary-box .sum-label{font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;}
+.summary-box p{font-size:13.5px;line-height:1.9;color:rgba(245,239,224,.85);}
+.divider{text-align:center;color:var(--gold);letter-spacing:8px;font-size:12px;padding:28px 0 0;opacity:.5;}
+footer{background:var(--ink);color:rgba(245,239,224,.5);text-align:center;padding:40px 24px;font-size:12px;line-height:2;margin-top:60px;}
+footer .copyright{border:1px solid rgba(200,151,58,.2);display:inline-block;padding:16px 32px;color:rgba(245,239,224,.75);letter-spacing:.5px;}
+footer .copyright strong{color:var(--gold);}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;}
+@media(max-width:640px){
+  .hero{padding:50px 16px 36px;}
+  .section{padding:48px 0 28px;}
+  .story-block{padding:22px 16px;}
+  .two-col{grid-template-columns:1fr;}
+  th,td{padding:7px 9px;font-size:12px;}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-badge">Macau Museum · 澳門博物館</div>
+  <h1>마카오 박물관<br><span>역사 스토리텔링 가이드</span></h1>
+  <p class="hero-sub">확인된 역사적 사실 기반 · 중학생 수준 해설</p>
+  <p class="hero-desc">마카오 박물관 전시 안내판의 실제 기록을 바탕으로 구성한 역사 스토리텔링입니다. 모든 내용은 전시 안내판에 명시된 사실에만 근거합니다.</p>
+</header>
+
+<nav class="nav-bar">
+  <ul>
+    <li><a href="#s01">🚢 국제무역항</a></li>
+    <li><a href="#s02">📜 중국문명</a></li>
+    <li><a href="#s03">⚓ 범선</a></li>
+    <li><a href="#s04">🏺 고고유물</a></li>
+    <li><a href="#s05">⚓ 포르투갈도착</a></li>
+    <li><a href="#s06">🍵 차의기원</a></li>
+    <li><a href="#s07">🏺 수출도자기</a></li>
+    <li><a href="#s08">🔭 천문대</a></li>
+    <li><a href="#s09">🔔 성당의종</a></li>
+    <li><a href="#s10">🖨️ 인쇄기</a></li>
+    <li><a href="#s11">🖼️ 병풍</a></li>
+    <li><a href="#s12">🔫 성로렌스대포</a></li>
+    <li><a href="#s13">⚔️ 네덜란드</a></li>
+    <li><a href="#s14">🛕 불교도교예술</a></li>
+    <li><a href="#s15">✝️ 기독교예술</a></li>
+    <li><a href="#s16">🌏 서양영향</a></li>
+    <li><a href="#s17">⛪ 성로렌스성당</a></li>
+    <li><a href="#s18">🍵 차가게</a></li>
+    <li><a href="#s19">🍮 전통과자</a></li>
+    <li><a href="#s20">🌿 중약방</a></li>
+    <li><a href="#s21">🪵 신상조각</a></li>
+    <li><a href="#s22">🧨 폭죽업</a></li>
+    <li><a href="#s23">🍽️ 토생요리</a></li>
+    <li><a href="#s24">🍳 토생주방</a></li>
+    <li><a href="#s25">🌳 프란치스코공원</a></li>
+    <li><a href="#s26">🏘️ 거리풍경</a></li>
+    <li><a href="#s27">🏠 토지신</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+<!-- ① 국제무역항 -->
+<section class="section" id="s01">
+  <div class="section-number">01</div>
+  <div class="section-tag">국제무역</div>
+  <h2>마카오 — 국제 무역항의 역사 <span class="zh">澳門作為國際貿易港口</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 국제무역항 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    16세기부터 마카오는 <strong>동서 무역의 전환 기착지</strong>가 되었다. 광저우는 당시 <strong>중국 대외무역의 유일한 항구</strong>였으며, 마카오는 외국 상인들이 광저우를 오가는 <strong>필수 경유지</strong>였다. 1535년 포르투갈 상인들이 마카오에 선박을 정박하기 시작했고, 1557년 거주 허가 후 매년 봄·여름 광저우에서 무역했다.
+  </div>
+  <table>
+    <tr><th>교역 루트</th><th>주요 교역품</th></tr>
+    <tr><td>마카오 → 고아(인도) → 리스본</td><td>도자기·비단·차 → 유럽 은화</td></tr>
+    <tr><td>마카오 → 나가사키(일본)</td><td>중국 비단 → 일본 은(銀)</td></tr>
+    <tr><td>마카오 → 마닐라 → 라틴아메리카</td><td>중국 물산 → 멕시코 은화</td></tr>
+  </table>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 — 교역 품목</div>
+    생사(生絲)·비단·도자기·일본 은·인도 향신료·포·직물·차·목재·동남아 산품·유럽 제품
+  </div>
+  <div class="story-block">
+    <p class="story-fact">[사실 — 안내판]</p>
+    <p>안내판의 표현대로 마카오는 <strong>"유럽·아시아·아프리카·라틴아메리카의 무역과 문화 교류를 촉진한"</strong> 중심지였다. 세 방향으로 뻗은 항로들이 지구 전체 대륙을 하나로 연결했다.</p>
+    <p class="story-fact">[사실 — 안내판]</p>
+    <p>박물관 세계 지도 전시의 핑크빛 LED 선 하나하나가 실제 배가 다닌 항로다. 안내판이 기록한 그 항로들이다. 마카오에서 출발해 인도·유럽·아프리카·남미로 뻗어나간다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 16세기부터 마카오는 중국 유일의 대외 무역 창구 앞에 위치한 동서 무역의 전환 기착지로 일본·인도·유럽·남미를 잇는 글로벌 무역 허브였다.</span>
+  </div>
+</section>
+
+<!-- ② 중국 문명 -->
+<section class="section" id="s02">
+  <div class="section-number">02</div>
+  <div class="section-tag">중국문명</div>
+  <h2>중국 문명 4개 패널 <span class="zh">文字·哲學思想·宗教·秦帝國</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 문자·철학사상·종교·진제국 전시 안내판</p>
+  <div class="two-col">
+    <div class="fact-box">
+      <div class="fact-label">문자 패널</div>
+      상나라(기원전 1600~1046) <strong>갑골문·금문</strong>이 현재 알려진 가장 오래된 중국 문자. 전국시대(기원전 475~221) 각국 문자가 달랐으나 진시황이 <strong>소전(小篆)으로 표준화</strong>. 안내판 기록: <strong>"통일된 문자는 모든 민족을 하나로 묶고 경제·문화를 발전시키는 데 핵심적 역할을 했다."</strong>
+    </div>
+    <div class="fact-box">
+      <div class="fact-label">철학사상 패널</div>
+      공자(기원전 551~479) <strong>유가</strong> 창시. 전국시대 유·도·묵·법 4대 학파 활동. 한나라 이후 <strong>유가가 지배적 사상</strong>. 안내판 기록: <strong>"송나라 이후 유가가 불교·도교 사상을 흡수해 성리학(宋明理學)이 탄생했다."</strong>
+    </div>
+    <div class="fact-box">
+      <div class="fact-label">종교 패널</div>
+      도교(고유), 불교(<strong>기원 1세기</strong>), 기독교(<strong>6세기</strong>), 이슬람교(<strong>7세기</strong>) 전래. 안내판 기록: <strong>"정통 유교 문화가 종교의 사회적 기능을 항상 제어해 왔다."</strong>
+    </div>
+    <div class="fact-box">
+      <div class="fact-label">진제국 패널</div>
+      기원전 221년 진시황 통일. <strong>문자·도량형·화폐·도로·법률·행정(군현제)</strong> 통일. 안내판 기록: <strong>"진나라가 확립한 국가 구조와 정치 제도는 2,000년 이상 지속되었다."</strong>
+    </div>
+  </div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 연결]</p>
+    <p>네 패널은 하나의 질문에 대한 답이다. <strong>"어떻게 수억 명의 사람이 하나의 나라로 묶일 수 있었는가?"</strong> — 문자로 소통하고, 철학으로 가치관을 나누고, 종교를 포용하며, 제도로 나라를 묶었다. 그리고 마카오는 그 모든 것이 포르투갈 문화와 처음 만난 지점이다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 문자·철학·종교·제도로 수천 년을 이어온 중국 문명이 마카오에서 서양과 처음 만났다.</span>
+  </div>
+</section>
+
+<!-- ③ 범선 -->
+<section class="section" id="s03">
+  <div class="section-number">03</div>
+  <div class="section-tag">항해</div>
+  <h2>중국 범선 vs 포르투갈 범선 <span class="zh">福船 · São Gabriel</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 복선·항해나침반·성 가브리엘 호 전시 안내판</p>
+  <table>
+    <tr><th>항목</th><th>중국 복선(福船)</th><th>포르투갈 성 가브리엘</th></tr>
+    <tr><td>시대</td><td>송나라 이후</td><td>1498년</td></tr>
+    <tr><td>길이</td><td>약 35m</td><td>비슷한 규모</td></tr>
+    <tr><td>배수량</td><td>약 400톤</td><td>—</td></tr>
+    <tr><td>돛대</td><td>3개 이상</td><td>—</td></tr>
+    <tr><td>선체 구조</td><td>용골+이중 측판+3겹 방수 격벽</td><td>장거리 화물 운반 특화</td></tr>
+    <tr><td>항법 도구</td><td>수나침반(북송 960~1127~)</td><td>사분의(별 고도 측정)</td></tr>
+    <tr><td>항해 범위</td><td>동아시아(한국·일본 포함)</td><td>대서양·인도양</td></tr>
+  </table>
+  <div class="quote">항해나침반 안내판 기록: "중국은 세계에서 가장 일찍 나침반을 항해에 적용한 나라다." — 북송(960~1127) 때 이미 수나침반 사용.</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 — 복선 안내판]</p>
+    <p>안내판 기록 복선 제원: 길이 약 <strong>35m</strong>, 배수량 약 <strong>400톤</strong>, 돛대 <strong>3개 이상</strong>, 선체: 용골 바닥·이중 측판·3겹 방수 격벽. 안내판의 표현: <strong>"안전성과 내구성이 뛰어났다."</strong> 복선은 한국과 일본까지 항해했다 (안내판 기록).</p>
+    <p class="story-fact">[사실 — 성 가브리엘 호 안내판]</p>
+    <p><strong>1498년</strong> 바스쿠 다 가마가 성 가브리엘 호에 올랐다. 목적: <strong>"유럽에서 동방까지 먼 거리 항해"</strong> 및 <strong>"고아(인도)에서 리스본(포르투갈)까지 대량 화물 운반."</strong> 항법 도구로 <strong>사분의(별 고도 측정)</strong>를 사용했다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 북송 시대부터 나침반으로 항해한 중국 복선과 1498년 사분의로 인도양을 건넌 포르투갈 성 가브리엘 호가 마카오에서 만났다.</span>
+  </div>
+</section>
+
+<!-- ④ 고고 유물 -->
+<section class="section" id="s04">
+  <div class="section-number">04</div>
+  <div class="section-tag">고고학</div>
+  <h2>마카오 고고학 유물 전시 <span class="zh">考古遺址出土文物</span></h2>
+  <p class="source-note">근거 : 성 바울 학원 고고 유적지·흑사 고고 유적지 전시 안내판</p>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-year">약 6,000년 전</div><div class="timeline-text">흑사 유적 — 채도 문화(채색 토기) 발견 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">약 4,000년 전</div><div class="timeline-text">흑사 유적 — 옥기 제작 공방 발견 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1972년</div><div class="timeline-text">홍콩 고고학자들, 콜로안 섬에서 5개 유적지 발견 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1973~2006년</div><div class="timeline-text">흑사 유적 다차례 발굴(1977·1985·1995·2000·2006) <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">2010~2012년</div><div class="timeline-text">성 바울 학원 터 발굴 — 청화백자 파편·토기 다수 출토 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">2014년</div><div class="timeline-text">홍콩·본토 공동 발굴팀 — 탄화 잔해·석조 구조물 출토 <em>(안내판 기록)</em></div></div>
+  </div>
+  <div class="quote">성 바울 유적 안내판 기록: "이 발굴들은 다수의 수출용 도자기 파편을 출토해 마카오가 동서 문화 교류의 중요한 중심지였음을 증명한다."</div>
+  <div class="quote">흑사 유적 안내판 기록: "마카오 고고학 역사상 가장 중요한 발견으로 마카오의 선사시대 문화 계보를 재구성하는 데 핵심적인 역할을 한다."</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 연결]</p>
+    <p>흑사 유적과 성 바울 유적, 두 발굴이 함께 증명하는 사실: <strong>마카오는 포르투갈이 만든 도시가 아니다. 6,000년 전부터 사람이 살던 땅이다.</strong> 6,000년 전 신석기인이 이 해변에서 토기를 구웠고, 4,000년 전엔 옥을 다듬었으며, 명나라 때 도자기를 만들었고, 포르투갈 선원이 그것을 유럽에 팔았다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 흑사 유적의 6,000년 전 토기와 성 바울 유적의 16세기 청화백자가 함께 증명하는 것은 마카오가 포르투갈 이전 수천 년의 역사를 가진 땅이라는 사실이다.</span>
+  </div>
+</section>
+
+<!-- ⑤ 포르투갈 도착 -->
+<section class="section" id="s05">
+  <div class="section-number">05</div>
+  <div class="section-tag">역사</div>
+  <h2>포르투갈의 마카오 도착 <span class="zh">葡人抵澳</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 포르투갈 마카오 도착 전시 안내판</p>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-year">1513년</div><div class="timeline-text">조르지 알바레스 — 포르투갈인 최초 중국 남해안 도달 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1517~1521년</div><div class="timeline-text">토메 피레스 — 최초 포르투갈 외교 사절단 베이징 파견 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1522년</div><div class="timeline-text">명나라 황제 포르투갈 입국 금지령 선포 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1549·1560년</div><div class="timeline-text">낭백오(浪白澳) 불법 해안 교역 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1550~1554년</div><div class="timeline-text">상천도(上川島) 불법 교역 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1553~1557년</div><div class="timeline-text">"난파선 구실"로 마카오 해안 상륙·화물 건조 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1557년</div><div class="timeline-text">명나라, 포르투갈의 마카오 거주 공식 허가 <em>(안내판 기록)</em></div></div>
+  </div>
+  <div class="quote">안내판 기록: "신뢰할 수 있는 기록에 따르면 1553년~1557년 사이, 포르투갈인들은 난파선을 구실로 마카오 해안에 상륙해 해수에 젖은 화물을 말렸다. 이것이 포르투갈인이 처음으로 마카오에 머문 이유로 여겨진다."</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>1513년 첫 도달부터 1557년 공식 거주 허가까지 <strong>44년</strong>이 걸렸다. 안내판이 기록한 방식은 무력 점령이 아니었다: 외교 사절, 해안 임시 교역, 그리고 "난파선 구실" 상륙. 박물관 디오라마는 <strong>명나라 관리와 포르투갈 선원이 마카오 해안에서 처음 마주하는 장면</strong>을 재현하고 있다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 포르투갈은 1513년 도달 후 1522년 금지령에도 해안 교역을 이어가다 1553년 "난파선 구실"로 마카오에 상륙해 1557년 공식 거주 허가를 받았다.</span>
+  </div>
+</section>
+
+<!-- ⑥ 차의 기원 -->
+<section class="section" id="s06">
+  <div class="section-number">06</div>
+  <div class="section-tag">문화</div>
+  <h2>茶之起源 — 차의 기원 <span class="zh">茶之起源</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 차 기원 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    • 차의 역사: 최소 <strong>4,000~5,000년</strong><br>
+    • 원산지: <strong>중국 서남부 윈난·구이저우·쓰촨</strong> 일대<br>
+    • 현재 재배국: <strong>60개국 이상</strong><br>
+    • 음용 국가: <strong>140개국 이상</strong><br>
+    • 중국의 별명: <strong>"차의 고향"</strong> / <strong>"차 문화의 발상지"</strong><br>
+    • 식물 분류: <strong>차나무과(山茶科) 다년생 상록 목본 식물</strong>
+  </div>
+  <div class="quote">안내판 기록: "茶者，南方之嘉木也" — "차란 남방의 아름다운 나무이다"</div>
+  <div class="quote">안내판 기록: "중국 윈난성의 란창·전위안·징둥·멍하이 등지에서 수령이 수천 년에 달하는 고차수(古茶樹)가 발견되었다."</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 연결]</p>
+    <p>차 가게 안내판 기록: <strong>"1940년대 이전까지 마카오는 중국 차를 해외로 파는 차 중계 무역항이었다."</strong> 안내판이 밝히는 당시 유명 차 가게: <strong>인순당 차행·영기·상진·의무태</strong>. 이들은 중국 본토에서 차를 매입해 마카오로 가져와 시민들에게 제공했다 (안내판 기록).</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 4,000~5,000년 역사를 가진 차는 중국 서남부가 원산지이며 마카오 무역항을 통해 유럽으로 전해져 지금은 140개국 이상에서 마시는 음료가 되었다.</span>
+  </div>
+</section>
+
+<!-- ⑦ 수출 도자기 -->
+<section class="section" id="s07">
+  <div class="section-number">07</div>
+  <div class="section-tag">무역</div>
+  <h2>교역 물품과 수출 도자기 <span class="zh">外銷瓷</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 거래물품 두루마리 안내판·외판자(外銷瓷) 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">두루마리 안내판 기록</div>
+    1535년 포르투갈 선박 마카오 정박 시작. 1557년 거주 허가 후 매년 봄·여름 광저우에서 <strong>생사·비단·도자기</strong> 구입 → 일본·동남아·유럽 판매. 광저우는 당시 <strong>중국 대외무역의 유일한 항구</strong>.
+  </div>
+  <div class="fact-box">
+    <div class="fact-label">외판자(外銷瓷) 안내판 기록</div>
+    <strong>16세기 전반</strong>부터 서양 요구에 맞춘 수출 전용 도자기 제작 시작. 유럽 주문자의 문장·장식·형태 요구에 맞게 제작. 기본형: <strong>청화백자</strong> → 발전: <strong>패밀리 베르데(famille verte)·패밀리 로즈(famille rose)·광동 문양(Canton pattern)</strong>.
+  </div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 연결]</p>
+    <p>두 안내판이 함께 보여주는 핵심: 마카오는 단순한 중계 항구가 아니었다. 두루마리 안내판의 표현대로 <strong>"유럽·아시아·아프리카·라틴아메리카의 무역과 문화 교류를 촉진한 중심지"</strong>였으며, <strong>서양의 주문 + 중국의 기술 = 마카오를 통한 세계 교역</strong>이 이루어졌다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 마카오는 광저우의 유일한 대외 무역 창구 앞에서 생사·비단·도자기를 구입해 3대 항로로 세계에 팔았으며 16세기부터는 수출 전용 도자기도 제작·판매했다.</span>
+  </div>
+</section>
+
+<!-- ⑧ 천문대 -->
+<section class="section" id="s08">
+  <div class="section-number">08</div>
+  <div class="section-tag">과학·문화</div>
+  <h2>예수회 선교사와 베이징 천문대 <span class="zh">北京古觀象臺</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 천문대 전시 안내판</p>
+  <div class="quote">안내판 기록: "1601년, 예수회 선교사 마테오 리치(Mateus Ricci)가 베이징에 도달해 중국과 서양 사이에 새로운 문화의 길을 열었다."</div>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    • 마테오 리치 마카오 도착: <strong>1582년</strong><br>
+    • 베이징 도달: <strong>1601년</strong><br>
+    • 황제로부터 <strong>개인적인 신뢰와 요직 부여</strong><br>
+    • 활동 분야: <strong>수학·음악·수리학·기타 과학</strong><br>
+    • 결과: <strong>베이징 중심부 천문 관측소 건립, 예수회 제작 천문 기기 보존</strong><br>
+    • 전시품: 소형 천문 기기 복제품
+  </div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 연결]</p>
+    <p>안내판이 기록한 이 모든 이야기의 시작점: 마테오 리치가 <strong>1582년 마카오에 도착</strong>했다. 마카오는 그가 중국에 들어가기 위한 <strong>첫 번째 발판</strong>이었다. 마카오 → 중국 본토 → 베이징. 이 경로의 출발점이 마카오였다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 1582년 마카오에 도착한 마테오 리치는 1601년 베이징에 도달해 중국과 서양의 새로운 문화적 길을 열었으며 예수회는 황제의 신뢰를 받아 베이징 천문 관측소 건립에 기여했다.</span>
+  </div>
+</section>
+
+<!-- ⑨ 성당의 종 -->
+<section class="section" id="s09">
+  <div class="section-number">09</div>
+  <div class="section-tag">종교유산</div>
+  <h2>성 바울 성당의 종 <span class="zh">聖保祿大鐘</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 성 바울 성당 종 전시 안내판 MM1530·MM1531</p>
+  <table>
+    <tr><th>항목</th><th>1714년 종 (MM1531)</th><th>1736년 종 (MM1530)</th></tr>
+    <tr><td>주조 연도</td><td><strong>1714년 5월 25일</strong></td><td><strong>1736년</strong></td></tr>
+    <tr><td>주조 장소</td><td>마카오</td><td>마카오</td></tr>
+    <tr><td>높이</td><td>0.95m</td><td>1.1m</td></tr>
+    <tr><td>지름</td><td>0.66m</td><td>0.87m</td></tr>
+    <tr><td>무게</td><td><strong>204kg</strong></td><td><strong>508kg</strong></td></tr>
+    <tr><td>주문자</td><td>총사령관 안토니오 데 세케이라 데 노론하</td><td>예수회 마카오 학원</td></tr>
+    <tr><td>새김 문자</td><td>주조 명령자·날짜 기록</td><td>"당신의 목소리가 내 귓가에 울려 퍼지소서"</td></tr>
+    <tr><td>중앙 장식</td><td>—</td><td>예수회 상징 IHS (빛나는 태양 안)</td></tr>
+  </table>
+  <div class="quote">1736년 종 새김 문자 (안내판 기록): "SONET VOX TVA IN AVRIBVS MEIS" — "당신의 목소리가 내 귓가에 울려 퍼지소서"</div>
+  <div class="quote">1736년 종 테두리 (안내판 기록): "MACAO COLL DA MADRE DE DEOS DA COMP DE IESVS ANNO DE 1736" — "마카오, 예수회 천주의 모친 학원. 1736년"</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>안내판이 기록한 대로 두 종 모두 <strong>마카오에서 주조</strong>됐다. 두 종 모두 <strong>성 바울 성당 종루</strong>를 위해 제작됐다. <strong>1835년 대화재</strong>로 성당은 전면부 석벽만 남았지만 두 종은 살아남아 지금 박물관에 있다. 합계 <strong>712kg</strong>의 청동이 310년 이상을 버텼다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 1714년(204kg)과 1736년(508kg)에 마카오에서 주조된 두 청동 종은 1835년 대화재로 성당이 소실된 후에도 살아남아 지금 박물관에 보존되어 있다.</span>
+  </div>
+</section>
+
+<!-- ⑩ 인쇄기 -->
+<section class="section" id="s10">
+  <div class="section-number">10</div>
+  <div class="section-tag">인쇄혁명</div>
+  <h2>마카오 최초의 인쇄기 <span class="zh">澳門第一部印刷機 (복제품)</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 인쇄기 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    • 도입자: <strong>예수회 선교사 알레산드로 발리냐노(Alexander Valignano)</strong><br>
+    • 도입 시기: <strong>16세기 후반</strong><br>
+    • 제작 목적지: <strong>일본</strong> (유럽에서 제작)<br>
+    • 마카오 체류: <strong>1588~1590년 (2년)</strong><br>
+    • 마카오에서: <strong>"여러 작품의 출판을 담당했다"</strong><br>
+    • 이후: 일본(일본어 활자 추가) → 마닐라 아우구스티노회 매각<br>
+    • 최종 행방: <strong>"그 이후 행방은 알 수 없다"</strong> (안내판 기록)
+  </div>
+  <div class="story-block">
+    <p class="story-fact">[사실 — 안내판]</p>
+    <p>안내판의 표현대로 이 인쇄기는 <strong>"여러 작품의 출판을 담당했다."</strong> 동양에서 처음으로 구텐베르크식 금속 활자 인쇄가 이루어진 곳이 <strong>마카오</strong>였다. 지금 박물관에 있는 것은 안내판이 밝히는 대로 <strong>복제품</strong>이다. 진짜 인쇄기의 마지막 기록: <strong>"그 이후 행방은 알 수 없다."</strong></p>
+    <span class="story-highlight">🔑 한 줄 요약 : 1588~1590년 마카오에서 동양 최초의 구텐베르크식 인쇄가 이루어졌으며 이 인쇄기는 마닐라에 팔린 후 행방불명이 되었다.</span>
+  </div>
+</section>
+
+<!-- ⑪ 병풍 -->
+<section class="section" id="s11">
+  <div class="section-number">11</div>
+  <div class="section-tag">예술</div>
+  <h2>중국 금칠 漆畵 병풍 <span class="zh">中國金漆畫屏風 (복제품)</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 병풍 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    • 제작 시기: <strong>17~18세기</strong><br>
+    • 제작 기법: <strong>금칠 漆畵(칠화)</strong><br>
+    • 그림 내용: <strong>포르투갈 사냥꾼 + 이국적인 나무 + 신비로운 산</strong><br>
+    • 패널 수: 8폭<br>
+    • 원본 소장처: <strong>포르투갈 켈루즈 궁전 (Palace of Queluz)</strong><br>
+    • 전시품: <strong>복제품</strong>
+  </div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 연결]</p>
+    <p>외판자 안내판: <strong>"유럽 주문자의 문장·장식·형태 요구에 맞게 제작."</strong> 병풍 안내판: <strong>"포르투갈 사냥꾼들의 장면."</strong> 두 안내판이 공통으로 보여주는 사실: 유럽의 주문 + 중국의 제작 기술이 마카오를 통해 연결됐다. 켈루즈 궁전은 1747년 건립된 포르투갈 왕실 궁전으로 현재 유네스코 세계문화유산이다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 17~18세기 금칠 병풍은 포르투갈 사냥꾼 장면을 중국 산수 배경으로 묘사했으며 원본은 포르투갈 켈루즈 궁전에 소장되어 있다. 전시품은 복제품.</span>
+  </div>
+</section>
+
+<!-- ⑫ 성 로렌스 대포 -->
+<section class="section" id="s12">
+  <div class="section-number">12</div>
+  <div class="section-tag">군사유산</div>
+  <h2>聖勞倫斯大炮 — 성 로렌스 대포 <span class="zh">聖勞倫斯大炮 (복제품)</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 성 로렌스 대포 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">제원 (안내판 기록)</div>
+    • 재질: <strong>청동 일체 주조</strong><br>
+    • 제작지: <strong>마카오</strong> / 제작 연도: <strong>1627년</strong><br>
+    • 주조자: <strong>마누엘 타바레스 보카로 (포르투갈인)</strong><br>
+    • 무게: <strong>3,600kg 이상</strong><br>
+    • 포신 길이: <strong>340.4cm</strong> / 전체 길이: <strong>370.8cm</strong><br>
+    • 구경: <strong>26.7cm</strong> / 포탄: <strong>13.6kg (30파운드) 석구형</strong><br>
+    • 포미 장식: <strong>사냥개 머리 형태</strong><br>
+    • 중앙 손잡이: <strong>해마(海馬)형 2개</strong>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-year">1627년</div><div class="timeline-text">마카오에서 주조 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">최초 설치</div><div class="timeline-text">마카오 서만 성 야고보 요새 포대 (현 성 야고보 호텔 부지) <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1717년</div><div class="timeline-text">마카오 포르투갈 당국이 청나라 강희 조정에 헌납 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1841년 2월</div><div class="timeline-text">제1차 아편전쟁 중 영국군이 호문(虎門) 요새 점령 시 획득 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">이후</div><div class="timeline-text">영국으로 이송 → 런던 타워 전시 → 현재 <strong>영국 왕립 무기박물관</strong> 소장 <em>(안내판 기록)</em></div></div>
+  </div>
+  <div class="quote">안내판 기록: "포르투갈인들은 화포에 가톨릭 성인의 이름을 붙이는 전통이 있었다. 보카로가 주조한 화포들은 모두 가톨릭 성인 이름을 따서 명명되었으며 이 대포는 성 로렌스(S. LOVREC)의 이름을 받았다."</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>안내판이 기록한 이동 경로: <strong>포르투갈(마카오 제작) → 청나라(1717년 헌납) → 영국(1841년 아편전쟁 획득)</strong>. 세 나라의 손을 거친 이 대포는 지금 영국 왕립 무기박물관에 있으며, 박물관 전시품은 복제품이다. 안내판의 평가: 당시 중국에서 제조된 <strong>가장 강력한 화포 중 하나</strong>.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 1627년 마카오에서 만들어진 이 대포는 포르투갈에서 청나라로, 청나라에서 영국으로 넘어가 지금은 영국 왕립 무기박물관에 소장되어 있다.</span>
+  </div>
+</section>
+
+<!-- ⑬ 네덜란드 침공 -->
+<section class="section" id="s13">
+  <div class="section-number">13</div>
+  <div class="section-tag">전쟁·신앙</div>
+  <h2>1622년 네덜란드 침공 격퇴 <span class="zh">擊退荷蘭入侵</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 네덜란드 침공 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    • 사건: <strong>1622년 6월 24일</strong> 마카오 주민이 네덜란드 침공 격퇴<br>
+    • 그날은 기독교 달력에서 <strong>세례자 성 요한(St. John the Baptist) 축일</strong><br>
+    • 결과: 세례자 성 요한 = <strong>마카오의 수호성인</strong> 지정<br>
+    • 전시물: <strong>15세기 채색 석조 성상</strong> + <strong>석구형 포탄</strong>
+  </div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>안내판이 기록한 1622년 6월 24일 하루가 마카오 역사에 세 가지를 남겼다: <strong>①네덜란드의 마카오 탈취 실패, ②세례자 성 요한 = 마카오 수호성인, ③방어 강화 필요성 인식 → 1627년 성 로렌스 대포 주조</strong>. 전시된 석구형 포탄들은 당시 실제 전투에서 사용된 포탄이다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 1622년 6월 24일 마카오는 네덜란드 침공을 막아냈고 그날이 세례자 성 요한 축일이었기 때문에 그가 마카오의 수호성인이 되었다.</span>
+  </div>
+</section>
+
+<!-- ⑭ 불교·도교 예술 -->
+<section class="section" id="s14">
+  <div class="section-number">14</div>
+  <div class="section-tag">종교예술</div>
+  <h2>불교와 도교 예술 <span class="zh">佛教與道教藝術</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 불교·도교 예술 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    마카오에는 현재 규모가 다양한 <strong>사찰 40여 곳</strong>이 있으며, 3대 고찰은 다음과 같다:<br><br>
+    • <strong>마각묘(媽閣廟 / A-Má Temple)</strong> — 역사 <strong>500년 이상</strong> / 마조(바다의 여신) 봉안<br>
+    • <strong>관음당(觀音堂 / Kun Iam Tong)</strong> — 역사 <strong>300~400년</strong> / 1844년 미국-청나라 《망하조약》 체결 장소<br>
+    • <strong>연봉묘(蓮峰廟 / Lin Fong Temple)</strong> — 역사 <strong>300~400년</strong> / 1839년 임칙서가 포르투갈 관리 접견
+  </div>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 — 예술품 목록</div>
+    불상·신상·신台 휘장·향로·촛대·기름등·기름병·염주, 민가의 토지신·재신·조군(灶君)·조상 위패·신감(神龕). 안내판 표현: <strong>"종교 또는 민간 숭배의 대상이자 제사 용구이며, 동시에 다양한 형태의 예술품이기도 하다."</strong>
+  </div>
+  <div class="quote">안내판 기록: "마카오의 이름 자체가 마각묘(媽閣廟)에서 유래했다." — 포르투갈인들이 처음 상륙 시 주민들에게 "여기가 어디냐"고 묻자 "마각(媽閣)"이라 답한 것이 "마카오(Macau)"가 된 것으로 전해진다.</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>박물관 전시 케이스 안의 유물들: <strong>포대화상(布袋和尙) 금칠 목조상, 천수관음(千手觀音) 부조, 금칠 좌불상, 대형 불두(佛頭), 청동 향로</strong>. 안내판의 표현대로 이것들은 <strong>"종교 숭배의 대상이자 다양한 형태의 예술품"</strong>이다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 마카오라는 이름은 500년 된 사찰(마각묘)에서 왔고 그 사찰들은 종교를 넘어 국제 조약의 현장이 되기도 했다.</span>
+  </div>
+</section>
+
+<!-- ⑮ 기독교 종교 예술 -->
+<section class="section" id="s15">
+  <div class="section-number">15</div>
+  <div class="section-tag">기독교예술</div>
+  <h2>기독교 종교 예술 <span class="zh">基督宗教藝術</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 기독교 종교 예술 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 — 마카오 주요 가톨릭 기관</div>
+    성 바울 성당·성 도미니코 성당·성 로렌스 성당·성 클라라 수녀원·주교좌 성당·성 바울 학원. 형제단: 묵주기도 형제단·성모 방문 형제단·제3회 참회 형제단·선한 예수 형제단·성모 자비 형제단.
+  </div>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 — 예술품 목록</div>
+    성화(예수·성모·성인) · 조각품(상아·나무) · 제례용품(촛대·성작·향로) · 직물(제의·현수막) · 음악 악기(오르간·종) · 축제 행렬 용품
+  </div>
+  <div class="fact-box">
+    <div class="fact-label">오르간 안내판 기록</div>
+    <strong>성 도미니코 성당 묵주기도 형제단</strong> 소유. 제작 시기: <strong>17~18세기</strong>. 안내판 평가: <strong>"당시 중국 황제를 감동시킨 유럽 오르간 전통 방식으로 제작된, 음향과 아름다움에서 절대적으로 훌륭한 표본."</strong>
+  </div>
+  <div class="fact-box">
+    <div class="fact-label">예수 십자가상 안내판 기록</div>
+    명칭: <strong>CRUCIFIED CHRIST</strong> / 재질: <strong>상아(Ivory)·목재(Wood)</strong> / 제작 시기: <strong>18세기</strong>
+  </div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>안내판이 밝히는 역사적 사실: 마테오 리치가 <strong>1601년</strong> 베이징 황제에게 서양 건반 악기를 선물하고 황제가 크게 감동받은 기록이 있다. 서양 음악은 그렇게 중국 황실까지 들어갔다. 전시 오르간은 그 전통을 보여주는 유물이다. 18세기 상아 십자가상에서 쓰인 상아는 마카오 무역을 통해 유통된 아프리카·인도산 상아다 (아프리카의 상아 + 유럽의 종교 + 마카오의 교역).</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 마카오의 성당들은 수백 년간 촛대·성작·오르간·십자가상을 모았고 그 물건들에는 유럽·아시아·아프리카의 무역과 문화가 함께 녹아있다.</span>
+  </div>
+</section>
+
+<!-- ⑯ 서양에 미친 영향 -->
+<section class="section" id="s16">
+  <div class="section-number">16</div>
+  <div class="section-tag">문화영향</div>
+  <h2>중국 예술이 서양에 미친 영향 <span class="zh">中國藝術對西方的影響</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 동서방 예술 대화 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    서양 세계가 중국 문화에 매료된 것은 도자기·은기·자개·에나멜·칠기·귀한 목재 수입뿐 아니라, <strong>서양 장인과 공장들이 이 제품들을 모방</strong>하는 데서도 나타났다.
+  </div>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-year">16세기 말</div><div class="timeline-text">포르투갈 도자기 공장, 중국 문양 모방 시작 — 아란호에스(Aranhões) 접시·약국 항아리 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">18세기 중반~</div><div class="timeline-text">수입 중국 도자기 모방품을 서양 수많은 공장에서 대량생산 → 안내판 기록: <strong>"서양 모든 계층의 가정에 보급"</strong></div></div>
+    <div class="timeline-item"><div class="timeline-year">18세기 후반</div><div class="timeline-text">영국, 윌로우 패턴(Willow Pattern) 개발 — 중국풍이지만 영국이 만든 가상의 중국 풍경</div></div>
+  </div>
+  <div class="quote">안내판 기록: "아란호에스 접시 — 리본과 덩굴로 장식된 매우 양식화된 쑥잎 문양의 거미 모티프 장식. 명나라 시대 청화백자의 도형과 문양을 파이앙스(faience, 유약 도기)의 거친 질감으로 모방."</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>안내판이 기록한 흐름: 중국 도자기 → 마카오 통해 유럽 수입 → <strong>16세기 말 포르투갈</strong>이 처음 모방 → <strong>18세기 중반</strong> 서양 전역 대량생산 → 전 계층 보급. 전시 접시들의 버드나무·정자·다리·새 문양은 <strong>윌로우 패턴(Willow Pattern)</strong>으로 중국풍이지만 영국이 개발한 디자인이다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 중국 청화백자는 마카오를 통해 유럽에 전해졌고 유럽은 이를 모방·대량생산해 전 계층의 식탁 위에 올려놓았다.</span>
+  </div>
+</section>
+
+<!-- ⑰ 성 로렌스 성당 -->
+<section class="section" id="s17">
+  <div class="section-number">17</div>
+  <div class="section-tag">건축유산</div>
+  <h2>聖老楞佐堂 — 성 로렌스 성당 <span class="zh">聖老楞佐堂</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 성 로렌스 성당 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    • 역사: <strong>16세기</strong>로 거슬러 올라감<br>
+    • 현재 상태: <strong>원래 건축 구조 보존</strong> 중<br>
+    • 위치: 마카오 반도 역사 도심<br>
+    • 소속 형제단: <strong>구제의 성모(Our Lady of Remedies) 형제단 — 1618년부터</strong><br>
+    • 건축 양식: <strong>신고전주의(Neo-Classic)</strong><br>
+    • 주요 건축 요소: 두 개의 종탑(하나에 시계, 하나에 종)·계단·석조 십자가<br>
+    • 연례 행사: <strong>종려 주일 행렬(Procissão dos Ramos)</strong> — 부활절 전 마지막 일요일<br>
+    • 안내판 평가: <strong>"전통적이고 매우 인기 높은"</strong> 행사
+  </div>
+  <div class="quote">안내판 기록: "신고전주의 양식으로 복원된 계단·종탑·석조 십자가는 이 성당을 당시 포르투갈 성당 모델과 매우 유사하게 만든다."</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>마카오 3대 성당 중 하나인 성 로렌스 성당은 <strong>16세기에 지어진 원래 구조를 지금도 그대로 보존</strong>하고 있다. 성 바울 성당이 1835년 화재로 전면부만 남은 것과 대조적이다. <strong>1618년부터</strong> 구제의 성모 형제단이 자리를 지켜왔다. 부활절 전 마지막 일요일의 <strong>종려 주일 행렬</strong>은 마카오를 대표하는 가톨릭 행사다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 16세기에 지어진 성 로렌스 성당은 원래 구조를 그대로 보존한 채 매년 부활절 전 마지막 일요일 종려 주일 행렬을 이어가고 있다.</span>
+  </div>
+</section>
+
+<!-- ⑱ 차 가게 -->
+<section class="section" id="s18">
+  <div class="section-number">18</div>
+  <div class="section-tag">생활문화</div>
+  <h2>茶葉舖 — 마카오의 차 가게 <span class="zh">茶葉舖</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 차 가게 전시 태블릿 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    • <strong>1940년대 이전</strong>: 마카오는 중국 차를 해외로 파는 <strong>차 중계 무역항</strong><br>
+    • <strong>1940년대 이후</strong>: 국내외 여러 요인으로 수출 → <strong>내수로 전환</strong><br>
+    • 유명 차 가게: <strong>인순당 차행(仁順堂茶行)·영기(英記)·상진(祥珍)·의무태(儀茂泰)</strong><br>
+    • 운영 방식: 중국 본토에서 차 매입 → 마카오로 운반 → 시민에게 판매
+  </div>
+  <div class="fact-box">
+    <div class="fact-label">전시 가게 내부 선반 — 확인된 차 종류</div>
+    보이차(普洱) · 철관음(鐵觀音) · 서호용정(西湖龍井) · 육안차(六安) · 관음차(觀音) 등 다종의 차 통 진열
+  </div>
+  <div class="quote">가게 내부 전시 요소: 붉은 전통 테라코타 타일 바닥, 낡은 목제 수납장·선반, 재신(財神) 그림, 향로·과일 제물, 대형 녹유 도자 항아리, 바둑판.</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>안내판이 기록한 대로 마카오 차 가게는 <strong>1940년대 이전에는 수출 중계</strong>, 이후에는 <strong>내수 공급</strong>이라는 두 시기를 거쳤다. 가게 안 바둑판은 손님 대기 중 즐기던 오락이며, 재신 그림은 장사 번창을 기원하는 민간신앙의 표현이다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 마카오 차 가게는 1940년대 이전 차 중계 무역항의 역할을 하다가 이후 마카오 시민에게 본토 차를 공급하는 내수 업소로 전환되었다.</span>
+  </div>
+</section>
+
+<!-- ⑲ 전통 과자 -->
+<section class="section" id="s19">
+  <div class="section-number">19</div>
+  <div class="section-tag">음식문화</div>
+  <h2>傳統餅店 — 마카오 전통 과자 가게 <span class="zh">傳統餅店</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 전통 과자 가게 전시 태블릿 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    마카오 전통 과자 가게는 서양식 케이크·빵집에 의해 점차 대체되어 현재 <strong>몇 집만 남아 영업 중</strong>.
+  </div>
+  <table>
+    <tr><th>전통 과자</th><th>용도 (안내판 기록)</th></tr>
+    <tr><td><strong>전퇴(煎堆)·유각(油角)</strong></td><td>명절에 신에게 제사 지내고 손님 접대하는 용도</td></tr>
+    <tr><td><strong>월병(月餅)</strong></td><td>중추절(음력 8월 15일) — 자가 소비 + 선물</td></tr>
+    <tr><td><strong>가녀병(嫁女餅)</strong></td><td>"딸을 시집보내는 과자" — 현대 결혼식에서도 여전히 사용</td></tr>
+  </table>
+  <div class="quote">안내판 기록: "오늘날 이 지역 특색이 넘치는 과자 가게들은 전통 제조 기술을 보존하면서도 제품 포장과 홍보에서 혁신을 이루어, 이 전통 업종과 전통 제품에 새로운 생명력을 불어넣고 있다."</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>전통 과자 가게 재현 공간에는 <strong>나무 과자 틀(餅模)</strong>이 전시되어 있다. 반죽을 이 틀에 눌러 꽃이나 글자 문양을 새기는 도구다. 안내판의 표현대로 <strong>"전통 제조 기술을 보존하면서도 포장·홍보에서 혁신"</strong>을 이루고 있다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 마카오 전통 과자 가게는 몇 집만 남았지만 전퇴·월병·가녀병으로 제사·명절·혼례의 전통을 지금도 이어가고 있다.</span>
+  </div>
+</section>
+
+<!-- ⑳ 중약방 -->
+<section class="section" id="s20">
+  <div class="section-number">20</div>
+  <div class="section-tag">전통의학</div>
+  <h2>中藥舖 — 마카오 전통 중약방 <span class="zh">中藥舖</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 중약방 전시 태블릿 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    중의약은 역사가 오래된 업종으로 <strong>중화 전통문화 유산의 중요한 부분</strong>이다. 이 전통 중약방은 <strong>지금도 마카오 곳곳에서 볼 수 있다</strong>. 각종 비싸거나 저렴한 중약재 판매. 일부는 <strong>중의사 상주 — 집약(執藥) 서비스</strong> 제공. 일부는 <strong>대객전약(代客煎藥)</strong> — 약 달여주기 서비스 제공.
+  </div>
+  <table>
+    <tr><th>진단법</th><th>한자</th><th>방법 (안내판 기록)</th></tr>
+    <tr><td>망(望)</td><td>望</td><td>눈으로 봄 — 안색·눈·혀·체형 관찰</td></tr>
+    <tr><td>문(聞)</td><td>聞</td><td>귀·코 — 목소리·숨소리·체취</td></tr>
+    <tr><td>문(問)</td><td>問</td><td>말로 물음 — 증상·병력·생활습관</td></tr>
+    <tr><td>절(切)</td><td>切</td><td>손으로 만짐 — 맥박 측정(맥진)</td></tr>
+  </table>
+  <div class="story-block">
+    <p class="story-fact">[사실 — 안내판]</p>
+    <p>안내판이 기록한 중약방 운영 방식: 중의사가 <strong>망·문·문·절(望聞問切)</strong> 네 단계로 진단 → 처방 → 약방에서 <strong>집약(執藥)</strong> → 필요 시 <strong>대객전약</strong>. 안내판 표현: 중의약은 <strong>"중화 전통문화 유산의 중요한 부분"</strong>이며 중약방은 지금도 마카오 곳곳에 있다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 마카오 전통 중약방은 망·문·문·절 네 단계로 진단하고 처방에 따라 약재를 조제해 지금도 마카오 곳곳에서 운영 중이다.</span>
+  </div>
+</section>
+
+<!-- ㉑ 신상 조각 -->
+<section class="section" id="s21">
+  <div class="section-number">21</div>
+  <div class="section-tag">무형문화유산</div>
+  <h2>神像雕刻作坊 — 신상 조각 작업장 <span class="zh">神像雕刻作坊</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 신상 조각 전시 태블릿 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    • 분류: <strong>마카오 비물질 문화유산 목록 항목</strong><br>
+    • 재료: <strong>목재</strong><br>
+    • 제작 방법: <strong>한 칼 한 칼 직접 조각</strong><br>
+    • 마감: <strong>전통 색채 채색</strong> 또는 <strong>금박</strong><br>
+    • 마카오 대표 신상: <strong>석가모니·관음·마조·관제(關帝)</strong><br>
+    • 공통 목적: <strong>"신령의 보호와 가호를 빌기 위함"</strong>
+  </div>
+  <div class="quote">안내판 기록: "사찰 신단·가정 신감 위의 크고 작고 형태가 다양한 신상들은 모두 공예사가 목재를 사용해 한 칼 한 칼 조각하고, 전통 색채로 채색하거나 금박을 입혀 제작한 것이다."</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 — 안내판]</p>
+    <p>안내판이 밝히는 업종별 섬기는 신: 어부·선원 → <strong>마조(媽祖)</strong>, 상인 → <strong>관제(關帝)</strong>. 이 기술이 비물질 문화유산인 이유: 장인이 직접 손으로 가르치고 제자가 몸으로 배워야만 살아남는 기술이기 때문이다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 마카오 신상 조각은 목재를 한 칼씩 깎아 만드는 비물질 문화유산 등재 기술로 석가모니·관음·마조·관제 등 다양한 신상을 제작한다.</span>
+  </div>
+</section>
+
+<!-- ㉒ 폭죽업 -->
+<section class="section" id="s22">
+  <div class="section-number">22</div>
+  <div class="section-tag">산업</div>
+  <h2>마카오 폭죽 산업 <span class="zh">爆竹業</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 폭죽업 전시 안내판</p>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-year">1880년</div><div class="timeline-text">마카오 최초 폭죽 공장 설립 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1910년</div><div class="timeline-text">공장 수 7개로 증가, 수천 명 고용. 거의 모두 <strong>타이파 섬</strong> 위치 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1960년</div><div class="timeline-text">10개 공장 가동 중 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1980년대 초</div><div class="timeline-text">시장 문제 + 젊은이들의 업종 기피로 쇠퇴 시작 <em>(안내판 기록)</em></div></div>
+    <div class="timeline-item"><div class="timeline-year">1990년대 초</div><div class="timeline-text">마카오 폭죽 생산 완전 중단. 현재 중국에서 수입 <em>(안내판 기록)</em></div></div>
+  </div>
+  <div class="fact-box">
+    <div class="fact-label">폭죽 공장 8개 구역 (안내판 기록)</div>
+    ① 辦公室(사무실) ② 小廟(소묘·사당) ③ 插引作坊(도화선 작업장) ④ 春火藥作坊(화약 제조) ⑤ 危險倉庫(위험 창고·호수 근처) ⑥ 入火藥作坊(화약 충전·방화벽 설치) ⑦ 炮殼倉庫(폭죽 껍데기 창고) ⑧ 普通倉庫(일반 창고)
+  </div>
+  <div class="quote">전시 포스터 확인 사실: "BLACK HAWK — MADE IN MACAU by KWONG HING TAI FIRECRACKER Co." — 마카오 폭죽이 실제로 해외 수출됐다는 증거.</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>안내판이 기록한 쇠퇴 이유 두 가지: <strong>①시장 문제, ②젊은이들이 이 업종을 배우려 하지 않음</strong>. 110년간 마카오를 먹여 살린 산업이 이 두 이유로 30년 만에 사라졌다. 지금 전시 케이스 안의 낡은 목제 작업 도구들과 빛바랜 "MADE IN MACAU" 포스터가 그 110년의 흔적이다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 마카오 폭죽 산업은 1880년 시작해 수천 명을 고용하며 경제를 지탱했지만 1990년대 초 완전히 중단되어 지금은 중국에서 수입한다.</span>
+  </div>
+</section>
+
+<!-- ㉓ 토생 요리 -->
+<section class="section" id="s23">
+  <div class="section-number">23</div>
+  <div class="section-tag">음식문화</div>
+  <h2>土生廚藝 — 토생 요리 <span class="zh">土生廚藝</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 토생 요리 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    • 기원: <strong>15세기</strong> 포르투갈의 세계 확장 시기<br>
+    • 향신료 출처: <strong>아프리카·인도·인도네시아·말레이시아·중국·브라질</strong><br>
+    • 대표 행사: <strong>차 고르도(Chá Gordo / 下午茶大餐)</strong> — 20가지 이상 음식의 풍성한 다과 사교 모임<br>
+    • 안내판 평가: <strong>"문화 통합의 진정한 표현"</strong><br>
+    • 결합 방식: <strong>포르투갈 요리 전통 + 동방 특유의 요리법</strong>
+  </div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>안내판이 밝히는 차 고르도의 의미: <strong>"이 음식들의 다원적 기원과 사용하는 과정의 정신과 관행을 가장 잘 표현하는 식사."</strong> 전시 식탁에는 케이크·새우 요리·과일·튀김·빵 등 20가지 이상 음식이 흰 레이스 테이블보 위에 차려져 있다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 토생 요리는 15세기 포르투갈의 세계 확장 과정에서 6개 지역 향신료가 마카오에서 융합된 문화 통합의 진정한 표현이다.</span>
+  </div>
+</section>
+
+<!-- ㉔ 토생 주방 -->
+<section class="section" id="s24">
+  <div class="section-number">24</div>
+  <div class="section-tag">생활문화</div>
+  <h2>土生葡人廚房 — 토생 포르투갈인 주방 <span class="zh">土生葡人廚房</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 토생 주방 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    토생 포르투갈인의 문화·생활 방식·풍습은 <strong>포르투갈·아프리카·인도·인도네시아·말레이시아·중국</strong> 등 다민족의 특색을 포함한다. 토생 요리는 <strong>포르투갈식과 동방의 요리법이 혼합</strong>된 것으로 일상에서 <strong>서양식과 중국식 조리 도구 및 식기를 함께 채택</strong>했다.
+  </div>
+  <div class="fact-box">
+    <div class="fact-label">핵심 전시물 — 안내판 기록</div>
+    • 전시물: <strong>골동품 등유 오븐(kerosene oven) + 화격자(grade)</strong><br>
+    • 출처: <strong>한 토생 가족이 10년 이상 실제 사용</strong><br>
+    • 희귀성: <strong>"드물게 보이는 서양식 조리 기구"</strong><br>
+    • 추가 확인: 우측 도기 항아리 — <strong>"LANE CRAWFORD &amp; CO., HONG KONG"</strong> (1850년 창립 홍콩 서양계 백화점)
+  </div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>안내판 두 개가 함께 보여주는 핵심: <strong>서양 등유 오븐 + 중국 전통 분홍 꽃무늬 찬합</strong>이 나란히 놓인 이 부엌이 마카오 토생 문화의 축소판이다. 홍콩 서양 백화점 제품이 마카오 토생 가족의 부엌에서 사용됐다는 사실은 마카오·홍콩·서양의 연결을 보여준다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 토생 가족의 부엌에는 서양식 등유 오븐과 중국 전통 찬합이 나란히 있었으며 이는 포르투갈·아프리카·인도·동남아·중국 문화가 하나로 융합된 토생 문화의 실물 증거다.</span>
+  </div>
+</section>
+
+<!-- ㉕ 성 프란치스코 공원 -->
+<section class="section" id="s25">
+  <div class="section-number">25</div>
+  <div class="section-tag">역사공간</div>
+  <h2>嘉思欄花園 — 성 프란치스코 공원 <span class="zh">嘉思欄花園</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 성 프란치스코 공원 전시 안내판</p>
+  <div class="fact-box">
+    <div class="fact-label">안내판 기록 사실</div>
+    • 공식 명칭: <strong>嘉思欄花園 / Jardim de S. Francisco / St. Francisco Garden</strong><br>
+    • 위치: <strong>남만해안(프라이아 그란데 해안)</strong> 인접<br>
+    • 특징: 해안 따라 <strong>무성하고 푸른 나무들</strong><br>
+    • 전성기: <strong>20세기 1930년대까지</strong> 마카오 가장 인기 있는 공공 산책로<br>
+    • 이용자: <strong>관광객 + 현지 주민</strong><br>
+    • 주변 건물: <strong>독특한 건축 양식의 저명한 토생 가문 저택</strong><br>
+    • 전시 형태: <strong>모형으로 재현</strong>
+  </div>
+  <div class="quote">안내판 기록: "이 박물관은 마카오의 풍부하고 비할 데 없는 역사 유산을 영속시키며 과거의 기억을 되살리고자 한다."</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>공원 모형 구성 요소 (실물 확인): <strong>남만해안·바위·선박, 성 프란치스코 공원·무성한 나무·분홍 팔각 정자, 붉은 지붕 노란 외벽의 토생 가문 저택, 교회 첨탑, 대형 흰색 관공서 건물</strong>. 안내판의 표현대로 <strong>"1930년대까지 마카오에서 가장 쾌적하고 인기 있는 공공 산책로"</strong>였다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 성 프란치스코 공원은 남만해안을 따라 무성한 나무가 우거진 곳으로 1930년대까지 마카오 최고 인기 공공 산책로였으며 주변엔 저명한 토생 가문의 저택들이 있었다.</span>
+  </div>
+</section>
+
+<!-- ㉖ 마카오 거리 풍경 -->
+<section class="section" id="s26">
+  <div class="section-number">26</div>
+  <div class="section-tag">건축·생활</div>
+  <h2>昔日濠江景緻 — 옛 마카오 거리 풍경 <span class="zh">昔日濠江景緻</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 마카오 거리 전시 안내판</p>
+  <table>
+    <tr><th>번호</th><th>건물 유형</th><th>안내판 기록 특징</th></tr>
+    <tr><td>1</td><td>서민 주택</td><td>소박·격식 없음. <strong>마카오에서 가장 오래된 건축 유형</strong></td></tr>
+    <tr><td>2</td><td>중식 주거</td><td>우물 보유 — <strong>"마카오 모든 가옥과 동네에서 없어서는 안 될 생활 요소"</strong></td></tr>
+    <tr><td>3</td><td>청나라 찻집</td><td>청벽돌·목재. <strong>방화벽(Fong-fó-cheong)</strong> 설치 — "방화벽"의 의미. 금박 꽃 문양 창문</td></tr>
+    <tr><td>4</td><td>포르투갈식 건물</td><td><strong>신고전주의</strong> 양식. 아치형 발코니·채색 벽·강렬한 색채 대비</td></tr>
+    <tr><td>5</td><td>망루</td><td>청나라 후기 남방 양식. <strong>"중국 남방 도시 중요 랜드마크"</strong></td></tr>
+  </table>
+  <div class="quote">전통 가게 문 옆 붉은 현판: "天官賜福(천관사복)" — "하늘이 복을 내린다" (지금도 마카오·홍콩·중국 가정에서 볼 수 있는 길상 문구)</div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>안내판의 표현: <strong>"중국과 포르투갈의 서로 다른 건축 문화가 한 거리에서 공존."</strong> 가장 소박한 1번 서민 주택은 안내판이 밝히는 대로 <strong>"마카오에서 가장 오래된 형식의 집"</strong>이다. 카지노와 화려한 호텔로 유명한 마카오지만, 그 땅의 가장 오래된 주인은 이런 소박한 집에 살던 평범한 사람들이었다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 마카오의 한 골목엔 중국 농민의 소박한 집부터 방화벽 달린 청나라 찻집, 아치 발코니의 포르투갈 건물까지 두 문명의 건축이 나란히 서 있다.</span>
+  </div>
+</section>
+
+<!-- ㉗ 토지신 감실 -->
+<section class="section" id="s27">
+  <div class="section-number">27</div>
+  <div class="section-tag">민간신앙</div>
+  <h2>土地神龕 — 토지신 감실 <span class="zh">土地神龕</span></h2>
+  <p class="source-note">근거 : 마카오 박물관 토지신 감실 실물 전시 (문자 직접 확인)</p>
+  <div class="fact-box">
+    <div class="fact-label">감실 문자 — 실물 직접 확인</div>
+    • 우측: <strong>積德自能多土地</strong> — "덕을 쌓으면 자연히 토지가 많아진다"<br>
+    • 좌측: <strong>福相門官福德正神</strong> — "문관과 복덕정신이 복을 내린다"<br>
+    • 중앙: <strong>本宅門官土地福德正神</strong> — "이 집의 문관·토지신·복덕정신" (신의 이름표)<br>
+    • 하단: <strong>請書應有一門官</strong> — "문관을 모셔야 마땅하다"
+  </div>
+  <div class="fact-box">
+    <div class="fact-label">구조·재질 — 실물 확인</div>
+    벽면 매립형 감실 / 외벽: 전통 회색 벽돌 / 테두리: 석조 조각(용·구름·화초·기하학 격자) / 내부: 붉은 목제 패널 / 중앙 장식: 붉은 리본·연꽃 매듭 / 하단: 청동 향로
+  </div>
+  <div class="fact-box">
+    <div class="fact-label">토지신(福德正神) — 역사적 사실</div>
+    중국 도교·민간신앙에서 특정 <strong>땅·구역·건물을 지키는 수호신</strong>. 마을·골목·건물마다 각자의 토지신 존재. 지금도 마카오 골목·건물 곳곳에서 이런 감실을 볼 수 있다.
+  </div>
+  <div class="story-block">
+    <p class="story-fact">[사실 기반 정리]</p>
+    <p>이 감실은 앞서 본 <strong>마카오 전통 거리 재현 전시</strong>의 일부로 전통 중국식 주택 외벽에 설치된 모습을 재현한 것이다. 감실 안 문구 중 <strong>"積德自能多土地"</strong>는 신에게 복을 비는 것뿐 아니라 <strong>스스로 덕을 쌓아야 한다</strong>는 가르침도 담고 있다. 마카오 전통 가게와 주택 어디서나 볼 수 있는 생활 신앙의 표현이다.</p>
+    <span class="story-highlight">🔑 한 줄 요약 : 토지신 감실은 마카오 건물 벽에 설치된 집과 땅을 지키는 수호신을 모시는 공간으로 지금도 마카오 곳곳에서 볼 수 있다.</span>
+  </div>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+</main>
+
+<footer>
+  <div class="copyright">
+    본 콘텐츠는 확인된 역사적 사실에 기반하여 제작되었으며<br>
+    <strong>Irene이 직접 만든 소중한 자료입니다.</strong><br>
+    무단 복제 및 배포를 금합니다.
+  </div>
+  <p style="margin-top:20px;font-size:11px;opacity:.4;">
+    © Macau Museum Historical Storytelling Guide · Based on verified exhibition panel records · 27 sections
+  </p>
+</footer>
+
+</body>
+</html>
