@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>콜로안 빌리지 — 역사 가이드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream:   #f5efe6;
+      --stone:   #e8ddd0;
+      --terracotta: #c0714f;
+      --rust:    #9c4a2b;
+      --navy:    #1e2d40;
+      --slate:   #4a5568;
+      --gold:    #b8860b;
+      --sage:    #6b7c5c;
+      --white:   #ffffff;
+      --shadow:  rgba(30,45,64,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    /* ── HERO ─────────────────────────── */
+    .hero {
+      background: linear-gradient(160deg, #1e2d40 0%, #2c3e55 55%, #3d5068 100%);
+      padding: 60px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 18px,
+        rgba(255,255,255,0.025) 18px,
+        rgba(255,255,255,0.025) 19px
+      );
+    }
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid rgba(184,134,11,0.6);
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 7vw, 42px);
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .hero h1 em {
+      display: block;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.6em;
+      letter-spacing: 1px;
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.55);
+      font-size: 13px;
+      margin-top: 16px;
+      letter-spacing: 0.5px;
+    }
+    .hero-divider {
+      width: 50px;
+      height: 2px;
+      background: var(--gold);
+      margin: 20px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ── NAV TABS ─────────────────────── */
+    .nav-tabs {
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      gap: 0;
+      background: var(--navy);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+    .nav-tab {
+      flex: 0 0 auto;
+      padding: 13px 18px;
+      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .nav-tab:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* ── MAIN CONTAINER ───────────────── */
+    .container { max-width: 680px; margin: 0 auto; padding: 0 0 80px; }
+
+    /* ── SECTION ──────────────────────── */
+    .section {
+      padding: 40px 20px 0;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .section-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .icon-terracotta { background: rgba(192,113,79,0.15); }
+    .icon-navy       { background: rgba(30,45,64,0.1); }
+    .icon-gold       { background: rgba(184,134,11,0.12); }
+    .icon-sage       { background: rgba(107,124,92,0.15); }
+    .icon-rust       { background: rgba(156,74,43,0.12); }
+
+    .section-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .section-title span {
+      display: block;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--terracotta);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    /* ── CARDS ────────────────────────── */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--terracotta);
+      border-radius: 4px 0 0 4px;
+    }
+    .card.gold-line::before  { background: var(--gold); }
+    .card.sage-line::before  { background: var(--sage); }
+    .card.navy-line::before  { background: var(--navy); }
+    .card.rust-line::before  { background: var(--rust); }
+
+    .card-year {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .card-year.alt { background: var(--terracotta); }
+    .card-year.gold { background: var(--gold); color: var(--navy); }
+
+    .card h3 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .card p {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.9;
+      margin-bottom: 10px;
+    }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* ── TIMELINE ─────────────────────── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px; top: 6px; bottom: 6px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--terracotta), var(--gold), var(--sage));
+      border-radius: 2px;
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute;
+      left: -22px; top: 5px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      border: 2px solid var(--cream);
+      box-shadow: 0 0 0 2px var(--terracotta);
+    }
+    .tl-dot.gold { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+    .tl-dot.sage { background: var(--sage); box-shadow: 0 0 0 2px var(--sage); }
+    .tl-dot.navy { background: var(--navy); box-shadow: 0 0 0 2px var(--navy); }
+    .tl-year {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--terracotta);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .tl-year.gold-t { color: var(--gold); }
+    .tl-year.sage-t { color: var(--sage); }
+    .tl-year.navy-t { color: var(--navy); }
+    .tl-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .tl-body {
+      font-size: 13.5px;
+      color: var(--slate);
+      line-height: 1.85;
+    }
+
+    /* ── HIGHLIGHT BOX ────────────────── */
+    .highlight {
+      background: linear-gradient(135deg, rgba(192,113,79,0.08), rgba(184,134,11,0.06));
+      border: 1px solid rgba(192,113,79,0.25);
+      border-radius: 12px;
+      padding: 18px 18px 18px 20px;
+      margin: 16px 0;
+      font-size: 13.5px;
+      color: var(--slate);
+      line-height: 1.85;
+    }
+    .highlight strong {
+      color: var(--rust);
+      font-weight: 700;
+    }
+
+    /* ── INFO TABLE ───────────────────── */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+    }
+    .info-table th {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 10px 12px;
+      text-align: left;
+    }
+    .info-table th:first-child { border-radius: 8px 0 0 0; }
+    .info-table th:last-child  { border-radius: 0 8px 0 0; }
+    .info-table td {
+      font-size: 13px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--stone);
+      color: var(--slate);
+      vertical-align: top;
+    }
+    .info-table tr:last-child td { border-bottom: none; }
+    .info-table tr:nth-child(even) td { background: rgba(232,221,208,0.25); }
+    .info-table td:first-child { font-weight: 600; color: var(--navy); width: 42%; }
+
+    /* ── QUOTE BOX ────────────────────── */
+    .quote-box {
+      background: var(--navy);
+      color: rgba(255,255,255,0.85);
+      border-radius: 14px;
+      padding: 24px 22px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .quote-box::before {
+      content: '❝';
+      position: absolute;
+      top: 12px; left: 18px;
+      font-size: 32px;
+      color: var(--gold);
+      opacity: 0.5;
+      line-height: 1;
+    }
+    .quote-box p {
+      font-family: 'Noto Serif KR', serif;
+      font-style: italic;
+      font-size: 14px;
+      line-height: 1.9;
+      margin-top: 16px;
+      color: rgba(255,255,255,0.82);
+    }
+    .quote-box cite {
+      display: block;
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+      font-style: normal;
+    }
+
+    /* ── NOTICE BOX ───────────────────── */
+    .notice {
+      background: rgba(107,124,92,0.1);
+      border-left: 3px solid var(--sage);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 16px;
+      margin: 14px 0;
+      font-size: 13px;
+      color: var(--slate);
+      line-height: 1.8;
+    }
+    .notice strong { color: var(--sage); }
+
+    /* ── PILL TAGS ────────────────────── */
+    .tags {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;
+    }
+    .tag {
+      font-size: 11.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    .tag-terracotta { background: rgba(192,113,79,0.12); color: var(--rust); }
+    .tag-navy       { background: rgba(30,45,64,0.08);   color: var(--navy); }
+    .tag-gold       { background: rgba(184,134,11,0.1);  color: var(--gold); }
+    .tag-sage       { background: rgba(107,124,92,0.12); color: var(--sage); }
+
+    /* ── SECTION DIVIDER ──────────────── */
+    .sec-divider {
+      display: flex; align-items: center; gap: 12px;
+      padding: 32px 20px 0;
+    }
+    .sec-divider::before, .sec-divider::after {
+      content: ''; flex: 1;
+      height: 1px; background: var(--stone);
+    }
+    .sec-divider span {
+      font-size: 11px; color: var(--terracotta);
+      letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+    }
+
+    /* ── FOOTER ───────────────────────── */
+    .footer {
+      background: var(--navy);
+      padding: 32px 24px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      max-width: 320px;
+      margin: 0 auto 16px;
+    }
+    .footer-legal {
+      display: inline-block;
+      border: 1px solid rgba(184,134,11,0.3);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 340px;
+    }
+    .footer-legal strong { color: var(--gold); display: block; margin-bottom: 4px; }
+
+    /* ── ANIMATIONS ───────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card, .quote-box, .highlight { animation: fadeUp 0.5s ease both; }
+
+    /* ── RESPONSIVE TOUCH-UPS ─────────── */
+    @media (max-width: 380px) {
+      .hero { padding: 48px 16px 36px; }
+      .section { padding: 32px 16px 0; }
+      .card { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-badge">마카오 모먼트 · 역사 가이드</div>
+  <h1>
+    콜로안 빌리지
+    <em>Coloane Village · 路環村</em>
+  </h1>
+  <p class="hero-sub">어촌에서 해적의 섬으로, 그리고 평화의 마을로<br>확인된 역사적 사실만을 담았습니다</p>
+  <div class="hero-divider"></div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-tabs">
+  <a class="nav-tab" href="#origin">기원</a>
+  <a class="nav-tab" href="#pirates">해적</a>
+  <a class="nav-tab" href="#chapel">성당</a>
+  <a class="nav-tab" href="#temples">사원</a>
+  <a class="nav-tab" href="#buildings">건물</a>
+  <a class="nav-tab" href="#eggtart">에그타르트</a>
+  <a class="nav-tab" href="#shipyard">조선소</a>
+  <a class="nav-tab" href="#kaho">카호</a>
+  <a class="nav-tab" href="#story">📖 스토리</a>
+</nav>
+
+<div class="container">
+
+<!-- ════════════════════════════════════
+     1. 기원과 이름
+════════════════════════════════════ -->
+<section class="section" id="origin">
+  <div class="section-header">
+    <div class="section-icon icon-terracotta">🏝️</div>
+    <div class="section-title">
+      <span>Origin &amp; Name</span>
+      콜로안의 기원과 이름
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-year">이름의 유래</div>
+    <h3>세 개의 이름을 가진 섬</h3>
+    <p>콜로안이라는 포르투갈어 이름은 광둥어 <strong>과로환(過路環 · Gwo Lou Waan)</strong>, 즉 "지나는 길의 고리"에서 음차됐다. 이 섬은 역사적으로 두 가지 별칭을 갖고 있었다.</p>
+    <table class="info-table" style="margin-top:12px;">
+      <tr>
+        <th>광둥어 이름</th>
+        <th>한자</th>
+        <th>뜻</th>
+      </tr>
+      <tr>
+        <td>Gwo Lou Waan</td>
+        <td>過路環</td>
+        <td>지나는 길의 고리</td>
+      </tr>
+      <tr>
+        <td>Gau Ou Saan</td>
+        <td>九澳山</td>
+        <td>아홉 개의 만(灣)이 있는 산</td>
+      </tr>
+      <tr>
+        <td>Jim Jou Waan</td>
+        <td>鹽灶灣</td>
+        <td>소금 화덕 만</td>
+      </tr>
+    </table>
+    <div class="tags">
+      <span class="tag tag-terracotta">광둥어 어원</span>
+      <span class="tag tag-navy">포르투갈 음차</span>
+    </div>
+  </div>
+
+  <div class="card gold-line">
+    <div class="card-year gold">어촌 마을</div>
+    <h3>소금을 굽고 물고기를 잡던 공동체</h3>
+    <p>포르투갈이 19세기에 도착하기 이전, 콜로안은 주로 <strong>어업과 소금 채취</strong>를 생계로 삼는 전형적인 어촌 마을이었다. "소금 화덕 만(鹽灶灣)"이라는 별칭이 그 흔적을 지금도 전하고 있다.</p>
+    <p>지금도 마을 북쪽 해변가에는 <strong>수상 가옥 형태의 아연 판 건물들</strong>이 일부 남아 있어, 바다에 기대어 살았던 어민들의 흔적을 보여준다.</p>
+  </div>
+</section>
+
+<div class="sec-divider"><span>History</span></div>
+
+<!-- ════════════════════════════════════
+     2. 해적의 섬
+════════════════════════════════════ -->
+<section class="section" id="pirates">
+  <div class="section-header">
+    <div class="section-icon icon-rust">🏴‍☠️</div>
+    <div class="section-title">
+      <span>Pirates · 1854–1910</span>
+      해적의 섬
+    </div>
+  </div>
+
+  <div class="card rust-line">
+    <div class="card-year alt">배경</div>
+    <h3>왜 해적들이 모여들었나</h3>
+    <p>콜로안 어민들은 오랫동안 밀수꾼과 해적들의 위협에 시달렸다. 포르투갈은 이 섬을 완전히 식민화하지 않았기 때문에 해적 소탕은 우선순위가 아니었고, 여러 차례 시도에도 이 지역을 오랫동안 통제하지 못했다.</p>
+    <p>마카오 문서보관소 기록에 따르면, 마카오 해역의 해적 관련 최초 조사 문서는 <strong>1854~55년</strong>으로 거슬러 올라간다.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-year alt">1910년 여름</div>
+    <h3>결정적 사건 — 인질 납치</h3>
+    <p>1910년 여름, 해적들이 콜로안 섬에서 <strong>학생 17명을 포함해 수십 명의 남녀 주민들을 납치해 몸값을 요구</strong>했다. 이것이 결정적인 계기가 됐다.</p>
+  </div>
+
+  <div class="card gold-line">
+    <div class="card-year gold">1910. 7. 13</div>
+    <h3>포르투갈 군사 작전</h3>
+    <p>군인 <strong>45명</strong>과 "마카오(Macau)"라는 이름의 포함(砲艦) 1척이 홍콩에서 출동해 콜로안을 공격했다. 전투는 <strong>10일간</strong> 계속됐다.</p>
+    <p>마르께스(Marques) 사령관은 "해적 <strong>310명</strong> 전원이 체포되거나 섬에서 완전히 달아났다"고 리스본에 보고했다. 콜로안 일부 지역은 폭격으로 파손됐고, 해적을 도운 혐의로 일부 주민들도 구금됐다.</p>
+  </div>
+
+  <div class="highlight">
+    <strong>⚠️ 역사학자들의 시각 차이</strong><br>
+    포르투갈은 이 작전을 "서양 문명의 야만에 대한 위대한 승리"로 기록했다. 그러나 당시 한 목격자 할머니는 다섯 살 때 가족과 함께 항구 어선 위에 있다가 포르투갈 포함의 포격을 받았다고 증언했다. 해적이 아닌 평범한 어민도 피해를 입었다는 사실은 지금도 역사학자들 사이에서 논쟁이 계속되는 주제다.<br><br>
+    <em>(출처: Robert J. Anthony, "We are Not Pirates", Journal of World History, 2017)</em>
+  </div>
+
+  <div class="card sage-line">
+    <div class="card-year" style="background:var(--sage)">기념</div>
+    <h3>7월 13일 — 기념일과 기념비</h3>
+    <p>오랫동안 <strong>7월 13일</strong>은 콜로안에서 해적 소탕 승리를 기념하는 공휴일이었다. 성 프란시스코 자비에르 성당 앞 <strong>馬忌士前地(마기사전지)</strong>에는 이 사건을 기록한 석조 기념비가 세워졌으며, 지금도 현장에 남아 있다.</p>
+  </div>
+</section>
+
+<div class="sec-divider"><span>Architecture</span></div>
+
+<!-- ════════════════════════════════════
+     3. 성 프란시스코 자비에르 성당
+════════════════════════════════════ -->
+<section class="section" id="chapel">
+  <div class="section-header">
+    <div class="section-icon icon-gold">⛪</div>
+    <div class="section-title">
+      <span>Chapel · 1928</span>
+      성 프란시스코 자비에르 성당
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-year">기본 정보</div>
+    <h3>바로크 양식의 크림색 성당</h3>
+    <table class="info-table" style="margin-top:8px;">
+      <tr><td>한국어명</td><td>성 프란시스코 자비에르 성당</td></tr>
+      <tr><td>중국어</td><td>聖方濟各聖堂</td></tr>
+      <tr><td>건축 연도</td><td>1928년</td></tr>
+      <tr><td>건축 양식</td><td>바로크 양식</td></tr>
+      <tr><td>외벽 색상</td><td>크림색·흰색</td></tr>
+      <tr><td>특징</td><td>타원형 창문, 종탑</td></tr>
+      <tr><td>위치</td><td>馬忌士前地 동쪽 끝</td></tr>
+    </table>
+    <div class="notice" style="margin-top:14px;">
+      📌 성당은 1910년 해적 소탕 기념비보다 <strong>18년 늦게</strong> 세워졌다. 즉, 기념비가 성당보다 더 오래됐다. 기념비는 성당 앞 <strong>馬忌士前地</strong>에 위치한다.
+    </div>
+  </div>
+
+  <div class="card gold-line">
+    <div class="card-year gold">선교사</div>
+    <h3>프란시스코 사비에르 (1506–1552)</h3>
+    <p>성당 이름의 주인공인 <strong>프란시스코 사비에르</strong>는 예수회의 창립 멤버 중 한 명이자 16세기 아시아에서 활동한 선구적인 가톨릭 선교사였다. 인도, 일본, 중국 등 동아시아 전역에서 기독교를 전파했다.</p>
+    <p>그는 1552년, 마카오에서 약 80km 떨어진 <strong>상촨섬(Shangchuan Island · 上川島)</strong>에서 사망했다. 중국 본토에 들어가려다 그 관문에서 생을 마감한 것이다.</p>
+  </div>
+
+  <div class="card rust-line">
+    <div class="card-year alt">성유물</div>
+    <h3>한때 아시아 최중요 성유물이 있었던 곳</h3>
+    <p>이 작은 성당은 한때 아시아 가톨릭 역사에서 가장 중요한 성유물들을 보관하고 있었다.</p>
+    <ul style="font-size:14px; color:var(--slate); line-height:2; padding-left:18px; margin-top:8px;">
+      <li><strong>1597년 나가사키</strong>에서 순교한 외국인 선교사와 일본 가톨릭 신자 26명의 유해</li>
+      <li><strong>1637년 일본 시마바라 반란</strong>으로 희생된 신자들의 유해</li>
+      <li>사비에르 본인의 <strong>팔 뼈 일부</strong> (은제 성물함에 보관)</li>
+    </ul>
+    <div class="notice" style="margin-top:14px;">
+      이 유물들은 현재 마카오 반도의 <strong>성미술관 및 납골당(1996년 개관)</strong>과 <strong>성 요셉 성당</strong>으로 각각 이전되어 보관 중이다.
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"><span>Temples</span></div>
+
+<!-- ════════════════════════════════════
+     4. 사원들
+════════════════════════════════════ -->
+<section class="section" id="temples">
+  <div class="section-header">
+    <div class="section-icon icon-sage">🛕</div>
+    <div class="section-title">
+      <span>Four Temples of Coloane</span>
+      콜로안의 네 사원
+    </div>
+  </div>
+
+  <div class="notice">
+    콜로안 빌리지에는 역사적으로 <strong>4개의 사원</strong>이 존재했다. 천후고묘(天后古廟) · 관음묘(觀音廟) · 담공묘(譚公廟) · 삼성묘(三聖廟). 이 넷은 콜로안의 "사원 역사 탐방로"로 연결되어 있다.
+  </div>
+
+  <div class="timeline" style="margin-top:20px;">
+
+    <div class="tl-item">
+      <div class="tl-dot navy"></div>
+      <div class="tl-year navy-t">1677년 추정 (1763년 이전 확인)</div>
+      <div class="tl-title">천후고묘 (天后古廟) · Tin Hau Temple</div>
+      <div class="tl-body">콜로안에서 가장 오래된 사원으로, 마을보다도 먼저 존재했다. 1763년 이전에 세워진 것으로 기록되며 1677년 건립 추정도 있다. 뱃사람의 수호 여신 '천후(天后, 아마/A-Ma)'를 모신다. 내부에는 용과 잉어가 조각된 정교한 술잔 3개가 봉헌되어 있는데, 대부분의 사원이 1개인 것에 비해 3개를 보유한 것은 이 사원의 역사적 위상을 보여준다.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot gold"></div>
+      <div class="tl-year gold-t">1800년</div>
+      <div class="tl-title">관음묘 (觀音廟) · Kun Iam Temple</div>
+      <div class="tl-body">자비의 여신 관음(觀音)을 모시는 사원으로 1800년에 건립됐다. 문 위의 대형 목조 조각이 특히 정교한 것으로 알려져 있다.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1862년</div>
+      <div class="tl-title">담공묘 (譚公廟) · Tam Kung Temple</div>
+      <div class="tl-body">1862년에 세워진 도교 사원으로, 병자를 치료하고 날씨를 조종할 수 있다는 어린이 신 '담공(譚公)'을 모신다. 어민과 뱃사람들 사이에서 담공의 인기는 마카오에서 천후(A-Ma) 다음으로 높다.<br><br>
+      <strong>🐋 고래뼈 용선</strong> — 본전 내부에 고래뼈로 만든 용선(龍船) 모형이 보관되어 있다. 이는 마카오에서도 매우 희귀한 유물이다. 또한 호랑이와 새끼를 묘사한 벽화도 있는데, 전설에 따르면 담공이 이동할 때 항상 호랑이를 동반한다고 한다.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot sage"></div>
+      <div class="tl-year sage-t">1865년 이전</div>
+      <div class="tl-title">삼성묘 (三聖廟) · Sam Seng Temple</div>
+      <div class="tl-body">1865년 이전에 건립됐으며, 금화(金花, Kam Fa) · 관음(觀音) · 화광(火光, Va Kuong) 세 신을 모신다. 금화 여신을 가장 중요시하여 '금화묘'라고도 불린다. 금화는 아이의 수호신으로, 임신한 여성들의 방문이 많다. 1988년에 콜로안의 다른 4개 사원들이 모은 기금으로 재건됐다.</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="sec-divider"><span>Buildings</span></div>
+
+<!-- ════════════════════════════════════
+     5. 주요 건물
+════════════════════════════════════ -->
+<section class="section" id="buildings">
+  <div class="section-header">
+    <div class="section-icon icon-navy">🏛️</div>
+    <div class="section-title">
+      <span>Historic Buildings</span>
+      주요 건물과 건축 연도
+    </div>
+  </div>
+
+  <div class="card navy-line">
+    <div class="card-year">1911년 건립</div>
+    <h3>콜로안 도서관 — 원래는 초등학교</h3>
+    <p>노란 외벽이 인상적인 이 포르투갈 양식 건물은 <strong>1911년</strong>에 지어졌다. 원래는 <strong>콜로안 공립 초등학교</strong>로 사용됐고, 그 이후 여러 차례 용도가 바뀌다가 <strong>1983년에 공공 도서관</strong>으로 개조됐다. 현재 마카오 공공도서관 시스템의 일부로 운영되며 건축적 관심 건물로 지정되어 있다.</p>
+    <div class="tags">
+      <span class="tag tag-navy">1911년 건립</span>
+      <span class="tag tag-terracotta">원래 초등학교</span>
+      <span class="tag tag-sage">1983년 도서관 전환</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-year">1928년 건립</div>
+    <h3>성 프란시스코 자비에르 성당</h3>
+    <p>앞 섹션에서 상세 설명. 콜로안 빌리지의 역사적 중심 건물. 해적 소탕 기념비 뒤편에 위치.</p>
+  </div>
+
+  <div class="card sage-line">
+    <div class="card-year" style="background:var(--sage)">19세기 후반</div>
+    <h3>일반 민가·상가 건물</h3>
+    <p>콜로안의 낮고 농촌적인 성격의 <strong>포르투갈식 저층 건물들</strong>은 포르투갈이 콜로안을 장악하기 시작한 <strong>19세기 후반</strong>으로 거슬러 올라간다.</p>
+    <div class="notice">
+      ⚠️ 개별 민가·상가 건물의 정확한 건축 연도는 현재 공개된 자료에서 확인이 되지 않는다. <strong>현장 확인 필요</strong>
+    </div>
+  </div>
+
+  <div class="card gold-line">
+    <div class="card-year gold">광장</div>
+    <h3>馬忌士前地 (마기사전지)</h3>
+    <p>콜로안 빌리지의 중심 광장. <strong>흑·백·황 삼색 자갈돌</strong>로 포장됐으며, 바다의 파도 무늬를 형상화한 독특한 디자인이 특징이다. 광장 동쪽 끝에 성당이, 앞쪽에 1910년 해적 소탕 기념비가 위치한다.</p>
+    <p>광장 앞 해변 산책로(十月初五馬路)에서 맞은편 좁은 해협 너머로 <strong>중국 헝친섬(橫琴島)</strong>이 바라보인다. 헝친섬은 광둥성 주하이(珠海) 관할이며, 현재 광둥-마카오 심층합작구로 개발 중이다.</p>
+    <table class="info-table" style="margin-top:12px;">
+      <tr><td>중문자</td><td><strong>馬忌士前地</strong></td></tr>
+      <tr><td>광장 동쪽</td><td>聖方濟各聖堂 (성 프란시스코 자비에르 성당)</td></tr>
+      <tr><td>광장 앞</td><td>1910년 해적 소탕 기념비</td></tr>
+      <tr><td>맞은편</td><td>橫琴島 헝친섬 (중국 광둥성 주하이)</td></tr>
+    </table>
+  </div>
+</section>
+
+<div class="sec-divider"><span>Food Culture</span></div>
+
+<!-- ════════════════════════════════════
+     6. 에그타르트
+════════════════════════════════════ -->
+<section class="section" id="eggtart">
+  <div class="section-header">
+    <div class="section-icon icon-gold">🥮</div>
+    <div class="section-title">
+      <span>Lord Stow's Bakery · 1989</span>
+      마카오 에그타르트의 탄생지
+    </div>
+  </div>
+
+  <div class="quote-box">
+    <p>"그가 은행 대출 서류에 판매 품목을 적을 때, 맨 아래 줄에 두 단어를 적었다 — 에그타르트(egg tarts)."</p>
+    <cite>— Macao Magazine, 2023</cite>
+  </div>
+
+  <div class="card">
+    <div class="card-year">1989. 9. 15</div>
+    <h3>로드 스토우 베이커리 개업</h3>
+    <p>영국인 <strong>앤드류 스토우(Andrew Stow)</strong>가 콜로안 빌리지의 작은 가게에서 로드 스토우 베이커리를 열었다. 당시 이 지역은 빵을 먹는 문화가 거의 없었는데도 현지인들이 그의 유럽식 제품을 빠르게 좋아하기 시작했다.</p>
+    <p>그의 직업은 제빵사가 아니라 <strong>약사(제약사)</strong>였다. 과학적 실험 정신으로 레시피를 개발한 것이다.</p>
+  </div>
+
+  <div class="card gold-line">
+    <div class="card-year gold">탄생 비화</div>
+    <h3>영국인이 포르투갈 과자를 영국식으로 변형하다</h3>
+    <p>1980년대 포르투갈 여행에서 <strong>파스텔 드 나타(Pastel de Nata)</strong>를 접한 앤드류는 레시피 없이 자신만의 방식으로 재현을 시도했다. 포르투갈식 파이 반죽과 <strong>영국식 커스터드</strong>를 결합해 독자적인 에그타르트를 탄생시켰다.</p>
+    <p>1990년대 홍콩 여행자들이 마카오를 찾아 이 에그타르트를 수십 개씩 사 가면서 아시아 전역으로 퍼져나갔다.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-year alt">공식 인정</div>
+    <h3>마카오 무형문화유산 등재</h3>
+    <p><strong>2006년 초</strong>, 마카오 정부는 앤드류에게 관광 공로 특별 메달을 수여했다. 안타깝게도 그는 같은 해 <strong>10월 25일</strong>, 천식 발작으로 갑작스럽게 세상을 떠났다.</p>
+    <p><strong>2020년</strong>, 마카오 에그타르트는 <strong>마카오 무형문화유산(Intangible Cultural Heritage)</strong> 목록에 공식 등재됐다. 현재는 그의 딸 오드리 스토우(Audrey Stow)와 여동생 에일린 스토우(Eileen Stow)가 베이커리를 이어가고 있다.</p>
+    <div class="tags">
+      <span class="tag tag-gold">2020 무형문화유산</span>
+      <span class="tag tag-navy">영국인 창업자</span>
+      <span class="tag tag-terracotta">1989년 개업</span>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>이것이 왜 특별한가</strong><br>
+    영국인이 포르투갈 식민지였던 중국 땅에서, 포르투갈 과자를 영국식으로 변형해 만든 에그타르트가 지금 아시아 전체의 문화유산이 됐다. 동서양 세 문화가 한 입에 담긴 음식이다.
+  </div>
+</section>
+
+<div class="sec-divider"><span>Industry</span></div>
+
+<!-- ════════════════════════════════════
+     7. 라이치운 조선소
+════════════════════════════════════ -->
+<section class="section" id="shipyard">
+  <div class="section-header">
+    <div class="section-icon icon-navy">⚓</div>
+    <div class="section-title">
+      <span>Lai Chi Vun Shipyards</span>
+      라이치운 조선소
+    </div>
+  </div>
+
+  <div class="card navy-line">
+    <div class="card-year">역사</div>
+    <h3>마카오 마지막 대형 제조업의 흔적</h3>
+    <p>콜로안 빌리지 북쪽의 <strong>라이치운(Lai Chi Vun · 荔枝碗)</strong> 마을에는 목선(나무 배)을 건조하던 조선소들이 줄지어 있었다. 강가를 따라 수직으로 배열된 같은 크기의 조선소들이 물 위로 일부 걸쳐진 독특한 경관을 형성하고 있다.</p>
+    <table class="info-table" style="margin-top:12px;">
+      <tr><td>건설 시작</td><td>1950년대</td></tr>
+      <tr><td>운영 중단</td><td>1990년대</td></tr>
+      <tr><td>최대 조선소 수</td><td>약 17개 이상</td></tr>
+      <tr><td>주요 생산품</td><td>홍콩·중국용 목조 어선(정크선)</td></tr>
+      <tr><td>사업 종료 이유</td><td>중국산 저가 철선과의 경쟁</td></tr>
+    </table>
+  </div>
+
+  <div class="card gold-line">
+    <div class="card-year gold">현재</div>
+    <h3>폐허에서 살아있는 박물관으로</h3>
+    <p>라이치운 조선소는 마카오 문화국(IC)에 의해 <strong>보호 부동산</strong>으로 지정됐다. 마카오에서 유일하게 비교적 온전하게 남은 조선 산업 유적지다.</p>
+    <p>현재는 전시 공간, 공연장, 어린이 예술 공간, 콜로안 테마 시장 등의 문화 공간으로 활용되고 있으며, 단계적으로 추가 복원이 진행 중이다.</p>
+  </div>
+</section>
+
+<div class="sec-divider"><span>Hidden History</span></div>
+
+<!-- ════════════════════════════════════
+     8. 카호 마을
+════════════════════════════════════ -->
+<section class="section" id="kaho">
+  <div class="section-header">
+    <div class="section-icon icon-sage">🏥</div>
+    <div class="section-title">
+      <span>Ká-Hó Village · 九澳村</span>
+      카호 마을 — 마카오의 숨겨진 역사
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>카호(Ká-Hó)란?</h3>
+    <table class="info-table" style="margin-top:8px;">
+      <tr><td>포르투갈어</td><td>Ká-Hó</td></tr>
+      <tr><td>중국어</td><td>九澳 (구오)</td></tr>
+      <tr><td>마을명</td><td>九澳村 (구오촌)</td></tr>
+      <tr><td>뜻</td><td>아홉 개의 만(灣)</td></tr>
+      <tr><td>위치</td><td>콜로안 북동쪽</td></tr>
+    </table>
+    <p style="margin-top:12px; font-size:13.5px; color:var(--slate);">카호라는 이름은 광둥어 <strong>"구오산(九澳山, Gau Ou Saan)"</strong>, 즉 "아홉 개의 만이 있는 산"에서 포르투갈어로 음차된 것이다. 콜로안의 옛 별칭 중 하나이기도 하다.</p>
+  </div>
+
+  <div class="card rust-line">
+    <div class="card-year alt">1885년</div>
+    <h3>나병 환자 격리 시설 설립</h3>
+    <p>1885년, 포르투갈 정부는 나병(한센병) 환자들을 격리 수용하기 위해 <strong>카호 나병 센터(Ka Ho Leprosy Center)</strong>를 건설했다. 지금까지 남아 있는 건물들은 <strong>1930년</strong>에 지어졌으며, 당시 환자들이 직접 거주했다.</p>
+  </div>
+
+  <div class="quote-box">
+    <p>"앞에 마카오가 있고, 병든 사람들이 사는 잊혀진 섬이 있었다. 아무도 들어가려 하지 않았고, 음식은 밧줄로 끌어당겨 전달했다."</p>
+    <cite>— 가에타노 니코시아 신부, 2015년 다큐멘터리 증언</cite>
+  </div>
+
+  <div class="card">
+    <div class="card-year alt">격리의 실상</div>
+    <h3>외부와 완전히 단절된 세계</h3>
+    <p>이 마을은 배로만 접근할 수 있었는데, 뱃사람들조차 배에서 내리려 하지 않았다. 음식은 해안까지 밧줄로 끌어당겨 전달했다.</p>
+    <p>병이 나은 사람조차 마을을 <strong>떠날 수 없었고</strong>, 이는 사실상 종신 격리를 의미했다. 적어도 한 명은 절벽에서 바다로 뛰어내려 스스로 목숨을 끊었다는 기록이 있다.</p>
+  </div>
+
+  <div class="card sage-line">
+    <div class="card-year" style="background:var(--sage)">1963년</div>
+    <h3>"나병 환자들의 천사" — 가에타노 니코시아 신부</h3>
+    <p>1963년 8월, 이탈리아 살레시오 수도회 출신의 <strong>가에타노 니코시아(Gaetano Nicosia, 중국명 胡子義)</strong> 신부가 카호에 도착했다. 당시 그곳에는 한센병 환자 약 100명이 고립된 채 생활하고 있었다.</p>
+    <p>니코시아 신부는 의사와 간호사를 데려오고, 식수와 전기를 공급하고, 농장과 작업장을 만들어 환자들이 일할 수 있도록 했다. 의회도 구성해 주민들이 스스로 결정을 내릴 수 있게 했다.</p>
+    <table class="info-table" style="margin-top:12px;">
+      <tr><td>출생</td><td>1915년 4월 3일, 이탈리아 시칠리아</td></tr>
+      <tr><td>사망</td><td>2017년 11월 6일, 홍콩 (향년 102세)</td></tr>
+      <tr><td>카호 활동</td><td>1963년~2011년 (48년간)</td></tr>
+      <tr><td>안장지</td><td>마카오 성 미카엘 묘지</td></tr>
+    </table>
+  </div>
+
+  <div class="card gold-line">
+    <div class="card-year gold">2011년</div>
+    <h3>마지막 환자까지 완치</h3>
+    <p>니코시아 신부가 2011년 마을을 떠날 때, <strong>거주민 전원이 한센병에서 완치된 상태</strong>였다. 48년간의 헌신이 이룬 결과였다.</p>
+    <p>그는 평생 교황 프란치스코와 홍콩 추기경 젠(Zen)을 로마에서 만나기도 했으며, 2017년 102세를 일기로 홍콩에서 세상을 떠났다.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-year alt">현재 진행 중</div>
+    <h3>시성(聖人 선포) 절차 진행 중</h3>
+    <p>마카오 교구 주교 스티브 이 분상(Stephen Lee Bun Sang)은 니코시아 신부의 <strong>시복·시성 심사 개시</strong>를 공식 선언했다. 가톨릭 교회는 그의 "거룩함의 명성과 표징"이 성장해왔음을 인정했다.</p>
+    <p>심사는 마카오 교구 외에 홍콩, 이탈리아 카타니아, 리스본 교구와도 공동으로 진행된다.</p>
+    <div class="tags">
+      <span class="tag tag-gold">시성 절차 진행 중</span>
+      <span class="tag tag-sage">48년 헌신</span>
+      <span class="tag tag-navy">마카오 유일 나병 유적</span>
+    </div>
+  </div>
+
+  <div class="card sage-line">
+    <div class="card-year" style="background:var(--sage)">1963 / 1966</div>
+    <h3>이름 변경과 성당 건립</h3>
+    <p>1963년, 니코시아 신부는 나병에 대한 사회적 차별을 없애기 위해 이 마을의 이름을 <strong>"카호 마을(Ka Ho Village · 九澳村)"</strong>로 바꿨다.</p>
+    <p>1966년에는 이탈리아 건축가 <strong>오세오 아콘치(Oseo Acconci)</strong>가 설계한 <strong>고통의 성모 성당(Church of Our Lady of Sorrows)</strong>이 세워졌다. 기도하는 두 손을 닮은 긴 경사 지붕이 특징이며, 청동 십자가는 또 다른 이탈리아 조각가 프란시스코 메시마(Francisco Messima)의 작품이다. 원래 여성 나병 환자들과 그 가족들을 위해 지어진 이 성당은, 많은 환자들이 이곳에서 성경을 읽으며 가톨릭 신자가 되기도 했다.</p>
+  </div>
+
+  <div class="highlight">
+    <strong>현재의 카호 마을</strong><br>
+    나병 환자들이 직접 지은 건물들은 일부가 2016년에 복원됐다. 마카오에서 유일하게 남은 나병 유적지로, 지금은 예술 공간과 관광지로 단계적으로 개방되고 있다.
+  </div>
+</section>
+
+<div class="sec-divider"><span>Storytelling</span></div>
+
+<!-- ════════════════════════════════════
+     9. 스토리텔링
+════════════════════════════════════ -->
+<section class="section" id="story">
+  <div class="section-header">
+    <div class="section-icon icon-terracotta">📖</div>
+    <div class="section-title">
+      <span>Story · 확인된 사실 기반</span>
+      해적의 섬에서 평화의 마을로
+    </div>
+  </div>
+
+  <div class="notice">
+    이 스토리텔링은 근거 없는 내용 없이, <strong>확인된 역사적 사실만</strong>을 바탕으로 중학생이 알기 쉬운 언어로 풀어낸 이야기야.
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <div class="card-year alt">Chapter 1</div>
+    <h3>🧂 소금과 물고기로 먹고살던 마을이었어</h3>
+    <p>마카오 남쪽 끝에 콜로안이라는 조용한 섬이 있어.</p>
+    <p>지금은 낡은 골목 사이로 에그타르트 냄새가 솔솔 나고, 알록달록한 건물들이 늘어선 평화로운 곳이야. 근데 이 마을, 사실 꽤 험한 역사를 갖고 있어.</p>
+    <p>콜로안이라는 이름은 광둥어 <strong>과로환(過路環)</strong>, 즉 "지나는 길의 고리"에서 왔어. 그런데 옛날에는 <strong>염조만(鹽灶灣)</strong>, 그러니까 <strong>"소금 화덕 만"</strong>이라고도 불렸어. 이름에서 바로 알 수 있듯이, 이 섬은 원래 <strong>물고기를 잡고, 소금을 만들어 파는 어촌 마을</strong>이었어. 대단한 도시도 아니고, 조용히 바다에 기대어 살아가는 평범한 공동체였지.</p>
+  </div>
+
+  <div class="card rust-line">
+    <div class="card-year alt">Chapter 2</div>
+    <h3>🏴‍☠️ 그런데 이 섬, 한때 해적들의 아지트였어</h3>
+    <p>포르투갈이 마카오 일대를 관리하기 시작했지만, 콜로안까지는 손이 잘 닿지 않았어. 병력도 부족했고, 이 작은 섬은 우선순위가 아니었거든.</p>
+    <p>그 틈을 노린 게 바로 해적들이었어. 남중국해를 오가는 무역선을 터는 해적들이 오랫동안 이 섬을 은신처로 사용했고, 콜로안 어민들은 원치 않는 이웃과 함께 살아야 했어. 마카오 문서보관소에는 <strong>1854~55년</strong>부터 이 지역 해적에 관한 기록이 남아 있어.</p>
+  </div>
+
+  <div class="card gold-line">
+    <div class="card-year gold">Chapter 3</div>
+    <h3>⚔️ 1910년 여름, 결국 큰 사건이 터졌어</h3>
+    <p>해적들이 선을 넘었어. <strong>콜로안 섬에서 학생 17명을 포함해 수십 명의 남녀 주민들을 납치해서 몸값을 요구</strong>한 거야.</p>
+    <p><strong>1910년 7월 13일</strong>, 군인 45명과 "마카오"라는 이름의 포함 1척이 홍콩에서 출발해 콜로안을 공격했어. 전투는 <strong>10일간</strong> 계속됐고, 포르투갈 측은 "해적 <strong>310명</strong> 전원이 체포되거나 섬에서 완전히 달아났다"고 발표했지.</p>
+    <p>단, 이 작전이 100% 깔끔했던 건 아니야. 나중에 한 할머니가 다섯 살 때 가족과 함께 어선 위에 있다가 포격을 받았다고 증언했어. 해적이 아닌 평범한 어민도 피해를 봤던 거야. 이 작전은 지금도 역사학자들 사이에서 논쟁이 계속되는 사건이야.</p>
+    <p>오랫동안 콜로안에서는 <strong>7월 13일을 해적 소탕 기념일</strong>로 지냈어. 마을 중심 광장 <strong>馬忌士前地</strong>에는 그 날의 승리를 기념하는 석조 기념비가 세워졌는데, 지금도 성당 앞에 그대로 남아 있어.</p>
+  </div>
+
+  <div class="card navy-line">
+    <div class="card-year">Chapter 4</div>
+    <h3>⛪ 기념비 바로 뒤에 서 있는 성당</h3>
+    <p>기념비 뒤편에 있는 게 바로 <strong>聖方濟各聖堂(성 프란시스코 자비에르 성당)</strong>이야. 해적 소탕 이후인 <strong>1928년에 지어졌어</strong>. 크림색과 흰색 외벽에 타원형 창문, 종탑이 특징이야.</p>
+    <p>이름은 16세기 예수회 선교사 <strong>프란시스코 사비에르(1506~1552)</strong>에서 따왔어. 그는 인도, 일본, 중국 등 아시아 곳곳에서 가톨릭을 전파했어. 마카오에서 약 80km 떨어진 상촨섬에서 1552년에 세상을 떠났어.</p>
+    <p>한때 이 성당에는 <strong>1597년 나가사키에서 순교한 신자 26명의 유해</strong>, <strong>1637년 시마바라 반란 희생자들의 유해</strong>, 사비에르 본인의 <strong>팔 뼈 일부</strong>가 보관됐었어. 지금은 마카오 반도의 성미술관과 성 요셉 성당으로 각각 옮겨졌어.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-year alt">Chapter 5</div>
+    <h3>🥮 영국인이 콜로안에서 에그타르트를 만들었어</h3>
+    <p><strong>1989년</strong>, 영국인 약사 <strong>앤드류 스토우</strong>가 콜로안 빌리지의 작은 가게에서 베이커리를 열었어. 빵을 먹는 문화가 거의 없던 이 동네에서, 그는 포르투갈 여행에서 맛본 과자를 영국식으로 변형한 에그타르트를 만들었어.</p>
+    <p>그가 은행 대출 서류를 쓸 때 판매 품목 맨 아래에 딱 두 단어를 적었어 — "에그타르트". 그리고 그 작은 두 단어가 마카오의 상징이 됐어. <strong>2020년</strong>, 이 에그타르트는 <strong>마카오 무형문화유산</strong>으로 공식 등재됐어.</p>
+    <p>영국인이 포르투갈 식민지였던 중국 땅에서, 포르투갈 과자를 영국식으로 바꿔 만든 음식이 동양의 문화유산이 된 거야.</p>
+  </div>
+
+  <div class="card sage-line">
+    <div class="card-year" style="background:var(--sage)">Chapter 6</div>
+    <h3>🏥 섬 안에 또 다른 숨겨진 이야기 — 카호 마을</h3>
+    <p>콜로안 북동쪽에는 <strong>九澳村(구오촌 · 카호 마을)</strong>이 있어. 지금은 예쁜 관광지처럼 보이지만, 사실 무거운 역사가 담겨 있어.</p>
+    <p><strong>1885년</strong>, 포르투갈 정부는 나병(한센병) 환자들을 격리하기 위해 이곳에 나병 센터를 세웠어. 배로만 접근할 수 있었는데, 뱃사람들조차 내리려 하지 않았어. 음식은 밧줄로 끌어당겨 전달했고, 병이 나은 사람도 마을을 떠날 수 없었어.</p>
+    <p><strong>1963년</strong>, 이탈리아 신부 <strong>가에타노 니코시아(胡子義)</strong>가 이곳에 왔어. 의사와 간호사를 데려오고, 농장을 만들고, 전기와 수도를 연결했어. 그는 <strong>48년간</strong> 환자들과 함께 살았어. <strong>2011년 마을을 떠날 때 거주민 전원이 완치된 상태</strong>였어.</p>
+    <p>사람들은 그를 <strong>"나병 환자들의 천사"</strong>라고 불렀어. 그는 2017년, 102세로 세상을 떠났고 마카오에 잠들어 있어. 지금 마카오 교구는 그를 성인으로 선포하기 위한 절차를 진행 중이야.</p>
+  </div>
+
+  <div class="highlight" style="margin-top:8px;">
+    <strong>소금을 굽고 물고기를 잡던 어촌 마을, 해적들이 들끓던 위험한 섬, 군사 작전 끝에 세워진 기념비와 성당, 영국인이 만든 에그타르트, 그리고 나병 환자들과 함께한 신부의 이야기.</strong><br><br>
+    이 모든 역사가 콜로안 빌리지 한 곳에 다 담겨 있어. 마카오는 세계 최대 카지노 도시지만, 콜로안은 그 안에서 자신만의 이야기를 조용히 간직하고 있어.
+  </div>
+
+</section>
+
+</div><!-- /container -->
+
+<!-- ════════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-logo">마카오 모먼트</div>
+  <p class="footer-copy">Coloane Village · 路環村<br>확인된 역사적 사실 기반 콘텐츠</p>
+  <div class="footer-legal">
+    <strong>© Irene · 무단 복제 및 배포 금지</strong>
+    본 콘텐츠는 확인된 역사적 사실에 기반하여 제작되었으며<br>
+    "Irene이 직접 만든 소중한 자료입니다.<br>
+    무단 복제 및 배포를 금합니다."
+  </div>
+  <p style="margin-top:20px; font-size:11px; color:rgba(255,255,255,0.25); line-height:1.6;">
+    출처 기반: Wikipedia · Macau Lifestyle · Macao Magazine · Macau Business<br>
+    Journal of World History (R.J. Anthony, 2017) · UCA News · Agenzia Fides<br>
+    Lonely Planet · Macau Cultural Affairs Bureau (IC) · Lord Stow's Bakery 공식 홈페이지
+  </p>
+</footer>
+
+</body>
+</html>
