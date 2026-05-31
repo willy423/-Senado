@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>마카오 재생 프로젝트 완전 정리 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dim: #8B6F32;
+    --deep: #0D0D0D;
+    --panel: #161616;
+    --panel2: #1E1E1E;
+    --panel3: #252525;
+    --border: #2A2A2A;
+    --text: #E8E0D0;
+    --text-muted: #8A8070;
+    --text-dim: #5A5248;
+    --red-accent: #C04A3A;
+    --teal: #3A8A7A;
+    --teal-light: #4AADA0;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--deep);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #1a1100 0%, #0D0D0D 50%, #0a1510 100%);
+    padding: 56px 20px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.3;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .hero-stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 8px;
+  }
+  .hero-stat .val {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+  .hero-stat .lbl {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    display: block;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 480px; margin: 0 auto; padding: 0 16px 60px; }
+
+  /* ── SECTION HEADER ── */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 36px 0 16px;
+  }
+  .sec-num {
+    width: 32px; height: 32px;
+    background: var(--gold);
+    color: #000;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .sec-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .sec-title span { color: var(--gold); }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 13px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-title .icon { font-size: 15px; }
+
+  /* ── TABLE ── */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
+  .tbl th {
+    background: rgba(201,168,76,0.1);
+    color: var(--gold);
+    font-weight: 700;
+    padding: 8px 6px;
+    text-align: left;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    font-size: 11px;
+    letter-spacing: 0.3px;
+  }
+  .tbl td {
+    padding: 9px 6px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .tbl tr:last-child td { border-bottom: none; }
+  .tbl tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .tbl .hl { color: var(--gold-light); font-weight: 700; }
+  .tbl .muted { color: var(--text-muted); }
+
+  /* ── STORY BOX ── */
+  .story-box {
+    background: linear-gradient(135deg, #1a1600 0%, #121a15 100%);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .story-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .story-text {
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: #C8C0B0;
+  }
+  .story-text strong { color: var(--gold-light); }
+
+  /* ── OPERATOR CARD ── */
+  .op-grid { display: flex; flex-direction: column; gap: 10px; }
+  .op-card {
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+  .op-badge {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .op-name { font-weight: 700; color: #fff; font-size: 13px; margin-bottom: 3px; }
+  .op-area { font-size: 12px; color: var(--gold); margin-bottom: 4px; font-weight: 600; }
+  .op-desc { font-size: 11.5px; color: var(--text-muted); line-height: 1.5; }
+  .op-rate {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 5px;
+  }
+  .op-rate.low {
+    background: rgba(192,74,58,0.1);
+    border-color: rgba(192,74,58,0.2);
+    color: #E07060;
+  }
+  .op-rate.mid {
+    background: rgba(58,138,122,0.1);
+    border-color: rgba(58,138,122,0.2);
+    color: var(--teal-light);
+  }
+
+  /* ── ZONE CARD ── */
+  .zone-card {
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 10px;
+    border-left: 3px solid transparent;
+  }
+  .zone-card.galaxy  { border-left-color: #4A90D9; }
+  .zone-card.sands   { border-left-color: #E8A030; }
+  .zone-card.wynn    { border-left-color: #8A50C8; }
+  .zone-card.mgm     { border-left-color: #C04A3A; }
+  .zone-card.melco   { border-left-color: #3A9A8A; }
+  .zone-card.sjm     { border-left-color: #C87840; }
+  .zone-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .zone-operator { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .zone-card.galaxy  .zone-operator { color: #4A90D9; }
+  .zone-card.sands   .zone-operator { color: #E8A030; }
+  .zone-card.wynn    .zone-operator { color: #8A50C8; }
+  .zone-card.mgm     .zone-operator { color: #C04A3A; }
+  .zone-card.melco   .zone-operator { color: #3A9A8A; }
+  .zone-card.sjm     .zone-operator { color: #C87840; }
+  .zone-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .zone-name-en { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+  .zone-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.06);
+    color: var(--text-muted);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+  .zone-progress {
+    margin-top: 10px;
+    font-size: 11px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    line-height: 1.6;
+  }
+
+  /* ── INFO PILL ── */
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .pill {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.15);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 14px;
+  }
+  .pill.teal {
+    background: rgba(58,138,122,0.08);
+    border-color: rgba(58,138,122,0.2);
+    color: var(--teal-light);
+  }
+  .pill.red {
+    background: rgba(192,74,58,0.08);
+    border-color: rgba(192,74,58,0.2);
+    color: #E07060;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .hl-box {
+    background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin: 12px 0;
+    text-align: center;
+  }
+  .hl-box .big {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+  }
+  .hl-box .sm { font-size: 11px; color: var(--text-muted); margin-top: 4px; display: block; }
+
+  /* ── FLOW CHART ── */
+  .flow { display: flex; flex-direction: column; gap: 0; }
+  .flow-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .flow-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 28px;
+  }
+  .flow-dot {
+    width: 28px; height: 28px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 900;
+    color: #000;
+    flex-shrink: 0;
+  }
+  .flow-line {
+    width: 2px;
+    flex: 1;
+    min-height: 20px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    margin: 2px 0;
+  }
+  .flow-content {
+    flex: 1;
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+  .flow-content .fc-title { font-weight: 700; color: #fff; font-size: 13px; margin-bottom: 4px; }
+  .flow-content .fc-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+  .flow-content .fc-num { font-size: 12px; color: var(--gold); font-weight: 700; margin-top: 4px; }
+
+  /* ── SOURCE TAG ── */
+  .src {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    line-height: 1.6;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 24px 0;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .prog-wrap { margin-top: 10px; }
+  .prog-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 5px; }
+  .prog-label .name { color: var(--text-muted); }
+  .prog-label .pct { color: var(--gold); font-weight: 700; }
+  .prog-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .prog-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(to right, var(--gold-dim), var(--gold));
+  }
+  .prog-fill.low { background: linear-gradient(to right, #8B2020, #C04A3A); }
+  .prog-fill.mid { background: linear-gradient(to right, #1A5A4A, #3A9A8A); }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+    padding: 24px 20px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  .footer-logo {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .footer-copy {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 320px;
+    margin: 0 auto 10px;
+  }
+  .footer-warn {
+    font-size: 10px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* ── NOTICE ── */
+  .notice {
+    background: rgba(192,74,58,0.08);
+    border: 1px solid rgba(192,74,58,0.2);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    font-size: 11.5px;
+    color: #D08070;
+    margin: 10px 0;
+    line-height: 1.6;
+  }
+  .notice strong { color: #E07060; }
+
+  /* ── COMPARE BOX ── */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .cmp-card {
+    background: var(--panel3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 12px;
+  }
+  .cmp-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+  .cmp-card.fake .cmp-label { color: #4A90D9; }
+  .cmp-card.real .cmp-label { color: var(--teal-light); }
+  .cmp-item { font-size: 11.5px; color: var(--text-muted); margin-bottom: 6px; line-height: 1.4; }
+  .cmp-item::before { content: '• '; color: var(--gold-dim); }
+
+  /* ── AMOUNT HIGHLIGHT ── */
+  .amt-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .amt-row:last-child { border-bottom: none; }
+  .amt-label { color: var(--text-muted); }
+  .amt-val { font-weight: 700; color: var(--gold); }
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">2026 공식 출처 기반 · 확인된 사실만</div>
+  <h1>마카오 <span>재생 프로젝트</span><br>완전 정리</h1>
+  <p class="hero-sub">카지노 도시 → 관광 도시로의 대전환 | Macau Regeneration Project</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="val">25조+</span>
+      <span class="lbl">총 투자 규모</span>
+    </div>
+    <div class="hero-stat">
+      <span class="val">6개사</span>
+      <span class="lbl">카지노 운영사</span>
+    </div>
+    <div class="hero-stat">
+      <span class="val">2032년</span>
+      <span class="lbl">계약 만료</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ════════════════════════════════
+     SECTION 1 : 마카오 옛 도시 변화 두 가지 방식
+════════════════════════════════ -->
+<div class="sec-head">
+  <div class="sec-num">1</div>
+  <div class="sec-title">마카오 옛 도시, <span>두 가지 방식</span>으로 변화 중</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🔍</span> 핵심 구조 — 무엇이 다른가?</div>
+  <div class="compare">
+    <div class="cmp-card fake">
+      <div class="cmp-label">코타이 — Lisboeta Macau</div>
+      <div class="cmp-item">옛 마카오 <strong style="color:#fff">분위기·모티프</strong> 활용</div>
+      <div class="cmp-item">민간 신규 복합 리조트</div>
+      <div class="cmp-item">회고 구역 + 미래 구역</div>
+      <div class="cmp-item">2023년 라이선스 사업과 무관</div>
+      <div class="cmp-item">신규 건축 (코타이 매립지)</div>
+    </div>
+    <div class="cmp-card real">
+      <div class="cmp-label">반도 — 역사 지구</div>
+      <div class="cmp-item">구시가지 <strong style="color:#fff">보존</strong></div>
+      <div class="cmp-item">Historic Centre</div>
+      <div class="cmp-item">유네스코 세계유산</div>
+      <div class="cmp-item">보존·정비·상업화</div>
+      <div class="cmp-item">대규모 개발 불가</div>
+    </div>
+  </div>
+  <div class="notice" style="margin-top:12px;">⚠️ Lisboeta는 구시가지를 복제하는 사업이 <strong>아님</strong>. 옛 마카오 건물을 디자인 모티프로 삼아 코타이에 새로 지은 민간 리조트야.</div>
+  <div class="src">출처: Macau Business(2021), IAG(2021.07.20), GGRAsia(2021), Macau Closer(2021)</div>
+</div>
+
+<!-- Lisboeta -->
+<div class="card">
+  <div class="card-title"><span class="icon">🏨</span> Lisboeta Macau — 공식 확인 팩트</div>
+  <div class="notice" style="margin-bottom:12px;">
+    <strong>⚠️ 정확한 정의:</strong> Lisboeta는 구시가지를 복제하는 사업이 아님. 코타이에 새로 지은 <strong>민간 복합 리조트</strong>이며, 옛 마카오 건물을 디자인 <strong>모티프</strong>로만 활용했어.
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">위치</span>
+    <span class="amt-val">코타이 (Grand Lisboa Palace 옆)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">실제 운영 주체</span>
+    <span class="amt-val">Macau Theme Park and Resort Ltd<br><span style="font-size:10px;color:var(--text-muted)">(Angela Leong 개인 소유 법인 · SJM Resorts와 별도)</span></span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">SJM Resorts와의 관계</span>
+    <span class="amt-val">별개 법인 (카지노 서비스 계약 협의만 있었음)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">호텔 객실 수</span>
+    <span class="amt-val">574개 (Lisboeta Hotel 기준)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">리조트 구성</span>
+    <span class="amt-val">회고 구역 (Retrospective Zone)<br>+ 미래 구역 (Futuristic Zone)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">2023년 라이선스 사업 해당 여부</span>
+    <span class="amt-val" style="color:#E07060;">해당 없음 (별개 민간 사업)</span>
+  </div>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:12px;line-height:1.6;">
+    리조트 전체가 처음부터 회고 구역 + 미래 구역으로 설계된 하나의 완성된 테마 리조트야. Hotel Estoril·마카오 팰리스·New Central Hotel 등의 외관을 <strong>디자인 모티프</strong>로 삼아 새로 지은 것이며, 구시가지를 이전하거나 복제하는 사업이 아니야. SJM Resorts의 공식 6대 재생 구역 사업은 마카오 반도의 신마로(San Ma Lou) 일대야.
+  </p>
+  <div class="src">출처: IAG(2021.07.20), GGRAsia(2021), Macau Business(2021.07.14), Macau Closer(2021.07.15), Trip.com 공식</div>
+</div>
+
+<div class="story-box">
+  <div class="story-label">📖 스토리텔링</div>
+  <div class="story-text">
+    마카오에는 옛 도시 분위기를 살리는 방식이 크게 두 가지로 나뉘어 있어.<br><br>
+    하나는 코타이의 <strong>Lisboeta Macau</strong>야. 이건 구시가지를 복제하는 사업이 아니야. 옛 마카오를 사랑한 Angela Leong이 개인 법인으로 코타이에 새로 지은 <strong>민간 복합 리조트</strong>야. 1960년대 마카오의 상징 건물들, 예를 들어 Hotel Estoril이나 수상 카지노 마카오 팰리스 같은 것들을 <strong>디자인 모티프</strong>로만 활용해서 새로 지은 거야. 리조트 자체가 처음 설계부터 <strong>'회고 구역 + 미래 구역'</strong> 두 파트로 나뉜 테마형 리조트야.<br><br>
+    다른 하나는 마카오 반도의 <strong>진짜 구시가지</strong>야. 여기는 <strong>유네스코 세계유산</strong>이라서 함부로 허물거나 새로 지을 수가 없어. 그래서 오래된 건물을 카페나 상점으로 바꾸고, 골목을 정비하는 방식으로 관리하는 거야. 6개 카지노 회사가 각자 구역을 맡아서 투자하는 <strong>공식 재생 사업</strong>이 바로 이쪽이야.
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     SECTION 2 : 유네스코 세계유산
+════════════════════════════════ -->
+<div class="divider"></div>
+<div class="sec-head">
+  <div class="sec-num">2</div>
+  <div class="sec-title">유네스코 세계유산 — <span>왜 못 건드리나?</span></div>
+</div>
+
+<div class="hl-box">
+  <span class="big">2005</span>
+  <span class="sm">UNESCO 세계유산 등재 연도 · 중국 내 31번째 세계유산</span>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🏛️</span> Historic Centre of Macau 핵심 팩트</div>
+  <div class="amt-row">
+    <span class="amt-label">등재일</span>
+    <span class="amt-val">2005년 7월 15일</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">포함 장소</span>
+    <span class="amt-val">20개 이상 역사 유적</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">특징</span>
+    <span class="amt-val">중국·포르투갈 문화 공존</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">보호·관리 계획 시행</span>
+    <span class="amt-val">2024년 6월 1일</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">시각 회랑</span>
+    <span class="amt-val">11곳 지정</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">경관 거리</span>
+    <span class="amt-val">19곳 지정</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">도시 조직 구역</span>
+    <span class="amt-val">24곳 지정</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">2025년 기념</span>
+    <span class="amt-val">등재 20주년 행사 진행</span>
+  </div>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:12px;line-height:1.6;">
+    마카오 역사 지구는 중국에서 서양 건축이 가장 많이 남아있는 가장 크고 오래된 건축 복합체야. 동서양 문화 교류의 살아있는 증거로 UNESCO가 인정했어.
+  </p>
+  <div class="src">출처: UNESCO 공식(whc.unesco.org), 마카오 정부 관보(2024.06.01), Xinhua(2025.07.16)</div>
+</div>
+
+<div class="story-box">
+  <div class="story-label">📖 스토리텔링</div>
+  <div class="story-text">
+    마카오 반도 구시가지는 <strong>2005년</strong>에 유네스코 세계유산으로 지정됐어.<br><br>
+    세계유산이 된다는 건 엄청난 영광이지만, 동시에 엄청난 제한이 생긴다는 뜻이기도 해. 건물 하나를 마음대로 허물거나 새로 짓는 게 불가능해. 유네스코가 허락하지 않거든.<br><br>
+    그래서 마카오 정부는 <strong>2024년 6월 1일</strong>부터 '보호·관리 계획'을 공식 시행했어. 골목을 <strong>11개 시각 회랑, 19개 경관 거리, 24개 도시 구역</strong>으로 나눠서 각각 다른 규칙으로 관리하기 시작한 거야.<br><br>
+    <strong>2025년</strong>에는 세계유산 등재 20주년 기념행사도 열렸어. 마카오는 이 역사를 지키면서 동시에 관광객도 끌어들이는 방법을 계속 연구하고 있어.
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     SECTION 3 : 6대 재생 구역
+════════════════════════════════ -->
+<div class="divider"></div>
+<div class="sec-head">
+  <div class="sec-num">3</div>
+  <div class="sec-title">정부 지정 <span>6대 재생 구역</span></div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">📋</span> 공식 발표 배경 (2023년 9월)</div>
+  <p style="font-size:12.5px;color:var(--text-muted);line-height:1.7;">
+    마카오 정부는 6개 카지노 운영사에게 각자 구도심 구역 하나씩을 맡아 투자하도록 의무화했어. 이 내용은 2023년 시작된 10년 카지노 라이선스 계약의 비카지노 투자 조건에 명시됐어. 2023년 9월 공식 발표·착수.
+  </p>
+  <div class="pill-row">
+    <span class="pill">2023년 9월 공식 발표</span>
+    <span class="pill teal">10년 라이선스 조건</span>
+    <span class="pill">6개사 1구역씩 배정</span>
+  </div>
+  <div class="src">출처: GGRAsia(2023.09.21), IAG(2023.09.21), Macau Business(2023.09.27)</div>
+</div>
+
+<div class="zone-card galaxy">
+  <div class="zone-header">
+    <div>
+      <div class="zone-operator">Galaxy Entertainment</div>
+      <div class="zone-name">라이치문 조선소</div>
+      <div class="zone-name-en">Lai Chi Vun Shipyard · 콜로안 섬</div>
+    </div>
+  </div>
+  <span class="zone-tag">🚢 산업유산</span>
+  <span class="zone-tag">스토리 관광</span>
+  <span class="zone-tag">체험 관광</span>
+  <div class="zone-progress">
+    <strong style="color:#4A90D9;">진행 현황:</strong> 가족형 어트랙션·야외 휴식 공간·공연 무대 조성 작업 진행. 2024년 말 기준 다양한 시설 완공 예정 발표.
+    <br><span style="color:var(--text-dim);font-size:10px;">출처: Macau News(2024.12.04)</span>
+  </div>
+</div>
+
+<div class="zone-card sands">
+  <div class="zone-header">
+    <div>
+      <div class="zone-operator">Sands China</div>
+      <div class="zone-name">이에크롱 폭죽 공장</div>
+      <div class="zone-name-en">Iec Long Firecracker Factory · 타이파</div>
+    </div>
+  </div>
+  <span class="zone-tag">🧨 산업유산</span>
+  <span class="zone-tag">1925~1926년 설립 ⚠️확인필요</span>
+  <span class="zone-tag">1984년 폐업</span>
+  <div class="zone-progress">
+    <strong style="color:#E8A030;">진행 현황:</strong> Sands Gallery에서 마카오 폭죽 산업 역사·문화적 의미 전시관 개관. 인접 구시가지 골목(Pátio da Eterna Felicidade, Rua Das Estalagens) 정비 병행.
+    <br><span style="color:var(--text-dim);font-size:10px;">출처: IAG(2024.12.28), GGRAsia(2023.09.29)</span>
+  </div>
+</div>
+
+<div class="zone-card wynn">
+  <div class="zone-header">
+    <div>
+      <div class="zone-operator">Wynn Macau</div>
+      <div class="zone-name">행복거리</div>
+      <div class="zone-name-en">Rua da Felicidade · 마카오 반도 구도심</div>
+    </div>
+  </div>
+  <span class="zone-tag">🚶 역사 거리</span>
+  <span class="zone-tag">보행자 전용화</span>
+  <span class="zone-tag">사진 관광</span>
+  <div class="zone-progress">
+    <strong style="color:#8A50C8;">진행 현황:</strong> 차량 통행 금지 보행자 전용 거리 조성 완료. 공연·예술·문화 행사 정기 유치. 단, 보행자 통제 방식에 대한 일부 조정 논의도 병행.
+    <br><span style="color:var(--text-dim);font-size:10px;">출처: GGRAsia(2023.09), Macau News(2024)</span>
+  </div>
+</div>
+
+<div class="zone-card mgm">
+  <div class="zone-header">
+    <div>
+      <div class="zone-operator">MGM China</div>
+      <div class="zone-name">바라 지구 / 아마 사원 일대</div>
+      <div class="zone-name-en">Barra District / A-Ma Area · 마카오 반도 남단</div>
+    </div>
+  </div>
+  <span class="zone-tag">⛩️ 종교·문화</span>
+  <span class="zone-tag">사진 관광</span>
+  <span class="zone-tag">심야 식음료</span>
+  <div class="zone-progress">
+    <strong style="color:#C04A3A;">진행 현황:</strong> 심야 식음료 공간 신규 확충. 아마 사원 인근 관광 동선 정비. 마카오 최고(最古) 사원이 있는 지역으로 문화·종교 관광 특화.
+    <br><span style="color:var(--text-dim);font-size:10px;">출처: Macau News(2024.12.04), GGRAsia(2023.09)</span>
+  </div>
+</div>
+
+<div class="zone-card melco">
+  <div class="zone-header">
+    <div>
+      <div class="zone-operator">Melco Resorts</div>
+      <div class="zone-name">내항 부두 23·25번 + 몬테 요새 일대</div>
+      <div class="zone-name-en">Inner Harbour Piers 23 & 25 + Monte Fortress · 마카오 반도</div>
+    </div>
+  </div>
+  <span class="zone-tag">⚓ 항구 재생</span>
+  <span class="zone-tag">🏰 몬테 요새</span>
+  <span class="zone-tag">상업 활성화</span>
+  <span class="zone-tag">수변 공간</span>
+  <div class="zone-progress">
+    <strong style="color:#3A9A8A;">담당 구역:</strong> ① 내항 부두 23·25번 — 리노베이션 공사 진행 중, 문화·관광 프로젝트 도입. ② 몬테 요새(성 바울 성당 유적 인근) — 야간 조명·공연·케이터링 등 문화 행사 운영. 두 구역을 연결하는 관광 동선 개발 목표.
+    <br><span style="color:var(--text-dim);font-size:10px;">출처: IAG(2023.09.21), GGRAsia(2023.09.22), AGB(2023.09.21), Macau News(2024.12.04)</span>
+  </div>
+</div>
+
+<div class="zone-card sjm">
+  <div class="zone-header">
+    <div>
+      <div class="zone-operator">SJM Resorts (SJM Holdings 자회사)</div>
+      <div class="zone-name">신마로 일대</div>
+      <div class="zone-name-en">Avenida de Almeida Ribeiro (San Ma Lou) · 마카오 반도 중심</div>
+    </div>
+  </div>
+  <span class="zone-tag">🏛️ 역사 상업가로</span>
+  <span class="zone-tag">부두 14·16번</span>
+  <span class="zone-tag">소비 활성화</span>
+  <div class="zone-progress">
+    <strong style="color:#C87840;">진행 현황:</strong> 역사 건물 정비 및 부두 14·16번 관광 동선 개발. 구 마카오 팰리스(수상 카지노) 위치 포함. 착공 후 약 2년 완공 일정.
+    <br><span style="color:var(--text-dim);font-size:10px;">출처: Macau Business(2023.09.27)</span>
+  </div>
+</div>
+
+<div class="card" style="margin-top:14px;">
+  <div class="card-title"><span class="icon">📊</span> 재생 구역 성과 (2024년 말 기준)</div>
+  <div class="amt-row">
+    <span class="amt-label">예술·문화 행사 개최 수</span>
+    <span class="amt-val">750개 이상</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">입주 문화 창작 기업</span>
+    <span class="amt-val">200개 이상</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">신규 고용 서비스 인력</span>
+    <span class="amt-val">200명 이상</span>
+  </div>
+  <div class="src">출처: Macau News(2024.12.04), Macau Business(2024.11.08)</div>
+</div>
+
+<div class="story-box">
+  <div class="story-label">📖 스토리텔링</div>
+  <div class="story-text">
+    마카오 정부는 카지노 6개 회사한테 구도심 구역을 <strong>하나씩 나눠 맡겼어.</strong><br><br>
+    <strong>Galaxy</strong>는 콜로안 섬의 오래된 조선소를 맡았어. 지금은 가족들이 즐길 수 있는 공간과 공연 무대를 만들고 있어.<br><br>
+    <strong>Sands</strong>는 타이파 섬의 폭죽 공장을 맡았어. 1984년에 문을 닫은 공장이야. Sands가 이 공장의 역사를 전시관으로 만들어서 관광객한테 마카오 산업 역사를 보여주고 있어.<br><br>
+    <strong>Wynn</strong>은 행복거리를 맡았어. 오래된 골목을 차가 못 들어오는 보행자 거리로 바꾸고, 공연이랑 문화 행사를 열었어.<br><br>
+    <strong>MGM</strong>은 아마 사원 일대 바라 지구를 맡았어. 오래된 사원 옆 동네에 늦은 밤에도 먹고 마실 수 있는 공간을 새로 만들었어.<br><br>
+    <strong>Melco</strong>는 내항 부두 23·25번과 몬테 요새(성 바울 성당 인근) 두 구역을 함께 맡았어. 부두는 리노베이션 중이고, 몬테 요새 쪽은 야간 공연이랑 문화 행사를 운영하고 있어.<br><br>
+    <strong>SJM</strong>은 신마로(San Ma Lou)라는 오래된 상업 거리와 부두 14·16번을 맡았어.<br><br>
+    2023년부터 시작해서 지금까지 여기서만 <strong>750개 이상의 문화·예술 행사</strong>가 열렸고, <strong>200개 이상의 가게와 창작 기업</strong>이 생겨났어.
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     SECTION 4 : 왜 카지노가 돈을 내나
+════════════════════════════════ -->
+<div class="divider"></div>
+<div class="sec-head">
+  <div class="sec-num">4</div>
+  <div class="sec-title">왜 카지노 회사가 돈을 내나 — <span>손해가 아닌 이유</span></div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🎫</span> 핵심 ① 라이선스 = 황금 티켓</div>
+  <p style="font-size:12.5px;color:var(--text-muted);line-height:1.7;margin-bottom:10px;">
+    마카오 카지노 라이선스는 전 세계에서 단 6장. 신규 진입이 사실상 불가능한 독점 시장이야. 2023년부터 2032년까지 10년 독점 운영권을 보장받아.
+  </p>
+  <div class="pill-row">
+    <span class="pill">전 세계 6장뿐</span>
+    <span class="pill">신규 진입 불가</span>
+    <span class="pill">10년 독점</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">💰</span> 핵심 ② 세율 40% — 공식 확인</div>
+  <div class="hl-box">
+    <span class="big">40%</span>
+    <span class="sm">GGR 대비 카지노 세율 (2023년 신규 계약 기준)</span>
+  </div>
+  <div class="tbl-wrap" style="overflow-x:auto;">
+  <table class="tbl">
+    <tr><th>항목</th><th>수치</th></tr>
+    <tr><td>2025년 연간 GGR</td><td class="hl">MOP 2,474억<br><span style="font-size:10px;color:var(--text-muted)">(약 44조 5,320억 원)</span></td></tr>
+    <tr><td>카지노 세금 (추정)</td><td class="hl">MOP 약 989억<br><span style="font-size:10px;color:var(--text-muted)">(약 17조 8,020억 원)</span></td></tr>
+    <tr><td>세금의 정부 세수 비중</td><td class="hl">약 83~87%</td></tr>
+  </table>
+  </div>
+  <div class="src">출처: Yogonet(2025.03.06), iGaming Today(2025.11), DICJ 공식, DSF 공식</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🇨🇳</span> 핵심 ③ 중국 정부 요구</div>
+  <table class="tbl">
+    <tr><th>중국 정부 요구 사항</th><th>결과</th></tr>
+    <tr><td>VIP 정켓 구조 축소</td><td class="hl">VIP룸 대폭 감소</td></tr>
+    <tr><td>자금 세탁 차단</td><td class="hl">정켓 사업자 규제 강화</td></tr>
+    <tr><td>건전 관광 산업 확대</td><td class="hl">비카지노 의무 투자</td></tr>
+  </table>
+  <div class="notice" style="margin-top:10px;">
+    <strong>핵심:</strong> 중국 정부 요구를 따르지 않으면 카지노 사업 자체가 위험해져. 그래서 카지노 회사들은 "살기 위해" 투자했어.
+  </div>
+  <div class="src">출처: GGRAsia(2022.12), CNBC(2022.12.23)</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🏢</span> 핵심 ④ 브랜드 가치 상승 — 확인된 사례</div>
+  <table class="tbl">
+    <tr><th>운영사</th><th>전환 방향</th></tr>
+    <tr><td><strong>Sands China</strong></td><td>MICE(기업 회의·전시) 중심 리조트</td></tr>
+    <tr><td><strong>Galaxy</strong></td><td>가족형 복합 리조트 (Galaxy Arena 1만6천석)</td></tr>
+    <tr><td><strong>Melco</strong></td><td>쇼·엔터테인먼트 (House of Dancing Water 2025년 5월 리뉴얼 재개)</td></tr>
+    <tr><td><strong>MGM</strong></td><td>문화·예술 (Macau 2049 레지던시 쇼 · 2024년 12월 개막)</td></tr>
+  </table>
+  <div class="src">출처: Galaxy IR Q2 2025, Sands 공식, Focus on Travel News(2025.05.08)</div>
+</div>
+
+<div class="story-box">
+  <div class="story-label">📖 스토리텔링</div>
+  <div class="story-text">
+    카지노 회사들이 왜 이 엄청난 돈을 내냐고? 손해를 보는 거 아니냐고?<br><br>
+    <strong>절대 손해가 아니었어.</strong><br><br>
+    마카오 카지노 라이선스는 전 세계에서 <strong>6장뿐</strong>이야. 아무나 들어올 수 없는 독점 시장이야. 이 6개 회사는 2032년까지 마카오에서 혼자 카지노를 운영할 수 있어.<br><br>
+    2025년 한 해 동안 마카오 카지노 전체 매출이 <strong>44조 원</strong>이 넘었어. 거기서 세금만 <strong>40%</strong>, 약 17조 원 이상을 정부에 냈어.<br><br>
+    그러니까 투자 25조 원은 10년에 걸쳐 나눠 내는 거고, 대신 10년 동안 버는 돈은 그보다 훨씬 많아. 카지노 회사 입장에서는 <strong>"라이선스 유지비"</strong>를 내는 거나 마찬가지야.<br><br>
+    거기다 단순 카지노 이미지에서 벗어나 <strong>가족 여행·MICE·쇼</strong>로 브랜드를 바꾸면, 더 다양한 사람들이 오고 더 많은 돈을 벌 수 있어. 결국 카지노 회사들은 <strong>"살아남기 위해, 그리고 더 많이 벌기 위해"</strong> 투자한 거야.
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     SECTION 5 : 선순환 구조
+════════════════════════════════ -->
+<div class="divider"></div>
+<div class="sec-head">
+  <div class="sec-num">5</div>
+  <div class="sec-title">돈의 <span>선순환 구조</span></div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🔄</span> 어떻게 작동하나?</div>
+  <div class="flow">
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot">1</div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-content">
+        <div class="fc-title">라이선스 취득 (2022년 12월)</div>
+        <div class="fc-desc">6개사 10년 독점 운영권 확보. 2023~2032년.</div>
+        <div class="fc-num">GGRAsia 2022.12.16 공식 확인</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot">2</div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-content">
+        <div class="fc-title">세금 납부 (매년)</div>
+        <div class="fc-desc">GGR의 40%를 마카오 정부에 납부. 정부 세수의 83~87% 차지.</div>
+        <div class="fc-num">2025년 추정 세금: 약 17조 8,020억 원</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot">3</div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-content">
+        <div class="fc-title">비카지노 의무 투자</div>
+        <div class="fc-desc">공연장·테마파크·컨벤션·문화시설 건설. MOP 약 1,405억 규모.</div>
+        <div class="fc-num">AGB Brief 2026.01.13 공식 확인</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot">4</div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-content">
+        <div class="fc-title">관광객 증가</div>
+        <div class="fc-desc">볼거리·즐길 거리 늘어나면 더 많은 관광객 유입.</div>
+        <div class="fc-num">2025년 상반기 방문자 1,920만 명 (+15%, 전년比)</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot">5</div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-content">
+        <div class="fc-title">카지노 매출 증가</div>
+        <div class="fc-desc">관광객 늘면 카지노 매출도 자연스럽게 증가.</div>
+        <div class="fc-num">2025년 GGR MOP 2,474억 (+9.1%, 전년比)</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot">6</div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-content">
+        <div class="fc-title">자동 증액 발동</div>
+        <div class="fc-desc">GGR 1,800억 초과 → 투자 +20% 자동 의무화. 2023년 이미 발동.</div>
+        <div class="fc-num">GGRAsia 2022.12.19, AGB 2026.01.13 확인</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot">→</div>
+      </div>
+      <div class="flow-content" style="border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.05);">
+        <div class="fc-title" style="color:var(--gold);">다시 ③번으로 → 선순환</div>
+        <div class="fc-desc">더 많은 투자 → 더 많은 관광 → 더 많은 매출. 매출이 오를수록 마카오 전체에 더 많은 투자가 자동으로 늘어나는 구조.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="src">출처: DICJ 공식, Galaxy Entertainment IR Q2 2025, GGRAsia(2022.12.19), AGB Brief(2026.01.13)</div>
+</div>
+
+<div class="story-box">
+  <div class="story-label">📖 스토리텔링</div>
+  <div class="story-text">
+    이 구조가 정말 영리한 이유를 설명해 줄게.<br><br>
+    카지노가 돈을 많이 벌수록, 마카오 도시 전체에 더 많은 투자가 <strong>자동으로</strong> 늘어나는 구조야.<br><br>
+    2025년 상반기에 마카오를 방문한 관광객이 <strong>1,920만 명</strong>이었어. 2024년보다 <strong>15%</strong>나 더 많아졌어. 관광객이 늘면 카지노 매출이 오르고, 매출이 오르면 투자 의무가 늘어나고, 투자가 늘면 볼거리가 생기고, 볼거리가 생기면 관광객이 더 오는 거야.<br><br>
+    이게 바로 <strong>선순환 구조</strong>야. 카지노는 돈을 버는 만큼 마카오 도시를 계속 업그레이드해줘야 해. 안 하면 라이선스를 잃을 수도 있으니까. 결국 마카오 시민들도, 관광객들도, 카지노 회사들도 <strong>다 같이 이익을 보는 구조</strong>를 만든 거야.
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     SECTION 6 : 2026년 현황
+════════════════════════════════ -->
+<div class="divider"></div>
+<div class="sec-head">
+  <div class="sec-num">6</div>
+  <div class="sec-title">2026년 현재 — <span>어디까지 왔나?</span></div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">📊</span> 운영사별 이행률 (2024년 말 기준)</div>
+  <div class="notice">
+    전체 평균 이행률 <strong>22%</strong> — 10년 계획 중 3년 경과 시점 데이터
+  </div>
+
+  <div class="prog-wrap" style="margin-top:14px;">
+    <div class="prog-label"><span class="name">Galaxy Entertainment</span><span class="pct">33% 🏆 최고</span></div>
+    <div class="prog-bar"><div class="prog-fill" style="width:33%"></div></div>
+
+    <div class="prog-label"><span class="name">Sands China</span><span class="pct">25%</span></div>
+    <div class="prog-bar"><div class="prog-fill" style="width:25%"></div></div>
+
+    <div class="prog-label"><span class="name">Melco Resorts</span><span class="pct">24%</span></div>
+    <div class="prog-bar"><div class="prog-fill mid" style="width:24%"></div></div>
+
+    <div class="prog-label"><span class="name">SJM Resorts</span><span class="pct">21%</span></div>
+    <div class="prog-bar"><div class="prog-fill mid" style="width:21%"></div></div>
+
+    <div class="prog-label"><span class="name">MGM China</span><span class="pct">10% ⚠️</span></div>
+    <div class="prog-bar"><div class="prog-fill low" style="width:10%"></div></div>
+
+    <div class="prog-label"><span class="name">Wynn Macau</span><span class="pct">10% ⚠️</span></div>
+    <div class="prog-bar"><div class="prog-fill low" style="width:10%"></div></div>
+
+    <div class="prog-label" style="border-top:1px solid var(--border);padding-top:10px;margin-top:4px;">
+      <span class="name" style="font-weight:700;">전체 평균</span>
+      <span class="pct" style="font-weight:700;">22%</span>
+    </div>
+    <div class="prog-bar"><div class="prog-fill" style="width:22%;background:linear-gradient(to right,#555,#888)"></div></div>
+  </div>
+  <div class="src">출처: AGB Brief(2026.01.13) — 마카오 폴리테크닉대학 연구 보고서</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🔍</span> 2026년 마카오 행정장관 정책 선언</div>
+  <p style="font-size:12.5px;color:var(--text-muted);line-height:1.7;margin-bottom:12px;">
+    Sam Hou Fai 행정장관은 2026 정책 연설(2025.11.18)에서 <strong style="color:var(--gold);">2023~2025년 전 운영사 투자 이행 결과 전면 점검</strong>을 공식 선언했어. 비카지노 투자 이행 여부, 사회적 책임, 법령 준수를 종합 평가하겠다고 밝혔어.
+  </p>
+  <div class="pill-row">
+    <span class="pill">2026년 전면 점검 선언</span>
+    <span class="pill red">라이선스 리스크</span>
+    <span class="pill teal">3년 주기 심사</span>
+  </div>
+  <div class="src">출처: GGRAsia(2025.11.19), Casino.org(2025.11.19), DICJ 공식 성명(2026.03.13)</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🔀</span> 추진 방식 전환 — 3자 협력 모델</div>
+  <table class="tbl">
+    <tr><th>기존 방식</th><th>2026년 신규 모델</th></tr>
+    <tr>
+      <td class="muted">카지노사 단독 추진</td>
+      <td class="hl">정부 · 카지노 · 지역단체<br>3자 협력</td>
+    </tr>
+    <tr>
+      <td class="muted">기획부터 실행까지 카지노사 자율</td>
+      <td class="hl">정부가 조율·조정<br>카지노사가 투자<br>지역단체가 기획</td>
+    </tr>
+  </table>
+  <div class="src">출처: IAG(2025.11.24), Macau News(2025.11.24)</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">📋</span> 전체 핵심 팩트 최종 요약</div>
+  <table class="tbl">
+    <tr><th>항목</th><th>공식 확인 수치</th></tr>
+    <tr><td>Lisboeta 성격</td><td class="hl">코타이 민간 복합 리조트<br><span style="font-size:10px;color:var(--text-muted)">(구시가지 복제 아님 · 2023년 재생사업 무관)</span></td></tr>
+    <tr><td>Lisboeta 운영 주체</td><td class="hl">Macau Theme Park and Resort Ltd<br><span style="font-size:10px;color:var(--text-muted)">(Angela Leong 개인 법인)</span></td></tr>
+    <tr><td>Lisboeta 구역 구성</td><td class="hl">회고 구역 + 미래 구역 (처음부터 설계)</td></tr>
+    <tr><td>Lisboeta 객실 수</td><td class="hl">574개</td></tr>
+    <tr><td>유네스코 등재</td><td class="hl">2005년 7월 15일</td></tr>
+    <tr><td>보호관리계획 시행</td><td class="hl">2024년 6월 1일</td></tr>
+    <tr><td>6대 재생 구역 발표</td><td class="hl">2023년 9월</td></tr>
+    <tr><td>카지노 세율</td><td class="hl">GGR의 40%</td></tr>
+    <tr><td>카지노 세수 비중</td><td class="hl">정부 세수의 83~87%</td></tr>
+    <tr><td>전체 이행률</td><td class="hl">평균 22% (2024년 말)</td></tr>
+    <tr><td>최고 이행률</td><td class="hl">Galaxy 33%</td></tr>
+    <tr><td>최저 이행률</td><td class="hl">MGM·Wynn 각 10%</td></tr>
+    <tr><td>2025년 GGR</td><td class="hl">MOP 2,474억<br>(약 44조 5,320억 원)</td></tr>
+    <tr><td>총 투자 약정 (증액 후)</td><td class="hl">MOP 약 1,405억<br>(약 25조 2,900억 원)</td></tr>
+  </table>
+</div>
+
+<div class="story-box">
+  <div class="story-label">📖 스토리텔링</div>
+  <div class="story-text">
+    지금 2026년 기준으로 이 프로젝트는 얼마나 진행됐을까?<br><br>
+    평균 이행률이 <strong>22%</strong>야. 10년짜리 계획에서 3년 만에 22%면 그런대로 진행 중이지만, 회사마다 차이가 너무 컸어.<br><br>
+    <strong>Galaxy</strong>는 33%로 가장 잘 하고 있었어. 반면 <strong>MGM이랑 Wynn</strong>은 10%밖에 안 됐어.<br><br>
+    그래서 마카오 행정장관이 직접 나섰어. 2026년에 <strong>2023~2025년 투자 이행 결과 전체를 점검</strong>하겠다고 선언했어.<br><br>
+    그리고 추진 방식도 바꿨어. 카지노가 혼자 다 하던 방식에서, <strong>정부가 지휘하고 카지노가 돈 내고 지역 단체가 기획하는</strong> 3자 협력 방식으로 바꾸기로 했어.<br><br>
+    아직 10년짜리 프로젝트의 초반부야. 마카오가 진짜 <strong>"관광 도시"</strong>로 바뀌는 건 2032년까지 계속 지켜봐야 해.
+  </div>
+</div>
+
+<!-- 출처 전체 목록 -->
+<div class="card" style="margin-top:20px;">
+  <div class="card-title"><span class="icon">📚</span> 공식 출처 전체 목록</div>
+  <div style="font-size:11px;color:var(--text-dim);line-height:1.9;">
+    · GGRAsia 2022.12.16 / 2022.12.19 / 2023.09 / 2025.11.19 — 공식 계약서·재생구역 기반<br>
+    · 마카오 관보 (Official Gazette) 2022.12.16 — 계약서 원문 게재<br>
+    · IAG (Inside Asian Gaming) 2023.09.21 / 2024.12.28 / 2025.11.24<br>
+    · Macau Business 2020 / 2023.09.27 / 2024.11.08<br>
+    · Macau News (macaonews.org) 2024.12.04 / 2025.04.25 / 2025.11.24<br>
+    · AGB Brief 2026.01.13 — 마카오 폴리테크닉대학 연구 보고서<br>
+    · UNESCO 공식 (whc.unesco.org) — Historic Centre of Macao<br>
+    · 마카오 정부 문화국 (ic.gov.mo) — 보호관리계획 2024.06.01<br>
+    · Xinhua 2025.07.16 — 유네스코 등재 20주년<br>
+    · DICJ 공식 성명 2026.03.13<br>
+    · Yogonet International 2025.03.06<br>
+    · iGaming Today 2025.11<br>
+    · DSF 마카오 재정국 공식 데이터<br>
+    · CNBC 2022.12.23<br>
+    · Galaxy Entertainment IR Q2 2025<br>
+    · Focus on Travel News 2025.05.08
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">🎰 마카오 모먼트 리서치</div>
+  <div class="footer-copy">
+    본 콘텐츠는 공식적으로 확인된 정보를 사실에 기반하여 제작되었으며
+  </div>
+  <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;">
+    "Irene이 직접 만든 소중한 자료입니다.<br>무단 복제 및 배포를 금합니다."
+  </div>
+  <div class="footer-warn">
+    ※ 본 자료는 참고용 정보 제공 목적으로 제작되었습니다.<br>
+    법적 효력이 없으며, 실제 방문 시 현장 확인을 권장합니다.<br>
+    2026년 5월 기준 공식 출처 확인 정보.
+  </div>
+</div>
+
+</body>
+</html>
