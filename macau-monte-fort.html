@@ -2,333 +2,335 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>마카오 몬테 요새 — 大炮台 완전 가이드</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --stone: #2c2416;
-      --stone-mid: #4a3b28;
       --stone-light: #7a6248;
       --gold: #c9a84c;
       --gold-light: #e8c97a;
-      --gold-pale: #f5e9c8;
       --cream: #fdf8ef;
-      --rust: #8b3a2a;
       --rust-light: #c0503a;
-      --sky: #3a5f7a;
-      --parchment: #f0e6cc;
       --ink: #1a1208;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Noto Sans KR', sans-serif;
       background-color: var(--stone);
       color: var(--cream);
-      min-height: 100vh;
       overflow-x: hidden;
+      width: 100%;
     }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(26,18,8,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 16px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.68rem;
+      color: var(--stone-light);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    @media (max-width: 480px) { .nav-links { display: none; } }
 
     /* ── HERO ── */
     .hero {
-      position: relative;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 60px 24px;
-      overflow: hidden;
+      padding: 80px 20px 60px;
       background:
         radial-gradient(ellipse at 20% 80%, rgba(139,58,42,0.35) 0%, transparent 55%),
         radial-gradient(ellipse at 80% 20%, rgba(58,95,122,0.3) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%),
         linear-gradient(160deg, #1a1208 0%, #2c2416 40%, #3a2e1c 70%, #1a1208 100%);
+      position: relative;
+      overflow: hidden;
     }
-
     .hero::before {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,168,76,0.03) 60px, rgba(201,168,76,0.03) 61px),
-        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,168,76,0.03) 60px, rgba(201,168,76,0.03) 61px);
+        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,168,76,0.025) 60px, rgba(201,168,76,0.025) 61px),
+        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,168,76,0.025) 60px, rgba(201,168,76,0.025) 61px);
       pointer-events: none;
     }
-
     .hero-badge {
       display: inline-block;
       border: 1px solid var(--gold);
       color: var(--gold);
       font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      padding: 6px 18px;
-      margin-bottom: 28px;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      padding: 5px 14px;
+      margin-bottom: 24px;
       opacity: 0;
       animation: fadeUp 0.8s ease 0.2s forwards;
     }
-
     .hero-cn {
       font-family: 'Noto Serif KR', serif;
-      font-size: clamp(3rem, 8vw, 6rem);
+      font-size: clamp(2.8rem, 12vw, 6rem);
       font-weight: 900;
       color: var(--gold);
       letter-spacing: 0.15em;
       line-height: 1;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       opacity: 0;
       animation: fadeUp 0.8s ease 0.4s forwards;
-      text-shadow: 0 0 60px rgba(201,168,76,0.4);
+      text-shadow: 0 0 60px rgba(201,168,76,0.35);
     }
-
     .hero-title {
       font-family: 'Noto Serif KR', serif;
-      font-size: clamp(1.4rem, 4vw, 2.4rem);
+      font-size: clamp(1.2rem, 5vw, 2.2rem);
       font-weight: 700;
       color: var(--cream);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       opacity: 0;
       animation: fadeUp 0.8s ease 0.55s forwards;
     }
-
     .hero-en {
       font-family: 'Cinzel', serif;
-      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      font-size: clamp(0.72rem, 2.5vw, 1rem);
       color: var(--stone-light);
-      letter-spacing: 0.15em;
-      margin-bottom: 32px;
+      letter-spacing: 0.1em;
+      margin-bottom: 28px;
       opacity: 0;
       animation: fadeUp 0.8s ease 0.7s forwards;
     }
-
     .hero-divider {
-      width: 120px;
+      width: 100px;
       height: 1px;
       background: linear-gradient(to right, transparent, var(--gold), transparent);
-      margin: 0 auto 28px;
+      margin: 0 auto 24px;
       opacity: 0;
       animation: fadeUp 0.8s ease 0.85s forwards;
     }
-
     .hero-desc {
-      max-width: 640px;
-      font-size: 1rem;
+      max-width: 560px;
+      font-size: clamp(0.85rem, 2.5vw, 0.97rem);
       line-height: 1.9;
-      color: rgba(253,248,239,0.75);
+      color: rgba(253,248,239,0.72);
       opacity: 0;
       animation: fadeUp 0.8s ease 1s forwards;
+      word-break: keep-all;
     }
-
     .hero-tags {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 36px;
+      margin-top: 28px;
       opacity: 0;
       animation: fadeUp 0.8s ease 1.15s forwards;
+      padding: 0 8px;
     }
-
     .tag {
-      background: rgba(201,168,76,0.12);
-      border: 1px solid rgba(201,168,76,0.35);
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
       color: var(--gold-light);
-      padding: 5px 14px;
+      padding: 4px 11px;
       border-radius: 2px;
-      font-size: 0.78rem;
-      letter-spacing: 0.05em;
+      font-size: 0.72rem;
+      word-break: keep-all;
     }
-
     .scroll-hint {
       position: absolute;
-      bottom: 30px;
-      left: 50%;
+      bottom: 24px; left: 50%;
       transform: translateX(-50%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       opacity: 0;
       animation: fadeUp 1s ease 1.5s forwards;
     }
-
     .scroll-hint span {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       letter-spacing: 0.2em;
       color: var(--stone-light);
-      text-transform: uppercase;
     }
-
     .scroll-line {
-      width: 1px;
-      height: 40px;
+      width: 1px; height: 36px;
       background: linear-gradient(to bottom, var(--gold), transparent);
       animation: scrollPulse 2s ease infinite;
     }
 
     /* ── LAYOUT ── */
     .container {
-      max-width: 900px;
+      max-width: 860px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 16px;
+      width: 100%;
     }
-
-    /* ── SECTION WRAPPER ── */
     .section {
-      padding: 80px 0;
-      border-bottom: 1px solid rgba(201,168,76,0.12);
+      padding: 60px 0;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
     }
-
-    .section:last-of-type { border-bottom: none; }
-
     .section-label {
       font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
       color: var(--gold);
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
-
     .section-title {
       font-family: 'Noto Serif KR', serif;
-      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-size: clamp(1.3rem, 5vw, 1.9rem);
       font-weight: 700;
       color: var(--cream);
-      margin-bottom: 36px;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
       position: relative;
-      padding-bottom: 16px;
+      word-break: keep-all;
     }
-
     .section-title::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 48px;
-      height: 2px;
+      bottom: 0; left: 0;
+      width: 40px; height: 2px;
       background: var(--gold);
     }
 
-    /* ── INFO TABLE ── */
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* ── INFO CARDS (모바일 세로 스택) ── */
+    .info-list {
+      display: flex;
+      flex-direction: column;
       gap: 1px;
       background: rgba(201,168,76,0.15);
       border: 1px solid rgba(201,168,76,0.2);
       border-radius: 4px;
       overflow: hidden;
     }
-
     .info-item {
-      background: rgba(26,18,8,0.7);
-      padding: 20px 24px;
+      background: rgba(26,18,8,0.75);
+      padding: 16px 18px;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
-
     .info-key {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
       color: var(--gold);
       text-transform: uppercase;
     }
-
     .info-val {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       color: var(--cream);
       line-height: 1.5;
+      word-break: keep-all;
     }
-
     .info-val em {
       color: var(--gold-light);
       font-style: normal;
       font-weight: 600;
     }
 
-    /* ── HIGHLIGHT BLOCK ── */
+    /* ── HIGHLIGHT ── */
     .highlight {
-      background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(139,58,42,0.08) 100%);
+      background: linear-gradient(135deg, rgba(201,168,76,0.07) 0%, rgba(139,58,42,0.07) 100%);
       border-left: 3px solid var(--gold);
-      padding: 22px 28px;
-      margin: 28px 0;
-      border-radius: 0 4px 4px 0;
-    }
-
-    .highlight p {
-      font-size: 0.97rem;
-      line-height: 1.85;
-      color: rgba(253,248,239,0.88);
-    }
-
-    .highlight strong {
-      color: var(--gold-light);
-    }
-
-    /* ── WARNING BLOCK ── */
-    .warning {
-      background: rgba(139,58,42,0.15);
-      border-left: 3px solid var(--rust-light);
-      padding: 18px 24px;
+      padding: 18px 20px;
       margin: 24px 0;
       border-radius: 0 4px 4px 0;
     }
+    .highlight p {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: rgba(253,248,239,0.85);
+      word-break: keep-all;
+    }
+    .highlight strong { color: var(--gold-light); }
 
+    /* ── WARNING ── */
+    .warning {
+      background: rgba(139,58,42,0.13);
+      border-left: 3px solid var(--rust-light);
+      padding: 16px 20px;
+      margin: 20px 0;
+      border-radius: 0 4px 4px 0;
+    }
     .warning-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
       color: var(--rust-light);
       text-transform: uppercase;
       margin-bottom: 6px;
     }
-
     .warning p {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       line-height: 1.75;
-      color: rgba(253,248,239,0.7);
+      color: rgba(253,248,239,0.68);
+      word-break: keep-all;
     }
 
-    /* ── SPEC TABLE ── */
-    .spec-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 24px 0;
+    /* ── SPEC TABLE → 모바일 카드형 ── */
+    .spec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 20px 0;
     }
-
-    .spec-table tr {
+    .spec-row {
+      display: flex;
+      gap: 0;
       border-bottom: 1px solid rgba(201,168,76,0.1);
+      padding: 12px 0;
+      align-items: flex-start;
     }
-
-    .spec-table tr:last-child { border-bottom: none; }
-
-    .spec-table th {
-      text-align: left;
-      padding: 14px 20px 14px 0;
-      width: 38%;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
+    .spec-row:last-child { border-bottom: none; }
+    .spec-key {
+      flex: 0 0 38%;
+      font-size: 0.75rem;
       color: var(--gold);
-      font-weight: 500;
-      text-transform: uppercase;
-    }
-
-    .spec-table td {
-      padding: 14px 0;
-      font-size: 0.92rem;
-      color: var(--cream);
+      letter-spacing: 0.05em;
+      padding-right: 12px;
       line-height: 1.5;
+      word-break: keep-all;
     }
-
-    .spec-table td em {
+    .spec-val {
+      flex: 1;
+      font-size: 0.88rem;
+      color: var(--cream);
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+    .spec-val em {
       color: var(--gold-light);
       font-style: normal;
     }
@@ -336,353 +338,258 @@
     /* ── TIMELINE ── */
     .timeline {
       position: relative;
-      padding-left: 32px;
-      margin: 24px 0;
+      padding-left: 28px;
+      margin: 20px 0;
     }
-
     .timeline::before {
       content: '';
       position: absolute;
-      left: 6px;
-      top: 0;
-      bottom: 0;
+      left: 5px; top: 0; bottom: 0;
       width: 1px;
-      background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+      background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.08));
     }
-
     .tl-item {
       position: relative;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
-
     .tl-item:last-child { margin-bottom: 0; }
-
     .tl-dot {
       position: absolute;
-      left: -28px;
-      top: 5px;
-      width: 13px;
-      height: 13px;
+      left: -24px; top: 4px;
+      width: 11px; height: 11px;
       border-radius: 50%;
       border: 2px solid var(--gold);
       background: var(--stone);
     }
-
     .tl-year {
       font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--gold);
-      letter-spacing: 0.1em;
-      margin-bottom: 4px;
+      letter-spacing: 0.08em;
+      margin-bottom: 3px;
     }
-
     .tl-content {
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       line-height: 1.7;
-      color: rgba(253,248,239,0.85);
+      color: rgba(253,248,239,0.82);
+      word-break: keep-all;
     }
-
     .tl-content strong { color: var(--gold-light); }
 
     /* ── DEFENSE CHAIN ── */
     .defense-chain {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin: 28px 0;
-      padding: 24px;
+      gap: 8px;
+      margin: 24px 0;
+      padding: 20px 16px;
       background: rgba(26,18,8,0.5);
       border: 1px solid rgba(201,168,76,0.2);
       border-radius: 4px;
     }
-
+    @media (min-width: 560px) {
+      .defense-chain { flex-direction: row; justify-content: center; }
+      .chain-arrow { transform: none !important; }
+    }
     .fort-node {
       text-align: center;
-      padding: 14px 20px;
-      background: rgba(201,168,76,0.08);
-      border: 1px solid rgba(201,168,76,0.3);
+      padding: 12px 16px;
+      background: rgba(201,168,76,0.07);
+      border: 1px solid rgba(201,168,76,0.25);
       border-radius: 4px;
-      min-width: 140px;
+      width: 100%;
+      max-width: 180px;
     }
-
     .fort-node.main {
-      background: rgba(201,168,76,0.18);
+      background: rgba(201,168,76,0.16);
       border-color: var(--gold);
     }
-
-    .fort-node .cn { font-size: 1rem; color: var(--gold-light); font-weight: 700; }
-    .fort-node .kr { font-size: 0.72rem; color: var(--stone-light); margin-top: 3px; }
-
+    .fort-node .cn { font-size: 0.95rem; color: var(--gold-light); font-weight: 700; }
+    .fort-node .kr { font-size: 0.7rem; color: var(--stone-light); margin-top: 2px; }
     .chain-arrow {
       color: var(--gold);
-      font-size: 1.2rem;
+      font-size: 1rem;
       opacity: 0.5;
+      transform: rotate(90deg);
     }
 
-    /* ── CANNON SECTION ── */
+    /* ── CANNON BOX ── */
     .cannon-box {
       background: linear-gradient(135deg, rgba(26,18,8,0.9) 0%, rgba(44,36,22,0.8) 100%);
-      border: 1px solid rgba(201,168,76,0.25);
+      border: 1px solid rgba(201,168,76,0.22);
       border-radius: 6px;
-      padding: 32px;
-      margin: 28px 0;
-      position: relative;
-      overflow: hidden;
+      padding: 24px 20px;
+      margin: 20px 0;
     }
-
-    .cannon-box::before {
-      content: '🏛';
-      position: absolute;
-      right: 24px;
-      top: 20px;
-      font-size: 3rem;
-      opacity: 0.07;
-    }
-
     .cannon-box h3 {
       font-family: 'Noto Serif KR', serif;
-      font-size: 1.05rem;
+      font-size: 0.97rem;
       color: var(--gold-light);
-      margin-bottom: 14px;
-    }
-
-    .cannon-box p {
-      font-size: 0.92rem;
-      line-height: 1.85;
-      color: rgba(253,248,239,0.82);
       margin-bottom: 12px;
+      word-break: keep-all;
     }
-
+    .cannon-box p {
+      font-size: 0.88rem;
+      line-height: 1.85;
+      color: rgba(253,248,239,0.8);
+      margin-bottom: 10px;
+      word-break: keep-all;
+    }
     .cannon-box p:last-child { margin-bottom: 0; }
+    .chip {
+      display: inline-block;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.22);
+      color: var(--gold-light);
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin: 2px 2px;
+    }
 
     /* ── STORY ── */
     .story-section {
-      background: linear-gradient(180deg, rgba(26,18,8,0.4) 0%, transparent 100%);
-      padding: 80px 0;
+      padding: 60px 0;
     }
-
     .story-header {
       text-align: center;
-      margin-bottom: 56px;
+      margin-bottom: 44px;
     }
-
     .story-label {
       font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.35em;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
       color: var(--gold);
-      text-transform: uppercase;
       display: block;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
-
     .story-main-title {
       font-family: 'Noto Serif KR', serif;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-size: clamp(1.35rem, 5vw, 2.2rem);
       font-weight: 900;
       color: var(--cream);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      word-break: keep-all;
     }
-
     .story-sub {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: var(--stone-light);
+      word-break: keep-all;
     }
-
-    .story-body {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .story-chapter {
-      margin-bottom: 52px;
-    }
-
+    .story-body { max-width: 700px; margin: 0 auto; }
+    .story-chapter { margin-bottom: 44px; }
     .chapter-num {
       font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
       color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
-
     .chapter-title {
       font-family: 'Noto Serif KR', serif;
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--gold-light);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      margin-bottom: 16px;
+      word-break: keep-all;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
     }
-
-    .chapter-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, rgba(201,168,76,0.3), transparent);
-    }
-
     .story-p {
-      font-size: 1rem;
+      font-size: 0.92rem;
       line-height: 2;
-      color: rgba(253,248,239,0.82);
-      margin-bottom: 18px;
+      color: rgba(253,248,239,0.8);
+      margin-bottom: 14px;
       text-indent: 1em;
+      word-break: keep-all;
     }
-
     .story-p:last-child { margin-bottom: 0; }
-
     .story-p strong { color: var(--gold-light); }
-
     .story-pullquote {
-      margin: 32px 0;
-      padding: 24px 32px;
-      border-top: 1px solid rgba(201,168,76,0.3);
-      border-bottom: 1px solid rgba(201,168,76,0.3);
+      margin: 24px 0;
+      padding: 20px 20px;
+      border-top: 1px solid rgba(201,168,76,0.25);
+      border-bottom: 1px solid rgba(201,168,76,0.25);
       text-align: center;
     }
-
     .story-pullquote p {
       font-family: 'Noto Serif KR', serif;
-      font-size: 1.05rem;
+      font-size: 0.97rem;
       line-height: 1.8;
       color: var(--gold-light);
       font-style: italic;
+      word-break: keep-all;
     }
 
     /* ── SOURCE NOTE ── */
     .source-note {
-      background: rgba(26,18,8,0.6);
-      border: 1px solid rgba(201,168,76,0.15);
-      padding: 20px 28px;
+      background: rgba(26,18,8,0.55);
+      border: 1px solid rgba(201,168,76,0.13);
+      padding: 16px 18px;
       border-radius: 4px;
-      margin-top: 48px;
+      margin-top: 40px;
     }
-
     .source-note p {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       line-height: 1.7;
       color: var(--stone-light);
+      word-break: keep-all;
     }
-
     .source-note strong { color: var(--gold); }
 
     /* ── FOOTER ── */
     footer {
       background: var(--ink);
-      border-top: 1px solid rgba(201,168,76,0.2);
-      padding: 40px 24px;
+      border-top: 1px solid rgba(201,168,76,0.18);
+      padding: 36px 20px;
       text-align: center;
     }
-
     .footer-logo {
       font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      color: var(--gold);
-      letter-spacing: 0.2em;
-      margin-bottom: 12px;
-    }
-
-    .footer-copy {
-      font-size: 0.8rem;
-      color: var(--stone-light);
-      line-height: 1.7;
-      margin-bottom: 6px;
-    }
-
-    .footer-warn {
-      font-size: 0.78rem;
-      color: rgba(201,168,76,0.6);
-      letter-spacing: 0.03em;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(26,18,8,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201,168,76,0.15);
-      padding: 0 24px;
-    }
-
-    .nav-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 54px;
-    }
-
-    .nav-title {
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
+      font-size: 1rem;
       color: var(--gold);
       letter-spacing: 0.15em;
+      margin-bottom: 10px;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.72rem;
+    .footer-copy {
+      font-size: 0.78rem;
       color: var(--stone-light);
-      text-decoration: none;
-      letter-spacing: 0.08em;
-      transition: color 0.2s;
+      line-height: 1.7;
+      margin-bottom: 5px;
+      word-break: keep-all;
+    }
+    .footer-warn {
+      font-size: 0.75rem;
+      color: rgba(201,168,76,0.55);
+      word-break: keep-all;
     }
 
-    .nav-links a:hover { color: var(--gold-light); }
+    /* ── PROSE ── */
+    .prose {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: rgba(253,248,239,0.8);
+      word-break: keep-all;
+    }
+
+    /* ── SUB HEADING ── */
+    .sub-h {
+      font-family: 'Noto Serif KR', serif;
+      color: var(--gold-light);
+      font-size: 0.97rem;
+      margin: 28px 0 14px;
+      word-break: keep-all;
+    }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(18px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; }
+      0%, 100% { opacity: 0.35; }
       50%       { opacity: 1; }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .defense-chain { flex-direction: column; }
-      .chain-arrow { transform: rotate(90deg); }
-      .spec-table th { width: 45%; font-size: 0.72rem; }
-    }
-
-    /* ── PROSE UTIL ── */
-    .prose {
-      font-size: 0.95rem;
-      line-height: 1.9;
-      color: rgba(253,248,239,0.82);
-    }
-
-    .prose + .prose { margin-top: 14px; }
-
-    .chip {
-      display: inline-block;
-      background: rgba(201,168,76,0.12);
-      border: 1px solid rgba(201,168,76,0.25);
-      color: var(--gold-light);
-      font-size: 0.75rem;
-      padding: 2px 10px;
-      border-radius: 2px;
-      margin: 2px 3px;
     }
   </style>
 </head>
@@ -693,11 +600,11 @@
   <div class="nav-inner">
     <span class="nav-title">大炮台 · Monte Fort</span>
     <ul class="nav-links">
-      <li><a href="#overview">기본 정보</a></li>
+      <li><a href="#overview">기본정보</a></li>
       <li><a href="#history">역사</a></li>
       <li><a href="#architecture">건축</a></li>
-      <li><a href="#cannon">대포의 진실</a></li>
-      <li><a href="#story">스토리텔링</a></li>
+      <li><a href="#cannon">대포</a></li>
+      <li><a href="#story">스토리</a></li>
     </ul>
   </div>
 </nav>
@@ -710,8 +617,8 @@
   <p class="hero-en">Fortaleza do Monte · Mount Fortress</p>
   <div class="hero-divider"></div>
   <p class="hero-desc">
-    1617년 예수회가 세운 이 요새는 마카오 반도 한가운데 언덕 위에 400년째 서 있다.<br/>
-    중국에 현존하는 가장 오래된 서양식 포대 건축군의 일부로,<br/>
+    1617년 예수회가 세운 이 요새는 마카오 반도 한가운데 언덕 위에 400년째 서 있다.
+    중국에 현존하는 가장 오래된 서양식 포대 건축군의 일부로,
     동과 서의 역사가 하나의 돌벽 안에 담겨 있다.
   </p>
   <div class="hero-tags">
@@ -719,7 +626,7 @@
     <span class="tag">1622년 네덜란드 침공 격퇴</span>
     <span class="tag">유네스코 세계문화유산</span>
     <span class="tag">마카오 8경</span>
-    <span class="tag">마카오 박물관 내부 위치</span>
+    <span class="tag">마카오 박물관</span>
   </div>
   <div class="scroll-hint">
     <span>Scroll</span>
@@ -732,8 +639,7 @@
   <div class="container">
     <p class="section-label">Overview</p>
     <h2 class="section-title">기본 정보</h2>
-
-    <div class="info-grid">
+    <div class="info-list">
       <div class="info-item">
         <span class="info-key">한국어</span>
         <span class="info-val">몬테 요새 / <em>대포대</em></span>
@@ -772,7 +678,7 @@
       </div>
       <div class="info-item">
         <span class="info-key">특별 기능</span>
-        <span class="info-val"><em>2023년부터</em> 태풍 9호·10호 경보 깃발을 게양하는 마카오 유일의 장소</span>
+        <span class="info-val"><em>2023년부터</em> 태풍 9호·10호 경보 깃발 게양 — 마카오 유일의 장소</span>
       </div>
     </div>
   </div>
@@ -785,23 +691,21 @@
     <h2 class="section-title">건설 배경과 역사</h2>
 
     <div class="highlight">
-      <p>
-        17세기 초, 마카오는 중국–일본–유럽을 연결하는 <strong>은(銀) 무역의 핵심 관문</strong>이었다.
-        동서양 문물이 교차하는 국제 무역·금융 허브였으며, 해적과 유럽 경쟁국의 위협이
-        실제로 존재하였다. 마카오 반도 전체를 내려다볼 수 있는 전략적 거점이 필요하였고,
-        그것이 바로 몬테 요새였다.
-      </p>
+      <p>17세기 초, 마카오는 중국–일본–유럽을 연결하는 <strong>은(銀) 무역의 핵심 관문</strong>이었다.
+      동서양 문물이 교차하는 국제 무역·금융 허브였으며, 해적과 유럽 경쟁국의 위협이
+      실제로 존재하였다. 마카오 반도 전체를 내려다볼 수 있는 전략적 거점이 필요하였고,
+      그것이 바로 몬테 요새였다.</p>
     </div>
 
-    <h3 style="font-family:'Noto Serif KR',serif; color:var(--gold-light); font-size:1.05rem; margin:32px 0 16px;">🏗️ 건설 주체와 시기</h3>
-    <table class="spec-table">
-      <tr><th>건설 시작</th><td><em>1617년</em> — 명나라 신종 재위 시기</td></tr>
-      <tr><th>건설 완료</th><td><em>1626년</em> — 총 <em>10년</em> 공사</td></tr>
-      <tr><th>건설 주체</th><td><em>예수회 (耶穌會 / Jesuits)</em></td></tr>
-      <tr><th>최초 성격</th><td>예수회 성 바울 학원(聖保祿學院) 부속 교회의 제천대(祭天台)로 출발 → 군사 요새로 발전</td></tr>
-    </table>
+    <h3 class="sub-h">🏗️ 건설 주체와 시기</h3>
+    <div class="spec-list">
+      <div class="spec-row"><span class="spec-key">건설 시작</span><span class="spec-val"><em>1617년</em> — 명나라 신종 재위 시기</span></div>
+      <div class="spec-row"><span class="spec-key">건설 완료</span><span class="spec-val"><em>1626년</em> — 총 <em>10년</em> 공사</span></div>
+      <div class="spec-row"><span class="spec-key">건설 주체</span><span class="spec-val"><em>예수회 (耶穌會 / Jesuits)</em></span></div>
+      <div class="spec-row"><span class="spec-key">최초 성격</span><span class="spec-val">예수회 성 바울 학원 부속 교회의 제천대로 출발 → 군사 요새로 발전</span></div>
+    </div>
 
-    <h3 style="font-family:'Noto Serif KR',serif; color:var(--gold-light); font-size:1.05rem; margin:36px 0 16px;">⚔️ 3중 방어선 — 몬테 요새의 위치</h3>
+    <h3 class="sub-h">⚔️ 3중 방어선</h3>
     <p class="prose">몬테 요새는 단독 요새가 아니었다. 마카오의 동·서 해안 전체를 포괄하는 광범위한 포격 방어망을 형성하였다.</p>
 
     <div class="defense-chain">
@@ -809,25 +713,24 @@
         <div class="cn">大炮台</div>
         <div class="kr">몬테 요새 (중심)</div>
       </div>
-      <div class="chain-arrow">＋</div>
+      <div class="chain-arrow">▼</div>
       <div class="fort-node">
         <div class="cn">媽閣炮台</div>
         <div class="kr">마카오 요새</div>
       </div>
-      <div class="chain-arrow">＋</div>
+      <div class="chain-arrow">▼</div>
       <div class="fort-node">
         <div class="cn">東望洋炮台</div>
         <div class="kr">동망양 요새</div>
       </div>
     </div>
 
-    <h3 style="font-family:'Noto Serif KR',serif; color:var(--gold-light); font-size:1.05rem; margin:36px 0 16px;">📅 시대별 역할 변화</h3>
-
+    <h3 class="sub-h">📅 시대별 역할 변화</h3>
     <div class="timeline">
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-year">1617 — 1626</div>
-        <div class="tl-content">예수회가 건설 시작. <strong>10년 공사</strong> 끝에 군사 요새 완성되었다.</div>
+        <div class="tl-content">예수회가 건설 시작. <strong>10년 공사</strong> 끝에 군사 요새가 완성되었다.</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
@@ -862,7 +765,7 @@
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-year">1998년</div>
-        <div class="tl-content">요새 중앙에 <strong>마카오 박물관(澳門博物館)</strong> 개관되었다.</div>
+        <div class="tl-content">요새 중앙에 <strong>마카오 박물관(澳門博物館)</strong>이 개관되었다.</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
@@ -872,21 +775,18 @@
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-year">2023년 ~</div>
-        <div class="tl-content">마카오 특구 정부 주도로 복합 문화·예술 공간으로 활성화 계획이 추진되었다. 또한 <strong>태풍 9호·10호 경보 깃발 게양 장소</strong>로 공식 지정되었다.</div>
+        <div class="tl-content">마카오 특구 정부 주도로 복합 문화·예술 공간 활성화 계획이 추진되었다. <strong>태풍 9호·10호 경보 깃발 게양 장소</strong>로 공식 지정되었다.</div>
       </div>
     </div>
 
-    <!-- 1622 전투 상세 -->
-    <h3 style="font-family:'Noto Serif KR',serif; color:var(--gold-light); font-size:1.05rem; margin:36px 0 16px;">🚢 1622년 네덜란드 침공 — 상세</h3>
+    <h3 class="sub-h">🚢 1622년 네덜란드 침공 — 상세</h3>
 
     <div class="highlight">
-      <p>
-        당시 마카오가 가진 것: <br/>
-        <span class="chip">중국·서양 연결 핵심 무역도시</span>
-        <span class="chip">일본과의 은 무역 중심</span>
-        <span class="chip">동서 문명 금융·무역 허브</span><br/><br/>
-        <strong>"마카오를 차지하면 아시아 무역을 장악한다"</strong> — 이것이 네덜란드의 전략이었다.
-      </p>
+      <p>당시 마카오가 가진 것<br/>
+      <span class="chip">중국·서양 연결 핵심 무역도시</span>
+      <span class="chip">일본과의 은 무역 중심</span>
+      <span class="chip">동서 문명 금융·무역 허브</span><br/><br/>
+      <strong>"마카오를 차지하면 아시아 무역을 장악한다"</strong> — 이것이 네덜란드의 전략이었다.</p>
     </div>
 
     <p class="prose">네덜란드 함대가 마카오 해안에 상륙을 시도하였다. 당시 마카오는 규모가 작고 정규 군인 수도 많지 않았다. 네덜란드군이 해안에서 시내로 진격하는 순간, 몬테 요새에서 집중 포격이 시작되었다.</p>
@@ -906,26 +806,23 @@
     <p class="section-label">Architecture</p>
     <h2 class="section-title">건축 구조 — 확인된 수치</h2>
 
-    <table class="spec-table">
-      <tr><th>기초 재료</th><td>두께 <em>3.7m 화강암</em></td></tr>
-      <tr><th>성벽 재료</th><td>돌 + <em>굴껍데기 가루</em> 혼합</td></tr>
-      <tr><th>성벽 높이</th><td><em>9.15m</em></td></tr>
-      <tr><th>성벽 상단 두께</th><td><em>2.7m</em> (위로 갈수록 좁아지는 구조)</td></tr>
-      <tr><th>성벽 길이</th><td>약 <em>90m</em></td></tr>
-      <tr><th>전체 면적</th><td>약 <em>1만㎡</em> (불규칙 사각형, 각 변 약 100m)</td></tr>
-      <tr><th>정문 방향</th><td><em>남쪽</em></td></tr>
-      <tr><th>대포 전시</th><td>현재 성벽 위에 대포 <em>전시 중</em> (수량은 아래 섹션 참조)</td></tr>
-    </table>
+    <div class="spec-list">
+      <div class="spec-row"><span class="spec-key">기초 재료</span><span class="spec-val">두께 <em>3.7m 화강암</em></span></div>
+      <div class="spec-row"><span class="spec-key">성벽 재료</span><span class="spec-val">돌 + <em>굴껍데기 가루</em> 혼합</span></div>
+      <div class="spec-row"><span class="spec-key">성벽 높이</span><span class="spec-val"><em>9.15m</em></span></div>
+      <div class="spec-row"><span class="spec-key">성벽 상단 두께</span><span class="spec-val"><em>2.7m</em> (위로 갈수록 좁아지는 구조)</span></div>
+      <div class="spec-row"><span class="spec-key">성벽 길이</span><span class="spec-val">약 <em>90m</em></span></div>
+      <div class="spec-row"><span class="spec-key">전체 면적</span><span class="spec-val">약 <em>1만㎡</em> (불규칙 사각형, 각 변 약 100m)</span></div>
+      <div class="spec-row"><span class="spec-key">정문 방향</span><span class="spec-val"><em>남쪽</em></span></div>
+      <div class="spec-row"><span class="spec-key">상층부 탑루</span><span class="spec-val">3층 탑루 — <em>현재 소실, 존재하지 않음</em></span></div>
+      <div class="spec-row"><span class="spec-key">현재 꼭대기</span><span class="spec-val"><em>대포대 정원(大炮台花園)</em> — 마카오 반도 360도 전망 가능</span></div>
+    </div>
 
-    <h3 style="font-family:'Noto Serif KR',serif; color:var(--gold-light); font-size:1.05rem; margin:32px 0 16px;">🏠 내부 시설 (건설 당시)</h3>
-    <div class="info-grid">
+    <h3 class="sub-h">🏠 내부 시설 (건설 당시)</h3>
+    <div class="info-list">
       <div class="info-item">
         <span class="info-key">입구</span>
         <span class="info-val">화약 저장고</span>
-      </div>
-      <div class="info-item">
-        <span class="info-key">상층부</span>
-        <span class="info-val">3층 탑루 — <em>현재 소실, 존재하지 않음</em></span>
       </div>
       <div class="info-item">
         <span class="info-key">병사 시설</span>
@@ -934,10 +831,6 @@
       <div class="info-item">
         <span class="info-key">군수 비축</span>
         <span class="info-val">수조 + 군수 창고 — <em>최대 2년치</em> 포위 상황 대응 가능</span>
-      </div>
-      <div class="info-item">
-        <span class="info-key">현재 꼭대기</span>
-        <span class="info-val"><em>대포대 정원(大炮台花園)</em> — 마카오 반도 360도 전망 가능</span>
       </div>
     </div>
   </div>
@@ -951,47 +844,28 @@
 
     <p class="prose">요새에 올라서면 성벽 위에 줄지어 서 있는 대포들이 눈길을 끈다. 하지만 이 대포들에는 알려지지 않은 중요한 이야기가 있다.</p>
 
-    <div class="cannon-box" style="margin-top:28px;">
+    <div class="cannon-box" style="margin-top:20px;">
       <h3>① 왜 진짜 대포가 아닐까? — 역사적 배경</h3>
-      <p>
-        과거 17세기, 1622년 네덜란드 침공 당시 실제로 사용하였던 오리지널 대포들은
-        대다수 <strong>분실되거나, 녹여서 다른 용도로 사용되거나, 해외 박물관 등으로 유출</strong>되었다.
-      </p>
-      <p>
-        특히 마카오는 과거 최고의 <strong>청동 대포 주조 기술</strong>을 보유하였던 곳이었다.
-        이곳에서 제작된 귀한 청동 대포들은
+      <p>과거 17세기, 1622년 네덜란드 침공 당시 실제로 사용하였던 오리지널 대포들은 대다수 <strong>분실되거나, 녹여서 다른 용도로 사용되거나, 해외 박물관 등으로 유출</strong>되었다.</p>
+      <p>특히 마카오는 과거 최고의 <strong>청동 대포 주조 기술</strong>을 보유하였던 곳이었다. 이곳에서 제작된 귀한 청동 대포들은
         <span class="chip">영국 런던 탑</span>
         <span class="chip">포르투갈 리스본 군사박물관</span>
         <span class="chip">인도네시아</span>
-        등지로 흩어지게 되었다.
-      </p>
+        등지로 흩어지게 되었다.</p>
     </div>
 
     <div class="cannon-box">
       <h3>② 현재 전시된 대포의 정체</h3>
-      <p>
-        현재 성벽에 줄지어 있는 <strong>철제 대포들은 복제품</strong>이다.
-        1860년 무렵 도입되었던 <strong>전장포(前裝砲, 대포 앞 구멍으로 화약과 포탄을 넣는 방식)</strong>의
-        모습을 그대로 재현한 것이다.
-      </p>
-      <p>
-        요새가 군사 통제 구역에서 해제되고(1966년), 이후 마카오 박물관과 함께
-        유네스코 세계유산으로 정비되는 과정에서 <strong>과거 요새의 군사적 위용과 역사적 모습을
-        관광객들에게 직관적으로 보여주기 위해</strong> 복제품을 제작하여 배치한 것이다.
-      </p>
-      <div class="warning" style="margin-top:16px; margin-bottom:0;">
+      <p>현재 성벽에 줄지어 있는 <strong>철제 대포들은 복제품</strong>이다. 1860년 무렵 도입되었던 <strong>전장포(前裝砲, 대포 앞 구멍으로 화약과 포탄을 넣는 방식)</strong>의 모습을 재현한 것이다.</p>
+      <p>요새가 군사 통제 구역에서 해제되고(1966년), 이후 마카오 박물관과 함께 유네스코 세계유산으로 정비되는 과정에서 <strong>과거 요새의 군사적 위용과 역사적 모습을 관광객들에게 직관적으로 보여주기 위해</strong> 복제품을 제작하여 배치한 것이다.</p>
+      <div class="warning" style="margin-top:14px; margin-bottom:0;">
         <div class="warning-label">⚠️ 꼭 확인 필요</div>
         <p>현재 전시된 대포의 정확한 수량(32문 또는 22문)은 출처마다 표기가 상이하다. 방문 전 마카오 문화국(IC) 공식 자료에서 최신 정보를 확인하는 것을 권장한다.</p>
       </div>
     </div>
 
     <div class="source-note">
-      <p>
-        <strong>📌 출처 안내:</strong>
-        대포 관련 내용(복제품 여부, 원본 대포 유출 경로, 전장포 방식)은 사용자 제공 자료를 기반으로 정리되었다.
-        마카오의 청동 대포 주조 기술과 해외 유출 사실은 마카오 문화국 및 관련 역사 연구 자료에서 일부 확인되나,
-        세부 내역은 방문 시 마카오 박물관 현지 전시 자료를 통해 추가 확인을 권장한다.
-      </p>
+      <p><strong>📌 출처 안내:</strong> 대포 관련 내용(복제품 여부, 원본 대포 유출 경로, 전장포 방식)은 사용자 제공 자료를 기반으로 정리되었다. 마카오의 청동 대포 주조 기술과 해외 유출 사실은 마카오 문화국 및 관련 역사 연구 자료에서 일부 확인되나, 세부 내역은 방문 시 마카오 박물관 현지 전시 자료를 통해 추가 확인을 권장한다.</p>
     </div>
   </div>
 </section>
@@ -1007,7 +881,6 @@
 
     <div class="story-body">
 
-      <!-- ch1 -->
       <div class="story-chapter">
         <div class="chapter-num">Chapter 01</div>
         <div class="chapter-title">🔨 10년의 공사</div>
@@ -1018,7 +891,6 @@
         <p class="story-p"><strong>10년의 공사</strong> 끝에, 1626년 요새가 완성되었다. 이 요새는 마카오 요새, 동망양 요새와 함께 <strong>3중 방어선</strong>을 형성하여 마카오의 동쪽과 서쪽 해안 전체를 포격망으로 덮었다.</p>
       </div>
 
-      <!-- ch2 -->
       <div class="story-chapter">
         <div class="chapter-num">Chapter 02</div>
         <div class="chapter-title">🌏 왜 요새가 필요했을까?</div>
@@ -1027,23 +899,19 @@
         <p class="story-p">그것이 문제였다. 마카오가 부유해질수록, 이 도시를 빼앗으려는 세력도 늘어났다.</p>
       </div>
 
-      <!-- ch3 -->
       <div class="story-chapter">
         <div class="chapter-num">Chapter 03</div>
         <div class="chapter-title">🚢 1622년 6월, 바다에서 온 적</div>
         <p class="story-p">요새가 완성되기도 전인 1622년 6월, 마카오 앞바다에 낯선 함대가 나타났다.</p>
         <p class="story-p">네덜란드 군대였다. 당시 유럽에서 포르투갈과 네덜란드는 아시아 무역의 주도권을 두고 치열하게 경쟁하였다. 네덜란드의 계산은 단순하였다. <strong>"마카오를 차지하면 아시아 무역 전체를 손에 넣을 수 있다."</strong></p>
         <p class="story-p">네덜란드군이 해안에 상륙하여 시내를 향해 진격하기 시작하였다. 마카오는 작은 도시였고, 군인의 수도 많지 않았다. 겉으로만 보면 금방이라도 무너질 것 같았다.</p>
-
         <div class="story-pullquote">
           <p>바로 그 순간이었다.<br/>언덕 위 요새에서 대포 소리가 울렸다.</p>
         </div>
-
         <p class="story-p">요새에서 발사된 포탄이 네덜란드군의 <strong>화약고에 명중</strong>하였다. 거대한 폭발이 일어났다. 혼란에 빠진 네덜란드군은 결국 마카오를 포기하고 바다로 물러났다.</p>
         <p class="story-p">마카오 사람들은 이 믿기 어려운 승리를 <strong>"기적 같은 승리"</strong>라고 불렀다. 그리고 그 이야기는 지금까지 마카오 역사의 가장 중요한 장면으로 남아 있었다.</p>
       </div>
 
-      <!-- ch4 -->
       <div class="story-chapter">
         <div class="chapter-num">Chapter 04</div>
         <div class="chapter-title">🏛️ 요새의 여러 얼굴</div>
@@ -1053,7 +921,6 @@
         <p class="story-p">1998년에는 요새 한가운데에 <strong>마카오 박물관</strong>이 개관하였다. 2005년, 이 요새는 유네스코가 지정한 <strong>세계문화유산 마카오 역사지구</strong>의 일부가 되었다.</p>
       </div>
 
-      <!-- ch5 -->
       <div class="story-chapter">
         <div class="chapter-num">Chapter 05</div>
         <div class="chapter-title">🔫 대포의 비밀</div>
@@ -1063,7 +930,6 @@
         <p class="story-p">복제품이라고 해서 그 가치가 줄어드는 것은 아니었다. 이 대포들이 서 있는 자리는, 400년 전 실제로 포탄이 날아갔던 바로 그 자리였다.</p>
       </div>
 
-      <!-- ch6 -->
       <div class="story-chapter">
         <div class="chapter-num">Chapter 06</div>
         <div class="chapter-title">🌀 지금도 펄럭이는 깃발</div>
@@ -1071,30 +937,20 @@
         <p class="story-p"><strong>2023년부터 마카오에서 태풍 9호·10호 경보 깃발을 게양하는 곳은 몬테 요새가 유일하다.</strong> 400년 전 적의 침입을 막던 요새가, 오늘날에는 태풍의 위험을 시민에게 알리는 곳이 되었다. 과거와 현재가 같은 자리에서 공존하는 것이었다.</p>
       </div>
 
-      <!-- ch7 -->
       <div class="story-chapter">
         <div class="chapter-num">Epilogue</div>
         <div class="chapter-title">🌅 언덕 위에서</div>
         <p class="story-p">오늘날 요새 꼭대기에 오르면, 마카오 반도가 360도로 펼쳐진다.</p>
         <p class="story-p">복제 대포들이 바다를 향해 줄지어 서 있고, 그 너머로 성 바울 성당의 오래된 돌벽이 보인다. 그 뒤로는 현대적인 마카오의 빌딩들이 솟아 있다. 옛것과 새것이 한눈에 담기는 풍경이었다.</p>
         <p class="story-p">1622년 그날, 이 성벽 위에서 대포를 쏘았던 사람들도 저 바다를 바라보았을 것이었다. 굴껍데기와 화강암으로 쌓은 그 벽이, 지금도 마카오의 한가운데에서 도시를 내려다보고 있었다.</p>
-
         <div class="story-pullquote">
           <p>400년이 지나도 돌벽은 그 자리에 있었다.<br/>그리고 그 위로 바람이 불어오고 있었다.</p>
         </div>
       </div>
 
       <div class="source-note">
-        <p>
-          <strong>📌 출처:</strong>
-          중문 위키백과 大炮台 항목 / 마카오 문화국(IC, Instituto Cultural) 공식 자료 /
-          유네스코 세계유산 공식 문서 / 마카오 박물관(Macau Museum) 공개 자료 /
-          사용자 제공 자료 — 전체 교차 검증 완료.<br/>
-          본 콘텐츠는 확인된 역사적 사실만을 기반으로 작성되었으며,
-          불확실한 내용은 "꼭 확인 필요"로 별도 표시하였다.
-        </p>
+        <p><strong>📌 출처:</strong> 중문 위키백과 大炮台 항목 / 마카오 문화국(IC) 공식 자료 / 유네스코 세계유산 공식 문서 / 마카오 박물관(Macau Museum) 공개 자료 / 사용자 제공 자료 — 전체 교차 검증 완료. 불확실한 내용은 "꼭 확인 필요"로 별도 표시하였다.</p>
       </div>
-
     </div>
   </div>
 </section>
@@ -1102,12 +958,8 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">大炮台 · Macau Monte Fort</div>
-  <p class="footer-copy">
-    본 콘텐츠는 확인된 역사적 사실에 기반하여 제작되었습니다.
-  </p>
-  <p class="footer-warn">
-    ⓒ Irene이 직접 만든 소중한 자료입니다. 무단 복제 및 배포를 금합니다.
-  </p>
+  <p class="footer-copy">본 콘텐츠는 확인된 역사적 사실에 기반하여 제작되었습니다.</p>
+  <p class="footer-warn">ⓒ Irene이 직접 만든 소중한 자료입니다. 무단 복제 및 배포를 금합니다.</p>
 </footer>
 
 </body>
