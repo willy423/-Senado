@@ -43,6 +43,8 @@
     max-width: 480px;
     margin: 0 auto;
     overflow-x: hidden;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   /* ─── HERO ─── */
@@ -266,10 +268,13 @@
   .bar-top {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 12px;
     color: var(--gray-light);
     margin-bottom: 5px;
+    gap: 8px;
   }
+  .bar-top span:first-child { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .bar-top-right { font-weight: 700; color: var(--white); }
   .bar-bg {
     background: rgba(255,255,255,0.06);
@@ -357,9 +362,6 @@
     border-radius: var(--radius);
     padding: 16px;
     margin-bottom: 12px;
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
     border: 1px solid #2a2a2a;
     position: relative;
     overflow: hidden;
@@ -369,18 +371,19 @@
   .rank-item.rank-3 { border-left: 4px solid var(--blue); }
   .rank-item.rank-4 { border-left: 4px solid var(--green); }
   .rank-badge {
-    width: 36px; height: 36px;
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    width: 28px; height: 28px;
     border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 15px; font-weight: 900;
-    flex-shrink: 0;
+    font-size: 13px; font-weight: 900;
     font-family: 'Playfair Display', serif;
+    margin-bottom: 8px;
   }
   .rank-1 .rank-badge { background: rgba(201,169,75,0.2); color: var(--gold); }
   .rank-2 .rank-badge { background: rgba(201,75,75,0.2); color: var(--lv); }
   .rank-3 .rank-badge { background: rgba(75,135,201,0.2); color: var(--blue); }
   .rank-4 .rank-badge { background: rgba(75,201,122,0.2); color: var(--green); }
-  .rank-content { flex: 1; }
+  .rank-content { width: 100%; }
   .rank-name {
     font-size: 14px; font-weight: 700;
     color: var(--white); margin-bottom: 2px;
@@ -612,22 +615,20 @@
   <div class="compare-box">
     <div class="compare-box-title">2025년 연간 카지노 총매출 공식 비교</div>
 
-    <div class="compare-row">
-      <div class="compare-dot" style="background:var(--gold)"></div>
-      <div class="compare-label">마카오 전체 GGR<br><span style="font-size:10px;color:var(--gray)">DICJ 공식 발표 · MOP 247.4억</span></div>
-      <div>
-        <div class="compare-val" style="color:var(--gold)">약 30.86억 달러</div>
-        <div class="compare-krw">약 43조 3,272억 원</div>
-      </div>
+    <!-- 마카오 카드 -->
+    <div style="background:rgba(201,169,75,0.08);border:1px solid rgba(201,169,75,0.25);border-radius:10px;padding:14px;margin-bottom:10px;">
+      <div style="font-size:11px;color:var(--gold);font-weight:700;margin-bottom:6px;">🏆 마카오 전체 GGR</div>
+      <div style="font-size:10px;color:var(--gray);margin-bottom:10px;">DICJ 공식 발표 · MOP 247.4억 · +9.1%</div>
+      <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--gold);line-height:1.1;margin-bottom:4px;">약 30.86억 달러</div>
+      <div style="font-size:12px;color:var(--gray-light);">약 43조 3,272억 원</div>
     </div>
 
-    <div class="compare-row">
-      <div class="compare-dot" style="background:var(--lv)"></div>
-      <div class="compare-label">라스베이거스 스트립<br><span style="font-size:10px;color:var(--gray)">NGCB 공식 발표 · $8,815,212천</span></div>
-      <div>
-        <div class="compare-val" style="color:var(--lv)">약 88억 달러</div>
-        <div class="compare-krw">약 12조 3,800억 원</div>
-      </div>
+    <!-- 라스베이거스 카드 -->
+    <div style="background:rgba(201,75,75,0.08);border:1px solid rgba(201,75,75,0.25);border-radius:10px;padding:14px;margin-bottom:12px;">
+      <div style="font-size:11px;color:var(--lv);font-weight:700;margin-bottom:6px;">🎰 라스베이거스 스트립 GGR</div>
+      <div style="font-size:10px;color:var(--gray);margin-bottom:10px;">NGCB 공식 발표 · $8,815,212천 · +0.03%</div>
+      <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--lv);line-height:1.1;margin-bottom:4px;">약 88억 달러</div>
+      <div style="font-size:12px;color:var(--gray-light);">약 12조 3,800억 원</div>
     </div>
 
     <div class="compare-ratio">
@@ -802,13 +803,8 @@
       <div class="rank-sub">중국 특별행정구 · 6개 카지노 운영사 · 코타이 스트립 포함</div>
       <div class="rank-ggr">약 30.86억 달러 USD</div>
       <div class="rank-krw">MOP 247.4억 · 약 43조 3,272억 원</div>
-      <div class="rank-bar-bg">
-        <div class="rank-bar-fill" style="width:100%"></div>
-      </div>
-      <div class="rank-note">
-        DICJ 공식 발표 기준. 2019년 대비 84.6% 회복. 코로나 이후 최고치.<br>
-        완전 회복 시 약 36.5억 달러(약 51조 원) 수준 예상.
-      </div>
+      <div class="rank-bar-bg"><div class="rank-bar-fill" style="width:100%"></div></div>
+      <div class="rank-note">DICJ 공식 발표 기준. 2019년 대비 84.6% 회복. 코로나 이후 최고치. 완전 회복 시 약 36.5억 달러(약 51조 원) 수준 예상.</div>
     </div>
   </div>
 
@@ -819,13 +815,9 @@
       <div class="rank-name">라스베이거스 스트립 <span class="rank-yoy yoy-flat">+0.03%</span></div>
       <div class="rank-sub">미국 네바다 · 약 6.8km · 30개+ 카지노 리조트</div>
       <div class="rank-ggr">약 88억 달러 USD</div>
-      <div class="rank-krw">$8,815,212천 · 약 12조 3,800억 원</div>
-      <div class="rank-bar-bg">
-        <div class="rank-bar-fill" style="width:28.6%"></div>
-      </div>
-      <div class="rank-note">
-        Nevada Gaming Control Board 공식 발표 (2026.01.28). 2023년 역대 최고 89억 이후 2년 연속 보합. 방문객 7.5% 감소에도 매출 유지.
-      </div>
+      <div class="rank-krw">NGCB 공식 발표 · 약 12조 3,800억 원</div>
+      <div class="rank-bar-bg"><div class="rank-bar-fill" style="width:28.6%"></div></div>
+      <div class="rank-note">Nevada Gaming Control Board 공식 발표 (2026.01.28). 2023년 역대 최고 89억 이후 2년 연속 보합. 방문객 7.5% 감소에도 매출 유지.</div>
     </div>
   </div>
 
@@ -834,15 +826,11 @@
     <div class="rank-badge">3</div>
     <div class="rank-content">
       <div class="rank-name">싱가포르 <span class="rank-yoy yoy-up">+24%</span></div>
-      <div class="rank-sub">마리나베이샌즈 + 리조트월드센토사 · 2개 카지노만 운영</div>
-      <div class="rank-ggr">S$7.05억 (USD 환산 약 52억)</div>
-      <div class="rank-krw">S$7.05억 × 1,080원 = 약 7조 6,140억 원</div>
-      <div class="rank-bar-bg">
-        <div class="rank-bar-fill" style="width:16.8%"></div>
-      </div>
-      <div class="rank-note">
-        Gaming Intelligence 공식 보도 (2026.03). 2025년 최대 이변. 카지노 2개로 역대 최고 기록 달성. 고액자산가 이민자 VIP 수요 급증.
-      </div>
+      <div class="rank-sub">마리나베이샌즈 + 리조트월드센토사 · 카지노 2개만 운영</div>
+      <div class="rank-ggr">S$7.05억 · USD 환산 약 52억</div>
+      <div class="rank-krw">약 7조 6,140억 원 (SGD×1,080원)</div>
+      <div class="rank-bar-bg"><div class="rank-bar-fill" style="width:16.8%"></div></div>
+      <div class="rank-note">Gaming Intelligence 공식 보도 (2026.03). 2025년 최대 이변. 카지노 2개로 역대 최고 기록 달성. 고액자산가 VIP 수요 급증.</div>
     </div>
   </div>
 
@@ -853,13 +841,9 @@
       <div class="rank-name">마닐라 / 필리핀 <span class="rank-yoy yoy-down">-9.6%</span></div>
       <div class="rank-sub">엔터테인먼트 시티 · PAGCOR 규제 · 육상 카지노 기준</div>
       <div class="rank-ggr">PHP 182.5억 · 약 29.7억 달러</div>
-      <div class="rank-krw">약 29.7억 × 1,404원 = 약 4조 1,699억 원</div>
-      <div class="rank-bar-bg">
-        <div class="rank-bar-fill" style="width:9.6%"></div>
-      </div>
-      <div class="rank-note">
-        Asian Gaming Brief 기준. 온라인 도박·e-게임으로 고객 이탈. 중국·한국 방문객 감소. 육상 카지노 역성장.
-      </div>
+      <div class="rank-krw">약 4조 1,699억 원 (USD×1,404원)</div>
+      <div class="rank-bar-bg"><div class="rank-bar-fill" style="width:9.6%"></div></div>
+      <div class="rank-note">Asian Gaming Brief 기준. 온라인 도박·e-게임으로 고객 이탈. 중국·한국 방문객 감소. 육상 카지노 역성장.</div>
     </div>
   </div>
 
