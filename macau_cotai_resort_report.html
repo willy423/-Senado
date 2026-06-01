@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>코타이 스트립 리조트 건설 비용 & 객실 집계 | Macau Moment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A94B;
+  --gold-light: #F2DFA0;
+  --gold-dark: #8A6E1A;
+  --dark: #0D0D0D;
+  --dark2: #161616;
+  --dark3: #1E1E1E;
+  --dark4: #282828;
+  --gray: #888;
+  --gray-light: #BBB;
+  --white: #F7F4EE;
+  --red: #C94B4B;
+  --blue: #4B87C9;
+  --green: #4BC97A;
+  --orange: #C9844B;
+  --r: 12px;
+  --rs: 7px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--dark);
+  color: var(--white);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, #1a1200 0%, #0D0D0D 65%);
+  padding: 48px 18px 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #2a2000;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(201,169,75,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+.hero h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+.hero h1 span { color: var(--gold); }
+.hero-desc {
+  font-size: 12px;
+  color: var(--gray-light);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.hero-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.hero-tag {
+  font-size: 10px;
+  color: var(--gray);
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 3px 10px;
+}
+
+/* ── SECTION ── */
+.sec {
+  padding: 30px 16px 24px;
+  border-bottom: 1px solid #222;
+}
+.sec-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-dark), transparent);
+}
+.sec-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+.sec-title span { color: var(--gold); }
+
+/* ── 뱃지 ── */
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 8px;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+.badge-official { background: rgba(75,201,122,0.15); color: var(--green); }
+.badge-accum    { background: rgba(201,169,75,0.15); color: var(--gold); }
+.badge-est      { background: rgba(201,132,75,0.15); color: var(--orange); }
+.badge-unconf   { background: rgba(201,75,75,0.15);  color: var(--red); }
+
+/* ── 범례 ── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--gray-light);
+}
+
+/* ── 요약 수치 ── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.sum-box {
+  background: var(--dark3);
+  border-radius: var(--r);
+  padding: 14px 12px;
+  border: 1px solid #2a2a2a;
+}
+.sum-box.gold { border-left: 3px solid var(--gold); }
+.sum-box.blue { border-left: 3px solid var(--blue); }
+.sum-label { font-size: 10px; color: var(--gray); margin-bottom: 6px; line-height: 1.5; }
+.sum-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1.1;
+}
+.sum-sub { font-size: 10px; color: var(--gray-light); margin-top: 4px; line-height: 1.5; }
+
+/* ── 리조트 카드 ── */
+.resort-card {
+  background: var(--dark3);
+  border-radius: var(--r);
+  border: 1px solid #2a2a2a;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.resort-card-header {
+  padding: 14px 14px 10px;
+  border-bottom: 1px solid #2a2a2a;
+}
+.resort-op {
+  font-size: 10px;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+.resort-name {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+.resort-name-en {
+  font-size: 11px;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+.resort-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.resort-meta-tag {
+  font-size: 10px;
+  color: var(--gray-light);
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 2px 7px;
+}
+.resort-card-body {
+  padding: 12px 14px;
+}
+
+/* ── 수치 행 ── */
+.data-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 7px 0;
+  border-bottom: 1px solid #2a2a2a;
+  gap: 10px;
+}
+.data-row:last-child { border-bottom: none; }
+.data-label {
+  font-size: 11px;
+  color: var(--gray);
+  flex-shrink: 0;
+  min-width: 72px;
+}
+.data-val {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+  text-align: right;
+  flex: 1;
+}
+.data-val.gold { color: var(--gold); }
+.data-val.blue { color: var(--blue); }
+.data-sub {
+  font-size: 10px;
+  color: var(--gray-light);
+  font-weight: 400;
+  display: block;
+  margin-top: 1px;
+}
+
+/* ── 건설비 하이라이트 ── */
+.cost-highlight {
+  background: rgba(201,169,75,0.07);
+  border: 1px solid rgba(201,169,75,0.2);
+  border-radius: var(--rs);
+  padding: 10px 12px;
+  margin-top: 10px;
+}
+.cost-hl-label { font-size: 10px; color: var(--gold); margin-bottom: 4px; }
+.cost-hl-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1.1;
+}
+.cost-hl-krw { font-size: 11px; color: var(--gray-light); margin-top: 3px; }
+
+/* ── 호텔 목록 ── */
+.hotel-list {
+  margin-top: 10px;
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--rs);
+  padding: 8px 10px;
+}
+.hotel-list-title { font-size: 10px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
+.hotel-item {
+  font-size: 11px;
+  color: var(--gray-light);
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  line-height: 1.5;
+}
+.hotel-item:last-child { border-bottom: none; }
+.hotel-item strong { color: var(--white); }
+
+/* ── 스토리 카드 ── */
+.story-card {
+  background: var(--dark3);
+  border-radius: var(--r);
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid #2a2a2a;
+}
+.story-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #333;
+}
+.story-body {
+  font-size: 12px;
+  color: var(--gray-light);
+  line-height: 1.85;
+}
+.story-body p { margin-bottom: 10px; }
+.story-body p:last-child { margin-bottom: 0; }
+.story-body strong { color: var(--white); }
+.story-body .hl { color: var(--gold); font-weight: 700; }
+
+/* ── 인사이트 ── */
+.insight {
+  background: linear-gradient(135deg, rgba(201,169,75,0.1), rgba(201,169,75,0.04));
+  border: 1px solid rgba(201,169,75,0.28);
+  border-radius: var(--r);
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.insight-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.insight-body {
+  font-size: 12px;
+  color: var(--gray-light);
+  line-height: 1.8;
+}
+.insight-body strong { color: var(--white); }
+
+/* ── 주석 ── */
+.note-box {
+  background: var(--dark4);
+  border-radius: var(--rs);
+  padding: 10px 12px;
+  font-size: 11px;
+  color: var(--gray);
+  line-height: 1.7;
+  border-left: 3px solid var(--gold-dark);
+  margin-bottom: 14px;
+}
+
+/* ── 출처 ── */
+.src { font-size: 10px; color: var(--gray); margin-top: 10px; padding-top: 8px; border-top: 1px solid #2a2a2a; line-height: 1.6; }
+
+/* ── 총합 테이블 ── */
+.total-row {
+  background: rgba(201,169,75,0.1);
+  border: 1px solid rgba(201,169,75,0.3);
+  border-radius: var(--r);
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.total-title { font-size: 11px; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+.total-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1.1;
+}
+.total-krw { font-size: 12px; color: var(--gray-light); margin-top: 4px; }
+.total-note { font-size: 10px; color: var(--gray); margin-top: 6px; line-height: 1.6; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark2);
+  padding: 28px 18px 44px;
+  text-align: center;
+  border-top: 1px solid #222;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+.footer-copy {
+  font-size: 11px;
+  color: var(--gray);
+  line-height: 1.9;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #2a2a2a;
+}
+.footer-copy strong { color: var(--gray-light); }
+.footer-src {
+  font-size: 10px;
+  color: #444;
+  margin-top: 10px;
+  line-height: 1.7;
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-badge">Macau Moment · 2025 Data Report</div>
+  <h1>코타이 스트립 리조트<br><span>총 객실 수 & 건설 비용</span> 완전 집계</h1>
+  <p class="hero-desc">
+    공식 발표 기반 · 누적 비용 포함 · 2026년 검증 완료<br>
+    10개 리조트 · 약 25,800개+ 객실 · 누적 약 239억~249억 달러
+  </p>
+  <div class="hero-tags">
+    <span class="hero-tag">USD 1 = 1,404원</span>
+    <span class="hero-tag">HKD 1 = 180원</span>
+    <span class="hero-tag">2026년 6월 기준</span>
+  </div>
+</div>
+
+<!-- ══ SECTION 1: 범례 & 총합 요약 ══ -->
+<div class="sec">
+  <div class="sec-label">Section 01</div>
+  <div class="sec-title">코타이 스트립 <span>전체 집계</span> 요약</div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="badge badge-official">공식</span> 단일 공식 발표 수치</div>
+    <div class="legend-item"><span class="badge badge-accum">누적</span> 이전 건설비 포함 누적 합산</div>
+    <div class="legend-item"><span class="badge badge-est">추정</span> 복수 발표 합산 추정</div>
+    <div class="legend-item"><span class="badge badge-unconf">미확인</span> 공식 미공개</div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="sum-box gold">
+      <div class="sum-label">코타이 스트립<br>공식 확인 총 객실 수</div>
+      <div class="sum-val">25,800개+</div>
+      <div class="sum-sub">포시즌스 649개 포함<br>갤럭시 브로드웨이 제외<br>Phase 4 미완공 미포함</div>
+    </div>
+    <div class="sum-box gold">
+      <div class="sum-label">총 누적 건설 비용<br>USD 환산 추정</div>
+      <div class="sum-val">239억~249억 달러</div>
+      <div class="sum-sub">약 33조 5,000억~<br>34조 9,000억 원<br>(누적 포함 합산)</div>
+    </div>
+    <div class="sum-box blue">
+      <div class="sum-label">객실 수 1위</div>
+      <div class="sum-val" style="color:var(--blue);font-size:15px;">갤럭시 마카오</div>
+      <div class="sum-sub">약 5,000개<br>(브로드웨이 제외)</div>
+    </div>
+    <div class="sum-box blue">
+      <div class="sum-label">누적 건설비 1위</div>
+      <div class="sum-val" style="color:var(--blue);font-size:15px;">갤럭시 마카오</div>
+      <div class="sum-sub">HKD 880억<br>약 15조 8,400억 원</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>누적 비용 계산 기준</strong><br>
+    런더너 마카오: 샌즈 코타이 센트럴 신축(44억) + 재단장 전체(23.5억) = 누적 약 67.5억 달러<br>
+    갤럭시 마카오: Phase 1+2 공식(HKD 430억) + Phase 3+4 예산 중간값(HKD 450억) = 누적 HKD 880억(약 1,584억 원) 추정<br>
+    스튜디오 시티: Phase 1(32억) + Phase 2(13억) = 누적 45억 달러
+  </div>
+
+  <div class="src">
+    출처: 각 운영사 공식 발표 / WT Partnership Asia / GGRAsia / Macau Business / galaxymacau.com<br>
+    환율: USD 1=1,404원 / HKD 1=180원
+  </div>
+</div>
+
+<!-- ══ SECTION 2: 베네시안 마카오 ══ -->
+<div class="sec">
+  <div class="sec-label">Section 02</div>
+  <div class="sec-title"><span>베네시안 마카오</span></div>
+
+  <div class="resort-card">
+    <div class="resort-card-header">
+      <div class="resort-op">Las Vegas Sands · 2007년 개장</div>
+      <div class="resort-name">베네시안 마카오</div>
+      <div class="resort-name-en">The Venetian Macao · 威尼斯人酒店</div>
+      <div class="resort-meta">
+        <span class="resort-meta-tag">코타이 스트립 최초 초대형 리조트</span>
+        <span class="resort-meta-tag">아시아 최대 단일 건물 호텔</span>
+      </div>
+    </div>
+    <div class="resort-card-body">
+      <div class="data-row">
+        <span class="data-label">내부 호텔</span>
+        <span class="data-val">1개 <span class="badge badge-official">공식</span></span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">객실 수</span>
+        <span class="data-val gold">3,000개 <span class="data-sub">전 객실 스위트</span></span>
+      </div>
+      <div class="cost-highlight">
+        <div class="cost-hl-label">건설 비용 <span class="badge badge-official">공식</span></div>
+        <div class="cost-hl-val">24억 달러 USD</div>
+        <div class="cost-hl-krw">약 3조 3,696억 원</div>
+      </div>
+      <div class="hotel-list">
+        <div class="hotel-list-title">입점 호텔</div>
+        <div class="hotel-item"><strong>더 베네시안 마카오</strong> — 3,000 스위트 전 객실</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-title">🏗️ 코타이 스트립의 문을 연 첫 번째 거인</div>
+    <div class="story-body">
+      <p>코타이 스트립의 첫 번째 초대형 리조트야. 2007년 문을 열었어. 공사하는 데 <strong>2만 명의 노동자</strong>가 투입됐고, 올림픽 수영장 318개 분량의 콘크리트를 부어서 지었어.</p>
+      <p>카지노 게이밍 면적은 <strong>550,000 sq ft (약 51,097㎡ · 약 15,457평)</strong>으로, 라스베이거스 베네시안(120,000 sq ft · 약 11,148㎡ · 약 3,372평)의 <strong>약 4.6배</strong> 크기야. 이탈리아 베네치아를 실내에 재현해서 실내 운하와 곤돌라가 실제로 운행돼. <span class="hl">세계에서 카지노 게이밍 면적 2위 · 종합 리조트 규모 세계 1위</span>로 기록됐어.</p>
+      <div style="background:rgba(201,169,75,0.07);border:1px solid rgba(201,169,75,0.2);border-radius:7px;padding:10px 12px;margin-top:6px;font-size:11px;color:var(--gray-light);line-height:1.7;">
+        🏆 세계 카지노 게이밍 면적 순위 (2026년 기준)<br>
+        <strong style="color:var(--white);">1위</strong> WinStar World Casino (미국 오클라호마) — 약 600,000 sq ft <span style="color:var(--gray);">(약 55,741㎡ · 약 16,862평)</span><br>
+        <strong style="color:var(--gold);">2위</strong> 베네시안 마카오 — 약 550,000 sq ft <span style="color:var(--gray);">(약 51,097㎡ · 약 15,457평)</span><br>
+        <strong style="color:var(--white);">3위</strong> 폭스우즈 리조트 (미국 코네티컷) — 약 344,000 sq ft <span style="color:var(--gray);">(약 31,958㎡ · 약 9,668평)</span>
+      </div>
+    </div>
+  </div>
+  <div class="src">출처: Las Vegas Sands Corp. 공식 발표 / South China Morning Post / Review Journal (2007)</div>
+</div>
+
+<!-- ══ SECTION 3: 파리지앵 마카오 ══ -->
+<div class="sec">
+  <div class="sec-label">Section 03</div>
+  <div class="sec-title"><span>파리지앵 마카오</span></div>
+
+  <div class="resort-card">
+    <div class="resort-card-header">
+      <div class="resort-op">Las Vegas Sands · 2016년 개장</div>
+      <div class="resort-name">파리지앵 마카오</div>
+      <div class="resort-name-en">The Parisian Macao · 巴黎人酒店</div>
+      <div class="resort-meta">
+        <span class="resort-meta-tag">에펠탑 2분의 1 복제 모델</span>
+        <span class="resort-meta-tag">3,000개+ 객실</span>
+      </div>
+    </div>
+    <div class="resort-card-body">
+      <div class="data-row">
+        <span class="data-label">내부 호텔</span>
+        <span class="data-val">1개 <span class="badge badge-official">공식</span></span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">객실 수</span>
+        <span class="data-val gold">3,000개+ <span class="data-sub">객실·스위트</span></span>
+      </div>
+      <div class="cost-highlight">
+        <div class="cost-hl-label">건설 비용 <span class="badge badge-official">공식</span></div>
+        <div class="cost-hl-val">27억 달러 USD</div>
+        <div class="cost-hl-krw">약 3조 7,908억 원</div>
+      </div>
+      <div class="note-box" style="margin-top:10px;margin-bottom:0;">
+        ※ 초기 추정치 2.5B USD → 공식 확정 금액 2.7B USD<br>
+        출처: Las Vegas Sands 공식 보도자료 (NYSE:LVS, 2014)
+      </div>
+      <div class="hotel-list">
+        <div class="hotel-list-title">입점 호텔</div>
+        <div class="hotel-item"><strong>파리지앵 마카오 호텔</strong> — 3,000개+ 객실·스위트</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-title">🗼 파리를 마카오에 옮겨놓은 리조트</div>
+    <div class="story-body">
+      <p>파리 에펠탑의 <strong>절반 크기 복제품</strong>을 입구에 세웠어. 2016년 9월 개장했어. 매일 밤 <strong>6,600개 이상 조명</strong>이 에펠탑을 밝히는 라이트쇼가 펼쳐져.</p>
+      <p>이 호텔 완공으로 라스베이거스 샌즈의 마카오 총 투자액이 <span class="hl">100억 달러를 돌파</span>했어.</p>
+    </div>
+  </div>
+  <div class="src">출처: Las Vegas Sands Corp. 공식 보도자료 / SCMP / Yahoo Finance</div>
+</div>
+
+<!-- ══ SECTION 4: 포시즌스 마카오 ══ -->
+<div class="sec">
+  <div class="sec-label">Section 04</div>
+  <div class="sec-title"><span>포시즌스 마카오</span></div>
+
+  <div class="resort-card">
+    <div class="resort-card-header">
+      <div class="resort-op">Las Vegas Sands · 2008년 개장</div>
+      <div class="resort-name">포시즌스 마카오</div>
+      <div class="resort-name-en">Four Seasons Hotel Macao · 澳門四季酒店</div>
+      <div class="resort-meta">
+        <span class="resort-meta-tag">베네시안·런더너와 연결 단지</span>
+        <span class="resort-meta-tag">별도 건설비 미공개</span>
+      </div>
+    </div>
+    <div class="resort-card-body">
+      <div class="data-row">
+        <span class="data-label">내부 호텔</span>
+        <span class="data-val">1개 <span class="badge badge-official">공식</span></span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">객실 수</span>
+        <span class="data-val gold">649개 <span class="data-sub">Four Seasons 공식</span></span>
+      </div>
+      <div class="cost-highlight" style="background:rgba(201,75,75,0.06);border-color:rgba(201,75,75,0.2);">
+        <div class="cost-hl-label" style="color:var(--red);">건설 비용 <span class="badge badge-unconf">미확인</span></div>
+        <div class="cost-hl-val" style="color:var(--gray-light);font-size:14px;">베네시안·런더너와 연결 단지 — 별도 공식 건설비 미공개</div>
+        <div class="cost-hl-krw">총 건설비 합산에 미산입</div>
+      </div>
+      <div class="hotel-list">
+        <div class="hotel-list-title">입점 호텔</div>
+        <div class="hotel-item"><strong>포시즌스 호텔 마카오</strong> — 649객실·스위트</div>
+      </div>
+    </div>
+  </div>
+  <div class="src">출처: Four Seasons 공식 홈페이지 / Las Vegas Sands 연간 보고서</div>
+</div>
+
+<!-- ══ SECTION 5: 런더너 마카오 ══ -->
+<div class="sec">
+  <div class="sec-label">Section 05</div>
+  <div class="sec-title"><span>런더너 마카오</span></div>
+
+  <div class="resort-card">
+    <div class="resort-card-header">
+      <div class="resort-op">Las Vegas Sands · 2012년 개장(구 샌즈 코타이 센트럴) → 2021년 리브랜딩</div>
+      <div class="resort-name">런더너 마카오</div>
+      <div class="resort-name-en">The Londoner Macao · 倫敦人</div>
+      <div class="resort-meta">
+        <span class="resort-meta-tag">영국 런던 테마</span>
+        <span class="resort-meta-tag">빅벤 복제 · 이층버스</span>
+        <span class="resort-meta-tag">누적 건설비 최대</span>
+      </div>
+    </div>
+    <div class="resort-card-body">
+      <div class="data-row">
+        <span class="data-label">내부 호텔</span>
+        <span class="data-val">5개 (현재) <span class="badge badge-official">공식</span></span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">객실 수</span>
+        <span class="data-val gold">4,426개 <span class="data-sub">Sands China 공식 (2025.10)</span></span>
+      </div>
+
+      <!-- 비용 3단계 -->
+      <div style="margin-top:12px;">
+        <div style="font-size:11px;color:var(--gold);font-weight:700;margin-bottom:8px;">건설 비용 — 3단계 누적</div>
+
+        <div style="background:rgba(255,255,255,0.03);border-radius:var(--rs);padding:10px;margin-bottom:8px;">
+          <div style="font-size:10px;color:var(--gray);margin-bottom:4px;">① 샌즈 코타이 센트럴 신축 (2012년) <span class="badge badge-official">공식</span></div>
+          <div style="font-size:16px;font-weight:700;color:var(--white);">44억 달러 USD</div>
+          <div style="font-size:10px;color:var(--gray-light);">약 6조 1,776억 원 · 셸던 아델슨 직접 발언 (SCMP, 2012)</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border-radius:var(--rs);padding:10px;margin-bottom:8px;">
+          <div style="font-size:10px;color:var(--gray);margin-bottom:4px;">② 런더너 재단장 Phase 1 (2021~2023년) <span class="badge badge-official">공식</span></div>
+          <div style="font-size:16px;font-weight:700;color:var(--white);">약 13억 5천만 달러 USD</div>
+          <div style="font-size:10px;color:var(--gray-light);">약 1조 8,954억 원 · Sands China "$1.35B grand redesign"</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border-radius:var(--rs);padding:10px;margin-bottom:8px;">
+          <div style="font-size:10px;color:var(--gray);margin-bottom:4px;">③ 런더너 추가 공사 Phase 2 (2023~2025년) <span class="badge badge-official">공식</span></div>
+          <div style="font-size:16px;font-weight:700;color:var(--white);">약 10억~12억 달러 USD</div>
+          <div style="font-size:10px;color:var(--gray-light);">약 1조 4,040억~1조 6,848억 원 · LVS Q4 발표</div>
+        </div>
+
+        <div class="cost-highlight">
+          <div class="cost-hl-label">누적 총합 <span class="badge badge-accum">누적</span></div>
+          <div class="cost-hl-val">약 67억 5천만 달러 USD</div>
+          <div class="cost-hl-krw">약 9조 4,770억 원<br><span style="font-size:10px;color:var(--gray);">각 시점 공식 발표 합산 추정치 · 단일 공식 발표 수치 아님</span></div>
+        </div>
+      </div>
+
+      <div class="hotel-list">
+        <div class="hotel-list-title">현재 입점 호텔 — 5개 (2021~현재)</div>
+        <div class="hotel-item"><strong>더 런더너 호텔</strong> — 594 스위트 · 데이비드 베컴 스위트 14개</div>
+        <div class="hotel-item"><strong>런더너 코트</strong> — 1~4베드룸 레지던스형 스위트</div>
+        <div class="hotel-item"><strong>콘래드 마카오</strong> — 약 650객실</div>
+        <div class="hotel-item"><strong>런더너 그랜드 럭셔리 컬렉션</strong> — 구 쉐라톤 재단장 · 2,405객실 · 2025년 오픈</div>
+        <div class="hotel-item"><strong>더 세인트 레지스 마카오</strong> — 약 400객실</div>
+      </div>
+
+      <div class="hotel-list" style="margin-top:8px;">
+        <div class="hotel-list-title">구 샌즈 코타이 센트럴 시절 호텔 — 4개 (2012~2020년)</div>
+        <div class="hotel-item"><strong>홀리데이 인 마카오 코타이 센트럴</strong> — 1,224객실 · 세계 최대 홀리데이 인</div>
+        <div class="hotel-item"><strong>콘래드 마카오 코타이 센트럴</strong> — 약 650객실</div>
+        <div class="hotel-item"><strong>쉐라톤 마카오 호텔</strong> — 3,896객실 · 세계 최대 쉐라톤</div>
+        <div class="hotel-item"><strong>더 세인트 레지스 마카오</strong> — 400객실 · 2015년 추가</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-title">🔄 왜 런던으로 바꿨을까?</div>
+    <div class="story-body">
+      <p>샌즈 코타이 센트럴은 2012년 개장해서 코타이 4위의 수익을 낼 만큼 잘 됐어. 그런데 <strong>베네시안·파리지앵처럼 강렬한 테마가 없어서</strong> '꼭 가야 할 곳'이라는 인식이 약했어.</p>
+      <p>방문객 설문과 여행사 의견을 모은 결과, <span class="hl">"런던"이 중국 관광객에게 가장 동경하는 유럽 도시</span>였어. 빅벤, 버킹엄 궁전, 붉은 이층버스 같은 상징이 누구나 아는 이미지거든. 그래서 영국 런던 테마로 완전히 탈바꿈시킨 거야.</p>
+      <p><strong>데이비드 베컴</strong>이 2023년 공식 개장 행사에 참석해 화제가 됐어. 구 쉐라톤은 '런더너 그랜드 럭셔리 컬렉션'으로 재탄생해 2025년 다시 문을 열었어.</p>
+    </div>
+  </div>
+  <div class="src">출처: Sands China 공식 PRNewswire / Las Vegas Sands 공식 뉴스룸 / SCMP / Macau Daily Times</div>
+</div>
+
+<!-- ══ SECTION 6: 갤럭시 마카오 ══ -->
+<div class="sec">
+  <div class="sec-label">Section 06</div>
+  <div class="sec-title"><span>갤럭시 마카오</span></div>
+
+  <div class="resort-card">
+    <div class="resort-card-header">
+      <div class="resort-op">Galaxy Entertainment Group · Phase 1~4 진행 중</div>
+      <div class="resort-name">갤럭시 마카오</div>
+      <div class="resort-name-en">Galaxy Macau · 澳門銀河</div>
+      <div class="resort-meta">
+        <span class="resort-meta-tag">객실 수 1위</span>
+        <span class="resort-meta-tag">누적 건설비 1위</span>
+        <span class="resort-meta-tag">Phase 4 2027년 완공 목표</span>
+      </div>
+    </div>
+    <div class="resort-card-body">
+      <div class="data-row">
+        <span class="data-label">내부 호텔</span>
+        <span class="data-val">브로드웨이 제외 8개 / 포함 9개</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">객실 수</span>
+        <span class="data-val gold">약 5,000개 <span class="data-sub">브로드웨이 제외 · 공식 홈페이지</span></span>
+      </div>
+
+      <div style="margin-top:12px;">
+        <div style="font-size:11px;color:var(--gold);font-weight:700;margin-bottom:8px;">건설 비용 — 단계별</div>
+        <div style="background:rgba(255,255,255,0.03);border-radius:var(--rs);padding:10px;margin-bottom:8px;">
+          <div style="font-size:10px;color:var(--gray);margin-bottom:4px;">Phase 1+2 <span class="badge badge-official">공식</span></div>
+          <div style="font-size:16px;font-weight:700;color:var(--white);">HKD 430억</div>
+          <div style="font-size:10px;color:var(--gray-light);">약 7조 7,400억 원 · GEG 공식 발표</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border-radius:var(--rs);padding:10px;margin-bottom:8px;">
+          <div style="font-size:10px;color:var(--gray);margin-bottom:4px;">Phase 3+4 예산 <span class="badge badge-est">추정</span></div>
+          <div style="font-size:16px;font-weight:700;color:var(--white);">HKD 400억~500억</div>
+          <div style="font-size:10px;color:var(--gray-light);">약 7조 2,000억~9조 원 · GEG 경영진 공식 발표 · Phase 4 완공 목표 2027년</div>
+        </div>
+        <div class="cost-highlight">
+          <div class="cost-hl-label">누적 총합 (Phase 1~4) <span class="badge badge-accum">누적</span><span class="badge badge-est">추정</span></div>
+          <div class="cost-hl-val">HKD 약 880억</div>
+          <div class="cost-hl-krw">약 15조 8,400억 원<br><span style="font-size:10px;color:var(--gray);">Phase 3+4 중간값 HKD 450억 합산 · 추정치</span></div>
+        </div>
+      </div>
+
+      <div class="hotel-list">
+        <div class="hotel-list-title">입점 호텔 — 총 9개 (브로드웨이 포함)</div>
+        <div class="hotel-item"><strong>갤럭시 호텔</strong> — Phase 1 · 1,449객실</div>
+        <div class="hotel-item"><strong>오쿠라 마카오</strong> (Hotel Okura Macao) — Phase 1</div>
+        <div class="hotel-item"><strong>반얀트리 마카오</strong> (Banyan Tree Macao) — Phase 1</div>
+        <div class="hotel-item"><strong>리츠칼튼 마카오</strong> (The Ritz-Carlton, Macao) — Phase 2</div>
+        <div class="hotel-item"><strong>JW 메리어트 마카오</strong> (JW Marriott Macao) — Phase 2</div>
+        <div class="hotel-item"><strong>래플스 갤럭시 마카오</strong> (Raffles at Galaxy Macau) — Phase 3 · 2023년</div>
+        <div class="hotel-item"><strong>안다즈 마카오</strong> (Andaz Macao) — Phase 3 · 2023년</div>
+        <div class="hotel-item"><strong>카펠라 갤럭시 마카오</strong> (Capella at Galaxy Macau) — 2025년 9월 오픈 · 93개 스위트·빌라</div>
+        <div class="hotel-item"><strong>브로드웨이 호텔</strong> (Broadway Hotel) — 별도 연결 단지</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-title">🏗️ 끝나지 않는 공사 — 4단계 확장 프로젝트</div>
+    <div class="story-body">
+      <p>갤럭시 마카오는 한 번에 다 지은 게 아니라 <strong>4단계로 나눠서 계속 짓고 있어</strong>. 1~2단계만 HKD 430억이 들었고, 3~4단계에 맞먹거나 그 이상이 추가 투입될 예정이야.</p>
+      <p>2025년 9월 <span class="hl">카펠라 갤럭시 마카오</span>가 9번째 호텔로 합류했어. 카펠라의 36개 스카이 빌라에는 각 객실마다 개인 인피니티 풀이 딸려 있어.</p>
+      <p>2026년 포브스 트래블 가이드 기준 단지 내 <strong>5성 호텔이 6개</strong>(갤럭시·반얀트리·오쿠라·리츠칼튼·래플스·카펠라)나 있어. 세계 어느 단지에도 없는 기록이야.</p>
+    </div>
+  </div>
+  <div class="src">출처: Galaxy Entertainment Group 공식 발표 / GGRAsia / galaxymacau.com 공식 호텔 목록</div>
+</div>
+
+<!-- ══ SECTION 7: 스튜디오 시티 ══ -->
+<div class="sec">
+  <div class="sec-label">Section 07</div>
+  <div class="sec-title"><span>스튜디오 시티</span></div>
+
+  <div class="resort-card">
+    <div class="resort-card-header">
+      <div class="resort-op">Melco Resorts · Phase 1 2015년 / Phase 2 2023년 개장</div>
+      <div class="resort-name">스튜디오 시티</div>
+      <div class="resort-name-en">Studio City · 新濠影滙</div>
+      <div class="resort-meta">
+        <span class="resort-meta-tag">할리우드 아트데코 테마</span>
+        <span class="resort-meta-tag">자하 하디드 설계 (Phase 2)</span>
+      </div>
+    </div>
+    <div class="resort-card-body">
+      <div class="data-row">
+        <span class="data-label">내부 호텔</span>
+        <span class="data-val">2개 <span class="badge badge-official">공식</span></span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">객실 수</span>
+        <span class="data-val gold">약 2,500개 <span class="data-sub badge badge-est">추정 · Phase 1 1,600 + Phase 2 약 900</span></span>
+      </div>
+      <div style="margin-top:12px;">
+        <div style="font-size:11px;color:var(--gold);font-weight:700;margin-bottom:8px;">건설 비용 — 단계별</div>
+        <div style="background:rgba(255,255,255,0.03);border-radius:var(--rs);padding:10px;margin-bottom:8px;">
+          <div style="font-size:10px;color:var(--gray);margin-bottom:4px;">Phase 1 <span class="badge badge-official">공식</span></div>
+          <div style="font-size:16px;font-weight:700;color:var(--white);">32억 달러 USD</div>
+          <div style="font-size:10px;color:var(--gray-light);">약 4조 4,928억 원 · Melco Resorts 공식 IR</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border-radius:var(--rs);padding:10px;margin-bottom:8px;">
+          <div style="font-size:10px;color:var(--gray);margin-bottom:4px;">Phase 2 (자하 하디드 설계) <span class="badge badge-official">공식</span></div>
+          <div style="font-size:16px;font-weight:700;color:var(--white);">13억 달러 USD</div>
+          <div style="font-size:10px;color:var(--gray-light);">약 1조 8,252억 원 · Melco 공식 보도자료</div>
+        </div>
+        <div class="cost-highlight">
+          <div class="cost-hl-label">누적 총합 <span class="badge badge-accum">누적</span></div>
+          <div class="cost-hl-val">약 45억 달러 USD</div>
+          <div class="cost-hl-krw">약 6조 3,180억 원</div>
+        </div>
+      </div>
+      <div class="hotel-list">
+        <div class="hotel-list-title">입점 호텔 — 2개</div>
+        <div class="hotel-item"><strong>스튜디오 시티 호텔</strong> — Phase 1 · 1,600객실</div>
+        <div class="hotel-item"><strong>W 마카오 스튜디오 시티</strong> — Phase 2 · 2023년 · 자하 하디드 설계</div>
+      </div>
+    </div>
+  </div>
+  <div class="src">출처: Melco Resorts IR / Melco 공식 보도자료</div>
+</div>
+
+<!-- ══ SECTION 8: 시티 오브 드림 ══ -->
+<div class="sec">
+  <div class="sec-label">Section 08</div>
+  <div class="sec-title"><span>시티 오브 드림</span></div>
+
+  <div class="resort-card">
+    <div class="resort-card-header">
+      <div class="resort-op">Melco Resorts · 2009년 개장</div>
+      <div class="resort-name">시티 오브 드림</div>
+      <div class="resort-name-en">City of Dreams · 新濠天地</div>
+      <div class="resort-meta">
+        <span class="resort-meta-tag">하우스 오브 댄싱 워터</span>
+        <span class="resort-meta-tag">모르페우스 (자하 하디드)</span>
+      </div>
+    </div>
+    <div class="resort-card-body">
+      <div class="data-row">
+        <span class="data-label">내부 호텔</span>
+        <span class="data-val">4개 <span class="badge badge-official">공식</span></span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">객실 수</span>
+        <span class="data-val gold">약 2,270개 <span class="data-sub badge badge-est">추정 합산</span></span>
+      </div>
+      <div class="cost-highlight">
+        <div class="cost-hl-label">건설 비용 <span class="badge badge-official">공식</span></div>
+        <div class="cost-hl-val">HKD 180억</div>
+        <div class="cost-hl-krw">약 3조 2,400억 원</div>
+      </div>
+      <div class="hotel-list">
+        <div class="hotel-list-title">입점 호텔 — 4개</div>
+        <div class="hotel-item"><strong>누와 마카오</strong> (Nüwa Macao) — 구 Crown Towers · 약 300객실</div>
+        <div class="hotel-item"><strong>그랜드 하얏트 마카오</strong> (Grand Hyatt Macao)</div>
+        <div class="hotel-item"><strong>하얏트 리젠시 마카오</strong> (Hyatt Regency Macao)</div>
+        <div class="hotel-item"><strong>모르페우스 마카오</strong> (Morpheus Macao) — 2018년 추가 · 자하 하디드 설계 · 약 11억 달러</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-title">💃 하우스 오브 댄싱 워터의 귀환</div>
+    <div class="story-body">
+      <p>2009년에 문을 연 코타이 초기 대형 리조트야. <strong>세계 최대 규모 수상 공연 '하우스 오브 댄싱 워터'</strong>가 탄생한 곳이야. 코로나19로 2020년 공연이 중단됐다가 <span class="hl">2025년 5월 새 이야기와 출연진으로 돌아왔어</span>.</p>
+      <p>세계적 건축가 <strong>자하 하디드</strong>가 설계한 모르페우스 호텔(약 11억 달러)도 단지 안에 있어. 세계에서 가장 복잡한 자유형 고층 건물 중 하나로 꼽혀.</p>
+    </div>
+  </div>
+  <div class="src">출처: WT Partnership Asia 공식 프로젝트 시트 / Melco 공식 웹사이트</div>
+</div>
+
+<!-- ══ SECTION 9: 그랜드 리스보아 팰리스 ══ -->
+<div class="sec">
+  <div class="sec-label">Section 09</div>
+  <div class="sec-title"><span>그랜드 리스보아 팰리스</span></div>
+
+  <div class="resort-card">
+    <div class="resort-card-header">
+      <div class="resort-op">SJM Holdings · 2021년 개장</div>
+      <div class="resort-name">그랜드 리스보아 팰리스</div>
+      <div class="resort-name-en">Grand Lisboa Palace · 里斯本宮</div>
+      <div class="resort-meta">
+        <span class="resort-meta-tag">코타이 스트립 마지막 입성 대형 리조트</span>
+        <span class="resort-meta-tag">명품 브랜드 호텔 3개</span>
+      </div>
+    </div>
+    <div class="resort-card-body">
+      <div class="data-row">
+        <span class="data-label">내부 호텔</span>
+        <span class="data-val">3개 <span class="badge badge-official">공식</span></span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">객실 수</span>
+        <span class="data-val gold">1,892개 <span class="data-sub">SJM 공식</span></span>
+      </div>
+      <div class="cost-highlight">
+        <div class="cost-hl-label">건설 비용 <span class="badge badge-official">공식</span></div>
+        <div class="cost-hl-val">HKD 390억</div>
+        <div class="cost-hl-krw">약 7조 200억 원 (MOP 39B = US$5B 병기 확인)</div>
+      </div>
+      <div class="hotel-list">
+        <div class="hotel-list-title">입점 호텔 — 3개</div>
+        <div class="hotel-item"><strong>그랜드 리스보아 팰리스 호텔</strong> — 650객실 (자체 브랜드)</div>
+        <div class="hotel-item"><strong>팔라조 베르사체 마카오</strong> (Palazzo Versace Macau) — 270객실</div>
+        <div class="hotel-item"><strong>칼 라거펠트 호텔 마카오</strong> (Karl Lagerfeld Hotel) — 271객실</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-title">👑 마카오 도박왕의 마지막 코타이 입성</div>
+    <div class="story-body">
+      <p>마카오 도박왕 <strong>스탠리 호</strong>가 세운 SJM이 코타이에서 6개 카지노 운영사 중 <strong>가장 늦게 문을 연</strong> 리조트야. 건설 기간만 7년이 넘었고 코로나19로 개장이 계속 미뤄졌어.</p>
+      <p>명품 패션 브랜드 <span class="hl">베르사체와 칼 라거펠트</span> 이름을 붙인 호텔이 한 단지 안에 함께 있어. 전 세계에서 이 두 브랜드 호텔이 한 단지에 있는 건 마카오가 유일해.</p>
+    </div>
+  </div>
+  <div class="src">출처: SJM Holdings 공식 발표 / GGRAsia / Macau Business</div>
+</div>
+
+<!-- ══ SECTION 10: 윈 팰리스 ══ -->
+<div class="sec">
+  <div class="sec-label">Section 10</div>
+  <div class="sec-title"><span>윈 팰리스</span></div>
+
+  <div class="resort-card">
+    <div class="resort-card-header">
+      <div class="resort-op">Wynn Resorts · 2016년 개장</div>
+      <div class="resort-name">윈 팰리스</div>
+      <div class="resort-name-en">Wynn Palace · 永利皇宮</div>
+      <div class="resort-meta">
+        <span class="resort-meta-tag">코타이 단일 프로젝트 최고 건설 비용</span>
+        <span class="resort-meta-tag">성능 호수 분수쇼</span>
+      </div>
+    </div>
+    <div class="resort-card-body">
+      <div class="data-row">
+        <span class="data-label">내부 호텔</span>
+        <span class="data-val">1개 <span class="badge badge-official">공식</span></span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">객실 수</span>
+        <span class="data-val gold">1,706개 <span class="data-sub">객실·스위트 · 28층</span></span>
+      </div>
+      <div class="cost-highlight">
+        <div class="cost-hl-label">건설 비용 <span class="badge badge-official">공식</span></div>
+        <div class="cost-hl-val">42억 달러 USD</div>
+        <div class="cost-hl-krw">약 5조 8,968억 원<br><span style="font-size:10px;color:var(--gray);">초기 예산 25억 달러 → 최종 42억 달러 · WT Partnership Asia 공식 수량조사</span></div>
+      </div>
+      <div class="hotel-list">
+        <div class="hotel-list-title">입점 호텔</div>
+        <div class="hotel-item"><strong>윈 팰리스</strong> — 1,706객실·스위트 · 28층</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-title">💎 스티브 윈의 야심작</div>
+    <div class="story-body">
+      <p>스티브 윈 회장이 <strong>"우리 회사 역사상 가장 중요한 프로젝트"</strong>라고 직접 말했어. 초기 예산 25억 달러에서 완공 시 42억 달러로 크게 늘어났어.</p>
+      <p>성능 호수 위 분수쇼와 케이블카가 유명해. <span class="hl">2026년 1분기 기준 점유율 99.1%</span>를 기록했어. 세계 최고 수준의 가동률이야.</p>
+    </div>
+  </div>
+  <div class="src">출처: WT Partnership Asia 공식 수량조사 / South China Morning Post / GGRAsia</div>
+</div>
+
+<!-- ══ SECTION 11: MGM 코타이 ══ -->
+<div class="sec">
+  <div class="sec-label">Section 11</div>
+  <div class="sec-title"><span>MGM 코타이</span></div>
+
+  <div class="resort-card">
+    <div class="resort-card-header">
+      <div class="resort-op">MGM China · 2018년 개장</div>
+      <div class="resort-name">MGM 코타이</div>
+      <div class="resort-name-en">MGM Cotai · 美獅美高梅</div>
+      <div class="resort-meta">
+        <span class="resort-meta-tag">스펙터클 아트리움</span>
+        <span class="resort-meta-tag">SEC 10-K 공시 기준</span>
+      </div>
+    </div>
+    <div class="resort-card-body">
+      <div class="data-row">
+        <span class="data-label">내부 호텔</span>
+        <span class="data-val">1개 <span class="badge badge-official">공식</span></span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">객실 수</span>
+        <span class="data-val gold">약 1,400개 <span class="data-sub">MGM 공식</span></span>
+      </div>
+      <div class="cost-highlight">
+        <div class="cost-hl-label">건설 비용 <span class="badge badge-official">공식</span></div>
+        <div class="cost-hl-val">34억 달러 USD</div>
+        <div class="cost-hl-krw">약 4조 7,736억 원 · MGM Resorts 공식 SEC 10-K 신고서</div>
+      </div>
+      <div class="hotel-list">
+        <div class="hotel-list-title">입점 호텔</div>
+        <div class="hotel-item"><strong>MGM 코타이</strong> — 약 1,400객실</div>
+      </div>
+    </div>
+  </div>
+  <div class="src">출처: MGM Resorts 공식 SEC 10-K 신고서 / MGM China 공식 발표</div>
+</div>
+
+<!-- ══ SECTION 12: 전체 집계 테이블 ══ -->
+<div class="sec">
+  <div class="sec-label">Section 12</div>
+  <div class="sec-title">코타이 스트립 <span>전체 집계표</span></div>
+
+  <div class="note-box">
+    누적 비용 적용: 런더너(신축+재단장 합산) · 갤럭시(Phase 1~4 추정 합산) · 스튜디오 시티(Phase 1+2 합산)<br>
+    환율: USD 1=1,404원 / HKD 1=180원
+  </div>
+
+  <!-- 각 리조트 요약 행 -->
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+
+    <div style="background:var(--dark3);border-radius:var(--rs);padding:12px;border:1px solid #2a2a2a;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--white);">베네시안 마카오</div>
+          <div style="font-size:10px;color:var(--gray);">Las Vegas Sands · 2007</div>
+        </div>
+        <span class="badge badge-official">공식</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span style="color:var(--gray-light);">객실: <strong style="color:var(--white);">3,000개</strong></span>
+        <span style="color:var(--gold);font-weight:700;">24억 달러 · 약 3조 3,696억 원</span>
+      </div>
+    </div>
+
+    <div style="background:var(--dark3);border-radius:var(--rs);padding:12px;border:1px solid #2a2a2a;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--white);">파리지앵 마카오</div>
+          <div style="font-size:10px;color:var(--gray);">Las Vegas Sands · 2016</div>
+        </div>
+        <span class="badge badge-official">공식</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span style="color:var(--gray-light);">객실: <strong style="color:var(--white);">3,000개+</strong></span>
+        <span style="color:var(--gold);font-weight:700;">27억 달러 · 약 3조 7,908억 원</span>
+      </div>
+    </div>
+
+    <div style="background:var(--dark3);border-radius:var(--rs);padding:12px;border:1px solid #2a2a2a;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--white);">포시즌스 마카오</div>
+          <div style="font-size:10px;color:var(--gray);">Las Vegas Sands · 2008</div>
+        </div>
+        <span class="badge badge-unconf">건설비 미확인</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span style="color:var(--gray-light);">객실: <strong style="color:var(--white);">649개</strong></span>
+        <span style="color:var(--gray);">건설비 별도 미공개</span>
+      </div>
+    </div>
+
+    <div style="background:var(--dark3);border-radius:var(--rs);padding:12px;border:1px solid #2a2a2a;border-left:3px solid var(--gold);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--white);">런더너 마카오</div>
+          <div style="font-size:10px;color:var(--gray);">Las Vegas Sands · 2012→2021 리브랜딩</div>
+        </div>
+        <span class="badge badge-accum">누적</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span style="color:var(--gray-light);">객실: <strong style="color:var(--white);">4,426개</strong></span>
+        <span style="color:var(--gold);font-weight:700;">약 67.5억 달러 · 약 9조 4,770억 원</span>
+      </div>
+    </div>
+
+    <div style="background:var(--dark3);border-radius:var(--rs);padding:12px;border:1px solid #2a2a2a;border-left:3px solid var(--gold);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--white);">갤럭시 마카오</div>
+          <div style="font-size:10px;color:var(--gray);">Galaxy Entertainment · Phase 1~4</div>
+        </div>
+        <span class="badge badge-accum">누적</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span style="color:var(--gray-light);">객실: <strong style="color:var(--white);">약 5,000개</strong></span>
+        <span style="color:var(--gold);font-weight:700;">HKD 880억 · 약 15조 8,400억 원</span>
+      </div>
+    </div>
+
+    <div style="background:var(--dark3);border-radius:var(--rs);padding:12px;border:1px solid #2a2a2a;border-left:3px solid var(--gold);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--white);">스튜디오 시티</div>
+          <div style="font-size:10px;color:var(--gray);">Melco Resorts · Phase 1+2</div>
+        </div>
+        <span class="badge badge-accum">누적</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span style="color:var(--gray-light);">객실: <strong style="color:var(--white);">약 2,500개</strong></span>
+        <span style="color:var(--gold);font-weight:700;">약 45억 달러 · 약 6조 3,180억 원</span>
+      </div>
+    </div>
+
+    <div style="background:var(--dark3);border-radius:var(--rs);padding:12px;border:1px solid #2a2a2a;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--white);">시티 오브 드림</div>
+          <div style="font-size:10px;color:var(--gray);">Melco Resorts · 2009</div>
+        </div>
+        <span class="badge badge-official">공식</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span style="color:var(--gray-light);">객실: <strong style="color:var(--white);">약 2,270개</strong></span>
+        <span style="color:var(--gold);font-weight:700;">HKD 180억 · 약 3조 2,400억 원</span>
+      </div>
+    </div>
+
+    <div style="background:var(--dark3);border-radius:var(--rs);padding:12px;border:1px solid #2a2a2a;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--white);">그랜드 리스보아 팰리스</div>
+          <div style="font-size:10px;color:var(--gray);">SJM Holdings · 2021</div>
+        </div>
+        <span class="badge badge-official">공식</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span style="color:var(--gray-light);">객실: <strong style="color:var(--white);">1,892개</strong></span>
+        <span style="color:var(--gold);font-weight:700;">HKD 390억 · 약 7조 200억 원</span>
+      </div>
+    </div>
+
+    <div style="background:var(--dark3);border-radius:var(--rs);padding:12px;border:1px solid #2a2a2a;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--white);">윈 팰리스</div>
+          <div style="font-size:10px;color:var(--gray);">Wynn Resorts · 2016</div>
+        </div>
+        <span class="badge badge-official">공식</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span style="color:var(--gray-light);">객실: <strong style="color:var(--white);">1,706개</strong></span>
+        <span style="color:var(--gold);font-weight:700;">42억 달러 · 약 5조 8,968억 원</span>
+      </div>
+    </div>
+
+    <div style="background:var(--dark3);border-radius:var(--rs);padding:12px;border:1px solid #2a2a2a;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--white);">MGM 코타이</div>
+          <div style="font-size:10px;color:var(--gray);">MGM China · 2018</div>
+        </div>
+        <span class="badge badge-official">공식</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span style="color:var(--gray-light);">객실: <strong style="color:var(--white);">약 1,400개</strong></span>
+        <span style="color:var(--gold);font-weight:700;">34억 달러 · 약 4조 7,736억 원</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 총합 박스 -->
+  <div class="total-row">
+    <div class="total-title">🏆 10개 리조트 합계</div>
+    <div class="total-val">총 객실 약 25,843개+</div>
+    <div class="total-krw">포시즌스 649개 포함 · 갤럭시 브로드웨이 제외</div>
+  </div>
+  <div class="total-row">
+    <div class="total-title">💰 누적 건설 비용 총합 (USD 환산 추정)</div>
+    <div class="total-val">약 239억~249억 달러</div>
+    <div class="total-krw">약 33조 5,676억~34조 9,596억 원</div>
+    <div class="total-note">
+      ※ 포시즌스 마카오 건설비 별도 미공개로 총합 미산입<br>
+      ※ 갤럭시 Phase 4 (2027년 완공 목표) 완공 후 총 객실 약 27,300개 이상 증가 예상<br>
+      ※ 각 시점 공식 발표 합산 추정치 · 단일 공식 발표 수치 아님
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-title">⭐ 코타이 스트립이 세계에서 가장 비싼 건물이 모인 거리인 이유</div>
+    <div class="insight-body">
+      약 <strong>3km</strong> 짜리 거리 위에 누적 <strong>239억~249억 달러</strong>가 투입됐어. 세계에서 가장 비싼 건물 순위에 올라있는 건물들이 한 거리에 10개씩 모인 곳은 지구상에 코타이 스트립밖에 없어.<br><br>
+      갤럭시 Phase 4가 2027년 완공되면 총 객실은 <strong>약 27,300개 이상</strong>으로 늘어나고, 총 건설비도 더 올라갈 예정이야.
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">MACAU MOMENT</div>
+  <div style="font-size:12px;color:var(--gray);line-height:1.7;">
+    마카오 여행 정보 & 현지 컨시어지 서비스<br>
+    2025년 공식 출처 기반 데이터 · 2026년 6월 검증 완료
+  </div>
+  <div class="footer-copy">
+    <strong>본 콘텐츠는 공식적으로 확인된 정보를 사실에 기반하여 제작되었으며</strong><br>
+    "Irene이 직접 만든 소중한 자료입니다.<br>
+    무단 복제 및 배포를 금합니다."
+  </div>
+  <div class="footer-src">
+    출처: 각 운영사 공식 발표 · WT Partnership Asia · GGRAsia · Macau Business · galaxymacau.com ·
+    Las Vegas Sands Corp. · Wynn Resorts · SJM Holdings · Galaxy Entertainment Group · Melco Resorts · MGM China ·
+    Sands China 공식 PRNewswire · Las Vegas Sands 공식 뉴스룸 · South China Morning Post<br>
+    환율 기준: USD 1=1,404원 / HKD 1=180원 · 2026년 6월 기준
+  </div>
+</footer>
+
+</body>
+</html>
