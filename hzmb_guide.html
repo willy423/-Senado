@@ -224,45 +224,68 @@
 
   /* ── TABLE ── */
   .table-wrap {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     margin: 1.2rem 0;
     border-radius: 10px;
     border: 1px solid var(--border);
+    overflow: hidden;
   }
   table {
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
-    min-width: 300px;
+    table-layout: fixed;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
   thead th {
     background: var(--surface);
     color: var(--gold);
     font-weight: 700;
-    padding: 11px 12px;
+    padding: 10px 10px;
     text-align: left;
     font-size: 11.5px;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
     border-bottom: 1px solid var(--border-strong);
-    white-space: nowrap;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
   tbody tr { border-bottom: 1px solid var(--border); }
   tbody tr:last-child { border-bottom: none; }
   tbody tr:nth-child(even) { background: rgba(201,168,76,0.03); }
   tbody td {
-    padding: 10px 12px;
+    padding: 9px 10px;
     color: var(--text-secondary);
     vertical-align: top;
     font-size: 13px;
     line-height: 1.6;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
   tbody td:first-child {
     color: var(--text-primary);
     font-weight: 500;
-    white-space: nowrap;
     font-size: 12.5px;
+    word-break: keep-all;
   }
+  /* 2열 테이블: 첫 번째 열 고정 */
+  table.t2 thead th:first-child,
+  table.t2 tbody td:first-child { width: 36%; }
+  table.t2 thead th:last-child,
+  table.t2 tbody td:last-child { width: 64%; }
+  /* 3열 테이블 기본 */
+  table.t3 thead th:first-child,
+  table.t3 tbody td:first-child { width: 30%; }
+  table.t3 thead th:nth-child(2),
+  table.t3 tbody td:nth-child(2) { width: 35%; }
+  table.t3 thead th:last-child,
+  table.t3 tbody td:last-child { width: 35%; }
+  /* 3열 — 항목/시장가/한화 전용 */
+  table.t3b thead th:first-child,
+  table.t3b tbody td:first-child { width: 32%; }
+  table.t3b thead th:nth-child(2),
+  table.t3b tbody td:nth-child(2) { width: 32%; }
+  table.t3b thead th:last-child,
+  table.t3b tbody td:last-child { width: 36%; }
 
   /* ── BADGE ── */
   .badge {
@@ -272,7 +295,7 @@
     padding: 2px 8px;
     border-radius: 20px;
     margin: 1px 2px;
-    white-space: nowrap;
+    word-break: keep-all;
   }
   .badge-ok { background: rgba(78,205,196,0.15); color: #4ECDC4; border: 1px solid rgba(78,205,196,0.3); }
   .badge-no { background: rgba(232,99,74,0.15); color: #E8634A; border: 1px solid rgba(232,99,74,0.3); }
@@ -484,10 +507,12 @@
     font-size: 12px;
     font-weight: 700;
     color: var(--text-muted);
-    min-width: 72px;
+    min-width: 64px;
+    max-width: 80px;
     flex-shrink: 0;
     padding-top: 1px;
     letter-spacing: 0.03em;
+    word-break: keep-all;
   }
   .quota-val {
     font-size: 13px;
@@ -588,6 +613,10 @@
     .compare-grid { grid-template-columns: 1fr; }
     .spec-value { font-size: 1.1rem; }
     h2 { font-size: 1.2rem; }
+  }
+  @media (max-width: 420px) {
+    .compare-grid { grid-template-columns: 1fr; }
+    .quota-key { min-width: 56px; font-size: 11.5px; }
   }
 </style>
 </head>
@@ -858,7 +887,7 @@
   <p>511억 위안 중 약 42%인 약 157억 위안을 3개 정부가 직접 출자했고, 나머지 약 58%는 중국은행(Bank of China) 등 은행 컨소시엄 대출로 조달했어.</p>
 
   <div class="table-wrap">
-    <table>
+    <table class="t3b">
       <thead>
         <tr>
           <th>출자 주체</th>
@@ -919,7 +948,7 @@
 
   <h3>① 두 지역 번호판 (Dual-plate)</h3>
   <div class="table-wrap">
-    <table>
+    <table class="t2">
       <thead>
         <tr><th>번호판 종류</th><th>통행 가능 구간</th></tr>
       </thead>
@@ -1006,7 +1035,7 @@
   <p>광둥-홍콩 두 지역 번호판(FU/FV 번호판)은 <span class="em">광둥성에 등록된 법인</span>만 신청할 수 있어. 개인은 신청 불가야.</p>
 
   <div class="table-wrap">
-    <table>
+    <table class="t3b">
       <thead>
         <tr>
           <th>법인 유형</th>
@@ -1035,7 +1064,7 @@
   <p>정부 공식 취득 조건이 워낙 까다롭다 보니, 예전에는 쿼터를 가진 법인(유령회사 포함)을 통째로 사들이는 방식으로 번호판이 거래됐어.</p>
 
   <div class="table-wrap">
-    <table>
+    <table class="t3b">
       <thead>
         <tr>
           <th>시기</th>
@@ -1305,7 +1334,7 @@
 
   <h3>공통 조건 및 절차</h3>
   <div class="table-wrap">
-    <table>
+    <table class="t2">
       <thead>
         <tr><th>항목</th><th>내용</th></tr>
       </thead>
@@ -1391,7 +1420,7 @@
 
   <h3>공통 조건</h3>
   <div class="table-wrap">
-    <table>
+    <table class="t2">
       <thead>
         <tr><th>항목</th><th>내용</th></tr>
       </thead>
