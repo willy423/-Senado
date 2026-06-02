@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>타이파 주택 박물관 | Taipa Houses Museum</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
@@ -11,8 +11,6 @@
       --mint-light: #E1F5EE;
       --mint-dark: #0F6E56;
       --mint-deep: #085041;
-      --amber: #EF9F27;
-      --amber-light: #FAEEDA;
       --text-primary: #1a1a1a;
       --text-secondary: #4a4a4a;
       --text-muted: #7a7a7a;
@@ -22,465 +20,185 @@
       --border: #d4d0c8;
       --border-mint: #9FE1CB;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
+    html, body { width: 100%; overflow-x: hidden; }
     body {
-      font-family: 'Noto Sans KR', sans-serif;
+      font-family: "Noto Sans KR", sans-serif;
       background-color: var(--bg-page);
       color: var(--text-primary);
-      line-height: 1.8;
+      line-height: 1.75;
+      font-size: 15px;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
-
-    /* ── HERO ── */
     .hero {
       background: var(--mint-deep);
       color: #fff;
-      padding: 72px 24px 56px;
+      padding: 52px 20px 44px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
     .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        135deg,
-        rgba(255,255,255,0.03) 0px,
-        rgba(255,255,255,0.03) 1px,
-        transparent 1px,
-        transparent 40px
-      );
+      content: "";
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(135deg,rgba(255,255,255,0.03)0px,rgba(255,255,255,0.03)1px,transparent 1px,transparent 40px);
+      pointer-events: none;
     }
     .hero-badge {
       display: inline-block;
       background: rgba(255,255,255,0.15);
       border: 1px solid rgba(255,255,255,0.3);
       border-radius: 20px;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      padding: 4px 14px;
-      margin-bottom: 20px;
-      color: #c8f0e4;
+      font-size: 11px; letter-spacing: 0.08em;
+      padding: 4px 14px; margin-bottom: 18px; color: #c8f0e4;
     }
     .hero h1 {
-      font-family: 'Noto Serif KR', serif;
-      font-size: clamp(28px, 5vw, 44px);
-      font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 10px;
+      font-family: "Noto Serif KR", serif;
+      font-size: 28px; font-weight: 600; line-height: 1.35; margin-bottom: 10px;
     }
-    .hero-sub {
-      font-size: 15px;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 6px;
-    }
-    .hero-cn {
-      font-size: 18px;
-      color: #9FE1CB;
-      letter-spacing: 0.05em;
-    }
+    .hero-sub { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 5px; }
+    .hero-cn  { font-size: 16px; color: #9FE1CB; letter-spacing: 0.05em; }
     .hero-strip {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin-top: 36px;
-      flex-wrap: wrap;
+      display: flex; justify-content: center;
+      margin-top: 32px; flex-wrap: nowrap;
     }
-    .hero-stat {
-      text-align: center;
-    }
-    .hero-stat strong {
-      display: block;
-      font-size: 24px;
-      font-weight: 700;
-      color: #fff;
-    }
-    .hero-stat span {
-      font-size: 12px;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: 0.05em;
-    }
-
-    /* ── LAYOUT ── */
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 56px 24px;
-    }
-
-    /* ── SECTION TITLE ── */
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-    .section-label .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--mint);
-      flex-shrink: 0;
-    }
-    .section-label h2 {
-      font-family: 'Noto Serif KR', serif;
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    /* ── CARD ── */
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px 32px;
-      margin-bottom: 16px;
-    }
-
-    /* ── INFO TABLE ── */
-    .info-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 15px;
-    }
-    .info-table tr {
-      border-bottom: 1px solid #f0ede6;
-    }
+    .hero-stat { text-align: center; flex: 1; padding: 0 4px; }
+    .hero-stat strong { display: block; font-size: 20px; font-weight: 700; color: #fff; white-space: nowrap; }
+    .hero-stat span   { font-size: 10px; color: rgba(255,255,255,0.6); white-space: nowrap; }
+    .container { width: 100%; max-width: 680px; margin: 0 auto; padding: 36px 16px 48px; }
+    .section { margin-bottom: 44px; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .section-label .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); flex-shrink: 0; }
+    .section-label h2 { font-family: "Noto Serif KR", serif; font-size: 19px; font-weight: 600; color: var(--text-primary); }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 20px 18px; margin-bottom: 12px; }
+    .info-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .info-table tr { border-bottom: 1px solid #f0ede6; }
     .info-table tr:last-child { border-bottom: none; }
-    .info-table td {
-      padding: 12px 0;
-      vertical-align: top;
-    }
+    .info-table td { padding: 11px 0; vertical-align: top; }
     .info-table td:first-child {
-      width: 130px;
-      color: var(--text-muted);
-      font-size: 13px;
-      padding-top: 14px;
+      width: 86px; min-width: 86px;
+      color: var(--text-muted); font-size: 12px;
+      padding-top: 13px; padding-right: 10px; line-height: 1.4;
     }
-    .info-table td:last-child {
-      font-weight: 500;
-      color: var(--text-primary);
-    }
-
-    /* ── FACT CHECK BOX ── */
-    .factcheck {
-      background: #fffbf0;
-      border: 1px solid #f0d89a;
-      border-left: 4px solid var(--amber);
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin-bottom: 16px;
-      font-size: 14px;
-    }
-    .factcheck-title {
-      font-weight: 700;
-      color: #7a5200;
-      margin-bottom: 10px;
-      font-size: 13px;
-      letter-spacing: 0.05em;
-    }
-    .factcheck ul { padding-left: 18px; }
-    .factcheck li {
-      margin-bottom: 6px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* ── HISTORY TIMELINE ── */
-    .timeline {
-      position: relative;
-      padding-left: 24px;
-    }
+    .info-table td:last-child { font-weight: 500; color: var(--text-primary); font-size: 14px; line-height: 1.65; }
+    .timeline { position: relative; padding-left: 22px; }
     .timeline::before {
-      content: '';
-      position: absolute;
-      left: 7px;
-      top: 8px;
-      bottom: 8px;
-      width: 2px;
-      background: var(--border-mint);
+      content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px;
+      width: 2px; background: var(--border-mint);
     }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 28px;
-    }
+    .timeline-item { position: relative; margin-bottom: 24px; }
     .timeline-item:last-child { margin-bottom: 0; }
     .timeline-dot {
-      position: absolute;
-      left: -21px;
-      top: 5px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--mint);
-      border: 2px solid #fff;
+      position: absolute; left: -19px; top: 5px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--mint); border: 2px solid #fff;
       box-shadow: 0 0 0 2px var(--mint);
     }
-    .timeline-year {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--mint-dark);
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-    }
-    .timeline-text {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    /* ── EXHIBIT GRID ── */
-    .exhibit-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 14px;
-    }
+    .timeline-year { font-size: 11px; font-weight: 700; color: var(--mint-dark); letter-spacing: 0.08em; margin-bottom: 4px; }
+    .timeline-text { font-size: 14px; color: var(--text-secondary); line-height: 1.75; word-break: keep-all; }
+    .exhibit-list { display: flex; flex-direction: column; gap: 12px; }
     .exhibit-card {
-      background: var(--bg-accent);
-      border: 1px solid var(--border-mint);
-      border-radius: 10px;
-      padding: 18px 16px;
+      background: var(--bg-accent); border: 1px solid var(--border-mint);
+      border-radius: 12px; padding: 16px;
+      display: flex; gap: 14px; align-items: flex-start;
     }
-    .exhibit-card .num {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--mint-dark);
-      letter-spacing: 0.1em;
-      margin-bottom: 8px;
-    }
-    .exhibit-card h3 {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--mint-deep);
-      margin-bottom: 6px;
-      line-height: 1.4;
-    }
-    .exhibit-card p {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* ── ARCH FEATURE ── */
+    .exhibit-card .num { font-size: 11px; font-weight: 700; color: var(--mint-dark); letter-spacing: 0.1em; min-width: 26px; padding-top: 2px; }
+    .exhibit-card-body h3 { font-size: 14px; font-weight: 700; color: var(--mint-deep); margin-bottom: 4px; line-height: 1.4; }
+    .exhibit-card-body p  { font-size: 13px; color: var(--text-secondary); line-height: 1.65; word-break: keep-all; }
     .arch-list { list-style: none; }
-    .arch-list li {
-      display: flex;
-      gap: 14px;
-      padding: 14px 0;
-      border-bottom: 1px solid #f0ede6;
-      font-size: 15px;
-    }
+    .arch-list li { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f0ede6; align-items: flex-start; }
     .arch-list li:last-child { border-bottom: none; }
     .arch-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: var(--mint-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 18px;
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--mint-light); display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; font-size: 17px;
     }
-    .arch-content strong {
-      display: block;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 2px;
-    }
-    .arch-content span { color: var(--text-secondary); line-height: 1.6; }
-
-    /* ── STORYTELLING ── */
+    .arch-content { flex: 1; min-width: 0; }
+    .arch-content strong { display: block; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; font-size: 14px; line-height: 1.4; word-break: keep-all; }
+    .arch-content span   { font-size: 13px; color: var(--text-secondary); line-height: 1.7; word-break: keep-all; }
     .story-wrap {
-      background: var(--mint-deep);
-      color: #fff;
-      border-radius: 14px;
-      padding: 40px 36px;
-      position: relative;
-      overflow: hidden;
+      background: var(--mint-deep); color: #fff;
+      border-radius: 14px; padding: 28px 20px;
+      position: relative; overflow: hidden;
     }
     .story-wrap::before {
-      content: '"';
-      position: absolute;
-      top: -10px;
-      left: 20px;
-      font-size: 140px;
-      color: rgba(255,255,255,0.06);
-      font-family: serif;
-      line-height: 1;
-      pointer-events: none;
+      content: "\201C"; position: absolute; top: -10px; left: 14px;
+      font-size: 110px; color: rgba(255,255,255,0.06);
+      font-family: serif; line-height: 1; pointer-events: none;
     }
-    .story-label {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      color: #9FE1CB;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
-    .story-wrap p {
-      font-size: 16px;
-      line-height: 1.9;
-      color: rgba(255,255,255,0.88);
-      margin-bottom: 18px;
-    }
+    .story-label { font-size: 10px; letter-spacing: 0.14em; color: #9FE1CB; margin-bottom: 18px; font-weight: 700; }
+    .story-wrap p { font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.88); margin-bottom: 16px; word-break: keep-all; }
     .story-wrap p:last-child { margin-bottom: 0; }
-    .story-wrap .highlight {
-      color: #5DCAA5;
-      font-weight: 700;
-    }
-    .story-divider {
-      border: none;
-      border-top: 1px solid rgba(255,255,255,0.15);
-      margin: 24px 0;
-    }
+    .story-wrap .highlight { color: #5DCAA5; font-weight: 700; }
+    .story-divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 20px 0; }
     .story-question {
-      background: rgba(255,255,255,0.08);
-      border-left: 3px solid #9FE1CB;
-      border-radius: 0 8px 8px 0;
-      padding: 14px 18px;
-      font-size: 15px;
-      color: #9FE1CB;
-      font-weight: 700;
-      margin-bottom: 18px;
+      background: rgba(255,255,255,0.08); border-left: 3px solid #9FE1CB;
+      border-radius: 0 8px 8px 0; padding: 12px 14px;
+      font-size: 14px; color: #9FE1CB; font-weight: 700;
+      margin-bottom: 16px; word-break: keep-all;
     }
     .story-closing {
-      background: rgba(255,255,255,0.06);
-      border-radius: 10px;
-      padding: 20px 22px;
-      font-style: italic;
-      font-size: 15px;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.9;
+      background: rgba(255,255,255,0.06); border-radius: 10px;
+      padding: 18px 16px; font-style: italic;
+      font-size: 14px; color: rgba(255,255,255,0.75);
+      line-height: 1.95; word-break: keep-all;
     }
-
-    /* ── NOTICE ── */
     .notice {
-      background: #f5f3ef;
-      border: 1px solid #dedad2;
-      border-radius: 10px;
-      padding: 16px 20px;
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-top: 40px;
+      background: #f5f3ef; border: 1px solid #dedad2;
+      border-radius: 10px; padding: 14px 16px;
+      font-size: 12px; color: var(--text-muted);
+      line-height: 1.75; margin-top: 16px; word-break: keep-all;
     }
     .notice strong { color: var(--text-secondary); }
-
-    /* ── SECTION SPACING ── */
-    .section { margin-bottom: 52px; }
-
-    @media (max-width: 600px) {
-      .hero { padding: 52px 20px 40px; }
-      .hero-strip { gap: 20px; }
-      .card { padding: 22px 20px; }
-      .story-wrap { padding: 28px 22px; }
-      .exhibit-grid { grid-template-columns: 1fr 1fr; }
+    .site-footer {
+      background: #085041; color: rgba(255,255,255,0.75);
+      text-align: center; padding: 28px 20px;
+      font-size: 13px; line-height: 1.9; word-break: keep-all;
     }
+    .site-footer .ft-name { color: #9FE1CB; font-weight: 700; }
   </style>
 </head>
 <body>
 
-<!-- HERO -->
 <header class="hero">
   <div class="hero-badge">마카오 문화 유산</div>
   <h1>타이파 주택 박물관</h1>
   <p class="hero-sub">Taipa Houses Museum</p>
   <p class="hero-cn">龍環葡韻住宅式博物館</p>
   <div class="hero-strip">
-    <div class="hero-stat">
-      <strong>1921</strong>
-      <span>건립 연도</span>
-    </div>
-    <div class="hero-stat">
-      <strong>5채</strong>
-      <span>건물 수</span>
-    </div>
-    <div class="hero-stat">
-      <strong>1999</strong>
-      <span>박물관 개관</span>
-    </div>
-    <div class="hero-stat">
-      <strong>100년+</strong>
-      <span>역사</span>
-    </div>
+    <div class="hero-stat"><strong>1921</strong><span>건립 연도</span></div>
+    <div class="hero-stat"><strong>5채</strong><span>건물 수</span></div>
+    <div class="hero-stat"><strong>1999</strong><span>박물관 개관</span></div>
+    <div class="hero-stat"><strong>100년+</strong><span>역사</span></div>
   </div>
 </header>
 
 <div class="container">
 
-  <!-- 기본 정보 -->
   <div class="section">
-    <div class="section-label">
-      <div class="dot"></div>
-      <h2>기본 정보</h2>
-    </div>
+    <div class="section-label"><div class="dot"></div><h2>기본 정보</h2></div>
     <div class="card">
       <table class="info-table">
-        <tr>
-          <td>한국어 명칭</td>
-          <td>타이파 주택 박물관</td>
-        </tr>
-        <tr>
-          <td>영어 명칭</td>
-          <td>Taipa Houses Museum</td>
-        </tr>
-        <tr>
-          <td>포르투갈어</td>
-          <td>Casas-Museu da Taipa</td>
-        </tr>
-        <tr>
-          <td>중국어 명칭</td>
-          <td>龍環葡韻住宅式博物館</td>
-        </tr>
-        <tr>
-          <td>위치</td>
-          <td>마카오 타이파섬, 아베니다 프라이아 (Avenida da Praia)</td>
-        </tr>
-        <tr>
-          <td>건립 연도</td>
-          <td>1921년</td>
-        </tr>
-        <tr>
-          <td>건물 수</td>
-          <td>5채</td>
-        </tr>
-        <tr>
-          <td>건축 양식</td>
-          <td>포르투갈 식민지 시대 건축 양식</td>
-        </tr>
-        <tr>
-          <td>설계 건축가</td>
-          <td>카를루스 레벨루 드 안드라드 (Carlos Rebelo de Andrade)</td>
-        </tr>
-        <tr>
-          <td>문화재 지정</td>
-          <td>1992년 (건축적 가치 공식 인정)</td>
-        </tr>
-        <tr>
-          <td>박물관 개관</td>
-          <td>1999년</td>
-        </tr>
-        <tr>
-          <td>재개편</td>
-          <td>2016년 (현재 5개 전시 공간으로 운영)</td>
-        </tr>
-        <tr>
-          <td>관할</td>
-          <td>마카오 문화국 (Instituto Cultural)</td>
-        </tr>
+        <tr><td>한국어</td><td>타이파 주택 박물관</td></tr>
+        <tr><td>영어</td><td>Taipa Houses Museum</td></tr>
+        <tr><td>포르투갈어</td><td>Casas-Museu da Taipa</td></tr>
+        <tr><td>중국어</td><td>龍環葡韻住宅式博物館</td></tr>
+        <tr><td>위치</td><td>마카오 타이파섬, 아베니다 프라이아 (Avenida da Praia)</td></tr>
+        <tr><td>건립 연도</td><td>1921년</td></tr>
+        <tr><td>건물 수</td><td>5채</td></tr>
+        <tr><td>건축 양식</td><td>포르투갈 식민지 시대 건축 양식</td></tr>
+        <tr><td>설계자</td><td>카를루스 레벨루 드 안드라드 (Carlos Rebelo de Andrade)</td></tr>
+        <tr><td>문화재 지정</td><td>1992년 (건축적 가치 공식 인정)</td></tr>
+        <tr><td>박물관 개관</td><td>1999년</td></tr>
+        <tr><td>재개편</td><td>2016년 (현재 5개 전시 공간으로 운영)</td></tr>
+        <tr><td>관할</td><td>마카오 문화국 (Instituto Cultural)</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- 역사 타임라인 -->
   <div class="section">
-    <div class="section-label">
-      <div class="dot"></div>
-      <h2>역사적 배경</h2>
-    </div>
+    <div class="section-label"><div class="dot"></div><h2>역사적 배경</h2></div>
     <div class="card">
       <div class="timeline">
         <div class="timeline-item">
@@ -501,12 +219,12 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-year">1921년</div>
-          <p class="timeline-text">건축가 카를루스 레벨루 드 안드라드의 설계로 타이파 해안가에 포르투갈식 주택 5채가 완공됐어. 타이파·콜로안 섬을 관할하던 포르투갈 고위 공무원들과 마카니즈 가족들의 거주지로 사용됐어.</p>
+          <p class="timeline-text">건축가 카를루스 레벨루 드 안드라드의 설계로 타이파 해안가에 포르투갈식 주택 5채가 완공됐어. 포르투갈 고위 공무원들과 마카니즈 가족들의 거주지로 사용됐어.</p>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-year">1992년</div>
-          <p class="timeline-text">마카오 정부가 5채를 건축 문화재로 공식 지정하고, 복원 사업을 시작했어.</p>
+          <p class="timeline-text">마카오 정부가 5채를 건축 문화재로 공식 지정하고 복원 사업을 시작했어.</p>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
@@ -516,53 +234,40 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-year">2016년</div>
-          <p class="timeline-text">5채를 각각 마카니즈 생활 박물관, 전시 갤러리, 크리에이티브 카사, 노스탤직 하우스, 리셉션 하우스로 재편해 현재의 모습이 됐어.</p>
+          <p class="timeline-text">5채를 마카니즈 생활 박물관, 전시 갤러리, 크리에이티브 카사, 노스탤직 하우스, 리셉션 하우스로 재편해 현재의 모습이 됐어.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 전시 구성 -->
   <div class="section">
-    <div class="section-label">
-      <div class="dot"></div>
-      <h2>전시 구성</h2>
-    </div>
-    <div class="exhibit-grid">
+    <div class="section-label"><div class="dot"></div><h2>전시 구성</h2></div>
+    <div class="exhibit-list">
       <div class="exhibit-card">
         <div class="num">01</div>
-        <h3>마카니즈 생활 박물관</h3>
-        <p>당시 마카니즈 가정의 가구, 장식품, 생활용품을 재현한 공간이야.</p>
+        <div class="exhibit-card-body"><h3>마카니즈 생활 박물관</h3><p>당시 마카니즈 가정의 가구, 장식품, 생활용품을 재현한 공간이야.</p></div>
       </div>
       <div class="exhibit-card">
         <div class="num">02</div>
-        <h3>전시 갤러리</h3>
-        <p>세계 각지의 예술 작품 및 기획 전시가 열리는 공간이야.</p>
+        <div class="exhibit-card-body"><h3>전시 갤러리</h3><p>세계 각지의 예술 작품 및 기획 전시가 열리는 공간이야.</p></div>
       </div>
       <div class="exhibit-card">
         <div class="num">03</div>
-        <h3>크리에이티브 카사</h3>
-        <p>포르투갈 및 마카오 관련 서적, 기념품, 아트 갤러리가 있는 공간이야.</p>
+        <div class="exhibit-card-body"><h3>크리에이티브 카사</h3><p>포르투갈 및 마카오 관련 서적, 기념품, 아트 갤러리가 있는 공간이야.</p></div>
       </div>
       <div class="exhibit-card">
         <div class="num">04</div>
-        <h3>노스탤직 하우스</h3>
-        <p>마카니즈 고유의 생활, 요리, 건축 문화를 소개하는 공간이야.</p>
+        <div class="exhibit-card-body"><h3>노스탤직 하우스</h3><p>마카니즈 고유의 생활, 요리, 건축 문화를 소개하는 공간이야.</p></div>
       </div>
       <div class="exhibit-card">
         <div class="num">05</div>
-        <h3>리셉션 하우스</h3>
-        <p>공식 행사 및 문화 이벤트를 위한 리셉션 공간이야. 특별 행사 시 개방돼.</p>
+        <div class="exhibit-card-body"><h3>리셉션 하우스</h3><p>공식 행사 및 문화 이벤트를 위한 공간이야. 특별 행사 시 개방돼.</p></div>
       </div>
     </div>
   </div>
 
-  <!-- 건축적 특징 -->
   <div class="section">
-    <div class="section-label">
-      <div class="dot"></div>
-      <h2>건축적 특징</h2>
-    </div>
+    <div class="section-label"><div class="dot"></div><h2>건축적 특징</h2></div>
     <div class="card">
       <ul class="arch-list">
         <li>
@@ -590,65 +295,41 @@
           <div class="arch-icon">🌿</div>
           <div class="arch-content">
             <strong>유럽식 정원 배치</strong>
-            <span>타이파 해안 경관과 함께 어우러지는 유럽식 정원이 조성되어 있어. 카르멜 성모 성당과 함께 타이파 해안의 그림 같은 경관을 만들어내고 있어.</span>
+            <span>타이파 해안 경관과 어우러지는 유럽식 정원이 조성되어 있어. 카르멜 성모 성당과 함께 타이파 해안의 그림 같은 경관을 만들어내고 있어.</span>
           </div>
         </li>
         <li>
           <div class="arch-icon">🏠</div>
           <div class="arch-content">
             <strong>내부 공간 구조</strong>
-            <span>손님을 맞이하는 거실, 유럽식 식사가 차려지던 식당, 그리고 하인들이 따로 생활하던 공간까지 당시 사회 계층 구조가 집 구조 안에 그대로 반영되어 있어.</span>
+            <span>손님을 맞이하는 거실, 유럽식 식사가 차려지던 식당, 하인들이 따로 생활하던 공간까지 당시 사회 계층 구조가 집 구조 안에 그대로 반영되어 있어.</span>
           </div>
         </li>
       </ul>
     </div>
   </div>
 
-  <!-- 스토리텔링 -->
   <div class="section">
-    <div class="section-label">
-      <div class="dot"></div>
-      <h2>스토리텔링</h2>
-    </div>
+    <div class="section-label"><div class="dot"></div><h2>스토리텔링</h2></div>
     <div class="story-wrap">
       <div class="story-label">STORYTELLING</div>
-
-      <p>타이파 섬 해안가, <span class="highlight">민트색 건물 다섯 채</span>가 나란히 서 있어.<br>지금은 조용한 박물관이지만, 100년 전 이 집에서는 실제로 사람들이 살았어.</p>
-
+      <p>타이파 섬 해안가, <span class="highlight">민트색 건물 다섯 채</span>가 나란히 서 있어. 지금은 조용한 박물관이지만, 100년 전 이 집에서는 실제로 사람들이 살았어.</p>
       <hr class="story-divider">
-
       <p>마카오는 한때 아시아 최대의 해상 무역 중계항이었어. 1557년 포르투갈이 정착한 이후, 중국·일본·유럽을 잇는 상품들이 이곳 항구를 통해 오갔지.</p>
-
-      <p>그런데 1842년, 영국이 홍콩을 차지하면서 무역의 중심이 홍콩으로 옮겨갔어. 마카오는 조금씩 변해갔어. 번잡한 무역항 대신, 새로운 도시로 탈바꿈하던 시기였지.</p>
-
+      <p>그런데 1842년, 영국이 홍콩을 차지하면서 무역의 중심이 홍콩으로 옮겨갔어. 마카오는 조금씩 변해갔고, 번잡한 무역항 대신 새로운 도시로 탈바꿈하던 시기였지.</p>
       <p>그리고 20세기 초, 번잡한 도심에서 벗어나 바다가 보이고 바람이 시원한 <span class="highlight">타이파 섬</span>에 포르투갈 고위 공무원들과 마카니즈 가족들이 하나둘 집을 짓기 시작했어. 그렇게 지어진 다섯 채의 집이 바로 지금 네 앞에 있는 <span class="highlight">타이파 주택 박물관</span>이야.</p>
-
       <hr class="story-divider">
-
-      <p>집 안으로 들어가 보면 당시 생활이 그대로 남아 있어.</p>
-
-      <p>거실에는 유럽식 소파와 찻잔 세트가 놓여 있고, 식탁에는 포르투갈식 식사가 차려졌을 것 같은 분위기가 느껴져. 그런데 집 뒤쪽으로 가면, 하인들이 따로 생활하던 공간이 나와.</p>
-
+      <p>집 안으로 들어가 보면 당시 생활이 그대로 남아 있어. 거실에는 유럽식 소파와 찻잔 세트가 놓여 있고, 식탁에는 포르투갈식 식사가 차려졌을 것 같은 분위기가 느껴져. 그런데 집 뒤쪽으로 가면, 하인들이 따로 생활하던 공간이 나와.</p>
       <p><span class="highlight">같은 집 안에, 다른 세계가 있었던 거야.</span> 집 하나만 봐도 당시 사회의 계층 구조가 그대로 보여.</p>
-
       <hr class="story-divider">
-
       <div class="story-question">마카니즈(Macanese)가 뭔데?</div>
-
       <p>마카니즈는 포르투갈 사람과 중국 사람 사이에서 생겨난 혼혈 문화야. 단순히 혈통만 섞인 게 아니야.</p>
-
       <p>포르투갈 요리에 중국 향신료가 들어가고, 포르투갈어와 광둥어가 뒤섞인 독특한 언어가 생겨났고, 유럽식 집 안에서 중국식 풍습이 이어졌어.</p>
-
       <p><span class="highlight">이 집은 그 두 세계가 실제로 함께 살았던 공간이야.</span></p>
-
       <hr class="story-divider">
-
       <p>마지막으로, 민트색 외벽 이야기를 빼놓을 수 없어. 왜 하필 이 색일까?</p>
-
       <p>포르투갈 남부 건축에서는 밝은 파스텔 계열 색상을 즐겨 사용했어. 강한 햇빛을 반사하고, 바닷가 습기에도 잘 견디는 실용적인 이유가 있었지. <span class="highlight">기후와 문화가 만나서 선택된 색이야.</span></p>
-
       <hr class="story-divider">
-
       <div class="story-closing">
         5채의 민트색 집.<br>
         100년 전 이 창문 너머로 누군가 바다를 바라봤을 거야.<br><br>
@@ -658,7 +339,6 @@
         동양과 서양이 함께 살았던 공간이야.
       </div>
     </div>
-
     <div class="notice">
       <strong>콘텐츠 출처 안내</strong><br>
       이 콘텐츠는 마카오 문화국(ICM) 공식 자료, 마카오 타이파 빌리지 공식 사이트, 마카오 매거진 등 확인된 자료를 기반으로 작성됐어. 민트색 외벽의 문화적 상징 의미 등 일부 해석적 표현은 공식 출처를 추가로 확인해야 해.
@@ -667,10 +347,11 @@
 
 </div>
 
-<footer style="background: #085041; color: rgba(255,255,255,0.75); text-align: center; padding: 28px 24px; font-size: 13px; line-height: 1.9;">
+<footer class="site-footer">
   본 콘텐츠는 공식적으로 확인된 정보를 사실에 기반하여 제작되었으며<br>
-  <span style="color: #9FE1CB; font-weight: 700;">Irene이 직접 만든 소중한 자료입니다.</span><br>
+  <span class="ft-name">Irene이 직접 만든 소중한 자료입니다.</span><br>
   무단 복제 및 배포를 금합니다.
 </footer>
+
 </body>
 </html>
