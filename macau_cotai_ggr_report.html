@@ -514,7 +514,47 @@
     border-left: 3px solid var(--gold-dark);
     line-height: 1.7;
   }
-</style>
+
+/* ── TAB SYSTEM ── */
+.tab-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--dark2);
+  border-bottom: 1px solid #2a2000;
+}
+.tab-scroll {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tab-scroll::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  padding: 12px 15px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  font-family: 'Noto Sans KR', sans-serif;
+  transition: color 0.2s, border-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.tab-btn.active {
+  color: var(--gold);
+  border-bottom: 3px solid var(--gold);
+  background: rgba(201,169,75,0.06);
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+  </style>
 </head>
 <body>
 
@@ -533,6 +573,19 @@
   </div>
 </div>
 
+
+<!-- ══ TAB NAV ══ -->
+<div class="tab-wrap">
+  <div class="tab-scroll">
+    <button class="tab-btn active" onclick="showTab(event,'cotai')">코타이 스트립</button>
+    <button class="tab-btn" onclick="showTab(event,'ggr')">GGR 비교</button>
+    <button class="tab-btn" onclick="showTab(event,'vs')">마카오 vs LV</button>
+    <button class="tab-btn" onclick="showTab(event,'why')">왜 마카오?</button>
+    <button class="tab-btn" onclick="showTab(event,'rank')">GGR 순위</button>
+  </div>
+</div>
+
+<div class="tab-panel active" id="panel-cotai">
 <!-- ══════════════ SECTION 1: 두 거리 ══════════════ -->
 <div class="section">
   <div class="section-label">Section 01</div>
@@ -602,6 +655,10 @@
   </div>
 </div>
 
+</div><!-- /panel-cotai -->
+
+
+<div class="tab-panel" id="panel-ggr">
 <!-- ══════════════ SECTION 2: GGR 비교 ══════════════ -->
 <div class="section">
   <div class="section-label">Section 02</div>
@@ -668,6 +725,9 @@
   </div>
 </div>
 
+</div><!-- /panel-ggr -->
+
+<div class="tab-panel" id="panel-cotai2">
 <!-- ══════════════ SECTION 3: 스토리텔링 코타이 ══════════════ -->
 <div class="section">
   <div class="section-label">Section 03</div>
@@ -726,6 +786,9 @@
   </div>
 </div>
 
+</div><!-- /panel-cotai2 -->
+
+<div class="tab-panel" id="panel-vs">
 <!-- ══════════════ SECTION 4: 스토리텔링 마카오 vs LV ══════════════ -->
 <div class="section">
   <div class="section-label">Section 04</div>
@@ -755,6 +818,9 @@
   </div>
 </div>
 
+</div><!-- /panel-vs -->
+
+<div class="tab-panel" id="panel-why">
 <!-- ══════════════ SECTION 5: 왜 마카오가 ══════════════ -->
 <div class="section">
   <div class="section-label">Section 05</div>
@@ -786,6 +852,9 @@
   </div>
 </div>
 
+</div><!-- /panel-why -->
+
+<div class="tab-panel" id="panel-rank">
 <!-- ══════════════ SECTION 6: GGR 순위 ══════════════ -->
 <div class="section">
   <div class="section-label">Section 06</div>
@@ -864,6 +933,9 @@
   </div>
 </div>
 
+</div><!-- /panel-rank -->
+
+<div class="tab-panel" id="panel-why2">
 <!-- ══════════════ SECTION 7: 왜 마카오가 세계 1위 ══════════════ -->
 <div class="section">
   <div class="section-label">Section 07</div>
@@ -898,6 +970,8 @@
   </div>
 </div>
 
+</div><!-- /panel-why2 -->
+
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer>
   <div class="footer-logo">MACAU MOMENT</div>
@@ -916,6 +990,34 @@
     </span>
   </div>
 </footer>
+
+
+<script>
+var tabMap = {
+  'cotai':  ['panel-cotai','panel-cotai2'],
+  'ggr':    ['panel-ggr'],
+  'vs':     ['panel-vs'],
+  'why':    ['panel-why','panel-why2'],
+  'rank':   ['panel-rank']
+};
+
+function showTab(e, id) {
+  // 모든 패널 숨김
+  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  // 모든 버튼 비활성화
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  // 해당 탭의 패널들 활성화
+  var panels = tabMap[id] || [];
+  panels.forEach(function(pid){
+    var el = document.getElementById(pid);
+    if(el) el.classList.add('active');
+  });
+  // 버튼 활성화
+  e.currentTarget.classList.add('active');
+  // 탭바로 스크롤
+  document.querySelector('.tab-wrap').scrollIntoView({behavior:'smooth', block:'start'});
+}
+</script>
 
 </body>
 </html>
