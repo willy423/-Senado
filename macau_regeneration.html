@@ -498,8 +498,8 @@
       <span class="lbl">총 투자 규모</span>
     </div>
     <div class="hero-stat">
-      <span class="val">6개사</span>
-      <span class="lbl">카지노 운영사</span>
+      <span class="val">4,007만</span>
+      <span class="lbl">2025 방문자 역대최고</span>
     </div>
     <div class="hero-stat">
       <span class="val">2032년</span>
@@ -508,12 +508,87 @@
   </div>
 </div>
 
+<!-- ── CATEGORY NAV ── -->
+<nav class="cat-nav" id="catNav">
+  <div class="cat-nav-inner">
+    <a class="cat-btn active" href="#sec1">1 옛 도시</a>
+    <a class="cat-btn" href="#sec2">2 유네스코</a>
+    <a class="cat-btn" href="#sec3">3 재생구역</a>
+    <a class="cat-btn" href="#sec4">4 관광통계</a>
+    <a class="cat-btn" href="#sec5">5 국적별</a>
+    <a class="cat-btn" href="#sec6">6 경제구조</a>
+    <a class="cat-btn" href="#sec7">7 투자이유</a>
+    <a class="cat-btn" href="#sec8">8 선순환</a>
+    <a class="cat-btn" href="#sec9">9 현황</a>
+  </div>
+</nav>
+
+<style>
+.cat-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13,13,13,0.97);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.cat-nav-inner {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.cat-nav-inner::-webkit-scrollbar { display: none; }
+.cat-btn {
+  flex-shrink: 0;
+  display: inline-block;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.cat-btn:hover,
+.cat-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000;
+}
+</style>
+
+<script>
+// Highlight active nav button on scroll
+(function(){
+  const sections = [
+    {id:'sec1'},{id:'sec2'},{id:'sec3'},{id:'sec4'},{id:'sec5'},
+    {id:'sec6'},{id:'sec7'},{id:'sec8'},{id:'sec9'}
+  ];
+  const btns = document.querySelectorAll('.cat-btn');
+  function onScroll(){
+    let current = 'sec1';
+    sections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if(el && window.scrollY >= el.offsetTop - 100) current = s.id;
+    });
+    btns.forEach(b => {
+      b.classList.toggle('active', b.getAttribute('href') === '#'+current);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+})();
+</script>
+
 <div class="container">
 
-<!-- ════════════════════════════════
-     SECTION 1 : 마카오 옛 도시 변화 두 가지 방식
-════════════════════════════════ -->
-<div class="sec-head">
+<div class="sec-head" id="sec1">
   <div class="sec-num">1</div>
   <div class="sec-title">마카오 옛 도시, <span>두 가지 방식</span>으로 변화 중</div>
 </div>
@@ -587,11 +662,8 @@
   </div>
 </div>
 
-<!-- ════════════════════════════════
-     SECTION 2 : 유네스코 세계유산
-════════════════════════════════ -->
 <div class="divider"></div>
-<div class="sec-head">
+<div class="sec-head" id="sec2">
   <div class="sec-num">2</div>
   <div class="sec-title">유네스코 세계유산 — <span>왜 못 건드리나?</span></div>
 </div>
@@ -651,11 +723,8 @@
   </div>
 </div>
 
-<!-- ════════════════════════════════
-     SECTION 3 : 6대 재생 구역
-════════════════════════════════ -->
 <div class="divider"></div>
-<div class="sec-head">
+<div class="sec-head" id="sec3">
   <div class="sec-num">3</div>
   <div class="sec-title">정부 지정 <span>6대 재생 구역</span></div>
 </div>
@@ -807,12 +876,245 @@
   </div>
 </div>
 
-<!-- ════════════════════════════════
-     SECTION 4 : 왜 카지노가 돈을 내나
-════════════════════════════════ -->
 <div class="divider"></div>
-<div class="sec-head">
+<div class="sec-head" id="sec4">
   <div class="sec-num">4</div>
+  <div class="sec-title">2025년 마카오 <span>관광객 통계</span></div>
+</div>
+
+<div class="hl-box">
+  <span class="big">4,007만 명</span>
+  <span class="sm">2025년 연간 총 방문자 — 역대 최고 기록 | 출처: 마카오 통계국 DSEC (2026.01.23)</span>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">📊</span> 연간 핵심 수치 (2025년)</div>
+  <div class="amt-row">
+    <span class="amt-label">연간 총 방문자</span>
+    <span class="amt-val">40,069,000명 (약 4,007만 명)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">전년(2024년) 대비</span>
+    <span class="amt-val">+14.7%</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">역대 기록 비교</span>
+    <span class="amt-val">2019년 3,941만 명 대비 +1.6% 경신</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">당일치기 방문자</span>
+    <span class="amt-val">2,352만 명 (+24.6%)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">숙박 방문자</span>
+    <span class="amt-val">1,654만 명 (+3.1%)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">평균 체류 기간</span>
+    <span class="amt-val">1.1일 (전년 대비 -0.1일)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">총 출입국 이동</span>
+    <span class="amt-val">2억 3,500만 건 (+9.8%) — 역대 최고</span>
+  </div>
+  <div class="src">출처: 마카오 통계국 DSEC 공식 (2026.01.23), 마카오 공안경찰 공식 (2026.01.05), CDC Gaming (2026.01.06)</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">📈</span> 상반기 수치 (2025년 1~6월)</div>
+  <div class="amt-row">
+    <span class="amt-label">상반기 총 방문자</span>
+    <span class="amt-val">19,218,540명 (약 1,922만 명)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">전년 동기 대비</span>
+    <span class="amt-val">+14.9%</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">역대 기록</span>
+    <span class="amt-val">상반기 역대 2위 (1위: 2019년 상반기 2,030만 명)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">당일치기</span>
+    <span class="amt-val">1,118만 명 (+25.8%)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">숙박 방문자</span>
+    <span class="amt-val">804만 명 (+2.6%)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">월평균 방문자</span>
+    <span class="amt-val">320만 명 이상</span>
+  </div>
+  <div class="src">출처: 마카오 통계국 DSEC 공식 (2025.07.24), Macau Daily Times (2025.07.25), 마카오 정부 포털 gov.mo (2025.07.24)</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🗓️</span> 월별 주요 방문자 수 (2025년)</div>
+  <table class="tbl">
+    <tr><th>월</th><th>방문자 수</th><th>증감률</th></tr>
+    <tr><td>1월</td><td class="hl">약 365만 명</td><td>+15.5%</td></tr>
+    <tr><td>1~5월 누계</td><td class="hl">약 1,633만 명</td><td>+15.2%</td></tr>
+    <tr><td>6월</td><td class="hl">289만 명</td><td>+13.3%</td></tr>
+    <tr><td>11월</td><td class="hl">약 335만 명</td><td>+18.1%</td></tr>
+    <tr><td>12월</td><td class="hl">약 358만 명</td><td>+17.8%</td></tr>
+    <tr><td><strong>연간 합계</strong></td><td class="hl"><strong>4,007만 명</strong></td><td><strong>+14.7%</strong></td></tr>
+  </table>
+  <div class="src">출처: DSEC 월별 공식 통계, Trading Economics (2026.01.23)</div>
+</div>
+
+<div class="story-box">
+  <div class="story-label">📖 스토리텔링</div>
+  <div class="story-text">
+    2025년은 마카오 역사상 가장 많은 관광객이 온 해였어.<br><br>
+    1년 동안 무려 <strong>4,007만 명</strong>이 마카오를 방문했어. 코로나 이전 최고 기록이었던 2019년의 3,941만 명을 드디어 넘어선 거야. 그것도 <strong>역대 최고 기록</strong>으로.<br><br>
+    상반기에만 <strong>1,922만 명</strong>이 왔어. 하루 평균 320만 명 이상이 꾸준히 방문한 거야.<br><br>
+    특히 당일치기 관광객이 많이 늘었어. 하루 안에 마카오에 왔다가 돌아가는 사람이 <strong>25%</strong> 넘게 증가했어. 마카오가 홍콩, 광저우 같은 중국 주변 도시에서 짧게 다녀올 수 있는 여행지로 자리 잡은 거야.
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec-head" id="sec5">
+  <div class="sec-num">5</div>
+  <div class="sec-title">관광객 <span>국적별 구성</span> (2025년 연간)</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🌏</span> 주요 방문국 비중</div>
+  <div class="prog-wrap" style="margin-top:6px;">
+    <div class="prog-label"><span class="name">중국 본토</span><span class="pct">72.4%</span></div>
+    <div class="prog-bar"><div class="prog-fill" style="width:72.4%"></div></div>
+    <div class="prog-label"><span class="name">홍콩</span><span class="pct">18.2%</span></div>
+    <div class="prog-bar"><div class="prog-fill mid" style="width:18.2%"></div></div>
+    <div class="prog-label"><span class="name">대만</span><span class="pct">2.5%</span></div>
+    <div class="prog-bar"><div class="prog-fill mid" style="width:10%"></div></div>
+    <div class="prog-label"><span class="name">외국인 (기타 국적)</span><span class="pct">6.9%</span></div>
+    <div class="prog-bar"><div class="prog-fill low" style="width:13.8%"></div></div>
+  </div>
+  <p style="font-size:11px;color:var(--text-muted);margin-top:8px;">※ 중국 본토+홍콩+대만 합계: 93.1% / 외국인: 6.9%</p>
+  <div class="src">출처: 마카오 공안경찰 공식 발표 (2026.01.05), GGRAsia (2026.01.05)</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🌍</span> 외국인 방문자 상세 (2025년)</div>
+  <div class="amt-row">
+    <span class="amt-label">외국인 총 방문자</span>
+    <span class="amt-val">275만 5,000명 (+13.7%)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">전체 방문자 중 비중</span>
+    <span class="amt-val">6.87%</span>
+  </div>
+  <div class="src">출처: DSEC 공식 (2026.01.23), Macau Post Daily (2026.01.23)</div>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:10px;line-height:1.6;">상반기(H1 2025) 기준 외국인 방문자 성장률 상위국: 일본 +23.5%, 한국 +21.7%, 필리핀 +16.8%<br>
+  호텔 투숙 기준 한국인 방문자: 16만 9천명 (+13.3%)</p>
+  <div class="src">출처: Macao Magazine (2025.08.11), iGaming Today (2025.07.30)</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🇨🇳</span> 중국 본토 방문자 상세</div>
+  <div class="amt-row">
+    <span class="amt-label">2025년 연간</span>
+    <span class="amt-val">2,901만 7,000명 (+18.5%)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">개인 방문 허가(IVS)</span>
+    <span class="amt-val">연간 741만 명 이상 활용</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">주 1회 방문 허가</span>
+    <span class="amt-val">86만 7,000건 (주하이 거주자 대상)</span>
+  </div>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:10px;line-height:1.6;">2025년 1월 1일부터 인근 주하이 시민이 주 1회, 최대 7일 마카오 방문 가능 정책 시행. 당일치기 방문자 급증의 주요 원인.</p>
+  <div class="src">출처: DSEC 공식, Yogonet (2025.07.28), SiGMA World (2025.07.25)</div>
+</div>
+
+<div class="story-box">
+  <div class="story-label">📖 스토리텔링</div>
+  <div class="story-text">
+    4,007만 명 중에 어느 나라 사람들이 가장 많이 왔을까?<br><br>
+    압도적으로 <strong>중국 본토</strong>야. 전체의 <strong>72.4%</strong>인 2,902만 명이 중국에서 왔어. 2위는 <strong>홍콩</strong>으로 18.2%. 중국 본토랑 홍콩, 대만을 합치면 <strong>93%</strong>야.<br><br>
+    외국인은 전체의 <strong>6.9%</strong>, 약 276만 명이었어. 그중에서 한국은 호텔 투숙 기준 16만 9천 명으로, 전년보다 <strong>13.3%</strong> 늘었어.<br><br>
+    2025년 1월부터 마카오 바로 옆 중국 도시 주하이 시민들이 <strong>주 1회 자유롭게 마카오에 올 수 있는 정책</strong>이 시행됐어. 이게 당일치기 방문자가 폭발적으로 늘어난 가장 큰 이유야.
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec-head" id="sec6">
+  <div class="sec-num">6</div>
+  <div class="sec-title">마카오 <span>경제 구조</span> — 카지노가 전부?</div>
+</div>
+
+<div class="hl-box">
+  <span class="big">83~87%</span>
+  <span class="sm">마카오 정부 세수 중 카지노 세금 비중 (2024~2025년 기준)</span>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">💰</span> 카지노 세수 구조</div>
+  <table class="tbl">
+    <tr><th>항목</th><th>수치</th><th>출처</th></tr>
+    <tr><td>카지노 세율</td><td class="hl">GGR의 40%</td><td class="muted">Yogonet 2025.03.06</td></tr>
+    <tr><td>2025년 연간 GGR</td><td class="hl">MOP 2,474억<br><span style="font-size:10px">(약 44조 5,320억 원)</span></td><td class="muted">DICJ 공식</td></tr>
+    <tr><td>2025년 카지노 세금(추정)</td><td class="hl">MOP 약 989억<br><span style="font-size:10px">(약 17조 8,020억 원)</span></td><td class="muted">DSF 공식</td></tr>
+    <tr><td>카지노 세금의 정부 세수 비중</td><td class="hl">약 83~87%</td><td class="muted">DSF·iGaming Today 2025</td></tr>
+    <tr><td>2024년 기준 비중</td><td class="hl">80.5%</td><td class="muted">DSF 공식</td></tr>
+    <tr><td>2025년 1~10월 기준 비중</td><td class="hl">83.7%</td><td class="muted">DSF 공식</td></tr>
+  </table>
+  <div class="src">출처: 마카오 재정국(DSF) 공식, Yogonet(2025.03.06), iGaming Today(2025.11)</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">📉</span> 코로나 충격 — 왜 다변화가 필요했나</div>
+  <table class="tbl">
+    <tr><th>연도</th><th>GGR</th><th>비고</th></tr>
+    <tr><td>2019년</td><td class="hl">MOP 2,927억</td><td class="muted">코로나 이전 최고치</td></tr>
+    <tr><td>2020년</td><td class="hl">MOP 604억</td><td class="muted">-79.3% 폭락</td></tr>
+    <tr><td>2022년</td><td class="hl">MOP 423억</td><td class="muted">최저점 (봉쇄 영향)</td></tr>
+    <tr><td>2023년</td><td class="hl">MOP 1,836억</td><td class="muted">회복 시작 · 20% 증액 발동</td></tr>
+    <tr><td>2024년</td><td class="hl">MOP 2,268억</td><td class="muted">+23.5%</td></tr>
+    <tr><td>2025년</td><td class="hl">MOP 2,474억</td><td class="muted">+9.1% · 코로나 후 최고</td></tr>
+  </table>
+  <div class="notice" style="margin-top:10px;">
+    세수의 <strong>80% 이상</strong>이 카지노에서 나오는 구조에서, 코로나 때 경제가 거의 붕괴 수준으로 떨어졌어. 이게 다변화 정책의 가장 직접적인 이유야.
+  </div>
+  <div class="src">출처: DICJ 공식 연간 데이터, CNBC(2022.12.23), GGRAsia</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">🏦</span> 마카오 정부 재정 비축금</div>
+  <div class="amt-row">
+    <span class="amt-label">재정 비축금 규모 (추정)</span>
+    <span class="amt-val">약 MOP 5,600억+ (약 100조 원+)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">운용 주체</span>
+    <span class="amt-val">마카오 금융관리국 (AMCM)</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">투자 방식</span>
+    <span class="amt-val">글로벌 주식·채권·외환 투자</span>
+  </div>
+  <div class="amt-row">
+    <span class="amt-label">2024년 투자 수익</span>
+    <span class="amt-val">약 MOP 300억 (약 5조 4,000억 원)</span>
+  </div>
+  <p style="font-size:11.5px;color:var(--text-muted);margin-top:10px;line-height:1.6;">⚠️ 재정 비축금 정확한 규모 및 2025년 수익은 AMCM 공식 발표 직접 확인 필요</p>
+  <div class="src">출처: 마카오 금융관리국(AMCM) 공식, 업로드 자료 기반</div>
+</div>
+
+<div class="story-box">
+  <div class="story-label">📖 스토리텔링</div>
+  <div class="story-text">
+    마카오 정부 돈의 <strong>80% 이상</strong>이 카지노 세금에서 나와. 이게 얼마나 위험한 구조인지 2020년 코로나가 증명했어.<br><br>
+    코로나 이전 2019년에 카지노 매출이 <strong>2,927억 MOP (약 52조 원)</strong>이었는데, 2020년에 갑자기 <strong>79% 폭락</strong>했어. 세금이 사라지니까 정부 재정도 같이 무너질 뻔했어.<br><br>
+    그래서 마카오는 두 가지 전략을 동시에 썼어. 하나는 카지노 회사들한테 <strong>비카지노 투자를 의무화</strong>해서 관광 도시로 바꾸는 것. 다른 하나는 금고에 쌓인 약 <strong>100조 원</strong>의 비축금을 전 세계에 투자해서 카지노 외 수익을 만드는 것이야.
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec-head" id="sec7">
+  <div class="sec-num">7</div>
   <div class="sec-title">왜 카지노 회사가 돈을 내나 — <span>손해가 아닌 이유</span></div>
 </div>
 
@@ -883,12 +1185,9 @@
   </div>
 </div>
 
-<!-- ════════════════════════════════
-     SECTION 5 : 선순환 구조
-════════════════════════════════ -->
 <div class="divider"></div>
-<div class="sec-head">
-  <div class="sec-num">5</div>
+<div class="sec-head" id="sec8">
+  <div class="sec-num">8</div>
   <div class="sec-title">돈의 <span>선순환 구조</span></div>
 </div>
 
@@ -940,7 +1239,7 @@
       <div class="flow-content">
         <div class="fc-title">관광객 증가</div>
         <div class="fc-desc">볼거리·즐길 거리 늘어나면 더 많은 관광객 유입.</div>
-        <div class="fc-num">2025년 상반기 방문자 1,920만 명 (+15%, 전년比)</div>
+        <div class="fc-num">2025년 연간 방문자 4,007만 명 (+14.7%) · 상반기 1,922만 명 (+14.9%)</div>
       </div>
     </div>
 
@@ -992,12 +1291,9 @@
   </div>
 </div>
 
-<!-- ════════════════════════════════
-     SECTION 6 : 2026년 현황
-════════════════════════════════ -->
 <div class="divider"></div>
-<div class="sec-head">
-  <div class="sec-num">6</div>
+<div class="sec-head" id="sec9">
+  <div class="sec-num">9</div>
   <div class="sec-title">2026년 현재 — <span>어디까지 왔나?</span></div>
 </div>
 
@@ -1111,12 +1407,21 @@
     · 마카오 정부 문화국 (ic.gov.mo) — 보호관리계획 2024.06.01<br>
     · Xinhua 2025.07.16 — 유네스코 등재 20주년<br>
     · DICJ 공식 성명 2026.03.13<br>
-    · Yogonet International 2025.03.06<br>
-    · iGaming Today 2025.11<br>
+    · Yogonet International 2025.03.06 / 2025.07.28<br>
+    · iGaming Today 2025.07.30 / 2025.11<br>
     · DSF 마카오 재정국 공식 데이터<br>
     · CNBC 2022.12.23<br>
     · Galaxy Entertainment IR Q2 2025<br>
-    · Focus on Travel News 2025.05.08
+    · Focus on Travel News 2025.05.08<br>
+    · 마카오 통계국 DSEC 공식 (2025.07.24) — H1 2025 방문자 통계<br>
+    · 마카오 통계국 DSEC 공식 (2026.01.23) — 2025년 연간 방문자 통계<br>
+    · 마카오 공안경찰 공식 (2026.01.05) — 2025년 연간 입국 데이터<br>
+    · CDC Gaming (2026.01.06) — 연간 방문자 역대 최고 기록 확인<br>
+    · Macau Daily Times (2025.07.25) — H1 2025 방문자 분석<br>
+    · 마카오 정부 포털 gov.mo (2025.07.24) — H1 공식 발표<br>
+    · Macao Magazine (2025.08.11) — 외국인 방문자 분석<br>
+    · SiGMA World (2025.07.25) — H1 2025 상세 데이터<br>
+    · 마카오 금융관리국 (AMCM) 공식 — 재정 비축금 운용
   </div>
 </div>
 
