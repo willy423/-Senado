@@ -537,6 +537,55 @@
       color: rgba(245,240,232,0.35);
     }
 
+    /* ── 요약 타임라인 카드 ── */
+    .summary-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .stl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      background: rgba(107,76,42,0.05);
+      border-left: 3px solid var(--gold);
+    }
+
+    .stl-highlight {
+      background: rgba(200,146,42,0.1);
+      border-left-color: var(--gold);
+    }
+
+    .stl-highlight-red {
+      background: rgba(155,58,26,0.08);
+      border-left-color: var(--rust);
+    }
+
+    .stl-highlight-green {
+      background: rgba(74,103,65,0.08);
+      border-left-color: var(--sage);
+    }
+
+    .stl-year {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--rust);
+      min-width: 90px;
+      flex-shrink: 0;
+      padding-top: 0.05rem;
+      line-height: 1.4;
+    }
+
+    .stl-desc {
+      font-size: 0.88rem;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
     /* ── 무역 물품 카드 ── */
     .trade-section-label {
       font-family: 'Noto Serif KR', serif;
@@ -1010,33 +1059,70 @@
   <!-- 요약 테이블 -->
   <div class="summary-table-wrapper">
     <div class="summary-title">마카오 역사 한눈에 보기</div>
-    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
-    <table>
-      <thead>
-        <tr>
-          <th>시기</th>
-          <th>한 줄 요약</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>~1513년</td><td>중국 어촌 마을 · 명나라 영토</td></tr>
-        <tr><td>1513년</td><td>조르즈 알바르스, 광저우 인근 타망 섬 도달 · 중국 남부 해안 첫 접촉</td></tr>
-        <tr><td>1540년대</td><td>왜구 소탕 협력 · 명-포 관계 회복 · 연간 무역 시작</td></tr>
-        <tr><td>1553년</td><td>"젖은 화물" 구실로 마카오 해안 상륙</td></tr>
-        <tr><td>1554년</td><td>레오넬 데 소우자 - 왕보 협상 · 관세 납부 합법화</td></tr>
-        <tr><td>1557년</td><td>명나라 영구 거주 공식 허가</td></tr>
-        <tr><td>1573년</td><td>연간 은 500냥 지대 정식 납부 · 정착 제도화</td></tr>
-        <tr><td>1557~1600년대</td><td>동서양 무역의 황금 허브</td></tr>
-        <tr><td>1700~1800년대</td><td>서서히 쇠퇴 · 경쟁 심화</td></tr>
-        <tr><td>1845년</td><td>포르투갈, 마카오를 자유항으로 일방 선언</td></tr>
-        <tr><td>1849년</td><td>포르투갈, 마카오를 포르투갈 영토로 공식 선언</td></tr>
-        <tr><td>1887년</td><td>청-포르투갈 조약 · 공식 포르투갈 식민지</td></tr>
-        <tr><td>1966년</td><td>12·3 사건 · 친중 세력 부상</td></tr>
-        <tr><td>1999년 12월 20일</td><td>중국 반환 · 특별행정구 출범</td></tr>
-        <tr><td>2005년</td><td>유네스코 세계문화유산 등재</td></tr>
-      </tbody>
-    </table>
-    </div><!-- /overflow -->
+    <div class="summary-timeline">
+
+      <div class="stl-item">
+        <div class="stl-year">~1513년</div>
+        <div class="stl-desc">중국 어촌 마을 · 명나라 영토</div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-year">1513년</div>
+        <div class="stl-desc">조르즈 알바르스, 광저우 인근 타망 섬 도달 · 중국 남부 해안 첫 접촉</div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-year">1540년대</div>
+        <div class="stl-desc">왜구 소탕 협력 · 명-포 관계 회복 · 연간 무역 시작</div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-year">1553년</div>
+        <div class="stl-desc">"젖은 화물" 구실로 마카오 해안 상륙</div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-year">1554년</div>
+        <div class="stl-desc">레오넬 데 소우자 · 왕보 협상 · 관세 납부 합법화</div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-year">1557년</div>
+        <div class="stl-desc">명나라 영구 거주 공식 허가</div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-year">1573년</div>
+        <div class="stl-desc">연간 은 500냥 지대 정식 납부 · 정착 제도화</div>
+      </div>
+      <div class="stl-item stl-highlight">
+        <div class="stl-year">1557~1600년대</div>
+        <div class="stl-desc">동서양 무역의 황금 허브</div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-year">1700~1800년대</div>
+        <div class="stl-desc">서서히 쇠퇴 · 경쟁 심화</div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-year">1845년</div>
+        <div class="stl-desc">포르투갈, 마카오를 자유항으로 일방 선언</div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-year">1849년</div>
+        <div class="stl-desc">포르투갈, 마카오를 포르투갈 영토로 공식 선언</div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-year">1887년</div>
+        <div class="stl-desc">청-포르투갈 조약 · 공식 포르투갈 식민지</div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-year">1966년</div>
+        <div class="stl-desc">12·3 사건 · 친중 세력 부상</div>
+      </div>
+      <div class="stl-item stl-highlight-red">
+        <div class="stl-year">1999년 12월 20일</div>
+        <div class="stl-desc">중국 반환 · 마카오 특별행정구 출범</div>
+      </div>
+      <div class="stl-item stl-highlight-green">
+        <div class="stl-year">2005년</div>
+        <div class="stl-desc">유네스코 세계문화유산 등재</div>
+      </div>
+
+    </div>
   </div>
 
   <!-- 마무리 박스 -->
