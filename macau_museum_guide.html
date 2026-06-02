@@ -140,7 +140,7 @@ body {
   background: var(--red);
   color: #fff;
   font-size: 11px;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.3px;
   text-transform: uppercase;
   padding: 3px 9px;
   margin-bottom: 9px;
@@ -183,26 +183,30 @@ body {
   font-size: var(--fs-sm);
   line-height: 1.85;
   word-break: keep-all;
+  overflow-wrap: break-word;
 }
 .fact-lbl {
   font-size: 11px;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.5px;
   color: var(--gold);
   text-transform: uppercase;
   margin-bottom: 8px;
   font-weight: 500;
+  word-break: keep-all;
 }
 .fact ul { padding-left: 0; list-style: none; }
 .fact ul li {
-  padding: 3px 0 3px 14px;
+  padding: 4px 0 4px 16px;
   position: relative;
   font-size: var(--fs-sm);
-  line-height: 1.75;
+  line-height: 1.8;
+  word-break: keep-all;
 }
 .fact ul li::before {
   content: '•';
-  position: absolute; left: 0;
+  position: absolute; left: 0; top: 4px;
   color: var(--gold);
+  line-height: 1.8;
 }
 
 /* ── 인용 ── */
@@ -297,32 +301,71 @@ body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   margin: 16px 0;
-  border: 1px solid var(--border);
 }
 table {
   width: 100%;
-  min-width: 320px;
+  min-width: 480px;
   border-collapse: collapse;
+  border: 1px solid var(--border);
 }
 th {
   background: var(--ink);
   color: var(--gold);
-  padding: 9px 12px;
+  padding: 10px 13px;
   text-align: left;
   font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.5px;
+  font-size: 13px;
+  letter-spacing: 0.3px;
   white-space: nowrap;
 }
 td {
-  padding: 9px 12px;
+  padding: 10px 13px;
   border-bottom: 1px solid var(--border);
   vertical-align: top;
   font-size: var(--fs-sm);
-  line-height: 1.65;
+  line-height: 1.7;
   word-break: keep-all;
+  overflow-wrap: break-word;
 }
 tr:nth-child(even) td { background: var(--parchment); }
+
+/* 모바일에서 2열 이상 테이블은 카드형으로 변환 */
+@media (max-width: 540px) {
+  .tbl-wrap { overflow-x: visible; }
+  table { min-width: 0; width: 100%; border: none; }
+  /* 헤더 행(첫 번째 tr, th 포함) 숨김 */
+  tr:first-child { display: none; }
+  tr {
+    display: block;
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    background: #fff;
+    border-radius: 2px;
+  }
+  tr:nth-child(even) { background: var(--parchment); }
+  tr:nth-child(even) td { background: transparent; }
+  td {
+    display: flex;
+    padding: 9px 12px;
+    border-bottom: 1px solid rgba(200,151,58,0.15);
+    font-size: 13px;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.65;
+  }
+  td::before {
+    content: attr(data-label);
+    min-width: 56px;
+    max-width: 56px;
+    font-weight: 500;
+    color: var(--stone);
+    font-size: 11px;
+    flex-shrink: 0;
+    padding-top: 2px;
+    line-height: 1.5;
+  }
+  td:last-child { border-bottom: none; }
+}
 
 /* ── 카드 그리드 (2열) ── */
 .grid2 {
@@ -978,7 +1021,16 @@ footer {
   </div>
   <div class="fact">
     <div class="fact-lbl">폭죽 공장 8개 구역 (안내판 기록)</div>
-    ① 辦公室(사무실) ② 小廟(소묘·사당) ③ 插引作坊(도화선 작업장) ④ 春火藥作坊(화약 제조) ⑤ 危險倉庫(위험 창고·호수 근처) ⑥ 入火藥作坊(화약 충전·방화벽 설치) ⑦ 炮殼倉庫(폭죽 껍데기 창고) ⑧ 普通倉庫(일반 창고)
+    <ul>
+      <li>① 辦公室 — 사무실</li>
+      <li>② 小廟 — 소묘·사당</li>
+      <li>③ 插引作坊 — 도화선 작업장</li>
+      <li>④ 春火藥作坊 — 화약 제조</li>
+      <li>⑤ 危險倉庫 — 위험 창고 (호수 근처)</li>
+      <li>⑥ 入火藥作坊 — 화약 충전·방화벽 설치</li>
+      <li>⑦ 炮殼倉庫 — 폭죽 껍데기 창고</li>
+      <li>⑧ 普通倉庫 — 일반 창고</li>
+    </ul>
   </div>
   <div class="quote">전시 포스터 확인 사실: "BLACK HAWK — MADE IN MACAU by KWONG HING TAI FIRECRACKER Co." — 마카오 폭죽이 실제로 해외 수출됐다는 증거.</div>
   <div class="story">
@@ -1130,5 +1182,21 @@ footer {
   <p class="copy-sub">© Macau Museum Historical Storytelling Guide · Based on verified exhibition panel records · 27 sections</p>
 </footer>
 
+<script>
+document.querySelectorAll('.tbl-wrap table').forEach(function(tbl) {
+  var rows = tbl.querySelectorAll('tr');
+  var headers = [];
+  rows.forEach(function(tr, rowIdx) {
+    var cells = tr.querySelectorAll('th, td');
+    if (rowIdx === 0) {
+      cells.forEach(function(cell) { headers.push(cell.textContent.trim()); });
+    } else {
+      cells.forEach(function(td, i) {
+        if (headers[i]) td.setAttribute('data-label', headers[i]);
+      });
+    }
+  });
+});
+</script>
 </body>
 </html>
