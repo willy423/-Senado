@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>마카오 역사 한눈에 보기 | Macau Moment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── 기본 리셋 & 변수 ── */
+    :root {
+      --gold:        #c9a84c;
+      --gold-light:  #e8c97a;
+      --gold-pale:   #f5e6c0;
+      --dark:        #0d0b08;
+      --dark-2:      #131109;
+      --dark-3:      #1a1710;
+      --dark-card:   #1e1a10;
+      --text-main:   #ede0c8;
+      --text-muted:  #a08860;
+      --text-dim:    #6b5535;
+      --border:      rgba(201,168,76,0.22);
+      --border-hi:   rgba(201,168,76,0.48);
+      --red-era:     #c0392b;
+      --blue-era:    #1a6b8a;
+    }
+
+    *, *::before, *::after {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--text-main);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      overflow-x: hidden;
+      /* 한국어 단어 단위 줄바꿈 전역 적용 */
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      background: linear-gradient(170deg, #1c1500 0%, #0d0900 50%, #000 100%);
+      padding: 52px 22px 44px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 90% 55% at 50% -10%, rgba(201,168,76,0.13) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 35% at 85% 90%,  rgba(201,168,76,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--border-hi);
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      background: rgba(201,168,76,0.07);
+      font-family: 'Playfair Display', serif;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 7.5vw, 40px);
+      font-weight: 900;
+      color: var(--gold-light);
+      line-height: 1.25;
+      text-shadow: 0 2px 18px rgba(201,168,76,0.28);
+      margin-bottom: 10px;
+    }
+    .hero-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      margin-bottom: 18px;
+    }
+    .hero-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      max-width: 340px;
+      margin: 0 auto;
+      line-height: 1.85;
+    }
+
+    /* ── ERA 탭 네비 ── */
+    .era-nav {
+      background: var(--dark-2);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .era-nav::-webkit-scrollbar { display: none; }
+    .era-nav a {
+      flex-shrink: 0;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      white-space: nowrap;
+      background: rgba(201,168,76,0.04);
+      transition: all 0.2s;
+    }
+    .era-nav a:active { background: rgba(201,168,76,0.15); color: var(--gold); }
+
+    /* ── ERA SECTION ── */
+    .era-section {
+      padding: 0 0 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ERA 헤더 */
+    .era-header {
+      padding: 28px 20px 20px;
+      position: relative;
+    }
+    .era-label {
+      font-size: 10.5px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 4px;
+    }
+    .era-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1.3;
+    }
+    .era-accent-line {
+      width: 36px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      border-radius: 2px;
+      margin-top: 10px;
+    }
+
+    /* ── 타임라인 아이템 카드 ── */
+    /*
+      핵심 수정:
+      - flex 2열 레이아웃 완전 제거
+      - 연도(시기)를 카드 상단 뱃지로 배치
+      - 내용을 아래에 full-width 텍스트로 배치
+      - word-break: keep-all 강제 적용
+    */
+    .tl-list {
+      padding: 0 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tl-card {
+      background: var(--dark-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 좌측 컬러 바 */
+    .tl-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--gold);
+      border-radius: 3px 0 0 3px;
+    }
+
+    .tl-card-inner {
+      padding: 14px 14px 14px 18px;
+    }
+
+    /* 연도 뱃지 — 가로 한 줄로 고정 */
+    .tl-year-badge {
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gold);
+      background: rgba(201,168,76,0.1);
+      border: 1px solid var(--border-hi);
+      border-radius: 8px;
+      padding: 3px 10px;
+      margin-bottom: 9px;
+      /* 절대로 줄바꿈 안 되게 */
+      white-space: nowrap;
+      line-height: 1.4;
+    }
+
+    /* 한 줄 요약 — 굵은 제목 */
+    .tl-summary {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--gold-pale);
+      line-height: 1.55;
+      margin-bottom: 8px;
+      /* 핵심: 한국어 단어 단위 줄바꿈, 넘치면 강제 줄바꿈 */
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    /* 상세 설명 */
+    .tl-detail {
+      font-size: 13.5px;
+      color: var(--text-main);
+      line-height: 1.85;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    /* 태그들 */
+    .tl-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .tl-tag {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .tl-tag.gold { border-color: var(--gold); color: var(--gold); }
+
+    /* ── 하이라이트 박스 ── */
+    .highlight-box {
+      margin: 0 16px 16px;
+      background: linear-gradient(135deg, rgba(201,168,76,0.09), rgba(201,168,76,0.02));
+      border: 1px solid var(--border-hi);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 12px 12px 0;
+      padding: 14px 15px;
+    }
+    .highlight-box p {
+      font-size: 13.5px;
+      color: var(--gold-pale);
+      line-height: 1.85;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    .highlight-label {
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ── 시대 색상 변형 ── */
+    .era-portuguese .tl-card::before { background: #8b6914; }
+    .era-portuguese .tl-year-badge { color: #d4a843; border-color: rgba(212,168,67,0.5); background: rgba(212,168,67,0.08); }
+
+    .era-colonial .tl-card::before { background: #6b3a2a; }
+    .era-colonial .tl-year-badge { color: #c0784a; border-color: rgba(192,120,74,0.5); background: rgba(192,120,74,0.08); }
+
+    .era-modern .tl-card::before { background: #1a5a7a; }
+    .era-modern .tl-year-badge { color: #4a9ec0; border-color: rgba(74,158,192,0.5); background: rgba(74,158,192,0.08); }
+
+    .era-handover .tl-card::before { background: var(--gold); }
+    .era-handover .tl-year-badge { color: var(--gold); border-color: var(--border-hi); background: rgba(201,168,76,0.1); }
+
+    .era-sar .tl-card::before { background: #2e7d32; }
+    .era-sar .tl-year-badge { color: #66bb6a; border-color: rgba(102,187,106,0.5); background: rgba(102,187,106,0.08); }
+
+    /* ── 스크롤 탑 ── */
+    .scroll-top {
+      position: fixed;
+      bottom: 22px; right: 16px;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--dark);
+      border: none;
+      font-size: 17px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(201,168,76,0.4);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 99;
+    }
+    .scroll-top.visible { opacity: 1; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark-2);
+      border-top: 1px solid var(--border);
+      padding: 30px 20px 44px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .footer-legal {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.95;
+      max-width: 320px;
+      margin: 0 auto;
+      padding: 14px 16px;
+      border: 1px dashed rgba(201,168,76,0.2);
+      border-radius: 10px;
+      background: rgba(201,168,76,0.03);
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    .footer-legal strong { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<!-- ────────────── HERO ────────────── -->
+<header class="hero">
+  <div class="hero-badge">Macau Moment · 마카오 역사</div>
+  <h1>마카오 역사<br>한눈에 보기</h1>
+  <p class="hero-sub">澳門歷史 · History of Macau</p>
+  <p class="hero-desc">1513년 포르투갈의 첫 접촉부터<br>1999년 중국 반환까지,<br>확인된 사실만 담은 마카오 통사</p>
+</header>
+
+<!-- ────────────── ERA NAV ────────────── -->
+<nav class="era-nav">
+  <a href="#era1">🏮 명나라 시대</a>
+  <a href="#era2">⚓ 포르투갈 정착</a>
+  <a href="#era3">🏛️ 식민지 시대</a>
+  <a href="#era4">🌏 근현대</a>
+  <a href="#era5">🤝 반환 협상</a>
+  <a href="#era6">🎆 반환 이후</a>
+</nav>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- ERA 1: 명나라 시대 (~1557) -->
+<!-- ════════════════════════════════════════ -->
+<section class="era-section era-portuguese" id="era1">
+  <div class="era-header">
+    <div class="era-label">Era 01</div>
+    <div class="era-title">명나라 시대<br>— 포르투갈의 첫 접촉</div>
+    <div class="era-accent-line"></div>
+  </div>
+
+  <div class="tl-list">
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">~1513년 이전</div>
+        <div class="tl-summary">중국 어촌 마을 · 명나라 영토</div>
+        <div class="tl-detail">
+          지금의 마카오 반도 지역은 원래 명나라(明나라) 땅이었어. 마조각(媽祖閣)이라는 해양 여신 사당이 있었고, 광둥성의 작은 어촌 마을이었어. 포르투갈이 오기 전까지 이 땅은 수백 년 동안 조용한 중국 땅이었어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">명나라 영토</span>
+          <span class="tl-tag">광둥성 어촌</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1513년</div>
+        <div class="tl-summary">포르투갈, 광둥 해안에 첫 등장</div>
+        <div class="tl-detail">
+          포르투갈 항해사 <strong>조르즈 알바레스(Jorge Álvares)</strong>가 이끄는 범선이 광저우 남쪽 주장강 어귀 부근인 광둥 둔문(屯門) 해안에 처음 닻을 내렸어. 이게 포르투갈이 중국 땅에 처음 접촉한 순간이야.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">포르투갈 첫 접촉</span>
+          <span class="tl-tag">광둥 둔문</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1553년</div>
+        <div class="tl-summary">포르투갈, 구실을 대며 마카오 상륙</div>
+        <div class="tl-detail">
+          포르투갈 상인들이 "배의 화물이 물에 젖어서 잠깐 말리고 싶다"는 구실로 명나라 군인과 관리에게 막대한 금과 뇌물을 건네며 마카오 반도에 발을 들였어. 이게 마카오 도시의 실질적 시초야. 해적 퇴치 공로를 인정받았다는 이야기는 18세기 포르투갈이 만들어낸 창작이라는 것이 학계의 정설이야.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">마카오 상륙</span>
+          <span class="tl-tag">명나라 뇌물 거래</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tl-list -->
+
+  <div class="highlight-box">
+    <div class="highlight-label">📌 마카오 이름의 유래</div>
+    <p>
+      포르투갈인들이 현지인에게 지명을 물었더니, 현지인은 근처 사당 이름인 <strong>'아마각(阿媽閣)'</strong>을 알려줬어. 이게 포르투갈식으로 와전되어 <strong>'아마카오(Amacao)'</strong>가 됐고, 나중에 <strong>마카오(Macau·澳門)</strong>로 굳어졌어.
+    </p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- ERA 2: 포르투갈 정착 (1557~1849) -->
+<!-- ════════════════════════════════════════ -->
+<section class="era-section era-portuguese" id="era2">
+  <div class="era-header">
+    <div class="era-label">Era 02</div>
+    <div class="era-title">포르투갈 정착<br>— 동서 무역의 허브</div>
+    <div class="era-accent-line"></div>
+  </div>
+
+  <div class="tl-list">
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1557년</div>
+        <div class="tl-summary">명나라, 포르투갈에 마카오 거류권 허가</div>
+        <div class="tl-detail">
+          명나라가 포르투갈에 마카오 반도의 <strong>영구 거류권</strong>을 공식 인정했어. 단, 이때 포르투갈이 얻은 건 거류권이지 영토 주권이 아니었어. 마카오의 주권은 여전히 명나라(이후 청나라)에 있었어. 포르투갈은 해마다 명나라에 <strong>지대(地代)</strong>를 내야 했어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">거류권 확보</span>
+          <span class="tl-tag">주권은 명나라</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1557~1840년대</div>
+        <div class="tl-summary">마카오, 동서 무역의 유일한 창구</div>
+        <div class="tl-detail">
+          마카오는 약 300년 동안 <strong>유럽과 아시아를 잇는 유일한 공식 무역 창구</strong>였어. 포르투갈은 마카오를 통해 중국의 비단·도자기·차를 유럽에 팔고, 유럽의 은을 중국에 가져왔어. 마카오-나가사키-인도-유럽을 잇는 국제 무역 루트의 핵심이었어. 이 시기 마카오는 아시아에서 가장 번성한 항구 도시 중 하나였어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">동서 무역 허브</span>
+          <span class="tl-tag">비단·도자기·은</span>
+          <span class="tl-tag">나가사키 루트</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1583년</div>
+        <div class="tl-summary">마카오, 시(cidade)로 승격 · 의회 설치</div>
+        <div class="tl-detail">
+          마카오가 공식 도시로 승격됐어. 이듬해에는 의회 설치도 승인받았어. 마카오는 포르투갈의 대(對)아시아 무역 거점으로 점점 중요해졌어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">도시 승격</span>
+          <span class="tl-tag">의회 설치</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1841년</div>
+        <div class="tl-summary">영국, 홍콩 점령 → 마카오 무역 쇠퇴 시작</div>
+        <div class="tl-detail">
+          아편전쟁에서 승리한 영국이 홍콩을 식민지로 삼으면서, 마카오의 무역 허브 지위가 흔들리기 시작했어. 홍콩이 더 넓고 깊은 항구를 갖추면서 무역선들이 홍콩으로 이동했고, 마카오는 경제적 위기에 처했어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">영국 홍콩 점령</span>
+          <span class="tl-tag">아편전쟁</span>
+          <span class="tl-tag">무역 쇠퇴</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- ERA 3: 식민지 시대 (1849~1966) -->
+<!-- ════════════════════════════════════════ -->
+<section class="era-section era-colonial" id="era3">
+  <div class="era-header">
+    <div class="era-label">Era 03</div>
+    <div class="era-title">포르투갈 식민지 시대<br>— 공식 식민지화</div>
+    <div class="era-accent-line"></div>
+  </div>
+
+  <div class="tl-list">
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1849년</div>
+        <div class="tl-summary">포르투갈, 지대 납부 거부 · 행정권 탈취</div>
+        <div class="tl-detail">
+          포르투갈 총독 아마랄(J.M.F. Do Amaral)이 청나라에 내던 지대(地代) 납부를 일방적으로 거부하고, 중국인 관리들을 쫓아내며 마카오의 실질적 행정권을 빼앗았어. 같은 해 8월 아마랄 총독이 암살됐지만, 포르투갈의 지배는 계속됐어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">사실상 식민지화 시작</span>
+          <span class="tl-tag">아마랄 총독 암살</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1851 · 1864년</div>
+        <div class="tl-summary">타이파·콜로안 섬 강제 점거</div>
+        <div class="tl-detail">
+          포르투갈이 원래 마카오 범위에 포함되지 않던 무인도인 <strong>타이파(氹仔)</strong>와 <strong>콜로안(路環)</strong>을 차례로 강제 점거했어. 이로써 현재 마카오의 영토 구성이 거의 완성됐어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">타이파 점거 (1851)</span>
+          <span class="tl-tag">콜로안 점거 (1864)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1887년</div>
+        <div class="tl-summary">베이징 조약 · 공식 포르투갈 식민지 확정</div>
+        <div class="tl-detail">
+          포르투갈과 청나라가 <strong>베이징 조약(리스본 의정서)</strong>을 체결했어. 청나라는 마카오와 부속 지역을 영구히 포르투갈이 점유·지배하는 것에 동의했어. 이 시점부터 마카오가 공식적인 포르투갈 식민지가 됐어. 조건은 마카오를 제3국에 양도하지 않겠다는 것이었어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">공식 식민지화 확정</span>
+          <span class="tl-tag">베이징 조약</span>
+          <span class="tl-tag">청나라 동의</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1930년대~1945년</div>
+        <div class="tl-summary">2차 세계대전 · 마카오는 중립 유지</div>
+        <div class="tl-detail">
+          일본이 아시아 각국을 점령하는 동안에도 마카오는 <strong>중립</strong>을 유지했어. 포르투갈이 중립국이었기 때문이야. 전쟁 피난민들이 마카오로 몰려들었고, 당시 마카오 인구가 급격히 늘었어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">포르투갈 중립국</span>
+          <span class="tl-tag">피난민 급증</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1966년</div>
+        <div class="tl-summary">1·2·3 사건 · 중국 영향력 강해지다</div>
+        <div class="tl-detail">
+          마카오에서 포르투갈 식민 당국과 친중 주민 사이에 대규모 충돌이 일어났어. 이를 <strong>'1·2·3 사건'</strong>이라 불러. 이후 포르투갈은 중화인민공화국의 영향력을 강하게 받기 시작했어. 사실상 마카오 반환 논의의 씨앗이 된 사건이야.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">1·2·3 사건</span>
+          <span class="tl-tag">친중 세력 부상</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- ERA 4: 근현대 (1974~1986) -->
+<!-- ════════════════════════════════════════ -->
+<section class="era-section era-modern" id="era4">
+  <div class="era-header">
+    <div class="era-label">Era 04</div>
+    <div class="era-title">근현대<br>— 카네이션 혁명과 전환기</div>
+    <div class="era-accent-line"></div>
+  </div>
+
+  <div class="tl-list">
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1974년</div>
+        <div class="tl-summary">포르투갈 카네이션 혁명 · 해외 식민지 포기 선언</div>
+        <div class="tl-detail">
+          포르투갈 본국에서 군부 쿠데타(카네이션 혁명)가 일어났어. 새 정부는 모든 해외 식민지를 포기하겠다고 선언했어. 포르투갈은 중국 측에 마카오 반환을 먼저 제의했지만, 중국은 시기상조라며 거절했어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">식민지 포기 선언</span>
+          <span class="tl-tag">카네이션 혁명</span>
+          <span class="tl-tag">중국, 반환 거절</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1979년</div>
+        <div class="tl-summary">포르투갈-중국, 공식 외교 관계 수립</div>
+        <div class="tl-detail">
+          포르투갈과 중화인민공화국이 공식적으로 외교 관계를 맺었어. 마카오 반환 협상의 공식 채널이 열린 거야.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">외교 수립</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- ERA 5: 반환 협상 (1986~1999) -->
+<!-- ════════════════════════════════════════ -->
+<section class="era-section era-handover" id="era5">
+  <div class="era-header">
+    <div class="era-label">Era 05</div>
+    <div class="era-title">반환 협상<br>— 일국양제 합의</div>
+    <div class="era-accent-line"></div>
+  </div>
+
+  <div class="tl-list">
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1986년</div>
+        <div class="tl-summary">중-포 반환 협상 공식 시작</div>
+        <div class="tl-detail">
+          중화인민공화국과 포르투갈이 마카오 반환을 위한 공식 협상을 시작했어. 1984년 영국-중국의 홍콩 반환 협상 타결이 큰 영향을 미쳤어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">반환 협상 개시</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1987년</div>
+        <div class="tl-summary">반환 협정 체결 · 1999년 12월 20일 반환 확정</div>
+        <div class="tl-detail">
+          중화인민공화국과 포르투갈이 정식 협정을 체결했어. <strong>1999년 12월 20일</strong>을 반환 날짜로 확정했고, 반환 후 50년간 <strong>일국양제(一國兩制)</strong>를 적용하기로 합의했어. 마카오는 별도의 법과 제도를 유지할 수 있게 됐어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">반환 협정 체결</span>
+          <span class="tl-tag">일국양제 합의</span>
+          <span class="tl-tag">50년 보장</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1993년</div>
+        <div class="tl-summary">마카오 특별행정구 기본법 채택</div>
+        <div class="tl-detail">
+          중화인민공화국 전국인민대표대회(全人代)에서 <strong>마카오 특별행정구 기본법</strong>이 공식 채택됐어. 반환 이후 마카오를 어떻게 운영할지 그 틀이 만들어진 거야.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">기본법 채택</span>
+          <span class="tl-tag">전국인민대표대회</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="highlight-box">
+    <div class="highlight-label">✦ 일국양제(一國兩制)란?</div>
+    <p>
+      "한 나라, 두 체제"라는 뜻이야. 중국에 속하지만 마카오는 독자적인 법률·경제·사법·행정 체계를 유지해. 반환 후 50년, 즉 <strong>2049년까지</strong> 이 체제가 보장돼. 홍콩도 같은 원칙이 적용돼.
+    </p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- ERA 6: 반환 이후 (1999~현재) -->
+<!-- ════════════════════════════════════════ -->
+<section class="era-section era-sar" id="era6">
+  <div class="era-header">
+    <div class="era-label">Era 06</div>
+    <div class="era-title">마카오 특별행정구<br>— 반환 이후 현재까지</div>
+    <div class="era-accent-line"></div>
+  </div>
+
+  <div class="tl-list">
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">1999년 12월 20일</div>
+        <div class="tl-summary">마카오 반환 · 중국 특별행정구 출범</div>
+        <div class="tl-detail">
+          1999년 12월 19일 밤 11시 35분부터 12월 20일 새벽 0시 16분 사이, 마카오 외항 문화센터 광장에서 주권 이양식이 거행됐어. 세계 60개국 귀빈 2,500여 명이 지켜봤어. 중국 국가주석 <strong>장쩌민</strong>이 직접 참석했고, 초대 행정장관으로 <strong>에드먼드 호(何厚鏵)</strong>가 취임했어. 이로써 마카오는 442년의 포르투갈 인연을 마무리하고 <strong>마카오 특별행정구(澳門特別行政區)</strong>로 새 출발했어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">주권 이양</span>
+          <span class="tl-tag">장쩌민 참석</span>
+          <span class="tl-tag">에드먼드 호 초대 장관</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">2002년</div>
+        <div class="tl-summary">카지노 자유화 · 6개 사업자 면허 발급</div>
+        <div class="tl-detail">
+          마카오 정부가 수십 년간 유지하던 카지노 독점 체제를 폐지하고, 경쟁 체제로 전환했어. 스탠리 호의 SJM, 갤럭시, 샌즈, 윈, MGM, 멜코 등 6개 사업자에게 면허가 발급됐어. 이때부터 마카오의 카지노 산업이 폭발적으로 성장했어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">카지노 자유화</span>
+          <span class="tl-tag">6개 면허 발급</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">2005년</div>
+        <div class="tl-summary">마카오 역사 지구 · UNESCO 세계문화유산 등재</div>
+        <div class="tl-detail">
+          성 바오로 성당 유적, 세나도 광장, 몬테 요새 등 마카오 역사 지구 30곳이 <strong>유네스코 세계문화유산</strong>으로 등재됐어. 400년이 넘는 동서양 문화 융합의 흔적을 세계가 공식 인정한 거야.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">UNESCO 세계문화유산</span>
+          <span class="tl-tag">역사 지구 30곳</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">2019년</div>
+        <div class="tl-summary">방문객 3,940만 명 · 사상 최대 기록</div>
+        <div class="tl-detail">
+          마카오를 찾은 방문객 수가 <strong>약 3,940만 명</strong>으로 사상 최대를 기록했어. 이후 코로나19로 인해 관광 산업이 큰 타격을 입었어.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">방문객 3,940만 명</span>
+          <span class="tl-tag">사상 최대 기록</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">2022년</div>
+        <div class="tl-summary">카지노 면허 재계약 · 비게임 투자 의무화</div>
+        <div class="tl-detail">
+          마카오 정부가 6개 카지노 사업자의 면허를 10년 갱신하면서, 비(非)카지노 관광 시설에 대한 대규모 투자를 의무화했어. 카지노 의존도를 낮추고 관광·문화·컨벤션 산업으로 다각화하기 위한 정책이야.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">면허 갱신</span>
+          <span class="tl-tag">비게임 투자 의무</span>
+          <span class="tl-tag">10년 갱신</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-card-inner">
+        <div class="tl-year-badge">2025년</div>
+        <div class="tl-summary">방문객 4,007만 명 · 2019년 기록 경신</div>
+        <div class="tl-detail">
+          2025년 한 해 마카오 방문객 수가 약 <strong>4,007만 명</strong>으로, 전년 대비 +14.7% 증가하며 2019년 사상 최대 기록을 경신했어. 마카오 관광 산업이 코로나 이전 수준을 완전히 회복하고 새 역사를 쓴 거야.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag gold">방문객 사상 최대 경신</span>
+          <span class="tl-tag">4,007만 명</span>
+          <span class="tl-tag">+14.7% YoY</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="highlight-box">
+    <div class="highlight-label">✦ 마카오의 현재 위상</div>
+    <p>
+      마카오는 전 세계 카지노 매출에서 <strong>라스베이거스를 넘어 세계 1위 도시</strong>야. 동시에 유네스코 세계문화유산과 미슐랭 스타 레스토랑이 공존하는 도시야. 동양과 서양, 전통과 현대가 한 공간에 살아있어.
+    </p>
+  </div>
+</section>
+
+
+<!-- ────────────── FOOTER ────────────── -->
+<footer>
+  <div class="footer-logo">✦ Macau Moment ✦</div>
+  <div class="footer-legal">
+    본 콘텐츠는 공식적으로 확인된 정보를 사실에 기반하여 제작되었으며
+    <strong>Irene이 직접 만든 소중한 자료입니다.</strong>
+    무단 복제 및 배포를 금합니다.
+  </div>
+</footer>
+
+<!-- 스크롤 탑 버튼 -->
+<button class="scroll-top" id="scrollBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollBtn');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 300);
+  }, { passive: true });
+</script>
+
+</body>
+</html>
