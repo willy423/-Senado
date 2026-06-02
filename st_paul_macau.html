@@ -31,6 +31,8 @@
     font-family: 'Noto Serif KR', serif;
     line-height: 1.85;
     overflow-x: hidden;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   /* ── HERO ── */
@@ -327,6 +329,8 @@
     transition: all 0.35s;
     position: relative;
     overflow: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .card::before {
@@ -380,6 +384,8 @@
     border-radius: 4px;
     background: rgba(201,168,76,0.03);
     transition: border-color 0.3s;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .facade-tier:hover {
@@ -435,6 +441,7 @@
     margin: 4px 4px 4px 0;
     letter-spacing: 0.05em;
     font-family: 'Noto Sans KR', sans-serif;
+    white-space: nowrap;
   }
 
   /* ── SAINT CARDS ── */
@@ -452,6 +459,10 @@
     padding: 32px 26px;
     position: relative;
     transition: all 0.35s;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    word-break: keep-all;
   }
 
   .saint-card:hover {
@@ -816,31 +827,110 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
-    .symbol-item { grid-template-columns: 1fr; gap: 8px; }
-    .facade-tier { flex-direction: column; gap: 14px; }
-    .tier-number { font-size: 2rem; }
-    .info-row { flex-direction: column; gap: 4px; }
-    .info-label { min-width: unset; }
 
+    /* 전체 레이아웃 고정 */
+    html, body { overflow-x: hidden; width: 100%; }
+
+    /* wrapper 패딩 축소 */
+    .wrapper { padding: 0 16px; }
+
+    /* 섹션 패딩 축소 */
+    section { padding: 56px 0; }
+
+    /* 헤더 */
     .hamburger { display: flex; }
-
-    .nav-inner { height: auto; min-height: 58px; padding: 10px 0; align-items: center; }
-
+    .nav { padding: 0 16px; }
+    .nav-inner { height: auto; min-height: 54px; padding: 8px 0; align-items: center; flex-wrap: wrap; }
+    .nav-logo { font-size: 0.78rem; }
     .nav-links {
       display: none;
       flex-direction: column;
       width: 100%;
       gap: 0;
-      padding: 8px 0 16px;
+      padding: 6px 0 12px;
     }
     .nav-links.open { display: flex; }
     .nav-links a {
-      padding: 12px 16px;
-      font-size: 0.9rem;
+      padding: 11px 14px;
+      font-size: 0.88rem;
       border-bottom: 1px solid rgba(201,168,76,0.08);
       border-radius: 0;
     }
     .nav-links a:last-child { border-bottom: none; }
+
+    /* 섹션 제목 */
+    .section-title { font-size: 1.35rem; margin-bottom: 28px; }
+    .lead { font-size: 0.95rem; line-height: 1.85; }
+    p { font-size: 0.88rem; }
+
+    /* 파사드 티어 */
+    .facade-tier {
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .tier-number { font-size: 1.8rem; min-width: unset; }
+    .tier-title { font-size: 0.95rem; }
+    .tier-subtitle { font-size: 0.72rem; }
+    .tier-body { font-size: 0.83rem; line-height: 1.8; }
+    .tier-tag { font-size: 0.68rem; padding: 2px 8px; }
+
+    /* 카드 그리드 */
+    .card-grid { grid-template-columns: 1fr; gap: 14px; }
+    .card { padding: 20px 16px; }
+    .card-title { font-size: 0.85rem; }
+    .card-body { font-size: 0.83rem; }
+
+    /* 성인 카드 */
+    .saint-grid { grid-template-columns: 1fr; gap: 18px; }
+    .saint-card { padding: 24px 18px; }
+    .saint-name-ko { font-size: 1rem; }
+    .saint-num { font-size: 2.2rem; }
+    .saint-desc { font-size: 0.83rem; }
+
+    /* 상징물 목록 */
+    .symbol-item {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 18px 0;
+    }
+    .symbol-name { font-size: 0.88rem; }
+    .symbol-desc { font-size: 0.83rem; }
+
+    /* 계단 그리드 */
+    .stairs-grid { grid-template-columns: 1fr; gap: 14px; }
+    .stair-item { padding: 18px 16px; }
+    .stair-title { font-size: 0.88rem; }
+    .stair-desc { font-size: 0.82rem; }
+
+    /* info box */
+    .info-box { padding: 20px 16px; }
+    .info-row { flex-direction: column; gap: 3px; margin-bottom: 10px; }
+    .info-label { min-width: unset; font-size: 0.78rem; }
+    .info-value { font-size: 0.83rem; }
+
+    /* quote box */
+    .quote-box { padding: 16px 18px 16px 22px; }
+    .quote-text { font-size: 0.88rem; line-height: 1.85; }
+
+    /* legend box */
+    .legend-box { padding: 24px 16px 20px; }
+
+    /* UNESCO badge */
+    .unesco-badge { padding: 10px 14px; }
+    .unesco-badge span:last-child { font-size: 0.78rem; }
+
+    /* hero */
+    .hero { padding: 60px 20px; }
+    .hero-desc { font-size: 0.92rem; line-height: 1.85; }
+    .hero-desc br { display: none; }
+
+    /* footer */
+    footer { padding: 44px 20px 36px; }
+    .footer-legal { padding: 12px 18px; font-size: 0.78rem; }
+    .footer-copy { font-size: 0.75rem; }
   }
 </style>
 </head>
