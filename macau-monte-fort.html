@@ -28,44 +28,93 @@
     }
 
     /* ── NAV ── */
+    /* ── NAV WRAPPER ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(26,18,8,0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(201,168,76,0.2);
+      background: rgba(26,18,8,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.18);
     }
-    .nav-inner {
+
+    /* 상단 로고 바 */
+    .nav-top {
       max-width: 860px;
       margin: 0 auto;
       padding: 0 16px;
-      height: 50px;
+      height: 42px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
     }
     .nav-title {
       font-family: 'Cinzel', serif;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--gold);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.18em;
       white-space: nowrap;
     }
-    .nav-links {
-      display: flex;
-      gap: 16px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.68rem;
-      color: var(--stone-light);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    @media (max-width: 480px) { .nav-links { display: none; } }
 
-    /* ── HERO ── */
+    /* 탭 카테고리 바 */
+    .nav-tabs {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+
+    .nav-tab {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 10px 8px;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, background 0.2s;
+      white-space: nowrap;
+      position: relative;
+    }
+    .nav-tab:hover {
+      background: rgba(201,168,76,0.06);
+      border-bottom-color: rgba(201,168,76,0.4);
+    }
+    .nav-tab.active {
+      border-bottom-color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+    .nav-tab-icon {
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+    .nav-tab-label {
+      font-size: 0.62rem;
+      color: var(--stone-light);
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-tab:hover .nav-tab-label,
+    .nav-tab.active .nav-tab-label {
+      color: var(--gold-light);
+    }
+
+    /* 모바일에서 탭 글씨 더 작게 */
+    @media (max-width: 400px) {
+      .nav-tab-label { font-size: 0.55rem; }
+      .nav-tab { padding: 9px 6px; }
+      .nav-tab-icon { font-size: 0.85rem; }
+    }
+
+    /* ── HERO padding-top: nav(42px 로고 + ~52px 탭) = 약 94px ── */
+    .hero { padding-top: 114px; }
     .hero {
       min-height: 100vh;
       display: flex;
@@ -597,15 +646,32 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-inner">
-    <span class="nav-title">大炮台 · Monte Fort</span>
-    <ul class="nav-links">
-      <li><a href="#overview">기본정보</a></li>
-      <li><a href="#history">역사</a></li>
-      <li><a href="#architecture">건축</a></li>
-      <li><a href="#cannon">대포</a></li>
-      <li><a href="#story">스토리</a></li>
-    </ul>
+  <!-- 로고 바 -->
+  <div class="nav-top">
+    <span class="nav-title">大炮台 · Monte Fort · 마카오 몬테 요새</span>
+  </div>
+  <!-- 탭 카테고리 바 -->
+  <div class="nav-tabs" id="navTabs">
+    <a class="nav-tab active" href="#overview" data-section="overview">
+      <span class="nav-tab-icon">📋</span>
+      <span class="nav-tab-label">기본 정보</span>
+    </a>
+    <a class="nav-tab" href="#history" data-section="history">
+      <span class="nav-tab-icon">⚔️</span>
+      <span class="nav-tab-label">역사</span>
+    </a>
+    <a class="nav-tab" href="#architecture" data-section="architecture">
+      <span class="nav-tab-icon">🏛️</span>
+      <span class="nav-tab-label">건축</span>
+    </a>
+    <a class="nav-tab" href="#cannon" data-section="cannon">
+      <span class="nav-tab-icon">🔫</span>
+      <span class="nav-tab-label">대포의 진실</span>
+    </a>
+    <a class="nav-tab" href="#story" data-section="story">
+      <span class="nav-tab-icon">📖</span>
+      <span class="nav-tab-label">스토리텔링</span>
+    </a>
   </div>
 </nav>
 
@@ -962,5 +1028,49 @@
   <p class="footer-warn">ⓒ Irene이 직접 만든 소중한 자료입니다. 무단 복제 및 배포를 금합니다.</p>
 </footer>
 
+<script>
+  // 스크롤 위치에 따라 활성 탭 자동 변경
+  const sections = ['overview','history','architecture','cannon','story'];
+  const tabs = document.querySelectorAll('.nav-tab');
+
+  function setActive(id) {
+    tabs.forEach(t => {
+      if (t.dataset.section === id) {
+        t.classList.add('active');
+      } else {
+        t.classList.remove('active');
+      }
+    });
+  }
+
+  // nav 전체 높이 계산 (로고 바 + 탭 바)
+  function navHeight() {
+    return document.querySelector('nav').offsetHeight;
+  }
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY + navHeight() + 20;
+    let current = sections[0];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) current = id;
+    });
+    setActive(current);
+  }, { passive: true });
+
+  // 탭 클릭 시 부드러운 스크롤 + 오프셋 보정
+  tabs.forEach(tab => {
+    tab.addEventListener('click', e => {
+      e.preventDefault();
+      const id = tab.dataset.section;
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - navHeight() - 10;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+      setActive(id);
+    });
+  });
+</script>
 </body>
 </html>
