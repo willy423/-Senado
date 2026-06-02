@@ -414,6 +414,84 @@ footer {
   margin-top: 10px;
   line-height: 1.7;
 }
+
+/* ── TAB SYSTEM ── */
+.tab-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--dark2);
+  border-bottom: 1px solid #2a2000;
+  padding: 0 0 0 0;
+}
+.tab-scroll {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 0;
+}
+.tab-scroll::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: color 0.2s, border-color 0.2s;
+  font-family: 'Noto Sans KR', sans-serif;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+.tab-btn.active {
+  color: var(--gold);
+  border-bottom: 3px solid var(--gold);
+  background: rgba(201,169,75,0.06);
+}
+.tab-btn:hover { color: var(--gold-light); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* 운영사 헤더 배너 */
+.operator-banner {
+  background: linear-gradient(135deg, rgba(201,169,75,0.12), rgba(201,169,75,0.04));
+  border-bottom: 2px solid var(--gold-dark);
+  padding: 16px 16px 14px;
+  margin-bottom: 0;
+}
+.operator-banner-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 3px;
+}
+.operator-banner-sub {
+  font-size: 11px;
+  color: var(--gray-light);
+  line-height: 1.6;
+}
+.operator-banner-stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.op-stat {
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 11px;
+  color: var(--gray-light);
+}
+.op-stat strong { color: var(--gold); }
+
 </style>
 </head>
 <body>
@@ -433,6 +511,21 @@ footer {
   </div>
 </div>
 
+
+<!-- ══ TAB NAVIGATION ══ -->
+<div class="tab-wrap">
+  <div class="tab-scroll">
+    <button class="tab-btn active" onclick="showTab('all')">전체 요약</button>
+    <button class="tab-btn" onclick="showTab('lvs')">LVS</button>
+    <button class="tab-btn" onclick="showTab('galaxy')">Galaxy</button>
+    <button class="tab-btn" onclick="showTab('melco')">Melco</button>
+    <button class="tab-btn" onclick="showTab('sjm')">SJM</button>
+    <button class="tab-btn" onclick="showTab('wynn')">Wynn</button>
+    <button class="tab-btn" onclick="showTab('mgm')">MGM</button>
+  </div>
+</div>
+
+<div class="tab-panel active" id="panel-all">
 <!-- ══ SECTION 1: 범례 & 총합 요약 ══ -->
 <div class="sec">
   <div class="sec-label">Section 01</div>
@@ -481,6 +574,19 @@ footer {
   </div>
 </div>
 
+</div><!-- /panel-all -->
+
+<!-- ══ LVS PANEL ══ -->
+<div class="tab-panel" id="panel-lvs">
+<div class="operator-banner">
+  <div class="operator-banner-name">Las Vegas Sands (LVS)</div>
+  <div class="operator-banner-sub">샌즈 차이나(Sands China) 운영 · 코타이 스트립 최다 리조트 보유 운영사</div>
+  <div class="operator-banner-stats">
+    <span class="op-stat">리조트 <strong>4개</strong></span>
+    <span class="op-stat">총 객실 <strong>약 11,075개+</strong></span>
+    <span class="op-stat">누적 건설비 <strong>약 121.5억 달러+</strong></span>
+  </div>
+</div>
 <!-- ══ SECTION 2: 베네시안 마카오 ══ -->
 <div class="sec">
   <div class="sec-label">Section 02</div>
@@ -704,6 +810,19 @@ footer {
   <div class="src">출처: Sands China 공식 PRNewswire / Las Vegas Sands 공식 뉴스룸 / SCMP / Macau Daily Times</div>
 </div>
 
+</div><!-- /panel-lvs -->
+
+<!-- ══ GALAXY PANEL ══ -->
+<div class="tab-panel" id="panel-galaxy">
+<div class="operator-banner">
+  <div class="operator-banner-name">Galaxy Entertainment Group (GEG)</div>
+  <div class="operator-banner-sub">코타이 스트립 객실 수 1위 · 누적 건설비 1위 운영사</div>
+  <div class="operator-banner-stats">
+    <span class="op-stat">리조트 <strong>1개</strong></span>
+    <span class="op-stat">총 객실 <strong>약 5,000개</strong></span>
+    <span class="op-stat">누적 건설비 <strong>HKD 880억(추정)</strong></span>
+  </div>
+</div>
 <!-- ══ SECTION 6: 갤럭시 마카오 ══ -->
 <div class="sec">
   <div class="sec-label">Section 06</div>
@@ -775,6 +894,19 @@ footer {
   <div class="src">출처: Galaxy Entertainment Group 공식 발표 / GGRAsia / galaxymacau.com 공식 호텔 목록</div>
 </div>
 
+</div><!-- /panel-galaxy -->
+
+<!-- ══ MELCO PANEL ══ -->
+<div class="tab-panel" id="panel-melco">
+<div class="operator-banner">
+  <div class="operator-banner-name">Melco Resorts & Entertainment</div>
+  <div class="operator-banner-sub">자하 하디드 설계 모르페우스·W 마카오 보유 · 하우스 오브 댄싱 워터 운영사</div>
+  <div class="operator-banner-stats">
+    <span class="op-stat">리조트 <strong>2개</strong></span>
+    <span class="op-stat">총 객실 <strong>약 4,770개</strong></span>
+    <span class="op-stat">누적 건설비 <strong>약 45억 달러 + HKD 180억</strong></span>
+  </div>
+</div>
 <!-- ══ SECTION 7: 스튜디오 시티 ══ -->
 <div class="sec">
   <div class="sec-label">Section 07</div>
@@ -876,6 +1008,19 @@ footer {
   <div class="src">출처: WT Partnership Asia 공식 프로젝트 시트 / Melco 공식 웹사이트</div>
 </div>
 
+</div><!-- /panel-melco -->
+
+<!-- ══ SJM PANEL ══ -->
+<div class="tab-panel" id="panel-sjm">
+<div class="operator-banner">
+  <div class="operator-banner-name">SJM Holdings</div>
+  <div class="operator-banner-sub">마카오 도박왕 스탠리 호 창립 · 코타이 스트립 마지막 입성 운영사</div>
+  <div class="operator-banner-stats">
+    <span class="op-stat">리조트 <strong>1개</strong></span>
+    <span class="op-stat">총 객실 <strong>1,892개</strong></span>
+    <span class="op-stat">건설비 <strong>HKD 390억</strong></span>
+  </div>
+</div>
 <!-- ══ SECTION 9: 그랜드 리스보아 팰리스 ══ -->
 <div class="sec">
   <div class="sec-label">Section 09</div>
@@ -924,6 +1069,19 @@ footer {
   <div class="src">출처: SJM Holdings 공식 발표 / GGRAsia / Macau Business</div>
 </div>
 
+</div><!-- /panel-sjm -->
+
+<!-- ══ WYNN PANEL ══ -->
+<div class="tab-panel" id="panel-wynn">
+<div class="operator-banner">
+  <div class="operator-banner-name">Wynn Resorts</div>
+  <div class="operator-banner-sub">코타이 단일 프로젝트 최고 건설 비용 · 2026년 1분기 점유율 99.1%</div>
+  <div class="operator-banner-stats">
+    <span class="op-stat">리조트 <strong>1개</strong></span>
+    <span class="op-stat">총 객실 <strong>1,706개</strong></span>
+    <span class="op-stat">건설비 <strong>42억 달러</strong></span>
+  </div>
+</div>
 <!-- ══ SECTION 10: 윈 팰리스 ══ -->
 <div class="sec">
   <div class="sec-label">Section 10</div>
@@ -970,6 +1128,19 @@ footer {
   <div class="src">출처: WT Partnership Asia 공식 수량조사 / South China Morning Post / GGRAsia</div>
 </div>
 
+</div><!-- /panel-wynn -->
+
+<!-- ══ MGM PANEL ══ -->
+<div class="tab-panel" id="panel-mgm">
+<div class="operator-banner">
+  <div class="operator-banner-name">MGM China</div>
+  <div class="operator-banner-sub">MGM Resorts International 계열 · SEC 10-K 공시 기준 건설비 확인</div>
+  <div class="operator-banner-stats">
+    <span class="op-stat">리조트 <strong>1개</strong></span>
+    <span class="op-stat">총 객실 <strong>약 1,400개</strong></span>
+    <span class="op-stat">건설비 <strong>34억 달러</strong></span>
+  </div>
+</div>
 <!-- ══ SECTION 11: MGM 코타이 ══ -->
 <div class="sec">
   <div class="sec-label">Section 11</div>
@@ -1189,6 +1360,8 @@ footer {
   </div>
 </div>
 
+</div><!-- /panel-mgm -->
+
 <!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-logo">MACAU MOMENT</div>
@@ -1208,6 +1381,23 @@ footer {
     환율 기준: USD 1=1,404원 / HKD 1=180원 · 2026년 6월 기준
   </div>
 </footer>
+
+
+<script>
+function showTab(id) {
+  // 모든 패널 숨김
+  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  // 모든 버튼 비활성화
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  // 선택 패널 표시
+  var panel = document.getElementById('panel-' + id);
+  if(panel) panel.classList.add('active');
+  // 선택 버튼 활성화
+  event.currentTarget.classList.add('active');
+  // 탭 상단으로 스크롤
+  document.querySelector('.tab-wrap').scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+</script>
 
 </body>
 </html>
