@@ -1,1023 +1,1024 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>인자당 (仁慈堂) — 마카오의 심장</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --cream:   #f5f0e8;
-      --parchment: #ede5d0;
-      --ink:     #1a1208;
-      --sepia:   #7b5e38;
-      --gold:    #c4943a;
-      --rust:    #9b3a1a;
-      --blue:    #2c4a7c;
-      --sage:    #4a6741;
-      --border:  #c9b88a;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--cream);
-      color: var(--ink);
-      font-family: 'Noto Serif KR', Georgia, serif;
-      font-size: 16px;
-      line-height: 1.9;
-      background-image:
-        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b8a87a' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow: hidden;
-      padding: 3rem 2rem;
-      border-bottom: 3px double var(--border);
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(196,148,58,0.13) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(44,74,124,0.08) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .hero-year {
-      font-family: 'IM Fell English', serif;
-      font-size: clamp(5rem, 18vw, 14rem);
-      font-weight: 400;
-      color: var(--gold);
-      opacity: 0.18;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      white-space: nowrap;
-      pointer-events: none;
-      letter-spacing: -0.02em;
-      user-select: none;
-    }
-
-    .hero-badge {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: 0.9rem;
-      color: var(--sepia);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-      opacity: 0.8;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 5rem);
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.1;
-      margin-bottom: 0.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero h1 .hanja {
-      display: block;
-      font-size: clamp(1.2rem, 3vw, 2rem);
-      font-weight: 400;
-      color: var(--sepia);
-      letter-spacing: 0.3em;
-      margin-top: 0.3rem;
-    }
-
-    .hero h1 .latin {
-      display: block;
-      font-size: clamp(0.85rem, 1.8vw, 1.1rem);
-      font-style: italic;
-      font-weight: 400;
-      color: var(--blue);
-      letter-spacing: 0.08em;
-      margin-top: 0.5rem;
-    }
-
-    .hero-divider {
-      width: 80px;
-      height: 1px;
-      background: var(--gold);
-      margin: 1.8rem auto;
-      position: relative;
-    }
-
-    .hero-divider::before, .hero-divider::after {
-      content: '✦';
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--gold);
-      font-size: 0.7rem;
-    }
-
-    .hero-divider::before { left: -18px; }
-    .hero-divider::after  { right: -18px; }
-
-    .hero-sub {
-      font-size: clamp(0.95rem, 2vw, 1.15rem);
-      color: var(--sepia);
-      max-width: 540px;
-      font-style: italic;
-      position: relative;
-      z-index: 1;
-      line-height: 2;
-    }
-
-    .hero-tags {
-      display: flex;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 2rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .tag {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: 0.78rem;
-      padding: 0.3rem 0.9rem;
-      border: 1px solid var(--border);
-      color: var(--sepia);
-      letter-spacing: 0.05em;
-      background: rgba(245,240,232,0.6);
-    }
-
-    /* ── SCROLL INDICATOR ── */
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.72rem;
-      color: var(--sepia);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.6;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      z-index: 1;
-    }
-
-    .scroll-hint .arrow {
-      width: 1px;
-      height: 30px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: dropArrow 1.6s ease-in-out infinite;
-    }
-
-    @keyframes dropArrow {
-      0%, 100% { opacity: 0.4; transform: scaleY(0.7); }
-      50%       { opacity: 1;   transform: scaleY(1); }
-    }
-
-    /* ── LAYOUT ── */
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* ── SECTION BASE ── */
-    section {
-      padding: 5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    section:last-of-type { border-bottom: none; }
-
-    .section-label {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: 0.78rem;
-      color: var(--gold);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      max-width: 80px;
-    }
-
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.7rem, 4vw, 2.6rem);
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.2;
-      margin-bottom: 1.8rem;
-    }
-
-    h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 400;
-      color: var(--rust);
-      margin-bottom: 0.8rem;
-      margin-top: 2rem;
-    }
-
-    p {
-      margin-bottom: 1.2rem;
-      color: #2e2010;
-      max-width: 680px;
-    }
-
-    /* ── FACT BOX ── */
-    .fact-box {
-      background: var(--parchment);
-      border-left: 4px solid var(--gold);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      border-right: 1px solid var(--border);
-      padding: 1.8rem 2rem;
-      margin: 2.5rem 0;
-      position: relative;
-    }
-
-    .fact-box::before {
-      content: attr(data-label);
-      position: absolute;
-      top: -0.65rem;
-      left: 1.5rem;
-      background: var(--parchment);
-      padding: 0 0.5rem;
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: 0.78rem;
-      color: var(--gold);
-      letter-spacing: 0.12em;
-    }
-
-    .fact-grid {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.5rem 1.5rem;
-      font-size: 0.92rem;
-    }
-
-    .fact-key {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      color: var(--sepia);
-      white-space: nowrap;
-      font-size: 0.88rem;
-    }
-
-    .fact-val { color: var(--ink); }
-
-    /* ── MISSION CARDS ── */
-    .mission-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 1.2rem;
-      margin: 2.5rem 0;
-    }
-
-    .mission-card {
-      background: var(--parchment);
-      border: 1px solid var(--border);
-      padding: 1.5rem 1.2rem;
-      position: relative;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .mission-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(123,94,56,0.15);
-    }
-
-    .mission-card .num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--gold);
-      opacity: 0.35;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-
-    .mission-card .title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      color: var(--rust);
-      margin-bottom: 0.5rem;
-    }
-
-    .mission-card p {
-      font-size: 0.85rem;
-      line-height: 1.7;
-      margin: 0;
-      color: var(--sepia);
-    }
-
-    /* ── PULLQUOTE ── */
-    .pullquote {
-      border-top: 2px solid var(--gold);
-      border-bottom: 2px solid var(--gold);
-      padding: 2rem 1.5rem;
-      margin: 3rem 0;
-      text-align: center;
-      position: relative;
-    }
-
-    .pullquote p {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.05rem, 2.5vw, 1.4rem);
-      font-style: italic;
-      color: var(--ink);
-      line-height: 1.6;
-      max-width: 620px;
-      margin: 0 auto;
-    }
-
-    .pullquote .attribution {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: 0.8rem;
-      color: var(--sepia);
-      margin-top: 1rem;
-      letter-spacing: 0.1em;
-    }
-
-    /* ── CITY STRUCTURE ── */
-    .city-pillars {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      margin: 2.5rem 0;
-      border: 1px solid var(--border);
-    }
-
-    .pillar {
-      padding: 2rem 1.2rem;
-      text-align: center;
-      border-right: 1px solid var(--border);
-      position: relative;
-    }
-
-    .pillar:last-child { border-right: none; }
-
-    .pillar-icon {
-      font-size: 1.8rem;
-      margin-bottom: 0.8rem;
-      display: block;
-    }
-
-    .pillar-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      color: var(--rust);
-      margin-bottom: 0.4rem;
-    }
-
-    .pillar-name {
-      font-size: 0.78rem;
-      color: var(--sepia);
-      font-style: italic;
-    }
-
-    /* ── TIMELINE ── */
-    .timeline {
-      position: relative;
-      padding-left: 2rem;
-      margin: 2.5rem 0;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--gold), var(--border));
-    }
-
-    .tl-item {
-      position: relative;
-      padding: 0 0 2rem 1.8rem;
-    }
-
-    .tl-item::before {
-      content: '';
-      position: absolute;
-      left: -4px;
-      top: 0.6rem;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--gold);
-      border: 2px solid var(--cream);
-      box-shadow: 0 0 0 1px var(--gold);
-    }
-
-    .tl-year {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: 0.82rem;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.2rem;
-    }
-
-    .tl-text {
-      font-size: 0.92rem;
-      color: var(--ink);
-      max-width: 600px;
-      margin: 0;
-    }
-
-    /* ── STORYTELLING ── */
-    .story-block {
-      background: linear-gradient(135deg, var(--parchment) 0%, #e8dfc8 100%);
-      border: 1px solid var(--border);
-      padding: 3rem 2.5rem;
-      margin: 2.5rem 0;
-      position: relative;
-    }
-
-    .story-block::before {
-      content: '❝';
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      color: var(--gold);
-      opacity: 0.25;
-      position: absolute;
-      top: 0.5rem;
-      left: 1rem;
-      line-height: 1;
-    }
-
-    .story-block p {
-      font-size: clamp(0.95rem, 2vw, 1.05rem);
-      line-height: 2.1;
-      color: #2a1a08;
-      max-width: 100%;
-      position: relative;
-      z-index: 1;
-    }
-
-    .story-block .lang-tag {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: 0.75rem;
-      color: var(--sepia);
-      letter-spacing: 0.15em;
-      margin-bottom: 1rem;
-      opacity: 0.7;
-    }
-
-    /* ── INFO BANNER ── */
-    .info-banner {
-      background: var(--blue);
-      color: #e8f0f8;
-      padding: 2rem 2.5rem;
-      margin: 2.5rem 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .info-item .label {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: 0.75rem;
-      color: rgba(232,240,248,0.6);
-      letter-spacing: 0.15em;
-      margin-bottom: 0.3rem;
-    }
-
-    .info-item .value {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.95rem;
-      color: #e8f0f8;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--ink);
-      color: rgba(245,240,232,0.5);
-      text-align: center;
-      padding: 3rem 2rem;
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
-      line-height: 2;
-    }
-
-    footer .footer-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: var(--gold);
-      margin-bottom: 0.8rem;
-      letter-spacing: 0.05em;
-    }
-
-    footer a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-
-    /* ── HIGHLIGHT TEXT ── */
-    .hl-gold { color: var(--gold); font-weight: 600; }
-    .hl-rust { color: var(--rust); }
-    .hl-blue { color: var(--blue); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      .city-pillars { grid-template-columns: 1fr; }
-      .pillar { border-right: none; border-bottom: 1px solid var(--border); }
-      .pillar:last-child { border-bottom: none; }
-      .fact-grid { grid-template-columns: 1fr; gap: 0.3rem; }
-      .fact-key { font-size: 0.8rem; color: var(--gold); }
-      .story-block { padding: 2rem 1.5rem; }
-    }
-
-    /* ── FADE-IN ANIMATION ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>인자당 (仁慈堂)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #f5f0e8;
+  color: #1a1208;
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ── 공통 컨테이너 ── */
+.wrap {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ════════════════════════════
+   TOP NAV (고정 상단 카테고리)
+════════════════════════════ */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(26,18,8,0.97);
+  border-bottom: 1px solid rgba(196,148,58,0.35);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.top-nav::-webkit-scrollbar { display: none; }
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 12px;
+  min-width: max-content;
+}
+
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+  flex-shrink: 0;
+}
+.nav-btn:hover,
+.nav-btn.active {
+  border-bottom-color: #c4943a;
+}
+
+.nav-icon { font-size: 16px; line-height: 1; }
+
+.nav-text {
+  font-size: 10px;
+  color: rgba(245,240,232,0.6);
+  white-space: nowrap;
+  font-weight: 500;
+}
+.nav-btn.active .nav-text,
+.nav-btn:hover .nav-text {
+  color: #c4943a;
+}
+
+/* 네비 공간 확보 */
+.nav-spacer { height: 58px; }
+
+/* ════════════════════════════
+   HERO
+════════════════════════════ */
+.hero {
+  background: #1a1208;
+  text-align: center;
+  padding: 56px 20px 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-num {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 130px;
+  font-weight: 900;
+  color: #c4943a;
+  opacity: 0.08;
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: -4px;
+}
+
+.hero-top {
+  font-size: 11px;
+  color: rgba(196,148,58,0.8);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title-kr {
+  font-size: 52px;
+  font-weight: 900;
+  color: #f5f0e8;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title-hanja {
+  font-size: 20px;
+  color: #c4943a;
+  margin-top: 10px;
+  letter-spacing: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title-latin {
+  font-size: 12px;
+  color: rgba(245,240,232,0.5);
+  margin-top: 8px;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+  line-height: 1.6;
+}
+
+.hero-line {
+  width: 40px;
+  height: 1px;
+  background: #c4943a;
+  margin: 24px auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-desc {
+  font-size: 15px;
+  color: rgba(245,240,232,0.75);
+  line-height: 1.9;
+  position: relative;
+  z-index: 1;
+  word-break: keep-all;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.tag {
+  font-size: 11px;
+  padding: 5px 12px;
+  border: 1px solid rgba(196,148,58,0.5);
+  color: rgba(196,148,58,0.9);
+  border-radius: 2px;
+}
+
+/* ════════════════════════════
+   섹션 공통
+════════════════════════════ */
+.section {
+  padding: 44px 0;
+  border-bottom: 1px solid #d4c5a0;
+  scroll-margin-top: 58px; /* 고정 nav 높이만큼 오프셋 */
+}
+.section:last-of-type { border-bottom: none; }
+
+/* 섹션 카테고리 뱃지 */
+.cat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #1a1208;
+  color: #c4943a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 5px 12px;
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+.cat-badge .badge-icon { font-size: 13px; }
+
+.sec-label {
+  font-size: 11px;
+  color: #c4943a;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sec-label::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: #c9b88a;
+}
+
+.sec-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1a1208;
+  line-height: 1.35;
+  margin-bottom: 16px;
+  word-break: keep-all;
+}
+
+.sec-body {
+  font-size: 15px;
+  color: #2e2010;
+  line-height: 1.9;
+  margin-bottom: 12px;
+  word-break: keep-all;
+}
+
+.hl-gold { color: #c4943a; font-weight: 700; }
+.hl-rust  { color: #9b3a1a; font-weight: 700; }
+.hl-blue  { color: #2c4a7c; font-weight: 700; }
+
+/* ════════════════════════════
+   FACT BOX
+════════════════════════════ */
+.fact-box {
+  background: #ede5d0;
+  border-left: 4px solid #c4943a;
+  border-radius: 0 4px 4px 0;
+  padding: 20px 16px;
+  margin: 20px 0;
+}
+.fact-box-label {
+  font-size: 11px;
+  color: #c4943a;
+  letter-spacing: 1px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.fact-row {
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(196,148,58,0.3);
+}
+.fact-row:last-child { border-bottom: none; }
+.fact-key {
+  font-size: 11px;
+  color: #c4943a;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+}
+.fact-val {
+  font-size: 15px;
+  color: #1a1208;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+/* ════════════════════════════
+   PULLQUOTE
+════════════════════════════ */
+.pullquote {
+  border-top: 2px solid #c4943a;
+  border-bottom: 2px solid #c4943a;
+  padding: 20px 12px;
+  margin: 24px 0;
+  text-align: center;
+}
+.pullquote p {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1208;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+.pullquote-attr {
+  font-size: 12px;
+  color: #7b5e38;
+  margin-top: 8px;
+}
+
+/* ════════════════════════════
+   CARDS
+════════════════════════════ */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 20px 0;
+}
+.card {
+  background: #ede5d0;
+  border: 1px solid #c9b88a;
+  padding: 16px 12px;
+  border-radius: 4px;
+}
+.card-num {
+  font-size: 28px;
+  font-weight: 900;
+  color: #c4943a;
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.card-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #9b3a1a;
+  margin-bottom: 6px;
+  word-break: keep-all;
+}
+.card-desc {
+  font-size: 13px;
+  color: #7b5e38;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+/* ════════════════════════════
+   SUB TITLE
+════════════════════════════ */
+.sub-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #9b3a1a;
+  margin: 28px 0 8px;
+}
+
+/* ════════════════════════════
+   PILLAR (도시 3축)
+════════════════════════════ */
+.pillar-wrap {
+  border: 1px solid #c9b88a;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.pillar {
+  padding: 20px 16px;
+  border-bottom: 1px solid #c9b88a;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ede5d0;
+}
+.pillar:last-child { border-bottom: none; }
+.pillar-icon { font-size: 28px; flex-shrink: 0; }
+.pillar-content { flex: 1; }
+.pillar-cat {
+  font-size: 11px;
+  color: #c4943a;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+.pillar-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #9b3a1a;
+  margin-bottom: 2px;
+}
+.pillar-name {
+  font-size: 13px;
+  color: #7b5e38;
+  line-height: 1.5;
+}
+
+/* ════════════════════════════
+   TIMELINE
+════════════════════════════ */
+.timeline {
+  position: relative;
+  padding-left: 28px;
+  margin: 20px 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #c4943a, #c9b88a);
+  border-radius: 1px;
+}
+.tl-item {
+  position: relative;
+  padding-bottom: 28px;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 5px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #c4943a;
+  border: 2px solid #f5f0e8;
+  box-shadow: 0 0 0 1px #c4943a;
+}
+.tl-year {
+  font-size: 13px;
+  font-weight: 700;
+  color: #c4943a;
+  margin-bottom: 3px;
+}
+.tl-text {
+  font-size: 14px;
+  color: #1a1208;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+
+/* ════════════════════════════
+   STORY BLOCK
+════════════════════════════ */
+.story-block {
+  background: #ede5d0;
+  border: 1px solid #c9b88a;
+  border-radius: 4px;
+  padding: 28px 20px;
+  margin: 20px 0;
+  position: relative;
+}
+.story-block::before {
+  content: '\275D';
+  font-size: 60px;
+  color: #c4943a;
+  opacity: 0.15;
+  position: absolute;
+  top: 8px; left: 12px;
+  line-height: 1;
+}
+.story-p {
+  font-size: 15px;
+  color: #2a1a08;
+  line-height: 2;
+  margin-bottom: 14px;
+  word-break: keep-all;
+  position: relative;
+  z-index: 1;
+}
+.story-p:last-child { margin-bottom: 0; }
+
+/* ════════════════════════════
+   INFO BANNER
+════════════════════════════ */
+.info-banner {
+  background: #2c4a7c;
+  border-radius: 4px;
+  padding: 20px 16px;
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.info-label {
+  font-size: 11px;
+  color: rgba(232,240,248,0.6);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.info-val {
+  font-size: 15px;
+  color: #e8f0f8;
+  font-weight: 700;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+/* ════════════════════════════
+   WARN BOX
+════════════════════════════ */
+.warn-box {
+  background: rgba(155,58,26,0.08);
+  border: 1px solid rgba(155,58,26,0.3);
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #7b5e38;
+  line-height: 1.7;
+  margin-top: 16px;
+  word-break: keep-all;
+}
+
+/* ════════════════════════════
+   FOOTER
+════════════════════════════ */
+.footer {
+  background: #1a1208;
+  padding: 44px 20px;
+  text-align: center;
+}
+.footer-brand {
+  font-size: 17px;
+  font-weight: 800;
+  color: #c4943a;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.footer-notice {
+  font-size: 14px;
+  color: rgba(245,240,232,0.9);
+  line-height: 2;
+  word-break: keep-all;
+  margin-bottom: 20px;
+}
+.footer-copy {
+  font-size: 12px;
+  color: rgba(245,240,232,0.3);
+}
+</style>
 </head>
 <body>
 
-  <!-- ════════════════════════════════
-       HERO
-  ═════════════════════════════════ -->
-  <header class="hero">
-    <div class="hero-year" aria-hidden="true">1569</div>
+<!-- ══════════════════════════════
+     상단 고정 카테고리 네비게이션
+══════════════════════════════ -->
+<nav class="top-nav">
+  <div class="nav-inner">
+    <a href="#sec-info" class="nav-btn active">
+      <span class="nav-icon">📋</span>
+      <span class="nav-text">기본정보</span>
+    </a>
+    <a href="#sec-background" class="nav-btn">
+      <span class="nav-icon">🏺</span>
+      <span class="nav-text">역사배경</span>
+    </a>
+    <a href="#sec-function" class="nav-btn">
+      <span class="nav-icon">🤲</span>
+      <span class="nav-text">역할·기능</span>
+    </a>
+    <a href="#sec-city" class="nav-btn">
+      <span class="nav-icon">🏙️</span>
+      <span class="nav-text">도시구조</span>
+    </a>
+    <a href="#sec-history" class="nav-btn">
+      <span class="nav-icon">⚔️</span>
+      <span class="nav-text">역사의미</span>
+    </a>
+    <a href="#sec-unesco" class="nav-btn">
+      <span class="nav-icon">🌍</span>
+      <span class="nav-text">세계유산</span>
+    </a>
+    <a href="#sec-story" class="nav-btn">
+      <span class="nav-icon">📖</span>
+      <span class="nav-text">스토리</span>
+    </a>
+    <a href="#sec-visit" class="nav-btn">
+      <span class="nav-icon">📍</span>
+      <span class="nav-text">방문정보</span>
+    </a>
+  </div>
+</nav>
 
-    <p class="hero-badge">마카오 모먼트 역사 가이드 · Macau Moment</p>
+<div class="nav-spacer"></div>
 
-    <h1>
-      인자당
-      <span class="hanja">仁慈堂</span>
-      <span class="latin">Santa Casa da Misericórdia de Macau</span>
-    </h1>
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
+<div class="hero">
+  <div class="hero-bg-num">1569</div>
+  <div class="hero-top">마카오 모먼트 역사 가이드</div>
+  <div class="hero-title-kr">인자당</div>
+  <div class="hero-title-hanja">仁慈堂</div>
+  <div class="hero-title-latin">Santa Casa da Misericórdia de Macau</div>
+  <div class="hero-line"></div>
+  <div class="hero-desc">
+    동아시아에서 가장 오래된 서양식 자선기관.<br>
+    1569년, 자비(仁慈)를 돌에 새긴 사람들이 있었다.
+  </div>
+  <div class="hero-tags">
+    <span class="tag">설립 1569년</span>
+    <span class="tag">유네스코 세계문화유산</span>
+    <span class="tag">동아시아 최초 수준</span>
+    <span class="tag">세나도 광장 인근</span>
+  </div>
+</div>
 
-    <div class="hero-divider"></div>
-
-    <p class="hero-sub">
-      동아시아에서 가장 오래된 서양식 자선기관.<br />
-      1569년, 자비(仁慈)를 돌에 새긴 사람들이 있었다.
+<!-- ══════════════════════════════
+     1. 기본 정보
+══════════════════════════════ -->
+<div class="section" id="sec-info">
+  <div class="wrap">
+    <div class="cat-badge"><span class="badge-icon">📋</span> 기본 정보</div>
+    <div class="sec-label">Basic Info</div>
+    <div class="sec-title">인자당이란 무엇인가</div>
+    <p class="sec-body">
+      1557년 포르투갈인이 마카오에 정착한 이후 불과 12년 뒤인
+      <span class="hl-gold">1569년</span>에 설립된 인자당은,
+      마카오 정부 조직보다도 먼저 탄생한 자선기관이다.
+      이름의 한자 仁慈堂은 '자비로움'을 뜻하며,
+      어려운 이들을 돕는 기관임을 그대로 담고 있다.
     </p>
 
-    <div class="hero-tags">
-      <span class="tag">설립 1569년</span>
-      <span class="tag">유네스코 세계문화유산</span>
-      <span class="tag">동아시아 최초 수준</span>
-      <span class="tag">세나도 광장 인근</span>
-    </div>
-
-    <div class="scroll-hint" aria-hidden="true">
-      <span>아래로</span>
-      <div class="arrow"></div>
-    </div>
-  </header>
-
-  <!-- ════════════════════════════════
-       SECTION 1 — 기본 정보
-  ═════════════════════════════════ -->
-  <section>
-    <div class="container fade-in">
-      <p class="section-label">기본 정보 · Basic Info</p>
-      <h2>인자당이란 무엇인가</h2>
-
-      <p>
-        1557년 포르투갈인이 마카오에 정착한 이후 불과 12년 뒤인
-        <span class="hl-gold">1569년</span>에 설립된 인자당은,
-        마카오 정부 조직보다도 먼저 탄생한 자선기관이다.
-        이름의 한자 <em>仁慈堂</em>은 '자비로움'을 뜻하며,
-        어려운 이들을 돕는 기관임을 그대로 담고 있다.
-      </p>
-
-      <div class="fact-box" data-label="핵심 정보">
-        <div class="fact-grid">
-          <span class="fact-key">한국어 명칭</span>
-          <span class="fact-val">인자당</span>
-          <span class="fact-key">한자 명칭</span>
-          <span class="fact-val">仁慈堂</span>
-          <span class="fact-key">포르투갈 명칭</span>
-          <span class="fact-val">Santa Casa da Misericórdia de Macau</span>
-          <span class="fact-key">영어 명칭</span>
-          <span class="fact-val">Holy House of Mercy, Macau</span>
-          <span class="fact-key">설립 연도</span>
-          <span class="fact-val">1569년</span>
-          <span class="fact-key">설립 주체</span>
-          <span class="fact-val">포르투갈 가톨릭 자선단체</span>
-          <span class="fact-key">창립자</span>
-          <span class="fact-val">마카오 초대 주교 Belchior Carneiro (葡萄牙인 주교)</span>
-          <span class="fact-key">현재 기능</span>
-          <span class="fact-val">복지·문화 기관 / 소규모 전시관 운영</span>
-          <span class="fact-key">위치</span>
-          <span class="fact-val">세나도 광장 인근, 마카오 반도</span>
-        </div>
+    <div class="fact-box">
+      <div class="fact-box-label">핵심 정보</div>
+      <div class="fact-row">
+        <div class="fact-key">한국어 명칭</div>
+        <div class="fact-val">인자당</div>
       </div>
-
-      <div class="pullquote">
-        <p>"동아시아 최초 수준의 서양식 복지기관"</p>
-        <p class="attribution">— 마카오 역사 연구자들의 공통된 평가</p>
+      <div class="fact-row">
+        <div class="fact-key">한자 명칭</div>
+        <div class="fact-val">仁慈堂</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">포르투갈어 명칭</div>
+        <div class="fact-val">Santa Casa da Misericórdia de Macau</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">영어 명칭</div>
+        <div class="fact-val">Holy House of Mercy, Macau</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">설립 연도</div>
+        <div class="fact-val">1569년</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">설립 주체</div>
+        <div class="fact-val">포르투갈 가톨릭 자선단체</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">창립자</div>
+        <div class="fact-val">마카오 초대 주교 Belchior Carneiro</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">현재 기능</div>
+        <div class="fact-val">복지·문화 기관 / 소규모 전시관 운영</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">위치</div>
+        <div class="fact-val">세나도 광장 인근, 마카오 반도</div>
       </div>
     </div>
-  </section>
 
-  <!-- ════════════════════════════════
-       SECTION 2 — 왜 마카오에?
-  ═════════════════════════════════ -->
-  <section>
-    <div class="container fade-in">
-      <p class="section-label">역사적 배경 · Historical Background</p>
-      <h2>왜 마카오에 세워졌을까?</h2>
-
-      <p>
-        16세기 마카오는 유럽과 중국, 일본을 잇는
-        <span class="hl-blue">무역·선교의 허브</span>였다.
-        항구에는 부가 쌓였지만 동시에 전염병, 빈곤, 고아, 노숙인 문제가 심각했다.
-      </p>
-
-      <p>
-        포르투갈은 마카오를 단순한 이익의 공간이 아닌,
-        <em>"돈 버는 항구이자 책임져야 할 공동체"</em>로 인식했다.
-        그 인식이 도시 중심에 자선기관을 세우는 결정으로 이어졌다.
-      </p>
-
-      <div class="mission-grid">
-        <div class="mission-card">
-          <div class="num">01</div>
-          <div class="title">무역 허브의 그늘</div>
-          <p>부유한 상인들이 몰린 만큼, 가난과 전염병도 함께였다.</p>
-        </div>
-        <div class="mission-card">
-          <div class="num">02</div>
-          <div class="title">선교 거점의 책임</div>
-          <p>가톨릭 선교사들은 영혼뿐 아니라 몸의 고통도 돌봐야 한다고 믿었다.</p>
-        </div>
-        <div class="mission-card">
-          <div class="num">03</div>
-          <div class="title">도시 공동체 형성</div>
-          <p>안정적 공동체 없이는 무역도, 선교도 지속될 수 없었다.</p>
-        </div>
-        <div class="mission-card">
-          <div class="num">04</div>
-          <div class="title">주교의 결단</div>
-          <p>Belchior Carneiro 주교가 직접 설립을 주도하며 도시의 방향을 잡았다.</p>
-        </div>
-      </div>
+    <div class="pullquote">
+      <p>"동아시아 최초 수준의 서양식 복지기관"</p>
+      <div class="pullquote-attr">— 마카오 역사 연구자들의 공통된 평가</div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- ════════════════════════════════
-       SECTION 3 — 실제로 한 일
-  ═════════════════════════════════ -->
-  <section>
-    <div class="container fade-in">
-      <p class="section-label">역할과 기능 · Functions</p>
-      <h2>인자당이 실제로 한 일들</h2>
-
-      <p>
-        지금의 기준으로 보면 거의 <span class="hl-gold">종합 복지부</span>라 할 수 있다.
-        태어나서, 아프면 치료받고, 죽으면 장례까지 — 삶의 전 과정을 책임졌다.
-      </p>
-
-      <h3>① 의료</h3>
-      <p>
-        마카오 최초의 서양식 병원을 운영했으며, 가난한 사람에게는 무료로 진료를 제공했다.
-        전염병이 돌 때는 대응 거점 역할을 했다.
-      </p>
-
-      <h3>② 고아·빈민 보호</h3>
-      <p>
-        갈 곳 없는 고아를 수용하고, 미망인과 빈민에게 음식과 의복을 나눴다.
-      </p>
-
-      <h3>③ 교육</h3>
-      <p>
-        아이들에게 기초 교육을 제공했으며, 마카오에서 포르투갈식 교육의 출발점이 되었다.
-      </p>
-
-      <h3>④ 장례</h3>
-      <p>
-        스스로 장례를 치를 수 없는 가난한 사람들의 마지막까지 책임졌다.
-      </p>
-
-      <div class="pullquote">
-        <p>
-          태어나서 → 아프면 치료 → 죽으면 장례.<br />
-          이 모든 것을 한 기관이 맡았다.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════
-       SECTION 4 — 도시 구조
-  ═════════════════════════════════ -->
-  <section>
-    <div class="container fade-in">
-      <p class="section-label">도시의 심장 · Heart of the City</p>
-      <h2>세나도 광장과 인자당</h2>
-
-      <p>
-        세나도 광장은 단순한 광장이 아니었다.
-        이곳에는 <span class="hl-blue">행정·종교·자선</span>, 세 가지 핵심 기관이 함께 모여 있었다.
-      </p>
-
-      <div class="city-pillars">
-        <div class="pillar">
-          <span class="pillar-icon">🏛️</span>
-          <div class="pillar-title">행정</div>
-          <div class="pillar-name">Leal Senado Building<br />(민정총서)</div>
-        </div>
-        <div class="pillar">
-          <span class="pillar-icon">⛪</span>
-          <div class="pillar-title">종교</div>
-          <div class="pillar-name">St. Dominic's Church<br />(성 도미니크 성당)</div>
-        </div>
-        <div class="pillar">
-          <span class="pillar-icon">🤝</span>
-          <div class="pillar-title">복지</div>
-          <div class="pillar-name">Santa Casa da Misericórdia<br />(인자당)</div>
-        </div>
-      </div>
-
-      <p>
-        이 세 축이 하나의 광장을 중심으로 균형을 이루도록 설계되었다는 점은
-        마카오가 단순한 무역항을 넘어 <em>지속 가능한 도시 공동체</em>를 지향했음을 보여준다.
-      </p>
-
-      <div class="pullquote">
-        <p>
-          "세나도 광장은 단순한 광장이 아니라,<br />
-          행정·종교·자선이 함께 모여 있던 마카오 도시의 심장입니다."
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════
-       SECTION 5 — 왜 안전했나
-  ═════════════════════════════════ -->
-  <section>
-    <div class="container fade-in">
-      <p class="section-label">역사적 의미 · Historical Significance</p>
-      <h2>마카오가 전쟁 속에서도 버텼던 이유</h2>
-
-      <p>
-        1937년 <span class="hl-gold">제2차 중일전쟁(Second Sino-Japanese War)</span>이 발발했을 때,
-        주변 도시들은 큰 피해를 입었다. 그러나 마카오는 달랐다.
-      </p>
-
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-year">1557년</div>
-          <p class="tl-text">포르투갈인, 마카오에 정착 시작. 유럽–중국–일본을 잇는 무역 허브로 성장.</p>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">1569년</div>
-          <p class="tl-text">Belchior Carneiro 주교, 인자당 설립. 마카오 정부 조직 이전에 복지 시스템 구축.</p>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">1937–1945년</div>
-          <p class="tl-text">제2차 중일전쟁 및 제2차 세계대전 기간. 포르투갈은 중립국이었고 일본은 마카오 점령을 피했다. 난민·부유층·상인이 몰리며 마카오 경제가 오히려 활발해졌다.</p>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">1999년</div>
-          <p class="tl-text">마카오, 중국에 주권 반환. 포르투갈 식민지 시대 442년 마감.</p>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">2005년</div>
-          <p class="tl-text">Historic Centre of Macau, 유네스코 세계문화유산 등재. 인자당 포함.</p>
-        </div>
-      </div>
-
-      <p>
-        마카오가 아편전쟁, 청말의 혼란, 2차 세계대전이라는 세 번의 거대한 파도 속에서도
-        도시 질서를 비교적 유지할 수 있었던 배경 중 하나로,
-        역사 연구자들은 <span class="hl-rust">인자당으로 대표되는 복지 인프라</span>를 꼽는다.
-      </p>
-
-      <div class="pullquote">
-        <p>
-          "마카오는 단순한 식민지가 아니라,<br />
-          포르투갈이 '책임'을 진 도시였다."
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════
-       SECTION 6 — 유네스코
-  ═════════════════════════════════ -->
-  <section>
-    <div class="container fade-in">
-      <p class="section-label">세계문화유산 · UNESCO Heritage</p>
-      <h2>마카오가 세계유산이 된 이유</h2>
-
-      <p>
-        2005년 유네스코는 <em>Historic Centre of Macau</em>를 세계문화유산으로 등재했다.
-        그 중심에 세나도 광장이 있고, 인자당은 그 광장을 구성하는 핵심 요소다.
-      </p>
-
-      <div class="info-banner">
-        <div class="info-item">
-          <div class="label">등재 연도</div>
-          <div class="value">2005년</div>
-        </div>
-        <div class="info-item">
-          <div class="label">유산 명칭</div>
-          <div class="value">Historic Centre of Macau</div>
-        </div>
-        <div class="info-item">
-          <div class="label">등재 이유</div>
-          <div class="value">유럽·중국 문화 400년 공존</div>
-        </div>
-        <div class="info-item">
-          <div class="label">포함 장소 수</div>
-          <div class="value">25개 구역·건물</div>
-        </div>
-      </div>
-
-      <p>
-        이 지역이 특별한 이유는 단 하나다.
-        <span class="hl-gold">유럽과 중국의 문화가 400년이라는 시간 동안 한 도시 안에서 섞였다</span>는 것.
-        그리고 그 섞임이 갈등이 아닌, 공존의 방식으로 이루어졌다는 것이다.
-      </p>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════
-       SECTION 7 — 스토리텔링
-  ═════════════════════════════════ -->
-  <section>
-    <div class="container fade-in">
-      <p class="section-label">스토리텔링 · Storytelling</p>
-      <h2>돌벽에 새겨진 자비</h2>
-
-      <div class="story-block">
-        <p class="lang-tag">🇰🇷 한국어 버전</p>
-        <p>
-          1569년, 세나도 광장 한켠에 작은 건물 하나가 문을 열었다.
-          이름은 <em>인자당(仁慈堂)</em>, '자비로운 집'이라는 뜻이다.
-        </p>
-        <p>
-          당시 마카오는 유럽, 중국, 일본을 잇는 가장 바쁜 항구 중 하나였다.
-          무역선이 드나들고, 상인들은 돈을 벌었다.
-          그러나 항구의 화려함 뒤에는 병든 선원들, 갈 곳 없는 고아들, 굶주린 노인들이 있었다.
-        </p>
-        <p>
-          포르투갈 주교 Belchior Carneiro는 그들을 그냥 지나치지 않았다.
-          그는 마카오 최초의 병원을 세웠고, 고아를 거두었으며,
-          죽어서도 장례조차 치를 수 없는 가난한 이들의 마지막을 함께했다.
-        </p>
-        <p>
-          450년이 넘는 세월이 흘렀다.
-          아편전쟁도, 두 차례의 세계대전도 지나갔다.
-          그래도 세나도 광장 한켠의 이 건물은 여전히 서 있다.
-          돌 하나하나에 새겨진 것은 건축 기술이 아니라, <em>책임</em>이다.
-          누군가를 돌봐야 한다는, 자비로운 마음으로 지은 도시의 기억.
-        </p>
-        <p>
-          세나도 광장에 서면, 그 돌벽을 한 번 바라보자.
-          450년 전 이 도시를 만든 사람들이 가장 먼저 지은 것이 무엇이었는지를 떠올리면서.
-        </p>
-      </div>
-
-      <div class="story-block">
-        <p class="lang-tag">🇬🇧 English Version</p>
-        <p>
-          In 1569, a small building opened its doors on the edge of Senado Square.
-          Its name: <em>Santa Casa da Misericórdia</em> — the Holy House of Mercy.
-        </p>
-        <p>
-          Macau was then one of the busiest ports connecting Europe, China, and Japan.
-          Ships arrived, merchants prospered. But behind the harbour's glamour were sick sailors,
-          orphaned children, and elderly people with nowhere to go.
-        </p>
-        <p>
-          Bishop Belchior Carneiro did not walk past them.
-          He built Macau's first Western hospital, sheltered orphans,
-          and gave a dignified farewell to those too poor to afford their own burial.
-        </p>
-        <p>
-          More than four hundred and fifty years have passed.
-          The Opium War. Two World Wars. All came and went.
-          Yet this building on the corner of Senado Square still stands.
-          What is carved into each stone is not architecture — it is <em>responsibility</em>.
-          A city's memory, built on the belief that someone must be cared for.
-        </p>
-        <p>
-          Next time you stand in Senado Square, look at this wall.
-          Remember what the people who built this city chose to build first.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════
-       SECTION 8 — 현재 방문 정보
-  ═════════════════════════════════ -->
-  <section>
-    <div class="container fade-in">
-      <p class="section-label">방문 정보 · Visitor Info</p>
-      <h2>지금의 인자당</h2>
-
-      <p>
-        현재 인자당은 복지·문화 기관으로 운영되고 있으며,
-        내부에 소규모 전시관이 마련되어 있다.
-        당시의 문서, 의료 기록, 자선 활동 기록 등을 만나볼 수 있다.
-      </p>
-
-      <div class="fact-box" data-label="방문 정보 (꼭 현지 확인 필요)">
-        <div class="fact-grid">
-          <span class="fact-key">장소명 (한국어)</span>
-          <span class="fact-val">인자당</span>
-          <span class="fact-key">장소명 (한자)</span>
-          <span class="fact-val">仁慈堂</span>
-          <span class="fact-key">장소명 (포르투갈어)</span>
-          <span class="fact-val">Santa Casa da Misericórdia de Macau</span>
-          <span class="fact-key">위치</span>
-          <span class="fact-val">세나도 광장 인근, 마카오 반도</span>
-          <span class="fact-key">운영 시간</span>
-          <span class="fact-val">⚠️ 꼭 확인 필요 — 현지 또는 공식 홈페이지 참조</span>
-          <span class="fact-key">입장료</span>
-          <span class="fact-val">⚠️ 꼭 확인 필요</span>
-          <span class="fact-key">추천 테마</span>
-          <span class="fact-val">역사 / 문화 / 건축 / 인문</span>
-        </div>
-      </div>
-
-      <p style="font-size:0.85rem; color: var(--sepia); font-style: italic;">
-        ※ 운영 시간·입장료 등 세부 정보는 변경될 수 있습니다. 방문 전 현지 또는 공식 채널을 통해 반드시 확인하세요.
-      </p>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════
-       FOOTER
-  ═════════════════════════════════ -->
-  <footer>
-    <div class="footer-title">마카오 모먼트 · 역사·문화·건축 스토리텔링</div>
-    <p>본 콘텐츠는 확인된 역사적 사실에 기반하여 제작되었습니다.</p>
-    <br />
-    <p style="font-size:0.72rem; opacity:0.4;">
-      © 2025 Macau Moment · All rights reserved · GitHub Pages
+<!-- ══════════════════════════════
+     2. 역사적 배경
+══════════════════════════════ -->
+<div class="section" id="sec-background">
+  <div class="wrap">
+    <div class="cat-badge"><span class="badge-icon">🏺</span> 역사적 배경</div>
+    <div class="sec-label">Historical Background</div>
+    <div class="sec-title">왜 마카오에 세워졌을까?</div>
+    <p class="sec-body">
+      16세기 마카오는 유럽과 중국, 일본을 잇는
+      <span class="hl-blue">무역·선교의 허브</span>였다.
+      항구에는 부가 쌓였지만 동시에 전염병, 빈곤, 고아, 노숙인 문제가 심각했다.
     </p>
-  </footer>
+    <p class="sec-body">
+      포르투갈은 마카오를 단순한 이익의 공간이 아닌,
+      "돈 버는 항구이자 책임져야 할 공동체"로 인식했다.
+      그 인식이 도시 중심에 자선기관을 세우는 결정으로 이어졌다.
+    </p>
 
-  <script>
-    // Fade-in on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-num">01</div>
+        <div class="card-title">무역 허브의 그늘</div>
+        <div class="card-desc">부유한 상인들이 몰린 만큼, 가난과 전염병도 함께였다.</div>
+      </div>
+      <div class="card">
+        <div class="card-num">02</div>
+        <div class="card-title">선교 거점의 책임</div>
+        <div class="card-desc">가톨릭 선교사들은 몸의 고통도 돌봐야 한다고 믿었다.</div>
+      </div>
+      <div class="card">
+        <div class="card-num">03</div>
+        <div class="card-title">도시 공동체 형성</div>
+        <div class="card-desc">안정적 공동체 없이는 무역도, 선교도 지속될 수 없었다.</div>
+      </div>
+      <div class="card">
+        <div class="card-num">04</div>
+        <div class="card-title">주교의 결단</div>
+        <div class="card-desc">Carneiro 주교가 직접 설립을 주도하며 도시의 방향을 잡았다.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
+<!-- ══════════════════════════════
+     3. 역할·기능
+══════════════════════════════ -->
+<div class="section" id="sec-function">
+  <div class="wrap">
+    <div class="cat-badge"><span class="badge-icon">🤲</span> 역할·기능</div>
+    <div class="sec-label">Functions</div>
+    <div class="sec-title">인자당이 실제로 한 일들</div>
+    <p class="sec-body">
+      지금의 기준으로 보면 거의 <span class="hl-gold">종합 복지부</span>라 할 수 있다.
+      태어나서, 아프면 치료받고, 죽으면 장례까지 — 삶의 전 과정을 책임졌다.
+    </p>
+
+    <div class="sub-title">① 의료</div>
+    <p class="sec-body">마카오 최초의 서양식 병원을 운영했으며, 가난한 사람에게는 무료로 진료를 제공했다. 전염병이 돌 때는 대응 거점 역할을 했다.</p>
+
+    <div class="sub-title">② 고아·빈민 보호</div>
+    <p class="sec-body">갈 곳 없는 고아를 수용하고, 미망인과 빈민에게 음식과 의복을 나눴다.</p>
+
+    <div class="sub-title">③ 교육</div>
+    <p class="sec-body">아이들에게 기초 교육을 제공했으며, 마카오에서 포르투갈식 교육의 출발점이 되었다.</p>
+
+    <div class="sub-title">④ 장례</div>
+    <p class="sec-body">스스로 장례를 치를 수 없는 가난한 사람들의 마지막까지 책임졌다.</p>
+
+    <div class="pullquote">
+      <p>태어나서 → 아프면 치료 → 죽으면 장례.<br>이 모든 것을 한 기관이 맡았다.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     4. 도시 구조
+══════════════════════════════ -->
+<div class="section" id="sec-city">
+  <div class="wrap">
+    <div class="cat-badge"><span class="badge-icon">🏙️</span> 도시 구조</div>
+    <div class="sec-label">Heart of the City</div>
+    <div class="sec-title">세나도 광장과 인자당</div>
+    <p class="sec-body">
+      세나도 광장은 단순한 광장이 아니었다.
+      이곳에는 <span class="hl-blue">행정·종교·자선</span>,
+      세 가지 핵심 기관이 함께 모여 있었다.
+    </p>
+
+    <div class="pillar-wrap">
+      <div class="pillar">
+        <div class="pillar-icon">🏛️</div>
+        <div class="pillar-content">
+          <div class="pillar-cat">행정</div>
+          <div class="pillar-title">민정총서</div>
+          <div class="pillar-name">Leal Senado Building</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">⛪</div>
+        <div class="pillar-content">
+          <div class="pillar-cat">종교</div>
+          <div class="pillar-title">성 도미니크 성당</div>
+          <div class="pillar-name">St. Dominic's Church</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🤝</div>
+        <div class="pillar-content">
+          <div class="pillar-cat">복지</div>
+          <div class="pillar-title">인자당</div>
+          <div class="pillar-name">Santa Casa da Misericórdia</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      <p>"행정·종교·자선이 함께 모여 있던<br>마카오 도시의 심장입니다."</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     5. 역사적 의미
+══════════════════════════════ -->
+<div class="section" id="sec-history">
+  <div class="wrap">
+    <div class="cat-badge"><span class="badge-icon">⚔️</span> 역사적 의미</div>
+    <div class="sec-label">Historical Significance</div>
+    <div class="sec-title">마카오가 전쟁 속에서도 버텼던 이유</div>
+    <p class="sec-body">
+      1937년 <span class="hl-gold">제2차 중일전쟁</span>이 발발했을 때,
+      주변 도시들은 큰 피해를 입었다. 그러나 마카오는 달랐다.
+    </p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">1557년</div>
+        <div class="tl-text">포르투갈인, 마카오에 정착 시작. 유럽–중국–일본을 잇는 무역 허브로 성장.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1569년</div>
+        <div class="tl-text">Belchior Carneiro 주교, 인자당 설립. 마카오 정부 조직 이전에 복지 시스템 구축.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1937–1945년</div>
+        <div class="tl-text">제2차 중일전쟁 및 제2차 세계대전 기간. 포르투갈은 중립국이었고 일본은 마카오 점령을 피했다. 난민·부유층·상인이 몰리며 마카오 경제가 오히려 활발해졌다.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1999년</div>
+        <div class="tl-text">마카오, 중국에 주권 반환. 포르투갈 식민지 시대 442년 마감.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2005년</div>
+        <div class="tl-text">Historic Centre of Macau, 유네스코 세계문화유산 등재. 인자당 포함.</div>
+      </div>
+    </div>
+
+    <p class="sec-body">
+      마카오가 아편전쟁, 청말의 혼란, 2차 세계대전이라는 세 번의 거대한 파도 속에서도
+      도시 질서를 비교적 유지할 수 있었던 배경 중 하나로,
+      역사 연구자들은 <span class="hl-rust">인자당으로 대표되는 복지 인프라</span>를 꼽는다.
+    </p>
+
+    <div class="pullquote">
+      <p>"마카오는 단순한 식민지가 아니라,<br>포르투갈이 '책임'을 진 도시였다."</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     6. 세계문화유산
+══════════════════════════════ -->
+<div class="section" id="sec-unesco">
+  <div class="wrap">
+    <div class="cat-badge"><span class="badge-icon">🌍</span> 세계문화유산</div>
+    <div class="sec-label">UNESCO Heritage</div>
+    <div class="sec-title">마카오가 세계유산이 된 이유</div>
+    <p class="sec-body">
+      2005년 유네스코는 Historic Centre of Macau를 세계문화유산으로 등재했다.
+      그 중심에 세나도 광장이 있고, 인자당은 그 광장을 구성하는 핵심 요소다.
+    </p>
+
+    <div class="info-banner">
+      <div>
+        <div class="info-label">등재 연도</div>
+        <div class="info-val">2005년</div>
+      </div>
+      <div>
+        <div class="info-label">유산 명칭</div>
+        <div class="info-val">Historic Centre of Macau</div>
+      </div>
+      <div>
+        <div class="info-label">등재 이유</div>
+        <div class="info-val">유럽·중국 문화 400년 공존</div>
+      </div>
+      <div>
+        <div class="info-label">포함 장소 수</div>
+        <div class="info-val">25개 구역·건물</div>
+      </div>
+    </div>
+
+    <p class="sec-body">
+      <span class="hl-gold">유럽과 중국의 문화가 400년이라는 시간 동안 한 도시 안에서 섞였다</span>는 것,
+      그리고 그 섞임이 갈등이 아닌, 공존의 방식으로 이루어졌다는 것이다.
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     7. 스토리텔링
+══════════════════════════════ -->
+<div class="section" id="sec-story">
+  <div class="wrap">
+    <div class="cat-badge"><span class="badge-icon">📖</span> 스토리텔링</div>
+    <div class="sec-label">Storytelling</div>
+    <div class="sec-title">돌벽에 새겨진 자비</div>
+
+    <div class="story-block">
+      <p class="story-p">
+        1569년, 세나도 광장 한켠에 작은 건물 하나가 문을 열었다.
+        이름은 인자당(仁慈堂), '자비로운 집'이라는 뜻이다.
+      </p>
+      <p class="story-p">
+        당시 마카오는 유럽, 중국, 일본을 잇는 가장 바쁜 항구 중 하나였다.
+        무역선이 드나들고, 상인들은 돈을 벌었다.
+        그러나 항구의 화려함 뒤에는 병든 선원들, 갈 곳 없는 고아들, 굶주린 노인들이 있었다.
+      </p>
+      <p class="story-p">
+        포르투갈 주교 Belchior Carneiro는 그들을 그냥 지나치지 않았다.
+        그는 마카오 최초의 병원을 세웠고, 고아를 거두었으며,
+        죽어서도 장례조차 치를 수 없는 가난한 이들의 마지막을 함께했다.
+      </p>
+      <p class="story-p">
+        450년이 넘는 세월이 흘렀다.
+        아편전쟁도, 두 차례의 세계대전도 지나갔다.
+        그래도 세나도 광장 한켠의 이 건물은 여전히 서 있다.
+        돌 하나하나에 새겨진 것은 건축 기술이 아니라, 책임이다.
+        누군가를 돌봐야 한다는, 자비로운 마음으로 지은 도시의 기억.
+      </p>
+      <p class="story-p">
+        세나도 광장에 서면, 그 돌벽을 한 번 바라보자.
+        450년 전 이 도시를 만든 사람들이 가장 먼저 지은 것이 무엇이었는지를 떠올리면서.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     8. 방문 정보
+══════════════════════════════ -->
+<div class="section" id="sec-visit">
+  <div class="wrap">
+    <div class="cat-badge"><span class="badge-icon">📍</span> 방문 정보</div>
+    <div class="sec-label">Visitor Info</div>
+    <div class="sec-title">지금의 인자당</div>
+    <p class="sec-body">
+      현재 인자당은 복지·문화 기관으로 운영되고 있으며,
+      내부에 소규모 전시관이 마련되어 있다.
+      당시의 문서, 의료 기록, 자선 활동 기록 등을 만나볼 수 있다.
+    </p>
+
+    <div class="fact-box">
+      <div class="fact-box-label">방문 정보 (꼭 현지 확인 필요)</div>
+      <div class="fact-row">
+        <div class="fact-key">장소명 (한국어)</div>
+        <div class="fact-val">인자당</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">장소명 (한자)</div>
+        <div class="fact-val">仁慈堂</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">장소명 (포르투갈어)</div>
+        <div class="fact-val">Santa Casa da Misericórdia de Macau</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">위치</div>
+        <div class="fact-val">세나도 광장 인근, 마카오 반도</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">운영 시간</div>
+        <div class="fact-val">⚠️ 꼭 확인 필요 — 현지 또는 공식 홈페이지 참조</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">입장료</div>
+        <div class="fact-val">⚠️ 꼭 확인 필요</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-key">추천 테마</div>
+        <div class="fact-val">역사 / 문화 / 건축 / 인문</div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      ※ 운영 시간·입장료 등 세부 정보는 변경될 수 있습니다.
+      방문 전 현지 또는 공식 채널을 통해 반드시 확인하세요.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     FOOTER
+══════════════════════════════ -->
+<div class="footer">
+  <div class="footer-brand">
+    마카오 모먼트<br>역사·문화·건축 스토리텔링
+  </div>
+  <div class="footer-notice">
+    본 콘텐츠는 공식적으로 확인된 역사적 사실에 기반하여 제작되었으며<br>
+    Irene이 직접 만든 소중한 자료입니다.<br>
+    무단 복제 및 배포를 금합니다.
+  </div>
+  <div class="footer-copy">© 2025 Macau Moment · All rights reserved</div>
+</div>
+
+<script>
+// 스크롤 시 현재 섹션에 해당하는 nav 버튼 활성화
+const sections = document.querySelectorAll('.section[id]');
+const navBtns  = document.querySelectorAll('.nav-btn');
+
+function setActive() {
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if (top <= 80) current = sec.id;
+  });
+  navBtns.forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('href') === '#' + current) {
+      btn.classList.add('active');
+      // 활성 버튼이 보이도록 nav 스크롤
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  });
+}
+
+window.addEventListener('scroll', setActive, { passive: true });
+
+// 앵커 클릭 시 부드럽게 이동
+navBtns.forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      const top = target.getBoundingClientRect().top + window.scrollY - 62;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
 
 </body>
 </html>
