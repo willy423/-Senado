@@ -14,8 +14,6 @@
     --gold-dark: #8B6914;
     --dark: #0E0C0A;
     --dark2: #1A1712;
-    --dark3: #252118;
-    --dark4: #2E2920;
     --surface: #211E15;
     --surface2: #2C2720;
     --text-primary: #F0E8D0;
@@ -23,9 +21,9 @@
     --text-muted: #7A6E55;
     --border: rgba(201,168,76,0.2);
     --border-strong: rgba(201,168,76,0.4);
-    --accent-teal: #4ECDC4;
-    --accent-coral: #E8634A;
-    --accent-blue: #5B8FD4;
+    --teal: #4ECDC4;
+    --coral: #E8634A;
+    --blue: #5B8FD4;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,14 +38,13 @@
     overflow-x: hidden;
   }
 
-  /* ── HEADER ── */
+  /* ── HERO ── */
   .hero {
     background: linear-gradient(180deg, #0E0C0A 0%, #1A1510 60%, #0E0C0A 100%);
     padding: 3rem 1.25rem 2.5rem;
     text-align: center;
     border-bottom: 1px solid var(--border-strong);
     position: relative;
-    overflow: hidden;
   }
   .hero::before {
     content: '';
@@ -68,561 +65,233 @@
   }
   .hero h1 {
     font-family: 'Noto Serif KR', serif;
-    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
     font-weight: 700;
     color: var(--gold-light);
     line-height: 1.3;
     margin-bottom: 0.5rem;
   }
-  .hero-sub {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
-  }
-  .hero-desc {
-    font-size: 14px;
-    color: var(--text-muted);
-    max-width: 480px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
+  .hero-sub { font-size: 13px; color: var(--text-secondary); margin-bottom: 0.5rem; }
+  .hero-desc { font-size: 14px; color: var(--text-muted); max-width: 480px; margin: 0 auto; line-height: 1.7; }
 
   /* ── NAV ── */
   .nav-wrap {
     background: var(--dark2);
     border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    overflow-x: auto;
-    scrollbar-width: none;
+    position: sticky; top: 0; z-index: 100;
+    overflow-x: auto; scrollbar-width: none;
   }
   .nav-wrap::-webkit-scrollbar { display: none; }
-  .nav-inner {
-    display: flex;
-    gap: 0;
-    min-width: max-content;
-    padding: 0 0.5rem;
-  }
+  .nav-inner { display: flex; min-width: max-content; padding: 0 0.5rem; }
   .nav-inner a {
-    display: block;
-    padding: 12px 16px;
-    font-size: 12px;
-    color: var(--text-muted);
-    text-decoration: none;
-    white-space: nowrap;
-    font-weight: 500;
-    border-bottom: 2px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
-    letter-spacing: 0.03em;
+    display: block; padding: 12px 14px;
+    font-size: 12px; color: var(--text-muted);
+    text-decoration: none; white-space: nowrap;
+    font-weight: 500; border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
   }
-  .nav-inner a:hover {
-    color: var(--gold-light);
-    border-bottom-color: var(--gold);
-  }
+  .nav-inner a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
 
   /* ── LAYOUT ── */
-  .container {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 0 1.1rem;
-  }
-
-  /* ── SECTION ── */
-  section {
-    padding: 2.5rem 0 1.5rem;
-    border-bottom: 1px solid var(--border);
-  }
+  .container { max-width: 680px; margin: 0 auto; padding: 0 1rem; }
+  section { padding: 2.5rem 0 1.5rem; border-bottom: 1px solid var(--border); }
   section:last-of-type { border-bottom: none; }
 
-  .section-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 1.5rem;
-  }
-  .section-label-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-  .section-label-text {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    font-weight: 700;
-    white-space: nowrap;
-  }
-  .section-num {
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-  }
+  /* ── SECTION LABEL ── */
+  .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
+  .section-label-line { flex: 1; height: 1px; background: var(--border); }
+  .section-label-text { font-size: 11px; letter-spacing: .15em; color: var(--gold); font-weight: 700; white-space: nowrap; }
+  .section-num { font-size: 11px; color: var(--text-muted); letter-spacing: .1em; }
 
   h2 {
     font-family: 'Noto Serif KR', serif;
-    font-size: clamp(1.25rem, 5vw, 1.6rem);
-    color: var(--gold-light);
-    font-weight: 700;
-    margin-bottom: 0.6rem;
-    line-height: 1.4;
+    font-size: clamp(1.2rem, 5vw, 1.55rem);
+    color: var(--gold-light); font-weight: 700;
+    margin-bottom: 0.6rem; line-height: 1.4;
   }
   h3 {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 1.5rem 0 0.6rem;
-    padding-left: 10px;
+    font-size: 0.95rem; font-weight: 700; color: var(--text-primary);
+    margin: 1.5rem 0 0.6rem; padding-left: 10px;
     border-left: 3px solid var(--gold);
   }
-  h4 {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--gold);
-    margin: 1.2rem 0 0.5rem;
-    letter-spacing: 0.05em;
-  }
-  p { color: var(--text-secondary); margin-bottom: 0.9rem; font-size: 14.5px; }
+  p { color: var(--text-secondary); margin-bottom: 0.9rem; font-size: 14px; }
   p:last-child { margin-bottom: 0; }
 
   /* ── SPEC CARDS ── */
-  .spec-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin: 1.2rem 0;
-  }
+  .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.2rem 0; }
   .spec-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 14px 12px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 13px 13px 11px;
   }
   .spec-card.full { grid-column: 1 / -1; }
-  .spec-label {
-    font-size: 11px;
-    color: var(--gold);
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  .spec-label { font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: .07em; margin-bottom: 5px; }
+  .spec-value { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
+  .spec-sub { font-size: 11px; color: var(--text-muted); margin-top: 3px; line-height: 1.5; }
+
+  /* ── INFO LIST (테이블 대체) ── */
+  .info-list {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; margin: 1.2rem 0;
   }
-  .spec-value {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.2;
+  .info-row {
+    display: flex; gap: 0;
+    border-bottom: 1px solid var(--border);
   }
-  .spec-sub {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 3px;
+  .info-row:last-child { border-bottom: none; }
+  .info-key {
+    background: rgba(201,168,76,0.06);
+    padding: 10px 12px;
+    font-size: 12.5px; font-weight: 700; color: var(--text-primary);
+    flex: 0 0 38%; border-right: 1px solid var(--border);
+    display: flex; align-items: flex-start;
+    line-height: 1.5;
+  }
+  .info-val {
+    padding: 10px 12px;
+    font-size: 13px; color: var(--text-secondary);
+    flex: 1; line-height: 1.6;
   }
 
-  /* ── TABLE ── */
-  .table-wrap {
-    margin: 1.2rem 0;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    overflow: hidden;
+  /* ── PRICE CARDS (3열 데이터용) ── */
+  .price-cards { margin: 1.2rem 0; display: flex; flex-direction: column; gap: 10px; }
+  .price-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 14px 12px;
   }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-    table-layout: fixed;
-    word-break: keep-all;
-    overflow-wrap: break-word;
+  .price-card-period {
+    font-size: 11px; font-weight: 700; color: var(--gold);
+    letter-spacing: .06em; margin-bottom: 8px;
   }
-  thead th {
-    background: var(--surface);
-    color: var(--gold);
-    font-weight: 700;
-    padding: 10px 10px;
-    text-align: left;
-    font-size: 11.5px;
-    letter-spacing: 0.03em;
-    border-bottom: 1px solid var(--border-strong);
-    word-break: keep-all;
-    overflow-wrap: break-word;
+  .price-card-main {
+    font-size: 1.1rem; font-weight: 700; color: var(--text-primary);
+    margin-bottom: 4px; line-height: 1.3;
   }
-  tbody tr { border-bottom: 1px solid var(--border); }
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr:nth-child(even) { background: rgba(201,168,76,0.03); }
-  tbody td {
-    padding: 9px 10px;
-    color: var(--text-secondary);
-    vertical-align: top;
-    font-size: 13px;
-    line-height: 1.6;
-    word-break: keep-all;
-    overflow-wrap: break-word;
+  .price-card-krw { font-size: 13px; color: var(--gold); }
+
+  /* ── 출자 분담 카드 ── */
+  .cost-cards { margin: 1.2rem 0; display: flex; flex-direction: column; gap: 8px; }
+  .cost-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
   }
-  tbody td:first-child {
-    color: var(--text-primary);
-    font-weight: 500;
-    font-size: 12.5px;
-    word-break: keep-all;
+  .cost-card-who { font-size: 13px; font-weight: 700; color: var(--text-primary); flex: 1; }
+  .cost-card-right { text-align: right; flex-shrink: 0; }
+  .cost-card-amt { font-size: 13px; color: var(--text-secondary); }
+  .cost-card-krw { font-size: 12px; color: var(--gold); margin-top: 2px; }
+
+  /* ── 납세 기준 카드 ── */
+  .tax-cards { margin: 1.2rem 0; display: flex; flex-direction: column; gap: 8px; }
+  .tax-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px;
   }
-  /* 2열 테이블: 첫 번째 열 고정 */
-  table.t2 thead th:first-child,
-  table.t2 tbody td:first-child { width: 36%; }
-  table.t2 thead th:last-child,
-  table.t2 tbody td:last-child { width: 64%; }
-  /* 3열 테이블 기본 */
-  table.t3 thead th:first-child,
-  table.t3 tbody td:first-child { width: 30%; }
-  table.t3 thead th:nth-child(2),
-  table.t3 tbody td:nth-child(2) { width: 35%; }
-  table.t3 thead th:last-child,
-  table.t3 tbody td:last-child { width: 35%; }
-  /* 3열 — 항목/시장가/한화 전용 */
-  table.t3b thead th:first-child,
-  table.t3b tbody td:first-child { width: 32%; }
-  table.t3b thead th:nth-child(2),
-  table.t3b tbody td:nth-child(2) { width: 32%; }
-  table.t3b thead th:last-child,
-  table.t3b tbody td:last-child { width: 36%; }
+  .tax-card-type { font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+  .tax-card-body { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .tax-card-cond { font-size: 13px; color: var(--text-secondary); flex: 1; line-height: 1.5; }
+  .tax-card-krw { font-size: 12.5px; color: var(--gold); font-weight: 700; text-align: right; flex-shrink: 0; }
 
   /* ── BADGE ── */
   .badge {
-    display: inline-block;
-    font-size: 10.5px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 20px;
-    margin: 1px 2px;
-    word-break: keep-all;
+    display: inline-block; font-size: 11px; font-weight: 700;
+    padding: 2px 9px; border-radius: 20px; margin: 2px 2px;
+    line-height: 1.5;
   }
-  .badge-ok { background: rgba(78,205,196,0.15); color: #4ECDC4; border: 1px solid rgba(78,205,196,0.3); }
-  .badge-no { background: rgba(232,99,74,0.15); color: #E8634A; border: 1px solid rgba(232,99,74,0.3); }
-  .badge-warn { background: rgba(201,168,76,0.15); color: var(--gold-light); border: 1px solid var(--border); }
-  .badge-blue { background: rgba(91,143,212,0.15); color: #5B8FD4; border: 1px solid rgba(91,143,212,0.3); }
+  .badge-ok { background: rgba(78,205,196,.15); color: var(--teal); border: 1px solid rgba(78,205,196,.3); }
+  .badge-no { background: rgba(232,99,74,.15); color: var(--coral); border: 1px solid rgba(232,99,74,.3); }
+  .badge-warn { background: rgba(201,168,76,.15); color: var(--gold-light); border: 1px solid var(--border); }
+  .badge-blue { background: rgba(91,143,212,.15); color: var(--blue); border: 1px solid rgba(91,143,212,.3); }
 
   /* ── CALLOUT ── */
   .callout {
-    background: var(--surface);
-    border-left: 3px solid var(--gold);
-    border-radius: 0 10px 10px 0;
-    padding: 14px 16px;
-    margin: 1.2rem 0;
+    background: var(--surface); border-left: 3px solid var(--gold);
+    border-radius: 0 10px 10px 0; padding: 13px 15px; margin: 1.2rem 0;
   }
-  .callout-title {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 6px;
-    letter-spacing: 0.05em;
-  }
+  .callout-title { font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 6px; letter-spacing: .04em; }
   .callout p { font-size: 13.5px; margin: 0; }
-
-  .callout-warn {
-    border-left-color: var(--accent-coral);
-    background: rgba(232,99,74,0.07);
-  }
-  .callout-warn .callout-title { color: var(--accent-coral); }
-
-  .callout-info {
-    border-left-color: var(--accent-blue);
-    background: rgba(91,143,212,0.07);
-  }
-  .callout-info .callout-title { color: var(--accent-blue); }
+  .callout-warn { border-left-color: var(--coral); background: rgba(232,99,74,.07); }
+  .callout-warn .callout-title { color: var(--coral); }
+  .callout-info { border-left-color: var(--blue); background: rgba(91,143,212,.07); }
+  .callout-info .callout-title { color: var(--blue); }
 
   /* ── TIMELINE ── */
   .timeline { margin: 1.2rem 0; }
-  .timeline-item {
-    display: flex;
-    gap: 14px;
-    padding-bottom: 16px;
-    position: relative;
-  }
+  .timeline-item { display: flex; gap: 12px; padding-bottom: 14px; }
   .timeline-item:last-child { padding-bottom: 0; }
-  .timeline-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  .timeline-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--gold);
-    border: 2px solid var(--gold-dark);
-    flex-shrink: 0;
-    margin-top: 4px;
-  }
-  .timeline-line {
-    width: 1px;
-    flex: 1;
-    background: var(--border);
-    margin-top: 4px;
-  }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .timeline-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); border: 2px solid var(--gold-dark); flex-shrink: 0; margin-top: 4px; }
+  .timeline-line { width: 1px; flex: 1; background: var(--border); margin-top: 4px; }
   .timeline-item:last-child .timeline-line { display: none; }
-  .timeline-date {
-    font-size: 11px;
-    color: var(--gold);
-    font-weight: 700;
-    white-space: nowrap;
-    min-width: 68px;
-    flex-shrink: 0;
-    padding-top: 2px;
-  }
-  .timeline-content {
-    font-size: 13.5px;
-    color: var(--text-secondary);
-    padding-top: 1px;
-    line-height: 1.6;
-  }
+  .timeline-date { font-size: 11px; color: var(--gold); font-weight: 700; white-space: nowrap; min-width: 68px; flex-shrink: 0; padding-top: 2px; }
+  .timeline-content { font-size: 13.5px; color: var(--text-secondary); padding-top: 1px; line-height: 1.6; }
 
-  /* ── STEP ── */
+  /* ── STEPS ── */
   .steps { margin: 1.2rem 0; }
-  .step {
-    display: flex;
-    gap: 14px;
-    margin-bottom: 14px;
-    align-items: flex-start;
-  }
-  .step-num {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--gold-dark);
-    color: var(--gold-light);
-    font-size: 12px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .step-content { flex: 1; }
+  .step { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .step-num { width: 26px; height: 26px; border-radius: 50%; background: var(--gold-dark); color: var(--gold-light); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .step-title { font-size: 13.5px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
-  .step-desc { font-size: 13px; color: var(--text-secondary); }
+  .step-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
 
-  /* ── COMPARE CARD ── */
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin: 1.2rem 0;
-  }
-  .compare-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px;
-  }
-  .compare-card-title {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-    letter-spacing: 0.05em;
-  }
-  .compare-row {
-    margin-bottom: 8px;
-  }
-  .compare-key {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-bottom: 2px;
-    font-weight: 500;
-  }
-  .compare-val {
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
+  /* ── COMPARE CARDS (강차/오차 비교) ── */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.2rem 0; }
+  .compare-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px; }
+  .compare-card-title { font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .compare-row { margin-bottom: 7px; }
+  .compare-key { font-size: 11px; color: var(--text-muted); margin-bottom: 1px; font-weight: 500; }
+  .compare-val { font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; }
+
+  /* ── QUOTA BOX ── */
+  .quota-section { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 1.2rem 0; }
+  .quota-header { background: var(--surface2); padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 12px; font-weight: 700; color: var(--gold); letter-spacing: .06em; line-height: 1.5; }
+  .quota-body { padding: 12px 14px; }
+  .quota-row { display: flex; gap: 10px; margin-bottom: 9px; align-items: flex-start; }
+  .quota-row:last-child { margin-bottom: 0; }
+  .quota-key { font-size: 12px; font-weight: 700; color: var(--text-muted); min-width: 60px; flex-shrink: 0; padding-top: 1px; line-height: 1.5; }
+  .quota-val { font-size: 13px; color: var(--text-secondary); flex: 1; line-height: 1.6; }
 
   /* ── HIGHLIGHT BOX ── */
   .highlight-box {
-    background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
-    border: 1px solid var(--border-strong);
-    border-radius: 12px;
-    padding: 18px 16px;
-    margin: 1.2rem 0;
-    position: relative;
-    overflow: hidden;
+    background: linear-gradient(135deg, var(--surface), var(--surface2));
+    border: 1px solid var(--border-strong); border-radius: 12px;
+    padding: 16px 15px; margin: 1.2rem 0; position: relative; overflow: hidden;
   }
-  .highlight-box::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  }
-  .highlight-box-title {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--gold-light);
-    margin-bottom: 10px;
-    letter-spacing: 0.08em;
-  }
+  .highlight-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .highlight-box-title { font-size: 12px; font-weight: 700; color: var(--gold-light); margin-bottom: 8px; letter-spacing: .07em; }
   .highlight-box p { font-size: 13.5px; }
 
-  /* ── PRICE TABLE SPECIAL ── */
-  .price-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    gap: 8px;
-  }
-  .price-row:last-child { border-bottom: none; }
-  .price-label { font-size: 13px; color: var(--text-secondary); flex: 1; line-height: 1.5; }
-  .price-value { font-size: 13.5px; font-weight: 700; color: var(--gold-light); white-space: nowrap; text-align: right; }
+  /* ── SOURCE BOX ── */
+  .source-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-top: 1.5rem; }
+  .source-title { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: .1em; margin-bottom: 6px; }
+  .source-list { list-style: none; font-size: 12px; color: var(--text-muted); line-height: 1.9; }
+  .source-list li::before { content: '· '; color: var(--gold); }
 
-  /* ── QUOTA COMPARE ── */
-  .quota-section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 1.2rem 0;
-  }
-  .quota-header {
-    background: var(--surface2);
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--border);
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.08em;
-  }
-  .quota-body { padding: 14px; }
-  .quota-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-    align-items: flex-start;
-  }
-  .quota-row:last-child { margin-bottom: 0; }
-  .quota-key {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text-muted);
-    min-width: 64px;
-    max-width: 80px;
-    flex-shrink: 0;
-    padding-top: 1px;
-    letter-spacing: 0.03em;
-    word-break: keep-all;
-  }
-  .quota-val {
-    font-size: 13px;
-    color: var(--text-secondary);
-    flex: 1;
-    line-height: 1.6;
-  }
-
-  /* ── DIVIDER ── */
-  .divider {
-    height: 1px;
-    background: var(--border);
-    margin: 1.5rem 0;
-  }
-
-  /* ── SOURCE ── */
-  .source-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px 14px;
-    margin-top: 1.5rem;
-  }
-  .source-title {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 6px;
-  }
-  .source-list {
-    list-style: none;
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.8;
-  }
-  .source-list li::before {
-    content: '· ';
-    color: var(--gold);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--dark2);
-    border-top: 1px solid var(--border-strong);
-    padding: 2rem 1.25rem 3rem;
-    text-align: center;
-    position: relative;
-  }
-  footer::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 1px;
-    background: var(--gold);
-    margin: 0 auto 1.5rem;
-  }
-  .footer-logo {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--gold-light);
-    letter-spacing: 0.08em;
-    margin-bottom: 0.6rem;
-  }
-  .footer-copy {
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.8;
-    max-width: 340px;
-    margin: 0 auto;
-  }
-  .footer-copy strong {
-    color: var(--text-secondary);
-    font-weight: 500;
-  }
-
-  /* ── UTILS ── */
+  /* ── DIVIDER / UTILS ── */
+  .divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
   .krw { color: var(--gold); font-weight: 500; }
   .em { color: var(--text-primary); font-weight: 500; }
   .muted { color: var(--text-muted); font-size: 12.5px; }
-
-  /* ── SCROLL TOP ── */
-  .back-top {
-    display: block;
-    text-align: center;
-    padding: 10px;
-    font-size: 12px;
-    color: var(--text-muted);
-    text-decoration: none;
-    margin-top: 1rem;
-    letter-spacing: 0.05em;
-  }
+  .back-top { display: block; text-align: center; padding: 10px; font-size: 12px; color: var(--text-muted); text-decoration: none; margin-top: 1rem; }
   .back-top:hover { color: var(--gold); }
 
-  @media (max-width: 380px) {
+  /* ── FOOTER ── */
+  footer { background: var(--dark2); border-top: 1px solid var(--border-strong); padding: 2rem 1.25rem 3rem; text-align: center; }
+  footer::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); margin: 0 auto 1.5rem; }
+  .footer-logo { font-family: 'Noto Serif KR', serif; font-size: 1rem; font-weight: 700; color: var(--gold-light); letter-spacing: .08em; margin-bottom: 0.6rem; }
+  .footer-copy { font-size: 12px; color: var(--text-muted); line-height: 1.8; max-width: 340px; margin: 0 auto; }
+  .footer-copy strong { color: var(--text-secondary); font-weight: 500; }
+
+  @media (max-width: 400px) {
     .spec-grid { grid-template-columns: 1fr; }
     .compare-grid { grid-template-columns: 1fr; }
-    .spec-value { font-size: 1.1rem; }
-    h2 { font-size: 1.2rem; }
-  }
-  @media (max-width: 420px) {
-    .compare-grid { grid-template-columns: 1fr; }
-    .quota-key { min-width: 56px; font-size: 11.5px; }
+    .spec-value { font-size: 1.05rem; }
+    h2 { font-size: 1.15rem; }
+    .info-key { flex: 0 0 42%; font-size: 12px; }
+    .info-val { font-size: 12.5px; }
   }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <header class="hero">
   <div class="hero-badge">MACAU MOMENT 정보 가이드</div>
   <h1>강주아오 대교 완전 가이드</h1>
@@ -630,14 +299,16 @@
   <p class="hero-desc">세계 최장 해상 교량+터널 복합 구조물의 모든 것 — 제원, 역사, 차량 번호판 제도 완전 정리</p>
 </header>
 
-<!-- NAV -->
 <nav class="nav-wrap">
   <div class="nav-inner">
+    <a href="#overview">🌊 개요</a>
     <a href="#spec">📐 제원</a>
     <a href="#history">🏗 역사</a>
     <a href="#cost">💰 비용</a>
     <a href="#plate">🚗 번호판</a>
+    <a href="#dual-plate">📋 취득 조건</a>
     <a href="#scheme">🛣 이동 제도</a>
+    <a href="#hk-to-mo">🇭🇰→🇲🇴</a>
     <a href="#quota-mo-hk">🇲🇴→🇭🇰</a>
     <a href="#real">💡 현실</a>
   </div>
@@ -645,9 +316,7 @@
 
 <main>
 
-<!-- ──────────────────────────────
-  SECTION 1 : 개요
-────────────────────────────── -->
+<!-- 01 개요 -->
 <section id="overview">
 <div class="container">
   <div class="section-label">
@@ -657,11 +326,8 @@
     <div class="section-label-line"></div>
   </div>
   <h2>홍콩, 마카오, 주하이를<br>바다 위로 연결한 다리</h2>
-
   <p>강주아오 대교(港珠澳大橋, HZMB)는 <span class="em">홍콩 · 마카오 · 주하이</span>를 바다 위로 연결하는 세계에서 가장 긴 해상 교량+터널 복합 구조물이야. 이 다리가 생기기 전에는 홍콩에서 주하이·마카오까지 차로 3시간 가까이 걸렸는데, 개통 이후 <span class="em">편도 약 45분</span>으로 줄었어.</p>
-
-  <p>단순히 길만 연결한 게 아니야. 홍콩·마카오·광둥성을 하나의 경제권으로 묶는 <span class="em">광둥-홍콩-마카오 대만구(Greater Bay Area)</span> 전략의 핵심 인프라야. 2024년 기준으로 하루 평균 차량 약 1만 600대, 여객 이동 약 7만 8천 건이 이뤄지고 있어.</p>
-
+  <p>단순히 길만 연결한 게 아니야. 홍콩·마카오·광둥성을 하나의 경제권으로 묶는 <span class="em">광둥-홍콩-마카오 대만구(Greater Bay Area)</span> 전략의 핵심 인프라야. 2024년 기준 하루 평균 차량 약 1만 600대, 여객 이동 약 7만 8천 건이 이뤄지고 있어.</p>
   <div class="callout">
     <div class="callout-title">공식 명칭 정확히 알기</div>
     <p>"세계 최장 해상 교량"이라고 흔히 불리지만, 정확한 표현은 <strong>세계 최장 해상 교량+터널 복합 구조물(Longest Sea Crossing / Longest Open-Sea Fixed Link)</strong>이야. 단순 교량 길이만 따지면 다른 기록도 있어.</p>
@@ -669,9 +335,7 @@
 </div>
 </section>
 
-<!-- ──────────────────────────────
-  SECTION 2 : 제원
-────────────────────────────── -->
+<!-- 02 제원 -->
 <section id="spec">
 <div class="container">
   <div class="section-label">
@@ -706,7 +370,7 @@
     <div class="spec-card">
       <div class="spec-label">🛣 차로 수</div>
       <div class="spec-value">편도 3차로</div>
-      <div class="spec-sub">왕복 6차로, 최대 시속 100km</div>
+      <div class="spec-sub">왕복 6차로 · 최대 시속 100km</div>
     </div>
     <div class="spec-card">
       <div class="spec-label">📅 설계 수명</div>
@@ -745,9 +409,7 @@
 </div>
 </section>
 
-<!-- ──────────────────────────────
-  SECTION 3 : 역사
-────────────────────────────── -->
+<!-- 03 역사 -->
 <section id="history">
 <div class="container">
   <div class="section-label">
@@ -762,82 +424,53 @@
 
   <div class="timeline">
     <div class="timeline-item">
-      <div class="timeline-left">
-        <div class="timeline-dot"></div>
-        <div class="timeline-line"></div>
-      </div>
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
       <div class="timeline-date">1983년</div>
       <div class="timeline-content">홍콩 사업가 고든 우가 대교 개념 최초 제안. 미국 체서피크만 교량-터널에서 착안했어.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-left">
-        <div class="timeline-dot"></div>
-        <div class="timeline-line"></div>
-      </div>
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
       <div class="timeline-date">1997년</div>
       <div class="timeline-content">중국 중앙정부가 프로젝트 지지 공식 표명.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-left">
-        <div class="timeline-dot"></div>
-        <div class="timeline-line"></div>
-      </div>
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
       <div class="timeline-date">2003년</div>
       <div class="timeline-content">HZMB 사전협력그룹 설립. 홍콩·광둥·마카오 3개 정부가 착지점, 노선, 자금 조달 방안을 협의하기 시작했어.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-left">
-        <div class="timeline-dot"></div>
-        <div class="timeline-line"></div>
-      </div>
-      <div class="timeline-date">2009년 12월 15일</div>
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">2009.12.15</div>
       <div class="timeline-content">중국 본토 구간 착공. 리커창 당시 국무원 부총리 기념식 진행.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-left">
-        <div class="timeline-dot"></div>
-        <div class="timeline-line"></div>
-      </div>
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
       <div class="timeline-date">2011년 12월</div>
       <div class="timeline-content">홍콩 구간 착공 (환경영향 소송으로 약 2년 지연).</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-left">
-        <div class="timeline-dot"></div>
-        <div class="timeline-line"></div>
-      </div>
-      <div class="timeline-date">2016년 6월 2일</div>
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">2016.6.2</div>
       <div class="timeline-content">마지막 교량 타워 설치 완료.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-left">
-        <div class="timeline-dot"></div>
-        <div class="timeline-line"></div>
-      </div>
-      <div class="timeline-date">2017년 7월 6일</div>
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">2017.7.6</div>
       <div class="timeline-content">주 교량(고가 교량+해저 터널) 공사 완료.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-left">
-        <div class="timeline-dot"></div>
-        <div class="timeline-line"></div>
-      </div>
-      <div class="timeline-date">2018년 2월 6일</div>
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">2018.2.6</div>
       <div class="timeline-content">전체 공사 완공.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-left">
-        <div class="timeline-dot"></div>
-        <div class="timeline-line"></div>
-      </div>
-      <div class="timeline-date">2018년 10월 23일</div>
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">2018.10.23</div>
       <div class="timeline-content">시진핑 중국 국가주석 주관 개통식.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-left">
-        <div class="timeline-dot"></div>
-      </div>
-      <div class="timeline-date">2018년 10월 24일</div>
+      <div class="timeline-left"><div class="timeline-dot"></div></div>
+      <div class="timeline-date">2018.10.24</div>
       <div class="timeline-content">일반 차량 통행 개시. 본격적인 3지역 연결 시대가 열렸어.</div>
     </div>
   </div>
@@ -857,9 +490,7 @@
 </div>
 </section>
 
-<!-- ──────────────────────────────
-  SECTION 4 : 건설 비용
-────────────────────────────── -->
+<!-- 04 건설 비용 -->
 <section id="cost">
 <div class="container">
   <div class="section-label">
@@ -886,33 +517,28 @@
   <h3>주 교량 구간 정부 출자 분담 (약 42%)</h3>
   <p>511억 위안 중 약 42%인 약 157억 위안을 3개 정부가 직접 출자했고, 나머지 약 58%는 중국은행(Bank of China) 등 은행 컨소시엄 대출로 조달했어.</p>
 
-  <div class="table-wrap">
-    <table class="t3b">
-      <thead>
-        <tr>
-          <th>출자 주체</th>
-          <th>금액</th>
-          <th>한화 환산</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>중국 본토 (광둥성 포함)</td>
-          <td>70억 위안</td>
-          <td><span class="krw">약 1조 3,608억 원</span></td>
-        </tr>
-        <tr>
-          <td>홍콩</td>
-          <td>67.5억 홍콩달러</td>
-          <td><span class="krw">약 1조 2,150억 원</span></td>
-        </tr>
-        <tr>
-          <td>마카오</td>
-          <td>19.8억 마카오파타카</td>
-          <td><span class="krw">약 3,564억 원</span></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="cost-cards">
+    <div class="cost-card">
+      <div class="cost-card-who">🇨🇳 중국 본토 (광둥성 포함)</div>
+      <div class="cost-card-right">
+        <div class="cost-card-amt">70억 위안</div>
+        <div class="cost-card-krw">약 1조 3,608억 원</div>
+      </div>
+    </div>
+    <div class="cost-card">
+      <div class="cost-card-who">🇭🇰 홍콩</div>
+      <div class="cost-card-right">
+        <div class="cost-card-amt">67.5억 홍콩달러</div>
+        <div class="cost-card-krw">약 1조 2,150억 원</div>
+      </div>
+    </div>
+    <div class="cost-card">
+      <div class="cost-card-who">🇲🇴 마카오</div>
+      <div class="cost-card-right">
+        <div class="cost-card-amt">19.8억 마카오파타카</div>
+        <div class="cost-card-krw">약 3,564억 원</div>
+      </div>
+    </div>
   </div>
 
   <div class="callout">
@@ -923,17 +549,14 @@
   <div class="source-box">
     <div class="source-title">📌 출처</div>
     <ul class="source-list">
-      <li>Wikipedia: Hong Kong–Zhuhai–Macau Bridge — Construction cost ¥127 billion</li>
+      <li>Wikipedia: HZMB — Construction cost ¥127 billion</li>
       <li>홍콩 토목공정부(HYD) 공식 팩트시트</li>
-      <li>홍콩 버스 위키(Fandom) — 정부 출자 분담 상세</li>
     </ul>
   </div>
 </div>
 </section>
 
-<!-- ──────────────────────────────
-  SECTION 5 : 번호판 제도 개요
-────────────────────────────── -->
+<!-- 05 번호판 제도 -->
 <section id="plate">
 <div class="container">
   <div class="section-label">
@@ -947,26 +570,20 @@
   <p>강주아오 대교는 아무 차나 달릴 수 없어. 번호판 종류에 따라 통행 자격이 엄격하게 나뉘어 있어. 크게 <span class="em">두 지역 번호판 · 세 지역 번호판 · 단일 번호판 기반 정책</span> 세 가지야.</p>
 
   <h3>① 두 지역 번호판 (Dual-plate)</h3>
-  <div class="table-wrap">
-    <table class="t2">
-      <thead>
-        <tr><th>번호판 종류</th><th>통행 가능 구간</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>광둥-홍콩 (粤港, FU/FV)</td>
-          <td>광둥성 ↔ 홍콩</td>
-        </tr>
-        <tr>
-          <td>홍콩-마카오 (港澳)</td>
-          <td>홍콩 ↔ 마카오</td>
-        </tr>
-        <tr>
-          <td>광둥-마카오 (粤澳, Z牌)</td>
-          <td>광둥성 ↔ 마카오</td>
-        </tr>
-      </tbody>
-    </table>
+
+  <div class="info-list">
+    <div class="info-row">
+      <div class="info-key">광둥-홍콩<br>粤港 (FU/FV)</div>
+      <div class="info-val">광둥성 ↔ 홍콩 자유 통행</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">홍콩-마카오<br>港澳</div>
+      <div class="info-val">홍콩 ↔ 마카오 자유 통행</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">광둥-마카오<br>粤澳 (Z牌)</div>
+      <div class="info-val">광둥성 ↔ 마카오 자유 통행</div>
+    </div>
   </div>
 
   <h3>② 세 지역 번호판 (Triple-plate)</h3>
@@ -1013,15 +630,12 @@
     <ul class="source-list">
       <li>홍콩 운수서(TD) 공식 홈페이지 — 번호판 유형별 안내</li>
       <li>마카오 교통사무국(DSAT) 공식 홈페이지</li>
-      <li>HZMB 공식 홈페이지 (hzmb.gov.hk)</li>
     </ul>
   </div>
 </div>
 </section>
 
-<!-- ──────────────────────────────
-  SECTION 6 : 광둥-홍콩 두 지역 번호판 취득
-────────────────────────────── -->
+<!-- 06 번호판 취득 조건 -->
 <section id="dual-plate">
 <div class="container">
   <div class="section-label">
@@ -1034,57 +648,38 @@
 
   <p>광둥-홍콩 두 지역 번호판(FU/FV 번호판)은 <span class="em">광둥성에 등록된 법인</span>만 신청할 수 있어. 개인은 신청 불가야.</p>
 
-  <div class="table-wrap">
-    <table class="t3b">
-      <thead>
-        <tr>
-          <th>법인 유형</th>
-          <th>1개 쿼터 기준 납세액</th>
-          <th>한화 환산</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>내국 기업 (국내자본)</td>
-          <td>전년도 100만 위안 이상</td>
-          <td><span class="krw">약 1억 9,440만 원</span></td>
-        </tr>
-        <tr>
-          <td>외국인투자기업 (FIE)</td>
-          <td>전년도 15만 위안 이상</td>
-          <td><span class="krw">약 2,916만 원</span></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="tax-cards">
+    <div class="tax-card">
+      <div class="tax-card-type">내국 기업 (국내자본)</div>
+      <div class="tax-card-body">
+        <div class="tax-card-cond">전년도 납세액<br>100만 위안 이상</div>
+        <div class="tax-card-krw">약 1억 9,440만 원</div>
+      </div>
+    </div>
+    <div class="tax-card">
+      <div class="tax-card-type">외국인투자기업 (FIE)</div>
+      <div class="tax-card-body">
+        <div class="tax-card-cond">전년도 납세액<br>15만 위안 이상</div>
+        <div class="tax-card-krw">약 2,916만 원</div>
+      </div>
+    </div>
   </div>
-
   <p>납세액이 높을수록 추가 쿼터 신청이 가능해. 차량은 반드시 신청 법인 명의로 등록돼 있어야 해.</p>
 
   <h3>번호판 암시장 가격의 역사</h3>
   <p>정부 공식 취득 조건이 워낙 까다롭다 보니, 예전에는 쿼터를 가진 법인(유령회사 포함)을 통째로 사들이는 방식으로 번호판이 거래됐어.</p>
 
-  <div class="table-wrap">
-    <table class="t3b">
-      <thead>
-        <tr>
-          <th>시기</th>
-          <th>홍콩-마카오 번호판 시장가</th>
-          <th>한화 환산</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2018~2019년 (전성기)</td>
-          <td>60만~80만 MOP</td>
-          <td><span class="krw">약 1억 800만~1억 4,400만 원</span></td>
-        </tr>
-        <tr>
-          <td>2024년 기준</td>
-          <td>15만~25만 MOP</td>
-          <td><span class="krw">약 2,700만~4,500만 원</span></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="price-cards">
+    <div class="price-card">
+      <div class="price-card-period">2018~2019년 (전성기)</div>
+      <div class="price-card-main">60만~80만 MOP</div>
+      <div class="price-card-krw">약 1억 800만~1억 4,400만 원</div>
+    </div>
+    <div class="price-card">
+      <div class="price-card-period">2024년 기준</div>
+      <div class="price-card-main">15만~25만 MOP</div>
+      <div class="price-card-krw">약 2,700만~4,500만 원</div>
+    </div>
   </div>
 
   <h3>가격이 내려간 3가지 이유</h3>
@@ -1123,15 +718,12 @@
       <li>Hongda Service 2026년 4월 분석 — 납세 기준별 쿼터 상세</li>
       <li>광둥성 교통경찰 공식 발표 (2024년 11월)</li>
       <li>중앙정부 주홍콩 연락판공실(LOCPG) 2024년 10월 보도</li>
-      <li>Macau News Agency 2024년 보도</li>
     </ul>
   </div>
 </div>
 </section>
 
-<!-- ──────────────────────────────
-  SECTION 7 : 이동 제도 전체 비교
-────────────────────────────── -->
+<!-- 07 이동 제도 비교 -->
 <section id="scheme">
 <div class="container">
   <div class="section-label">
@@ -1144,41 +736,36 @@
 
   <p>홍콩 차와 마카오 차가 각각 자기 차를 가지고 광둥성으로 들어가는 제도야. 서류 조건과 추첨 여부가 다르기 때문에 꼼꼼히 비교해야 해.</p>
 
-  <!-- 강차북상 -->
   <div class="quota-section">
-    <div class="quota-header">🇭🇰 강차북상 (港車北上) — 홍콩 차 → 광둥성</div>
+    <div class="quota-header">🇭🇰 강차북상 (港車北上) — 홍콩 차 → 광둥성 · 시행 2023.7.1</div>
     <div class="quota-body">
-      <div class="quota-row">
-        <div class="quota-key">시행일</div>
-        <div class="quota-val">2023년 7월 1일</div>
-      </div>
       <div class="quota-row">
         <div class="quota-key">신청 자격</div>
         <div class="quota-val">홍콩 거주자 (홍콩 신분증 소지자, 영주권 불필요)</div>
       </div>
       <div class="quota-row">
         <div class="quota-key">차량 조건</div>
-        <div class="quota-val">홍콩 등록 <strong>개인 명의</strong> 비영업용 사유차, 8인승 이하, 길이 6m 이하 <span class="badge badge-no">법인 명의 불가</span></div>
+        <div class="quota-val">홍콩 등록 개인 명의 비영업용 사유차 · 8인승 이하 · 길이 6m 이하 <span class="badge badge-no">법인 명의 불가</span></div>
       </div>
       <div class="quota-row">
         <div class="quota-key">지정 운전자</div>
         <div class="quota-val">최대 2명. 홍콩 신분증 + 홍콩·본토 운전면허 필수</div>
       </div>
       <div class="quota-row">
-        <div class="quota-key">추첨 여부</div>
-        <div class="quota-val"><span class="badge badge-warn">컴퓨터 추첨 (하루 500건)</span> 갱신자는 2024년부터 추첨 면제</div>
+        <div class="quota-key">추첨</div>
+        <div class="quota-val"><span class="badge badge-warn">컴퓨터 추첨 · 하루 500건</span> 갱신자는 2024년부터 추첨 면제</div>
       </div>
       <div class="quota-row">
-        <div class="quota-key">허가증 기간</div>
+        <div class="quota-key">허가증</div>
         <div class="quota-val">최대 1년 (갱신 가능)</div>
       </div>
       <div class="quota-row">
         <div class="quota-key">체류 한도</div>
-        <div class="quota-val">1회 입경 후 연속 30일 이내, 연간 누계 180일 이내</div>
+        <div class="quota-val">1회 입경 후 연속 30일 이내 · 연간 누계 180일 이내</div>
       </div>
       <div class="quota-row">
         <div class="quota-key">보험</div>
-        <div class="quota-val">홍콩·본토 양측 보험 모두 필요 (등효선인 보험 또는 본토 강제보험)</div>
+        <div class="quota-val">홍콩·본토 양측 보험 모두 필요</div>
       </div>
       <div class="quota-row">
         <div class="quota-key">사전 예약</div>
@@ -1187,45 +774,36 @@
     </div>
   </div>
 
-  <!-- 오차북상 -->
   <div class="quota-section">
-    <div class="quota-header">🇲🇴 오차북상 (澳車北上) — 마카오 차 → 광둥성</div>
+    <div class="quota-header">🇲🇴 오차북상 (澳車北上) — 마카오 차 → 광둥성 · 시행 2023.1.1</div>
     <div class="quota-body">
       <div class="quota-row">
-        <div class="quota-key">시행일</div>
-        <div class="quota-val">2023년 1월 1일 (강차북상보다 6개월 먼저)</div>
-      </div>
-      <div class="quota-row">
         <div class="quota-key">신청 자격</div>
-        <div class="quota-val">만 18세 이상 마카오 거주자 + 회향증(홍콩·마카오→본토 통행증) 소지자 <span class="badge badge-ok">투자·납세 조건 없음</span></div>
+        <div class="quota-val">만 18세 이상 마카오 거주자 + 회향증(본토 통행증) 소지자 <span class="badge badge-ok">투자·납세 조건 없음</span></div>
       </div>
       <div class="quota-row">
         <div class="quota-key">차량 조건</div>
-        <div class="quota-val">마카오 등록 <strong>개인 명의</strong> 사유차 <span class="badge badge-no">법인 명의 불가</span></div>
+        <div class="quota-val">마카오 등록 개인 명의 사유차 <span class="badge badge-no">법인 명의 불가</span></div>
       </div>
       <div class="quota-row">
         <div class="quota-key">지정 운전자</div>
         <div class="quota-val">차량 1대당 최대 2명</div>
       </div>
       <div class="quota-row">
-        <div class="quota-key">추첨 여부</div>
+        <div class="quota-key">추첨</div>
         <div class="quota-val"><span class="badge badge-ok">추첨 없음</span> 자격 충족 시 신청 가능</div>
       </div>
       <div class="quota-row">
-        <div class="quota-key">허가증 기간</div>
+        <div class="quota-key">허가증</div>
         <div class="quota-val">최대 1년 (보험 기간과 연동)</div>
       </div>
       <div class="quota-row">
         <div class="quota-key">체류 한도</div>
-        <div class="quota-val">1회 입경 후 연속 30일 이내, 연간 누계 180일 이내</div>
+        <div class="quota-val">1회 입경 후 연속 30일 이내 · 연간 누계 180일 이내</div>
       </div>
       <div class="quota-row">
         <div class="quota-key">보증금</div>
         <div class="quota-val"><span class="badge badge-ok">면제 (免擔保 정책)</span></div>
-      </div>
-      <div class="quota-row">
-        <div class="quota-key">통관 전자 라벨</div>
-        <div class="quota-val">주하이·마카오 구간 1개 전자 라벨 공유 방식</div>
       </div>
     </div>
   </div>
@@ -1241,15 +819,12 @@
       <li>HZMB 공식 홈페이지 (hzmb.gov.hk) — 강차북상 신청 안내</li>
       <li>마카오 교통사무국(DSAT) 오차북상 공식 페이지</li>
       <li>홍콩 1823 콜센터 공식 FAQ</li>
-      <li>홍콩 운수서(TD) 보도자료 2025년 1월</li>
     </ul>
   </div>
 </div>
 </section>
 
-<!-- ──────────────────────────────
-  SECTION 8 : 홍콩 차 → 마카오
-────────────────────────────── -->
+<!-- 08 홍콩 차 → 마카오 -->
 <section id="hk-to-mo">
 <div class="container">
   <div class="section-label">
@@ -1264,7 +839,7 @@
 
   <h3>개인 쿼터 (Individual Quota)</h3>
   <div class="quota-section">
-    <div class="quota-header">개인 쿼터 — 자격 기준 (Eligibility Criteria)</div>
+    <div class="quota-header">기존 자격 쿼터 — 마카오 연계 조건 필요</div>
     <div class="quota-body">
       <div class="quota-row">
         <div class="quota-key">기본 자격</div>
@@ -1276,17 +851,17 @@
       </div>
       <div class="quota-row">
         <div class="quota-key">차량 명의</div>
-        <div class="quota-val">신청자 <strong>개인 명의</strong> 홍콩 비영업용 사유차</div>
+        <div class="quota-val">신청자 개인 명의 홍콩 비영업용 사유차</div>
       </div>
       <div class="quota-row">
         <div class="quota-key">지정 운전자</div>
-        <div class="quota-val">최대 2명 (운전자 1: 신청자 본인 / 운전자 2: 신청자의 부모·배우자·자녀만 가능), 모두 홍콩 영주권자여야 함</div>
+        <div class="quota-val">최대 2명. 운전자 1은 신청자 본인, 운전자 2는 신청자의 부모·배우자·자녀만 가능. 모두 홍콩 영주권자</div>
       </div>
     </div>
   </div>
 
   <div class="quota-section">
-    <div class="quota-header">개인 오픈 쿼터 — 2026년 5월 1일 신설 (조건 없이 신청 가능)</div>
+    <div class="quota-header">개인 오픈 쿼터 — 2026년 5월 1일 신설 · 조건 없이 신청 가능</div>
     <div class="quota-body">
       <div class="quota-row">
         <div class="quota-key">자격</div>
@@ -1301,11 +876,11 @@
 
   <h3>법인 쿼터 (Company Quota)</h3>
   <div class="quota-section">
-    <div class="quota-header">법인 쿼터 — 자격 기준</div>
+    <div class="quota-header">기존 자격 쿼터 — 마카오 법인 연계 필요</div>
     <div class="quota-body">
       <div class="quota-row">
         <div class="quota-key">기본 자격</div>
-        <div class="quota-val">홍콩+마카오 양측에 등록된 법인, 또는 홍콩 법인 + 마카오 법인과 공식 연계 관계</div>
+        <div class="quota-val">홍콩+마카오 양측 등록 법인 또는 홍콩 법인 + 마카오 법인과 공식 연계 관계</div>
       </div>
       <div class="quota-row">
         <div class="quota-key">차량 명의</div>
@@ -1313,7 +888,7 @@
       </div>
       <div class="quota-row">
         <div class="quota-key">지정 운전자</div>
-        <div class="quota-val">최대 3명. 법인 임직원 또는 이사. 모두 홍콩 영주권자 + 홍콩 운전면허 소지</div>
+        <div class="quota-val">최대 3명. 법인 임직원 또는 이사. 홍콩 영주권자 + 홍콩 운전면허 필수</div>
       </div>
     </div>
   </div>
@@ -1333,21 +908,35 @@
   </div>
 
   <h3>공통 조건 및 절차</h3>
-  <div class="table-wrap">
-    <table class="t2">
-      <thead>
-        <tr><th>항목</th><th>내용</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>유효기간</td><td>최대 3년 (만료 후 재신청)</td></tr>
-        <tr><td>추첨</td><td>정원 초과 시 추첨 실시</td></tr>
-        <tr><td>마카오 체류</td><td>14일 자유 체류. 초과 시 마카오 공안청 무료 등록 후 연장 가능</td></tr>
-        <tr><td>통행증(CRP)</td><td>연간 540 HKD (약 97,200원). 2025년 10월 13일부터 CRP 신청 면제 조치 시행</td></tr>
-        <tr><td>마카오 보험</td><td>마카오 법정 자동차 보험 별도 가입 필요</td></tr>
-        <tr><td>마카오 라벨</td><td>마카오 세관청 발급 전자 식별 라벨 부착 (100 MOP)</td></tr>
-        <tr><td>쿼터 수 (2026.5)</td><td>개인 700개 + 법인 700개 = 총 1,400개 (자격 1,000 + 오픈 400)</td></tr>
-      </tbody>
-    </table>
+  <div class="info-list">
+    <div class="info-row">
+      <div class="info-key">유효기간</div>
+      <div class="info-val">최대 3년 (만료 후 재신청)</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">추첨</div>
+      <div class="info-val">정원 초과 시 추첨 실시</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">마카오 체류</div>
+      <div class="info-val">14일 자유 체류. 초과 시 마카오 공안청 무료 등록 후 연장 가능</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">통행증 (CRP)</div>
+      <div class="info-val">연간 540 HKD (약 97,200원). 2025년 10월 13일부터 CRP 신청 면제 조치 시행</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">마카오 보험</div>
+      <div class="info-val">마카오 법정 자동차 보험 별도 가입 필요</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">전자 라벨</div>
+      <div class="info-val">마카오 세관청 발급 전자 식별 라벨 부착 (100 MOP, 약 18,000원)</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">쿼터 수</div>
+      <div class="info-val">개인 700개 + 법인 700개 = 총 1,400개 (자격 1,000 + 오픈 400) · 2026년 5월 기준</div>
+    </div>
   </div>
 
   <div class="source-box">
@@ -1355,15 +944,12 @@
     <ul class="source-list">
       <li>홍콩 운수서(TD) 공식 문서 (2024년 8월판, 2026년 5월 보도자료)</li>
       <li>홍콩 정부 공식 보도 (2026년 5월 1일)</li>
-      <li>홍콩 운수서 홈페이지 (td.gov.hk)</li>
     </ul>
   </div>
 </div>
 </section>
 
-<!-- ──────────────────────────────
-  SECTION 9 : 마카오 차 → 홍콩
-────────────────────────────── -->
+<!-- 09 마카오 차 → 홍콩 -->
 <section id="quota-mo-hk">
 <div class="container">
   <div class="section-label">
@@ -1393,7 +979,7 @@
         <div class="quota-val">마카오 등록 개인 명의 비영업용 사유차 <span class="badge badge-no">법인 명의 불가</span></div>
       </div>
       <div class="quota-row">
-        <div class="quota-key">운전자 자격</div>
+        <div class="quota-key">운전자</div>
         <div class="quota-val">마카오 신분증 + 유효한 마카오 운전면허 소지자</div>
       </div>
     </div>
@@ -1419,27 +1005,44 @@
   </div>
 
   <h3>공통 조건</h3>
-  <div class="table-wrap">
-    <table class="t2">
-      <thead>
-        <tr><th>항목</th><th>내용</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>관할 기관</td><td>마카오 DSAT + 홍콩 TD 공동 관리</td></tr>
-        <tr><td>추첨</td><td>추첨(Lucky Draw) 실시 (DSAT 홈페이지 신청)</td></tr>
-        <tr><td>유효기간</td><td>3년</td></tr>
-        <tr><td>신청비</td><td>500 MOP (신청비, 약 90,000원) + 1,000 MOP (배정 확정 시, 약 180,000원)</td></tr>
-        <tr><td>홍콩 보험</td><td>홍콩 내 유효한 자동차 보험 별도 가입 필요</td></tr>
-        <tr><td>통행증</td><td>홍콩 폐쇄도로 통행증(CRP) 필요 (연간 540 HKD, 약 97,200원)</td></tr>
-        <tr><td>쿼터 수 (2024년)</td><td>개인 2,000개 + 추가 650개 / 법인 500개 + 추가 100개</td></tr>
-        <tr><td>오픈 쿼터</td><td><span class="badge badge-no">2026년 6월 기준 미도입</span> 홍콩 사업·부동산 연계 조건 유지</td></tr>
-      </tbody>
-    </table>
+  <div class="info-list">
+    <div class="info-row">
+      <div class="info-key">관할 기관</div>
+      <div class="info-val">마카오 DSAT + 홍콩 TD 공동 관리</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">추첨</div>
+      <div class="info-val">추첨(Lucky Draw) 실시. DSAT 홈페이지 신청</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">유효기간</div>
+      <div class="info-val">3년</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">신청비</div>
+      <div class="info-val">500 MOP (약 90,000원) + 배정 확정 시 1,000 MOP (약 180,000원) 추가</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">홍콩 보험</div>
+      <div class="info-val">홍콩 내 유효한 자동차 보험 별도 가입 필요</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">통행증</div>
+      <div class="info-val">홍콩 폐쇄도로 통행증(CRP) 필요. 연간 540 HKD (약 97,200원)</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">쿼터 수</div>
+      <div class="info-val">개인 2,000개 + 추가 650개 / 법인 500개 + 추가 100개 (2024년 기준)</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">오픈 쿼터</div>
+      <div class="info-val"><span class="badge badge-no">2026년 6월 기준 미도입</span> 홍콩 사업·부동산 연계 조건 유지 중</div>
+    </div>
   </div>
 
   <div class="callout callout-warn">
     <div class="callout-title">⚠️ 오픈 쿼터 도입 여부 차이</div>
-    <p>2026년 5월 홍콩 정부가 홍콩→마카오 방향에 오픈 쿼터(자격 조건 완화)를 도입했지만, <strong>마카오→홍콩 방향(DSAT 관할)은 2026년 6월 기준 오픈 쿼터 미도입 상태야.</strong> 마카오 차가 홍콩으로 가려면 여전히 "홍콩 사업 이익 또는 부동산" 조건이 유지돼. 변경 시 현장 확인 필요.</p>
+    <p>2026년 5월 홍콩 정부가 홍콩→마카오 방향에 오픈 쿼터를 도입했지만, <strong>마카오→홍콩 방향(DSAT 관할)은 2026년 6월 기준 오픈 쿼터 미도입 상태야.</strong> 마카오 차가 홍콩으로 가려면 여전히 "홍콩 사업 이익 또는 부동산" 조건이 유지돼. 변경 시 현장 확인 필요.</p>
   </div>
 
   <div class="source-box">
@@ -1453,9 +1056,7 @@
 </div>
 </section>
 
-<!-- ──────────────────────────────
-  SECTION 10 : 현실 이야기
-────────────────────────────── -->
+<!-- 10 현실 이야기 -->
 <section id="real">
 <div class="container">
   <div class="section-label">
@@ -1493,8 +1094,8 @@
   <div class="source-box">
     <div class="source-title">📌 출처</div>
     <ul class="source-list">
-      <li>HZMB 공식 홈페이지 (hzmb.gov.hk) — 일반 이용 안내</li>
-      <li>홍콩 운수서(TD) 공식 문서 — 강차북상·정규쿼터 비교</li>
+      <li>HZMB 공식 홈페이지 (hzmb.gov.hk)</li>
+      <li>홍콩 운수서(TD) 공식 문서</li>
       <li>마카오 교통사무국(DSAT) 공식 홈페이지</li>
     </ul>
   </div>
@@ -1505,8 +1106,7 @@
 
 </main>
 
-<!-- FOOTER -->
-<footer id="footer">
+<footer>
   <div class="footer-logo">MACAU MOMENT</div>
   <p class="footer-copy">
     본 콘텐츠는 공식적으로 확인된 정보를 사실에 기반하여 제작되었으며<br>
