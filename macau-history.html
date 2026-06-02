@@ -537,12 +537,69 @@
       color: rgba(245,240,232,0.35);
     }
 
+    /* ── 무역 물품 카드 ── */
+    .trade-section-label {
+      font-family: 'Noto Serif KR', serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin: 1.4rem 0 0.7rem;
+    }
+    .trade-label-rust { color: var(--rust); }
+    .trade-label-blue { color: var(--blue-ink); }
+
+    .trade-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .trade-card {
+      border-radius: 10px;
+      padding: 0.75rem 0.9rem;
+      border-left: 3px solid;
+    }
+    .trade-card-rust {
+      background: rgba(155,58,26,0.05);
+      border-color: var(--rust);
+    }
+    .trade-card-blue {
+      background: rgba(30,58,95,0.05);
+      border-color: var(--blue-ink);
+    }
+
+    .trade-item-name {
+      font-family: 'Noto Serif KR', serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+      line-height: 1.35;
+    }
+    .trade-item-from {
+      font-size: 0.75rem;
+      color: var(--sepia);
+      margin-bottom: 0.2rem;
+      line-height: 1.4;
+    }
+    .trade-item-note {
+      font-size: 0.75rem;
+      color: #4a4035;
+      line-height: 1.4;
+    }
+
     /* ── 반응형 ── */
     @media (max-width: 600px) {
       .container { padding: 3rem 1.2rem; }
       .story-wrapper { padding: 1.8rem 1.5rem 1.8rem 1.4rem; }
       .summary-table-wrapper { padding: 1.5rem; }
       tbody td:first-child { white-space: normal; }
+      .trade-grid { grid-template-columns: 1fr; }
+      .hero-years { gap: 0.6rem; }
+    }
+
+    @media (min-width: 601px) {
+      .trade-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -803,103 +860,85 @@
       <div class="story-quote">인도 고아 → 말라카 → 마카오 → 일본 나가사키 → 마카오 → 인도 고아 → 유럽 리스본</div>
       <p>포르투갈 선박은 4~5월 고아에서 출발해 마카오에서 9~10개월을 머물며 광저우 비단 경매(1~6월)를 기다렸어. 이 루트 하나로 세계 곳곳의 물건이 마카오를 거쳐 이동했지.</p>
 
-      <p style="margin-top:1.2rem;font-family:'Noto Serif KR',serif;font-weight:700;color:var(--rust);">🔵 포르투갈이 각 식민지에서 중국으로 가져온 물품</p>
+      <!-- 🔵 포르투갈 → 중국 -->
+      <p class="trade-section-label trade-label-rust">🔵 포르투갈이 각 식민지에서 중국으로 가져온 물품</p>
+      <div class="trade-grid">
+        <div class="trade-card trade-card-rust">
+          <div class="trade-item-name">은(銀)</div>
+          <div class="trade-item-from">📍 일본 · 아메리카(스페인령)</div>
+          <div class="trade-item-note">중국이 가장 필요로 한 물품</div>
+        </div>
+        <div class="trade-card trade-card-rust">
+          <div class="trade-item-name">후추</div>
+          <div class="trade-item-from">📍 인도 말라바르 · 인도네시아 수마트라</div>
+          <div class="trade-item-note">포르투갈 무역의 핵심 품목</div>
+        </div>
+        <div class="trade-card trade-card-rust">
+          <div class="trade-item-name">정향 · 육두구 · 메이스</div>
+          <div class="trade-item-from">📍 인도네시아 반다 · 테르나테 · 암보이나</div>
+          <div class="trade-item-note">유럽에서 금값이던 향신료</div>
+        </div>
+        <div class="trade-card trade-card-rust">
+          <div class="trade-item-name">계피</div>
+          <div class="trade-item-from">📍 실론(현 스리랑카)</div>
+          <div class="trade-item-note">고급 향신료</div>
+        </div>
+        <div class="trade-card trade-card-rust">
+          <div class="trade-item-name">면직물 · 직물</div>
+          <div class="trade-item-from">📍 인도</div>
+          <div class="trade-item-note">일본·중국 시장에 인기</div>
+        </div>
+        <div class="trade-card trade-card-rust">
+          <div class="trade-item-name">백단향(샌달우드)</div>
+          <div class="trade-item-from">📍 인도네시아</div>
+          <div class="trade-item-note">중국이 원한 고급 향목</div>
+        </div>
+        <div class="trade-card trade-card-rust">
+          <div class="trade-item-name">상아 · 금</div>
+          <div class="trade-item-from">📍 아프리카 포르투갈 식민지</div>
+          <div class="trade-item-note">고가 귀중품</div>
+        </div>
+        <div class="trade-card trade-card-rust">
+          <div class="trade-item-name">와인 · 유럽 공산품</div>
+          <div class="trade-item-from">📍 포르투갈 · 유럽</div>
+          <div class="trade-item-note">동아시아 상류층 수요</div>
+        </div>
+      </div>
 
-      <table style="width:100%;border-collapse:collapse;font-size:0.88rem;margin:0.8rem 0 1.2rem;">
-        <thead>
-          <tr style="background:var(--ink);color:var(--gold-light);">
-            <th style="padding:0.6rem 0.8rem;text-align:left;border-radius:6px 0 0 0;">물품</th>
-            <th style="padding:0.6rem 0.8rem;text-align:left;">원산지</th>
-            <th style="padding:0.6rem 0.8rem;text-align:left;border-radius:0 6px 0 0;">비고</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom:1px solid rgba(107,76,42,0.15);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--sepia);">은(銀)</td>
-            <td style="padding:0.55rem 0.8rem;">일본 · 아메리카(스페인령)</td>
-            <td style="padding:0.55rem 0.8rem;">중국이 가장 필요로 한 물품</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(107,76,42,0.15);background:rgba(200,146,42,0.04);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--sepia);">후추</td>
-            <td style="padding:0.55rem 0.8rem;">인도 말라바르 · 인도네시아 수마트라</td>
-            <td style="padding:0.55rem 0.8rem;">포르투갈 무역의 핵심 품목</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(107,76,42,0.15);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--sepia);">정향 · 육두구 · 메이스</td>
-            <td style="padding:0.55rem 0.8rem;">인도네시아 반다 · 테르나테 · 암보이나</td>
-            <td style="padding:0.55rem 0.8rem;">유럽에서 금값이던 향신료</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(107,76,42,0.15);background:rgba(200,146,42,0.04);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--sepia);">계피</td>
-            <td style="padding:0.55rem 0.8rem;">실론(현 스리랑카)</td>
-            <td style="padding:0.55rem 0.8rem;">고급 향신료</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(107,76,42,0.15);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--sepia);">면직물 · 직물</td>
-            <td style="padding:0.55rem 0.8rem;">인도</td>
-            <td style="padding:0.55rem 0.8rem;">일본·중국 시장에 인기</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(107,76,42,0.15);background:rgba(200,146,42,0.04);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--sepia);">백단향(샌달우드)</td>
-            <td style="padding:0.55rem 0.8rem;">인도네시아</td>
-            <td style="padding:0.55rem 0.8rem;">중국이 원한 고급 향목</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(107,76,42,0.15);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--sepia);">상아 · 금</td>
-            <td style="padding:0.55rem 0.8rem;">아프리카 포르투갈 식민지</td>
-            <td style="padding:0.55rem 0.8rem;">고가 귀중품</td>
-          </tr>
-          <tr style="background:rgba(200,146,42,0.04);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--sepia);">와인 · 유럽 공산품</td>
-            <td style="padding:0.55rem 0.8rem;">포르투갈 · 유럽</td>
-            <td style="padding:0.55rem 0.8rem;">동아시아 상류층 수요</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p style="margin-top:1.2rem;font-family:'Noto Serif KR',serif;font-weight:700;color:var(--blue-ink);">🔴 중국(마카오)에서 포르투갈이 가져간 물품</p>
-
-      <table style="width:100%;border-collapse:collapse;font-size:0.88rem;margin:0.8rem 0 1.2rem;">
-        <thead>
-          <tr style="background:var(--blue-ink);color:var(--gold-light);">
-            <th style="padding:0.6rem 0.8rem;text-align:left;border-radius:6px 0 0 0;">물품</th>
-            <th style="padding:0.6rem 0.8rem;text-align:left;">주요 행선지</th>
-            <th style="padding:0.6rem 0.8rem;text-align:left;border-radius:0 6px 0 0;">비고</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom:1px solid rgba(30,58,95,0.12);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--blue-ink);">생사(生絲) · 비단</td>
-            <td style="padding:0.55rem 0.8rem;">일본 → 유럽</td>
-            <td style="padding:0.55rem 0.8rem;">황금기 최대 교역품. 연간 1,000~1,600피콜 수송</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(30,58,95,0.12);background:rgba(30,58,95,0.03);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--blue-ink);">도자기(자기)</td>
-            <td style="padding:0.55rem 0.8rem;">유럽</td>
-            <td style="padding:0.55rem 0.8rem;">선박 평형수 겸용. 1600년 이후 본격화</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(30,58,95,0.12);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--blue-ink);">사향(麝香)</td>
-            <td style="padding:0.55rem 0.8rem;">유럽 · 아시아</td>
-            <td style="padding:0.55rem 0.8rem;">고급 향료·약재</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(30,58,95,0.12);background:rgba(30,58,95,0.03);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--blue-ink);">금 · 진주 · 구리</td>
-            <td style="padding:0.55rem 0.8rem;">유럽</td>
-            <td style="padding:0.55rem 0.8rem;">일본 은으로 마카오에서 재구매</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(30,58,95,0.12);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--blue-ink);">대황(大黃)</td>
-            <td style="padding:0.55rem 0.8rem;">유럽</td>
-            <td style="padding:0.55rem 0.8rem;">당시 유럽 고가 약재</td>
-          </tr>
-          <tr style="background:rgba(30,58,95,0.03);">
-            <td style="padding:0.55rem 0.8rem;font-weight:700;color:var(--blue-ink);">연지(루주)</td>
-            <td style="padding:0.55rem 0.8rem;">유럽 · 아시아</td>
-            <td style="padding:0.55rem 0.8rem;">화장품 원료</td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- 🔴 중국 → 포르투갈 -->
+      <p class="trade-section-label trade-label-blue">🔴 중국(마카오)에서 포르투갈이 가져간 물품</p>
+      <div class="trade-grid">
+        <div class="trade-card trade-card-blue">
+          <div class="trade-item-name">생사(生絲) · 비단</div>
+          <div class="trade-item-from">🚢 일본 → 유럽</div>
+          <div class="trade-item-note">황금기 최대 교역품. 연간 1,000~1,600피콜 수송</div>
+        </div>
+        <div class="trade-card trade-card-blue">
+          <div class="trade-item-name">도자기(자기)</div>
+          <div class="trade-item-from">🚢 유럽</div>
+          <div class="trade-item-note">선박 평형수 겸용. 1600년 이후 본격화</div>
+        </div>
+        <div class="trade-card trade-card-blue">
+          <div class="trade-item-name">사향(麝香)</div>
+          <div class="trade-item-from">🚢 유럽 · 아시아</div>
+          <div class="trade-item-note">고급 향료·약재</div>
+        </div>
+        <div class="trade-card trade-card-blue">
+          <div class="trade-item-name">금 · 진주 · 구리</div>
+          <div class="trade-item-from">🚢 유럽</div>
+          <div class="trade-item-note">일본 은으로 마카오에서 재구매</div>
+        </div>
+        <div class="trade-card trade-card-blue">
+          <div class="trade-item-name">대황(大黃)</div>
+          <div class="trade-item-from">🚢 유럽</div>
+          <div class="trade-item-note">당시 유럽 고가 약재</div>
+        </div>
+        <div class="trade-card trade-card-blue">
+          <div class="trade-item-name">연지(루주)</div>
+          <div class="trade-item-from">🚢 유럽 · 아시아</div>
+          <div class="trade-item-note">화장품 원료</div>
+        </div>
+      </div>
 
       <div class="story-note">
         📌 <strong>황금기 규모</strong> — 16세기 후반 포르투갈이 일본으로 수송한 생사는 연간 1,000~1,600피콜로, 당시 해상 거래된 중국 비단 총량의 약 1/3~1/2에 해당했어. 마카오는 사실상 <strong>중일 비단-은 교역의 독점 창구</strong>였던 거야.<br/><br/>
@@ -963,6 +1002,7 @@
   <!-- 요약 테이블 -->
   <div class="summary-table-wrapper">
     <div class="summary-title">마카오 역사 한눈에 보기</div>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
     <table>
       <thead>
         <tr>
@@ -986,6 +1026,7 @@
         <tr><td>2005년</td><td>유네스코 세계문화유산 등재</td></tr>
       </tbody>
     </table>
+    </div><!-- /overflow -->
   </div>
 
   <!-- 마무리 박스 -->
