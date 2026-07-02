@@ -23,6 +23,14 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* 텍스트 선택(드래그) 방지 */
+  body, * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
   html { scroll-behavior: smooth; }
 
   body {
@@ -1606,7 +1614,7 @@
   </div>
   <div class="footer-legal">
     본 콘텐츠는 확인된 역사적 사실에 기반하여 제작되었으며<br>
-    Irene이 직접 만든 소중한 자료입니다.<br>
+    마카오 인사이더가 직접 만든 소중한 자료입니다.<br>
     무단 복제 및 배포를 금합니다.
   </div>
 </footer>
@@ -1625,6 +1633,24 @@
       navLinks.classList.remove('open');
     });
   });
+
+  // ── 복사 방지 ──
+  // 텍스트 선택 방지
+  document.addEventListener('selectstart', e => e.preventDefault());
+  // 마우스 우클릭 방지
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  // 키보드 단축키 방지 (Ctrl+C / Ctrl+A / Ctrl+U / Ctrl+S / F12)
+  document.addEventListener('keydown', e => {
+    if (
+      (e.ctrlKey && ['c','a','u','s','p'].includes(e.key.toLowerCase())) ||
+      (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase())) ||
+      e.key === 'F12'
+    ) {
+      e.preventDefault();
+    }
+  });
+  // 드래그 방지
+  document.addEventListener('dragstart', e => e.preventDefault());
 
   // Intersection Observer for fade-in animations
   const observer = new IntersectionObserver((entries) => {
