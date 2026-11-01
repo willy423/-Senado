@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>세나도 광장 — 스토리텔링 가이드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f5f0e8;
+    --parchment: #ede5d0;
+    --warm-brown: #5a3e1b;
+    --dark-brown: #2a1a08;
+    --amber: #b45309;
+    --amber-light: #fef3c7;
+    --amber-mid: #fbbf24;
+    --teal-dark: #064e3b;
+    --teal-light: #d1fae5;
+    --blue-dark: #1e3a8a;
+    --blue-light: #dbeafe;
+    --purple-dark: #5b21b6;
+    --purple-light: #ede9fe;
+    --pink-dark: #9d174d;
+    --pink-light: #fce7f3;
+    --stone: #78716c;
+    --border: rgba(255,255,255,0.12);
+    --bg: linear-gradient(150deg, #2E2420, #55433B);
+    --text: #F0E6DA;
+    --text-sub: rgba(240,230,218,0.65);
+    --accent: #E4AB6F;
+    --accent-soft: rgba(228,171,111,0.12);
+    --btn: #E3A86B;
+    --btn-text: #2E2420;
+    --card: rgba(255,255,255,0.05);
+    --card-head: rgba(255,255,255,0.08);
+  }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    background: transparent;
+    padding: 64px 24px 56px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(45deg, rgba(228,171,111,0.06) 0px, rgba(228,171,111,0.06) 1px, transparent 1px, transparent 28px),
+      repeating-linear-gradient(-45deg, rgba(228,171,111,0.06) 0px, rgba(228,171,111,0.06) 1px, transparent 1px, transparent 28px);
+    pointer-events: none;
+  }
+  .hero-wave {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40px;
+    display: none;
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .hero-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .hero-sub-name {
+    font-size: 15px;
+    color: var(--text-sub);
+    letter-spacing: 0.06em;
+    margin-bottom: 22px;
+  }
+  .hero-desc {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto 28px;
+  }
+  .badges {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+  }
+  .badge-amber { background: var(--accent-soft); color: var(--accent); }
+  .badge-teal  { background: var(--accent-soft); color: var(--accent); }
+  .badge-blue  { background: var(--accent-soft); color: var(--accent); }
+
+  /* ── MAIN CONTENT ── */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* ── ACCORDION SECTION ── */
+  .section {
+    margin-bottom: 16px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--card);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    transition: box-shadow 0.2s;
+  }
+  .section:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+    background: #5C463A;
+    border-bottom: 1px solid transparent;
+    transition: background 0.15s;
+  }
+  .section-header:hover { background: #6A5244; }
+  .section-header.open { border-bottom-color: var(--border); background: #5C463A; }
+
+  .section-icon {
+    width: 32px; height: 32px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .section-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.4;
+  }
+  .section-arrow {
+    font-size: 11px;
+    color: var(--accent);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+  .section-arrow.open { transform: rotate(180deg); }
+
+  .section-body {
+    padding: 24px 22px;
+    display: none;
+    animation: fadeIn 0.2s ease;
+  }
+  .section-body.open { display: block; }
+
+  @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+
+  /* ── STORY TEXT ── */
+  .story { font-size: 14px; line-height: 1.9; color: var(--text); }
+  .story p { margin-bottom: 16px; }
+  .story p:last-child { margin-bottom: 0; }
+
+  .hl-amber { background: var(--accent-soft); color: var(--accent); padding: 1px 6px; border-radius: 4px; font-weight: 700; }
+  .hl-teal  { background: var(--accent-soft); color: var(--accent);  padding: 1px 6px; border-radius: 4px; font-weight: 700; }
+  .hl-blue  { background: var(--accent-soft); color: var(--accent);  padding: 1px 6px; border-radius: 4px; font-weight: 700; }
+
+  .quote {
+    border-left: 4px solid var(--accent);
+    background: #EADBC8;
+    border-radius: 0 10px 10px 0;
+    padding: 16px 18px;
+    margin: 18px 0;
+    font-style: italic;
+    font-size: 14px;
+    color: #2E2420;
+    line-height: 1.8;
+  }
+
+  /* ── SYMBOL ROW ── */
+  .symbol-row {
+    display: flex; gap: 10px; margin: 16px 0;
+    flex-wrap: wrap;
+  }
+  .symbol-item {
+    flex: 1; min-width: 90px;
+    background: #EADBC8;
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+  }
+  .symbol-item .icon { font-size: 22px; margin-bottom: 6px; }
+  .symbol-item .desc { font-size: 12px; color: #5A4A40; line-height: 1.5; }
+
+  /* ── INFO GRID ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  @media (max-width: 480px) { .info-grid { grid-template-columns: 1fr; } }
+  .info-card {
+    background: #EADBC8;
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .info-card-label {
+    font-size: 10px;
+    color: #7A4E22;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-card-value { font-size: 13px; color: #2E2420; line-height: 1.5; font-weight: 500; }
+
+  /* ── TIMELINE ── */
+  .timeline { margin: 16px 0; }
+  .tl-item { display: flex; gap: 14px; margin-bottom: 14px; align-items: flex-start; }
+  .tl-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex-shrink: 0; }
+  .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); margin-top: 4px; }
+  .tl-line { width: 2px; flex: 1; background: var(--border); min-height: 20px; }
+  .tl-year { font-size: 11px; font-weight: 700; color: var(--accent); min-width: 36px; padding-top: 2px; flex-shrink: 0; }
+  .tl-text { font-size: 13px; color: var(--text); line-height: 1.65; }
+
+  /* ── PILLARS ── */
+  .pillars { display: flex; gap: 10px; margin: 16px 0; flex-wrap: wrap; }
+  .pillar {
+    flex: 1; min-width: 120px;
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .pillar-faith { background: #EADBC8; }
+  .pillar-care  { background: #EADBC8; }
+  .pillar-gov   { background: #EADBC8; }
+  .pillar-icon { font-size: 22px; margin-bottom: 8px; }
+  .pillar-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .pillar-name-faith { color: #7A4E22; }
+  .pillar-name-care  { color: #7A4E22; }
+  .pillar-name-gov   { color: #7A4E22; }
+  .pillar-place { font-size: 11px; color: #5A4A40; line-height: 1.5; }
+
+  /* ── CENTER CALLOUT ── */
+  .callout-center {
+    text-align: center;
+    margin: 18px 0;
+    padding: 16px;
+    background: #EADBC8;
+    border-radius: 12px;
+  }
+  .callout-big { font-size: 17px; font-weight: 700; color: #7A4E22; margin-bottom: 4px; }
+  .callout-sub { font-size: 12px; color: #2E2420; }
+
+  /* ── WAR GRID ── */
+  .war-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
+  @media (max-width: 480px) { .war-grid { grid-template-columns: 1fr; } }
+  .war-card { background: #EADBC8; border-radius: 10px; padding: 14px; }
+  .war-card-num { font-size: 11px; font-weight: 700; color: #7A4E22; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .war-card-text { font-size: 13px; color: #2E2420; line-height: 1.6; }
+
+  /* ── FOOTER NAV TIP ── */
+  .nav-tip {
+    background: var(--dark-brown);
+    color: rgba(255,255,255,0.8);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-top: 28px;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  .nav-tip strong { color: var(--amber-mid); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 28px 20px;
+    font-size: 12px;
+    color: var(--text-sub);
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+  }
+  footer strong { color: var(--accent); }
+
+  /* ── 위로 가기 버튼 ── */
+  #toTop {
+    position: fixed; right: 16px; bottom: 20px;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--btn); color: var(--btn-text);
+    border: none;
+    font-size: 22px; line-height: 1; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    opacity: 0; visibility: hidden;
+    transition: opacity .3s, visibility .3s;
+    z-index: 999;
+  }
+  #toTop.show { opacity: 1; visibility: visible; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">스토리텔링 가이드</div>
+  <h1 class="hero-title">세나도 광장</h1>
+  <p class="hero-sub-name">Largo do Senado &nbsp;·&nbsp; 議事亭前地</p>
+  <p class="hero-desc">400년 역사가 돌바닥 아래 살아 숨쉬는 곳</p>
+  <div class="badges">
+    <span class="badge badge-blue">유네스코 세계문화유산</span>
+    <span class="badge badge-amber">포르투갈 식민지 역사</span>
+    <span class="badge badge-teal">동서양 문화의 교차점</span>
+  </div>
+  <div class="hero-wave"></div>
+</header>
+
+<!-- CONTENT -->
+<main class="container">
+
+  <!-- 1. 여기는 어떤 곳 -->
+  <article class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <div class="section-icon" style="background:var(--accent-soft);">🏛️</div>
+      <span class="section-label">여기는 어떤 곳인가요?</span>
+      <span class="section-arrow open">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="story">
+        <p>눈을 감고 상상해 보세요. 지금 여러분이 서 있는 이곳은 아시아입니다. 그런데 주변을 돌아보면 노란색, 초록색, 핑크색 파스텔 톤의 유럽식 건물이 둘러서 있고, 발밑에는 흑백 물결 무늬의 돌바닥이 펼쳐져 있으며, 광장 한가운데에는 분수가 있습니다.</p>
+        <p>"여기가 정말 아시아 맞나요?"</p>
+        <div class="quote">세나도 광장은 단순한 광장이 아닙니다. 행정·종교·자선이 한 곳에 모인, 마카오라는 도시의 심장입니다.</div>
+        <p>세나도 광장을 유럽처럼 보이게 하는 풍경 세 가지를 꼽아 보면 이렇습니다.</p>
+        <div class="symbol-row">
+          <div class="symbol-item"><div class="icon">🎨</div><div class="desc">파스텔 색<br>포르투갈 건물</div></div>
+          <div class="symbol-item"><div class="icon">⬛</div><div class="desc">흑백 돌<br>바닥 무늬</div></div>
+          <div class="symbol-item"><div class="icon">⛲</div><div class="desc">중앙 분수<br>광장 구조</div></div>
+        </div>
+        <p>이 세 가지가 합쳐지면, 남유럽 분위기가 짙게 풍기는 풍경이 됩니다. 아시아에 있지만 유럽을 걷는 기분, 그것이 바로 세나도 광장의 첫인상입니다.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- 2. 이름의 비밀 -->
+  <article class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon" style="background:var(--accent-soft);">📜</div>
+      <span class="section-label">"세나도"라는 이름의 비밀</span>
+      <span class="section-arrow">▼</span>
+    </div>
+    <div class="section-body">
+      <div class="story">
+        <p>이 광장에는 이름이 두 개 있습니다.</p>
+        <p>포르투갈어 이름은 <span class="hl-amber">"Largo do Senado"</span>, 곧 '의회 광장'입니다. 광장 한쪽 끝에 1583년에 생긴 마카오 시의회가 쓰던 건물이 있어서 이 이름이 붙었습니다.</p>
+        <p>중국어 이름은 <span class="hl-amber">"議事亭前地"</span>, 곧 '의사정 앞 광장'입니다. 중국 쪽에서는 이 건물 자리를 '의사정(議事亭)'이라고 불렀습니다. '의사(議事)'는 모여서 공적인 일을 의논한다는 뜻이며, '의사정'이라는 이름은 명나라 문헌에도 나옵니다.</p>
+        <p>두 이름은 서로 다른 언어에서 왔지만, 모두 '공적인 일을 의논하던 곳'을 가리킵니다.</p>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <span class="tl-year">초기</span>
+            <span class="tl-text"><strong>세나도 (Senado)</strong> — 1583년 마카오 시의회로 출발, 이후 '레알(충성스러운)' 칭호를 받아 레알 세나도가 됨</span>
+          </div>
+          <div class="tl-item">
+            <div class="tl-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <span class="tl-year">중기</span>
+            <span class="tl-text"><strong>민정총서</strong> — 반환 이후 2002년부터 시정 업무를 이어받음</span>
+          </div>
+          <div class="tl-item">
+            <div class="tl-col"><div class="tl-dot"></div></div>
+            <span class="tl-year">현재</span>
+            <span class="tl-text"><strong>시정서</strong> — 2019년부터 이 건물에서 시정 업무를 맡고 있는 기관</span>
+          </div>
+        </div>
+        <p>기관의 이름은 여러 번 바뀌었지만, 한 가지는 변하지 않았습니다. 바로 <span class="hl-blue">마카오 시정의 중심</span>이라는 역할입니다.</p>
+        <div class="info-grid">
+          <div class="info-card"><div class="info-card-label">한국어</div><div class="info-card-value">세나도 광장</div></div>
+          <div class="info-card"><div class="info-card-label">포르투갈어</div><div class="info-card-value">Largo do Senado</div></div>
+          <div class="info-card"><div class="info-card-label">중국어 (번체)</div><div class="info-card-value">議事亭前地</div></div>
+          <div class="info-card"><div class="info-card-label">위치</div><div class="info-card-value"><a href="https://maps.app.goo.gl/zVhz1AUJtHUgsJhi9" target="_blank" rel="noopener" style="color:#7A4E22;font-weight:700;text-decoration:none;">🗺️ 구글맵으로 보기</a></div></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 3. 충성스러운 도시 -->
+  <article class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon" style="background:var(--accent-soft);">👑</div>
+      <span class="section-label">"충성스러운 도시" — 역사 속 가장 극적인 순간</span>
+      <span class="section-arrow">▼</span>
+    </div>
+    <div class="section-body">
+      <div class="story">
+        <p>1580년, 포르투갈에 큰 변화가 일어납니다. 스페인이 포르투갈을 약 60년 동안 지배하게 되면서 유럽의 포르투갈 식민지들은 하나둘 스페인 국기를 달기 시작했습니다.</p>
+        <p>그런데 지구 반대편, 아시아의 작은 항구도시 마카오는 달랐습니다.</p>
+        <div class="quote">스페인이 다스린 60년 동안, 마카오에는 스페인 국기가 단 한 번도 걸리지 않았습니다.</div>
+        <p>1640년 포르투갈이 독립을 되찾았고, 1654년 포르투갈 왕 <span class="hl-amber">주앙 4세</span>는 이 작은 도시의 충성을 기려 특별한 칭호를 내립니다.</p>
+        <div class="callout-center">
+          <div class="callout-big">✦ &nbsp;Não Há Outra Mais Leal&nbsp; ✦</div>
+          <div class="callout-sub">"이보다 더 충성스러운 곳은 없다"</div>
+        </div>
+        <p>1654년에 새긴 이 칭호는 370여 년이 지난 지금도 레알 세나도 건물 현관에 남아 있습니다.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- 4. 바닥 물결무늬 -->
+  <article class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon" style="background:var(--accent-soft);">🌊</div>
+      <span class="section-label">바닥의 물결무늬 — 발밑에 새긴 마카오의 정체성</span>
+      <span class="section-arrow">▼</span>
+    </div>
+    <div class="section-body">
+      <div class="story">
+        <p>광장 바닥을 내려다보세요. 검은색과 흰색 돌이 물결처럼 이어집니다. 이 무늬에는 이름이 있습니다.</p>
+        <p style="text-align:center;margin:12px 0;"><span class="hl-amber">칼사다 포르투게사 (Calçada Portuguesa)</span></p>
+        <p>포르투갈의 수도 리스본 광장에서 온 보도 디자인 양식입니다. 그런데 왜 하필 <strong>물결무늬</strong>일까요?</p>
+        <div class="info-grid">
+          <div class="info-card"><div class="info-card-label">첫 번째 의미</div><div class="info-card-value">대항해 시대의 상징 — 바다를 지배하던 포르투갈의 자부심</div></div>
+          <div class="info-card"><div class="info-card-label">두 번째 의미</div><div class="info-card-value">마카오의 항구 역사 — 유럽↔중국↔일본 무역의 중심</div></div>
+        </div>
+        <div class="quote">가까이서 보면 그냥 곡선 돌바닥입니다. 하지만 멀리서, 위에서 보면 하나의 거대한 파도처럼 보입니다.</div>
+        <p>이 물결은 단순한 장식이 아닙니다. <span class="hl-teal">"이 도시는 바다로 들어왔고, 바다로 성장했다"</span>는 메시지를 돌 하나하나에 새긴 것입니다. 여러분이 지금 밟고 있는 그 돌바닥이, 마카오가 무엇으로 살아왔는지를 조용히 말해주고 있습니다.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- 5. 세 기둥 -->
+  <article class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon" style="background:var(--accent-soft);">🕊️</div>
+      <span class="section-label">신앙 · 자비 · 행정 — 유럽식 이상 도시의 구조</span>
+      <span class="section-arrow">▼</span>
+    </div>
+    <div class="section-body">
+      <div class="story">
+        <p>세나도 광장 주변에는 왜 이 세 건물이 함께 모여 있을까요?</p>
+        <div class="pillars">
+          <div class="pillar pillar-faith">
+            <div class="pillar-icon">⛪</div>
+            <div class="pillar-name pillar-name-faith">종교</div>
+            <div class="pillar-place">성 도미니크 성당<br>(St. Dominic's Church)</div>
+          </div>
+          <div class="pillar pillar-care">
+            <div class="pillar-icon">🏥</div>
+            <div class="pillar-name pillar-name-care">자선</div>
+            <div class="pillar-place">인자당<br>(Santa Casa da Misericórdia)</div>
+          </div>
+          <div class="pillar pillar-gov">
+            <div class="pillar-icon">🏛️</div>
+            <div class="pillar-name pillar-name-gov">행정</div>
+            <div class="pillar-place">레알 세나도<br>(Leal Senado Building)</div>
+          </div>
+        </div>
+        <div class="quote">브라질에서 마카오까지, 포르투갈의 식민 도시마다 신앙, 자비, 행정이 사회를 떠받치는 기둥이었습니다.</div>
+        <p>세나도 광장이 단순한 쇼핑 거리나 관광 명소가 아닌 이유가 여기에 있습니다. 이곳은 <span class="hl-blue">유네스코 세계문화유산 마카오 역사 지구</span>의 핵심으로, 도시가 어떻게 설계되었는지를 보여주는 살아있는 교과서입니다.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- 6. 전쟁과 평화 -->
+  <article class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon" style="background:var(--accent-soft);">☮️</div>
+      <span class="section-label">전쟁 중에도 평화로웠던 도시</span>
+      <span class="section-arrow">▼</span>
+    </div>
+    <div class="section-body">
+      <div class="story">
+        <p>1937년, 제2차 중일전쟁이 터졌습니다. 마카오 바로 옆 광저우, 홍콩이 전쟁의 소용돌이 속으로 빨려 들어가던 시절이었습니다.</p>
+        <p>그런데 세나도 광장은 어땠을까요?</p>
+        <div class="war-grid">
+          <div class="war-card"><div class="war-card-num">이유 ①</div><div class="war-card-text">포르투갈은 중립국 — 일본도 포르투갈 식민지는 건드리지 않았습니다</div></div>
+          <div class="war-card"><div class="war-card-num">이유 ②</div><div class="war-card-text">중립 지역으로 알려지며 피란민·상인·부유층이 몰려들었습니다</div></div>
+        </div>
+        <div class="quote">1938년, 세나도 광장 주변은 일본군에게 집을 잃은 피란민들의 전화(戰火) 속 피난처였습니다.</div>
+        <p>지금 이 광장에서 커피 한 잔을 마시며 한가롭게 앉아 있을 수 있는 것도, 어쩌면 그 시절 포르투갈 국기가 지켜준 덕분인지 모릅니다.</p>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<footer>
+  역사·문화·건축 스토리텔링 가이드<br>
+  Irene이 직접 만든 소중한 자료입니다. 무단 복제 및 배포를 금합니다.<br>
+  <span style="font-size:11px;color:var(--text-sub);">© Irene · All rights reserved</span>
+</footer>
+
+<button id="toTop" aria-label="맨 위로">↑</button>
+
+<script>
+  function toggle(header) {
+    const body = header.nextElementSibling;
+    const arrow = header.querySelector('.section-arrow');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    arrow.classList.toggle('open', !isOpen);
+    header.classList.toggle('open', !isOpen);
+  }
+
+  /* ── 복사 방지 ── */
+  // 텍스트 선택 차단
+  document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+  // 마우스 우클릭 차단
+  document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+  // 키보드 단축키 차단 (Ctrl+C, Ctrl+A, Ctrl+S, Ctrl+U, F12)
+  document.addEventListener('keydown', function(e) {
+    if (
+      (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))
+    ) {
+      e.preventDefault();
+      return false;
+    }
+  });
+  // 드래그 차단
+  document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+
+  /* ── 위로 가기 버튼 ── */
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 400);
+  });
+  toTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
