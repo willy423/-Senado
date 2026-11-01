@@ -3,22 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>성 도밍고스 성당 | 마카오 인사이더</title>
+<title>성 도밍고스 성당</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
   :root {
-    --gold: #C9A84C;
-    --gold-light: #E8C97A;
+    /* 새 색상 (요청 값) */
+    --bg: linear-gradient(120deg, #0F1E33, #1E3C66);
+    --text: #E8EEF6;
+    --accent: #F2C94C;
+    --btn: #F2C94C;
+    --btn-text: #0F1E33;
+    /* 보조 색: 새 색상에서 파생 */
+    --navy-solid: #16294A;
+    --muted: #C9D3E0;
+    --muted-light: #D2DCEA;
+
+    --gold: var(--accent);
+    --gold-light: var(--accent);
     --gold-pale: #F5E6C0;
-    --ivory: #FAF6EE;
-    --brown-dark: #2A1A0A;
+    --ivory: var(--text);
+    --brown-dark: var(--btn-text);
     --brown-mid: #5C3D1E;
     --brown-light: #8B6340;
     --yellow-church: #D4A017;
-    --yellow-warm: #F0C040;
-    --stone: #B8A88A;
-    --stone-light: #E8DFD0;
+    --yellow-warm: var(--accent);
+    --stone: var(--muted);
+    --stone-light: var(--muted-light);
     --text-dark: #1A0E00;
     --text-mid: #4A3520;
     --text-light: #7A6550;
@@ -38,12 +49,12 @@
 
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
   }
 
   body {
-    background-color: var(--brown-dark);
-    color: var(--ivory);
+    background-color: #0F1E33;
+    background-image: var(--bg);
+    color: var(--text);
     font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     overflow-x: hidden;
     width: 100%;
@@ -59,20 +70,20 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: linear-gradient(160deg, #1a0a00 0%, #2d1500 40%, #0d0600 100%);
+    background: var(--bg);
   }
 
   .hero-pattern {
     position: absolute;
     inset: 0;
     background-image:
-      radial-gradient(ellipse 60% 80% at 50% 110%, rgba(201,168,76,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 80% at 50% 110%, rgba(242,201,76,0.18) 0%, transparent 70%),
       repeating-linear-gradient(
         45deg,
         transparent,
         transparent 40px,
-        rgba(201,168,76,0.03) 40px,
-        rgba(201,168,76,0.03) 41px
+        rgba(242,201,76,0.03) 40px,
+        rgba(242,201,76,0.03) 41px
       );
   }
 
@@ -83,7 +94,7 @@
     transform: translateX(-50%);
     width: 340px;
     height: 420px;
-    border: 2px solid rgba(201,168,76,0.25);
+    border: 2px solid rgba(242,201,76,0.25);
     border-bottom: none;
     border-radius: 170px 170px 0 0;
     pointer-events: none;
@@ -92,7 +103,7 @@
     content: '';
     position: absolute;
     inset: 18px 18px 0 18px;
-    border: 1px solid rgba(201,168,76,0.12);
+    border: 1px solid rgba(242,201,76,0.12);
     border-bottom: none;
     border-radius: 152px 152px 0 0;
   }
@@ -125,7 +136,7 @@
     color: var(--yellow-warm);
     line-height: 1;
     letter-spacing: 0.06em;
-    text-shadow: 0 0 60px rgba(201,168,76,0.4);
+    text-shadow: 0 0 60px rgba(242,201,76,0.4);
     animation: fadeDown 1s 0.15s ease both;
   }
 
@@ -138,7 +149,7 @@
     line-height: 1.15;
     margin-top: 10px;
     letter-spacing: 0.04em;
-    text-shadow: 0 0 60px rgba(201,168,76,0.4);
+    text-shadow: 0 0 60px rgba(242,201,76,0.4);
     animation: fadeDown 1s 0.3s ease both;
   }
 
@@ -169,30 +180,49 @@
     animation: fadeDown 1s 0.75s ease both, pulse 2.5s 2s infinite;
   }
 
-  /* ── INFO STRIP ── */
+  /* ── INFO STRIP (메뉴 버튼) ── */
   .info-strip {
-    background: var(--gold);
-    padding: 14px 0;
-    overflow: hidden;
+    position: -webkit-sticky;
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 90;
+    background: var(--btn);
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   }
 
   .info-strip-inner {
     display: flex;
-    gap: 50px;
-    animation: marquee 28s linear infinite;
-    white-space: nowrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .info-strip-inner::-webkit-scrollbar { display: none; }
 
-  .info-strip span {
-    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: var(--brown-dark);
-    letter-spacing: 0.12em;
+  .strip-btn {
     flex-shrink: 0;
+    font-family: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    font-size: clamp(0.78rem, 2.8vw, 0.88rem);
+    font-weight: 600;
+    color: var(--btn-text);
+    text-decoration: none;
+    padding: 7px 14px;
+    border: 1px solid rgba(15,30,51,0.35);
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+  }
+  .strip-btn:hover,
+  .strip-btn.active {
+    background: var(--btn-text);
+    color: var(--btn);
+    border-color: var(--btn-text);
   }
 
-  .info-strip span::before { content: '✦  '; }
+  section[id] { scroll-margin-top: 64px; }
 
   /* ── SECTION BASE ── */
   section {
@@ -231,7 +261,7 @@
 
   /* ── STORY CARD ── */
   .story-opening {
-    background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.03) 100%);
+    background: linear-gradient(135deg, rgba(242,201,76,0.08) 0%, rgba(242,201,76,0.03) 100%);
     border-left: 3px solid var(--gold);
     padding: 36px 28px 36px 28px;
     margin-bottom: 56px;
@@ -248,7 +278,7 @@
     left: 32px;
     font-family: 'Playfair Display', 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', serif;
     font-size: 5rem;
-    color: rgba(201,168,76,0.2);
+    color: rgba(242,201,76,0.2);
     line-height: 1;
   }
 
@@ -272,7 +302,7 @@
     top: 8px;
     bottom: 8px;
     width: 1px;
-    background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.2));
+    background: linear-gradient(to bottom, var(--gold), rgba(242,201,76,0.2));
   }
 
   .timeline-item {
@@ -299,7 +329,7 @@
     top: 6px;
     width: 14px;
     height: 14px;
-    background: var(--brown-dark);
+    background: var(--navy-solid);
     border: 2px solid var(--gold);
     border-radius: 50%;
   }
@@ -348,7 +378,7 @@
 
   .feature-card {
     background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(201,168,76,0.2);
+    border: 1px solid rgba(242,201,76,0.2);
     padding: 30px 26px;
     position: relative;
     overflow: hidden;
@@ -406,8 +436,8 @@
 
   /* ── HIGHLIGHT BOX ── */
   .highlight-box {
-    background: linear-gradient(135deg, rgba(212,160,23,0.12), rgba(212,160,23,0.04));
-    border: 1px solid rgba(201,168,76,0.35);
+    background: linear-gradient(135deg, rgba(242,201,76,0.12), rgba(242,201,76,0.04));
+    border: 1px solid rgba(242,201,76,0.35);
     border-radius: 2px;
     padding: 38px 44px;
     margin: 56px 0;
@@ -419,7 +449,7 @@
     position: absolute;
     top: -14px;
     left: 44px;
-    background: var(--brown-dark);
+    background: var(--navy-solid);
     padding: 0 10px;
     color: var(--gold);
     font-size: 1rem;
@@ -474,7 +504,7 @@
   }
 
   .church-row:hover {
-    background: rgba(201,168,76,0.05);
+    background: rgba(242,201,76,0.05);
     border-left-color: var(--gold);
   }
 
@@ -508,7 +538,7 @@
     font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     font-size: 0.65rem;
     color: var(--gold);
-    border: 1px solid rgba(201,168,76,0.4);
+    border: 1px solid rgba(242,201,76,0.4);
     padding: 4px 10px;
     white-space: nowrap;
     letter-spacing: 0.08em;
@@ -555,14 +585,14 @@
   .section-divider {
     width: 100%;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent);
+    background: linear-gradient(to right, transparent, rgba(242,201,76,0.3), transparent);
     margin: 0 auto;
   }
 
   /* ── FOOTER ── */
   footer {
-    background: #0d0700;
-    border-top: 1px solid rgba(201,168,76,0.15);
+    background: #081221;
+    border-top: 1px solid rgba(242,201,76,0.15);
     text-align: center;
     padding: 50px 20px;
   }
@@ -673,6 +703,31 @@
       border-radius: 130px 130px 0 0;
     }
   }
+
+  /* ── 맨 위로 버튼 ── */
+  .to-top {
+    position: fixed;
+    right: 18px;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    background: rgba(15,30,51,0.88);
+    color: var(--gold);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  }
+  .to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+  .to-top:hover { background: var(--btn); color: var(--btn-text); }
+  @media print { .to-top { display: none; } }
 </style>
 </head>
 <body>
@@ -690,26 +745,18 @@
   </div>
 </div>
 
-<!-- ════════ INFO STRIP ════════ -->
-<div class="info-strip">
+<!-- ════════ INFO STRIP (메뉴) ════════ -->
+<nav class="info-strip" aria-label="페이지 메뉴">
   <div class="info-strip-inner">
-    <span>건립 1587년</span>
-    <span>유네스코 세계문화유산</span>
-    <span>바로크 건축 양식</span>
-    <span>마카오 최초 포르투갈어 신문 발행지</span>
-    <span>파티마 성모 행렬 출발지</span>
-    <span>도미니코 수도회</span>
-    <span>건립 1587년</span>
-    <span>유네스코 세계문화유산</span>
-    <span>바로크 건축 양식</span>
-    <span>마카오 최초 포르투갈어 신문 발행지</span>
-    <span>파티마 성모 행렬 출발지</span>
-    <span>도미니코 수도회</span>
+    <a class="strip-btn" href="#story">이야기</a>
+    <a class="strip-btn" href="#culture">이름 속 이야기</a>
+    <a class="strip-btn" href="#info">기본 정보</a>
+    <a class="strip-btn" href="#churches">다섯 성당</a>
   </div>
-</div>
+</nav>
 
 <!-- ════════ STORY OPENING ════════ -->
-<section>
+<section id="story">
   <div class="section-label">Story · 이야기</div>
   <div class="section-title">400년의 기억을 품은<br>노란 성당</div>
   <div class="gold-line"></div>
@@ -783,7 +830,7 @@
 <div class="section-divider"></div>
 
 <!-- ════════ FEATURES ════════ -->
-<section>
+<section id="culture">
   <div class="section-label">Culture · 문화적 특징</div>
   <div class="section-title">이름 속에 담긴<br>이야기들</div>
   <div class="gold-line"></div>
@@ -847,8 +894,61 @@
 
 <div class="section-divider"></div>
 
+<!-- ════════ VISIT INFO ════════ -->
+<section id="info">
+  <div class="section-label">Travel Info · 방문 정보</div>
+  <div class="section-title">성 도밍고스 성당<br>기본 정보</div>
+  <div class="gold-line"></div>
+
+  <table class="info-table">
+    <tr>
+      <td>한국어</td>
+      <td>성 도밍고스 성당</td>
+    </tr>
+    <tr>
+      <td>영어</td>
+      <td>St. Dominic's Church</td>
+    </tr>
+    <tr>
+      <td>중국어</td>
+      <td><span class="cn-sans">玫瑰聖母堂（板樟堂）</span><br>로사리오의 성모 성당, 나무판자 성당</td>
+    </tr>
+    <tr>
+      <td>위치</td>
+      <td>마카오 반도 성 도밍고스 광장(<span class="cn-sans">板樟堂前地</span>), 세나도 광장 인근</td>
+    </tr>
+    <tr>
+      <td>건립</td>
+      <td>1587년 (스페인 도미니코 수도회)</td>
+    </tr>
+    <tr>
+      <td>건축 양식</td>
+      <td>정면 바로크 양식, 내부 바실리카식 평면, 바로크 양식 주제단</td>
+    </tr>
+    <tr>
+      <td>유산 등재</td>
+      <td>2005년 유네스코 세계유산 '마카오 역사지구' 구성 건축물</td>
+    </tr>
+    <tr>
+      <td>특별 행사</td>
+      <td>매년 5월 13일 파티마 성모 행렬 출발지</td>
+    </tr>
+    <tr>
+      <td>박물관</td>
+      <td>종탑 성물 보물관, 17~19세기 가톨릭 예술품 300여 점 (무료)</td>
+    </tr>
+    <tr>
+      <td>운영시간</td>
+      <td>성당 10:00~18:00 / 성물 보물관 10:00~15:00(목·일 휴관). 2026년 유지보수 공사로 임시 휴관 중일 수 있으니 방문 전 마카오 문화국 공지 확인</td>
+    </tr>
+  </table>
+
+</section>
+
+<div class="section-divider"></div>
+
 <!-- ════════ CHURCH COMPARISON ════════ -->
-<section>
+<section id="churches">
   <div class="section-label">세계유산 속 다섯 성당</div>
   <div class="section-title">각자 다른 기도를<br>품은 성당들</div>
   <div class="gold-line"></div>
@@ -903,65 +1003,45 @@
   </div><!-- /church-list -->
 </section>
 
-<div class="section-divider"></div>
-
-<!-- ════════ VISIT INFO ════════ -->
-<section>
-  <div class="section-label">Travel Info · 방문 정보</div>
-  <div class="section-title">성 도밍고스 성당<br>기본 정보</div>
-  <div class="gold-line"></div>
-
-  <table class="info-table">
-    <tr>
-      <td>한국어</td>
-      <td>성 도밍고스 성당</td>
-    </tr>
-    <tr>
-      <td>영어</td>
-      <td>St. Dominic's Church</td>
-    </tr>
-    <tr>
-      <td>중국어</td>
-      <td><span class="cn-sans">玫瑰聖母堂（板樟堂）</span><br>로사리오의 성모 성당, 나무판자 성당</td>
-    </tr>
-    <tr>
-      <td>위치</td>
-      <td>마카오 반도 성 도밍고스 광장(<span class="cn-sans">板樟堂前地</span>), 세나도 광장 인근</td>
-    </tr>
-    <tr>
-      <td>건립</td>
-      <td>1587년 (스페인 도미니코 수도회)</td>
-    </tr>
-    <tr>
-      <td>건축 양식</td>
-      <td>정면 바로크 양식, 내부 바실리카식 평면, 바로크 양식 주제단</td>
-    </tr>
-    <tr>
-      <td>유산 등재</td>
-      <td>2005년 유네스코 세계유산 '마카오 역사지구' 구성 건축물</td>
-    </tr>
-    <tr>
-      <td>특별 행사</td>
-      <td>매년 5월 13일 파티마 성모 행렬 출발지</td>
-    </tr>
-    <tr>
-      <td>박물관</td>
-      <td>종탑 성물 보물관, 17~19세기 가톨릭 예술품 300여 점 (무료)</td>
-    </tr>
-    <tr>
-      <td>운영시간</td>
-      <td>성당 10:00~18:00 / 성물 보물관 10:00~15:00(목·일 휴관). 2026년 유지보수 공사로 임시 휴관 중일 수 있으니 방문 전 마카오 문화국 공지 확인</td>
-    </tr>
-  </table>
-
-</section>
-
 <!-- ════════ FOOTER ════════ -->
 <footer>
   <div class="footer-sub" style="margin-bottom:6px;">본 콘텐츠는 공식적으로 확인된 정보를 사실에 기반하여 제작되었으며</div>
   <div class="footer-sub" style="margin-bottom:6px;"><strong>Irene이 직접 만든 소중한 자료입니다.</strong></div>
   <div class="footer-sub">무단 복제 및 배포를 금합니다.</div>
 </footer>
+
+<!-- ════════ 맨 위로 버튼 ════════ -->
+<button class="to-top" id="toTop" type="button" aria-label="맨 위로">↑</button>
+<script>
+  (function() {
+    var btn = document.getElementById('toTop');
+    function check() {
+      if (window.scrollY > 400) btn.classList.add('show');
+      else btn.classList.remove('show');
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    check();
+
+    // 고정 메뉴: 지금 보고 있는 섹션 버튼 표시
+    var links = document.querySelectorAll('.strip-btn');
+    var ids = ['story', 'culture', 'info', 'churches'];
+    function spy() {
+      var current = '';
+      ids.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 120) current = id;
+      });
+      links.forEach(function(a) {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', spy, { passive: true });
+    spy();
+  })();
+</script>
 
 <script>
   // 애니메이션: IntersectionObserver 지원 환경에서만 활성화
@@ -1011,6 +1091,9 @@
       e.preventDefault();
     }
   });
+
+  })();
+</script>
 
 </body>
 </html>
