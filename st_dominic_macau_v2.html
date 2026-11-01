@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>성 도밍고스 성당 | 마카오 인사이더</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
   :root {
     --gold: #C9A84C;
@@ -43,7 +44,7 @@
   body {
     background-color: var(--brown-dark);
     color: var(--ivory);
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     overflow-x: hidden;
     width: 100%;
     max-width: 100vw;
@@ -52,8 +53,8 @@
   /* ── HERO ── */
   .hero {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
+    height: 50vh;
+    min-height: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -107,7 +108,7 @@
     display: inline-block;
     border: 1px solid var(--gold);
     color: var(--gold);
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     font-size: 0.65rem;
     font-weight: 500;
     letter-spacing: 0.25em;
@@ -119,7 +120,7 @@
 
   .hero-title-cn {
     font-family: 'Noto Serif KR', serif;
-    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
     font-weight: 700;
     color: var(--yellow-warm);
     line-height: 1;
@@ -129,18 +130,21 @@
   }
 
   .hero-title-ko {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-family: 'Playfair Display', 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', serif;
+    font-size: clamp(2.2rem, 7vw, 4.5rem);
+    font-weight: 700;
     font-style: italic;
-    color: var(--stone);
+    color: var(--yellow-warm);
+    line-height: 1.15;
     margin-top: 10px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 60px rgba(201,168,76,0.4);
     animation: fadeDown 1s 0.3s ease both;
   }
 
   .hero-subtitle {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 0.78rem;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    font-size: 0.7rem;
     color: rgba(255,255,255,0.45);
     letter-spacing: 0.2em;
     margin-top: 20px;
@@ -156,7 +160,7 @@
   }
 
   .scroll-hint {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     font-size: 0.62rem;
     color: rgba(255,255,255,0.3);
     letter-spacing: 0.2em;
@@ -180,7 +184,7 @@
   }
 
   .info-strip span {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     font-size: 0.72rem;
     font-weight: 500;
     color: var(--brown-dark);
@@ -200,7 +204,7 @@
   }
 
   .section-label {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     font-size: 0.6rem;
     font-weight: 500;
     letter-spacing: 0.3em;
@@ -210,7 +214,7 @@
   }
 
   .section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', serif;
     font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 700;
     color: var(--ivory);
@@ -242,7 +246,7 @@
     position: absolute;
     top: -10px;
     left: 32px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', serif;
     font-size: 5rem;
     color: rgba(201,168,76,0.2);
     line-height: 1;
@@ -309,7 +313,7 @@
   }
 
   .timeline-year {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', serif;
     font-size: 0.85rem;
     color: var(--gold);
     font-weight: 700;
@@ -325,7 +329,7 @@
   }
 
   .timeline-content p {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     font-size: 0.88rem;
     color: var(--stone);
     line-height: 1.9;
@@ -394,7 +398,7 @@
   }
 
   .feature-card p {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     font-size: 0.82rem;
     color: var(--stone);
     line-height: 1.85;
@@ -422,14 +426,14 @@
   }
 
   .highlight-box h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', serif;
     font-size: 1.2rem;
     color: var(--gold-light);
     margin-bottom: 16px;
   }
 
   .highlight-box p {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     font-size: 0.88rem;
     color: var(--stone-light);
     line-height: 2;
@@ -487,8 +491,12 @@
     font-family: 'Noto Sans KR', sans-serif;
   }
 
+  /* 본문 속 중국어: 원래 글꼴 유지 */
+  .cn-serif { font-family: 'Noto Serif KR', serif; }
+  .cn-sans { font-family: 'Noto Sans KR', sans-serif; }
+
   .church-desc {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     font-size: 0.8rem;
     color: var(--stone);
     line-height: 1.7;
@@ -497,7 +505,7 @@
   }
 
   .church-tag {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     font-size: 0.65rem;
     color: var(--gold);
     border: 1px solid rgba(201,168,76,0.4);
@@ -522,7 +530,7 @@
 
   .info-table td {
     padding: 16px 14px;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     font-size: 0.84rem;
     word-break: keep-all;
     overflow-wrap: break-word;
@@ -560,7 +568,7 @@
   }
 
   .footer-logo {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', serif;
     font-size: 1.1rem;
     color: var(--gold);
     letter-spacing: 0.2em;
@@ -568,7 +576,7 @@
   }
 
   .footer-sub {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     font-size: 0.7rem;
     color: rgba(255,255,255,0.25);
     letter-spacing: 0.15em;
@@ -674,9 +682,8 @@
   <div class="hero-pattern"></div>
   <div class="hero-arch"></div>
   <div class="hero-content">
-    <div class="hero-badge">마카오 인사이더 · Macau Insider</div>
-    <div class="hero-title-cn">玫瑰聖母堂</div>
     <div class="hero-title-ko">성 도밍고스 성당</div>
+    <div class="hero-title-cn">玫瑰聖母堂</div>
     <div class="hero-subtitle">St. Dominic's Church · 1587</div>
     <div class="hero-divider"></div>
     <div class="scroll-hint">scroll to explore</div>
@@ -709,9 +716,9 @@
 
   <div class="story-opening">
     <p>
-      세나도 광장에서 좁은 골목을 따라 걷다 보면, 갑자기 눈앞에 선명한 노란빛 건물이 나타납니다.
+      세나도 광장을 지나 성 도밍고스 광장에 이르면, 눈앞에 선명한 노란빛 건물이 나타납니다.
       흰 장식이 정교하게 새겨진 이 건물 앞에서 사람들은 누구나 발걸음을 멈추게 됩니다.
-      바로 <strong>성 도밍고스 성당(玫瑰聖母堂)</strong>입니다.
+      바로 <strong>성 도밍고스 성당(<span class="cn-serif">玫瑰聖母堂</span>)</strong>입니다.
       이 성당은 단순한 교회가 아닙니다. 마카오라는 도시가 동양과 서양의 교차점이 되어온
       400여 년의 세월이 고스란히 녹아있는 공간입니다.
     </p>
@@ -728,22 +735,8 @@
         <p>
           멕시코 아카풀코에서 태평양을 건너온 스페인 도미니코 수도회 신부 세 명이
           마카오 땅에 성당을 세웠습니다. 처음에는 나무로 지어진 작은 건물이었기에
-          사람들은 이곳을 <strong>판장당(板樟堂)</strong>이라고 불렀습니다.
-          이후 여러 차례 화재와 재건을 거치며 오늘날의 아름다운 바로크 양식 건물이 완성되었습니다.
-        </p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-year">17~19세기</div>
-      <div class="timeline-content">
-        <h3>💰 마카오에서 가장 부유했던 성당</h3>
-        <p>
-          세나도 광장 바로 옆, 마카오 무역의 심장부에 자리한 이 성당에는
-          동서양 상인들의 기부가 끊이지 않았습니다. 장사가 잘 되면 금·은·촛대·장식품을
-          성당에 바치는 풍습이 있었고, 덕분에 성당 종탑 박물관에는 지금도
-          17세기의 귀한 종교 유물이 보존되어 있습니다.
+          사람들은 이곳을 <strong>판장당(<span class="cn-sans">板樟堂</span>)</strong>이라고 불렀습니다.
+          오늘날의 건물은 바실리카식 구조에, 실내 장식에서 바로크 양식의 영향을 볼 수 있습니다.
         </p>
       </div>
     </div>
@@ -752,12 +745,22 @@
       <div class="timeline-dot"></div>
       <div class="timeline-year">1822년 9월 12일</div>
       <div class="timeline-content">
-        <h3>📰 중국 최초의 신문이 탄생한 곳</h3>
+        <h3>📰 중국 최초의 포르투갈어 신문이 탄생한 곳</h3>
         <p>
           이 성당에서 중국 땅 최초의 포르투갈어 신문
           <strong>『A Abelha da China (중국의 벌)』</strong>이 발행되었습니다.
-          당시 마카오는 중국·유럽·일본·동남아의 정보가 모이는 아시아 최대 정보 허브였습니다.
-          종교와 언론, 두 역사의 시작이 이 작은 노란 성당에서 함께 이루어진 것입니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">1997년</div>
+      <div class="timeline-content">
+        <h3>🏛️ 종탑 속 성물 보물관</h3>
+        <p>
+          1997년 복원 공사 때 3층 종탑에 작은 성물 박물관이 마련되었습니다.
+          이곳에는 마카오 가톨릭 유물 300여 점이 전시되어 있습니다.
         </p>
       </div>
     </div>
@@ -768,10 +771,8 @@
       <div class="timeline-content">
         <h3>🕯️ 파티마 성모 행렬</h3>
         <p>
-          오늘날에도 이 성당은 살아있는 신앙의 공간입니다.
-          매년 5월 13일, 마카오에서 가장 유명한 가톨릭 행렬인
-          <strong>파티마 성모 행렬</strong>이 바로 이 성당에서 출발합니다.
-          성모상을 들고 마카오 거리를 함께 걷는 이 행렬은 수백 년의 전통을 잇고 있습니다.
+          매년 5월 13일, <strong>파티마 성모 행렬</strong>이 이 성당에서 출발해 펜하 성당까지 이어집니다.
+          1929년에 시작된 이 행렬은 2019년 마카오 무형문화유산 목록에 올랐습니다.
         </p>
       </div>
     </div>
@@ -793,21 +794,19 @@
       <span class="feature-icon">🌹</span>
       <h3>왜 '장미 성모당'일까?</h3>
       <p>
-        중국어 이름 <strong>玫瑰聖母堂</strong>은 '장미 성모당'으로 번역됩니다.
+        중국어 이름 <strong class="cn-sans">玫瑰聖母堂</strong>은 '장미 성모당'으로 번역됩니다.
         하지만 이것은 실제 장미를 뜻하는 게 아닙니다. 도미니코 수도회가 중시하는
         '묵주기도(로사리오)'에서 로사리오를 장미로 의미 번역한 것입니다.
-        즉, 성모 마리아에게 바치는 묵주기도 성당이라는 뜻입니다.
+        즉, 로사리오의 성모(묵주기도의 성모)께 봉헌된 성당이라는 뜻입니다.
       </p>
     </div>
 
     <div class="feature-card">
       <span class="feature-icon">🟡</span>
-      <h3>성당은 왜 노란색일까?</h3>
+      <h3>노란 외벽과 흰 장식</h3>
       <p>
-        마카오의 성당 대부분이 노란색인 데는 세 가지 이유가 있습니다.
-        포르투갈 전통에서 노란색은 성스러움·햇빛·신의 보호를 상징하며,
-        강한 햇빛 아래 신의 빛을 표현하는 종교적 의미도 있습니다.
-        또한 습한 기후에서 관리하기 쉬운 실용적인 이유도 있었습니다.
+        성당 외벽은 노란색을 바탕으로 흰색 선을 그려 장식했고, 실내도 노란색이 주를 이룹니다.
+        정면 맨 위에는 도미니코 수도회의 문장이 새겨져 있습니다.
       </p>
     </div>
 
@@ -815,10 +814,9 @@
       <span class="feature-icon">🏛️</span>
       <h3>동서양이 만난 건축</h3>
       <p>
-        유럽 바로크 양식의 웅장한 파사드 안에는 중국식 기와와
-        티크 목재 문이 자연스럽게 어우러져 있습니다.
-        이것이 바로 마카오만의 건축 언어입니다.
-        성당 내부 박물관에는 동서양이 교차한 400년의 유물이 전시되어 있습니다.
+        성당 정면은 바로크 양식으로, 아래층은 이오니아식, 2·3층은 코린트식 기둥이 받치고 있습니다.
+        내부에는 색유리 창 대신 커다란 덧창을 달았는데, 공식 해설은 이를 남방 건축의 특징으로 설명합니다. 덕분에 성당 안이 매우 밝습니다.
+        종탑의 성물 보물관에는 17~19세기 종교 예술품 300여 점이 전시되어 있습니다.
       </p>
     </div>
 
@@ -828,20 +826,20 @@
       <p>
         가톨릭에서 성모 마리아에게 드리는 반복 기도로,
         구슬이 달린 묵주를 사용해 기도 횟수를 셉니다.
-        도미니코 수도회는 중세 시대부터 이 묵주기도를 전 세계로 전파한
-        수도회로, 성 도밍고스 성당의 이름도 여기서 비롯됩니다.
+        도미니코 수도회는 전통적으로 이 묵주기도를 널리 알린 수도회로 알려져 있습니다.
+        성당의 포르투갈어 이름은 수도회를 세운 성 도미니코에서,
+        중국어 이름 「<span class="cn-sans">玫瑰堂</span>」은 로사리오의 성모에서 비롯되었습니다.
       </p>
     </div>
 
   </div><!-- /feature-grid -->
 
   <div class="highlight-box" style="margin-top:56px;">
-    <h3>상인들의 감사 기도가 쌓인 곳</h3>
+    <h3>아시아로 퍼진 파티마 성모 신심</h3>
     <p>
-      옛 마카오 상인들에게 이 성당은 단순한 종교 공간이 아니었습니다.
-      무역이 성사되고, 배가 무사히 돌아오면 가장 먼저 이 성당을 찾아 감사를 전했습니다.
-      금과 은, 촛대와 장식품이 쌓이면서 성당은 마카오에서 가장 부유한 종교 공간이 되었고,
-      그 유물들은 오늘날 종탑 박물관에서 방문객을 맞이하고 있습니다.
+      1929년 이 성당은 포르투갈 파티마에서 세 목동이 성모를 보았다는 이야기를 바탕으로
+      파티마 성모 공경을 예배에 도입했습니다.
+      이 신심은 이후 이곳에서 조경, 티모르, 필리핀, 싱가포르, 말라카 등 여러 지역으로 퍼져 나갔습니다.
     </p>
   </div>
 
@@ -851,7 +849,7 @@
 
 <!-- ════════ CHURCH COMPARISON ════════ -->
 <section>
-  <div class="section-label">마카오의 5대 성당</div>
+  <div class="section-label">세계유산 속 다섯 성당</div>
   <div class="section-title">각자 다른 기도를<br>품은 성당들</div>
   <div class="gold-line"></div>
 
@@ -862,7 +860,7 @@
         <div class="church-name">성 도밍고스 성당</div>
         <div class="church-cn">玫瑰聖母堂 · 1587</div>
       </div>
-      <div class="church-desc">성모 마리아 + 묵주기도 신심. 마카오 무역 중심지의 부유한 성당. 파티마 행렬 출발지.</div>
+      <div class="church-desc">로사리오의 성모께 봉헌된 성당. 1929년부터 파티마 성모 신심의 중심지이며 매년 5월 13일 행렬 출발지.</div>
       <div class="church-tag">성모 / 로사리오</div>
     </div>
 
@@ -871,35 +869,35 @@
         <div class="church-name">성 바울 성당 유적</div>
         <div class="church-cn">大三巴牌坊 · 1602</div>
       </div>
-      <div class="church-desc">예수회. 예수 중심 + 선교 + 교육. 아시아 최초 서양식 대학 부속 성당.</div>
-      <div class="church-tag">예수 / 교육</div>
+      <div class="church-desc">예수회가 세운 성 바울 학원의 부속 성당. 학원은 극동 지역 최초의 서양식 대학으로, 이곳에서 길러낸 선교사들이 일본·중국·동남아로 떠났다.</div>
+      <div class="church-tag">선교 / 교육</div>
     </div>
 
     <div class="church-row">
       <div>
         <div class="church-name">성 로렌스 성당</div>
-        <div class="church-cn">風順堂 · 1560s</div>
+        <div class="church-cn">風順堂 · <span style="font-family:'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;">16세기 중엽</span></div>
       </div>
-      <div class="church-desc">항해의 수호성인 신심. 바다로 떠난 선원들의 안전 귀환을 기도하던 장소.</div>
-      <div class="church-tag">선원 / 항해</div>
+      <div class="church-desc">포르투갈 선원 가족들이 성당 앞 돌계단에서 가족의 무사 귀환을 기다리던 곳이라 '풍순당'이라 불린다. 단, 성 로렌스는 가톨릭에서 항해의 수호성인이 아니다.</div>
+      <div class="church-tag">선원 가족 / 기다림</div>
     </div>
 
     <div class="church-row">
       <div>
         <div class="church-name">성 아우구스티노 성당</div>
-        <div class="church-cn">聖奧斯定教堂</div>
+        <div class="church-cn">聖奧斯定教堂 · 1591</div>
       </div>
-      <div class="church-desc">아우구스티노 수도회. 고난·참회·겸손 신심. 주 예수 수난 행렬 출발지.</div>
-      <div class="church-tag">고통 / 회개</div>
+      <div class="church-desc">1591년 스페인 아우구스티노회가 세운 성당. 십자가를 진 고난 예수상을 모시며, 매년 이틀간 열리는 '주 예수 수난 행렬'의 출발지.</div>
+      <div class="church-tag">수난 / 행렬</div>
     </div>
 
     <div class="church-row">
       <div>
         <div class="church-name">성 안토니오 성당</div>
-        <div class="church-cn">聖安多尼教堂</div>
+        <div class="church-cn">聖安多尼教堂 · 1558~1560</div>
       </div>
-      <div class="church-desc">결혼과 인연의 수호성인 신심. 마카오에서 전통적으로 결혼식을 올리는 성당.</div>
-      <div class="church-tag">사랑 / 결혼</div>
+      <div class="church-desc">예수회가 마카오에 처음 머문 곳에 세운 성당. 포르투갈어권에서 '결혼 성인'으로 불리는 성 안토니오를 모시며, 예전에 포르투갈인 결혼식이 많이 열려 '화왕당'이라 불린다. 한국 첫 사제 김대건 안드레아 성인에게 봉헌된 제대도 있다.</div>
+      <div class="church-tag">결혼</div>
     </div>
 
   </div><!-- /church-list -->
@@ -924,11 +922,11 @@
     </tr>
     <tr>
       <td>중국어</td>
-      <td>玫瑰聖母堂 (장미성모당)</td>
+      <td><span class="cn-sans">玫瑰聖母堂（板樟堂）</span><br>로사리오의 성모 성당, 나무판자 성당</td>
     </tr>
     <tr>
       <td>위치</td>
-      <td>마카오 반도, 세나도 광장 인근</td>
+      <td>마카오 반도 성 도밍고스 광장(<span class="cn-sans">板樟堂前地</span>), 세나도 광장 인근</td>
     </tr>
     <tr>
       <td>건립</td>
@@ -936,11 +934,11 @@
     </tr>
     <tr>
       <td>건축 양식</td>
-      <td>바로크 스타일 (유럽 양식 + 중국 요소 혼합)</td>
+      <td>정면 바로크 양식, 내부 바실리카식 평면, 바로크 양식 주제단</td>
     </tr>
     <tr>
       <td>유산 등재</td>
-      <td>유네스코 세계유산 '마카오 역사 지구' 포함</td>
+      <td>2005년 유네스코 세계유산 '마카오 역사지구' 구성 건축물</td>
     </tr>
     <tr>
       <td>특별 행사</td>
@@ -948,7 +946,11 @@
     </tr>
     <tr>
       <td>박물관</td>
-      <td>종탑 내 17세기 종교 유물 전시 (무료)</td>
+      <td>종탑 성물 보물관, 17~19세기 가톨릭 예술품 300여 점 (무료)</td>
+    </tr>
+    <tr>
+      <td>운영시간</td>
+      <td>성당 10:00~18:00 / 성물 보물관 10:00~15:00(목·일 휴관). 2026년 유지보수 공사로 임시 휴관 중일 수 있으니 방문 전 마카오 문화국 공지 확인</td>
     </tr>
   </table>
 
@@ -956,11 +958,9 @@
 
 <!-- ════════ FOOTER ════════ -->
 <footer>
-  <div class="footer-logo">MACAU INSIDER</div>
-  <div class="footer-sub" style="margin-bottom:8px;">역사·문화·건축 스토리텔링</div>
-  <div class="footer-sub" style="margin-bottom:6px;">본 콘텐츠는 확인된 역사적 사실에 기반하여 제작되었습니다.</div>
-  <div class="footer-sub" style="margin-bottom:6px;">마카오 인사이더가 직접 제작한 소중한 자료입니다.</div>
-  <div class="footer-sub">© 무단 복제 및 배포를 금합니다.</div>
+  <div class="footer-sub" style="margin-bottom:6px;">본 콘텐츠는 공식적으로 확인된 정보를 사실에 기반하여 제작되었으며</div>
+  <div class="footer-sub" style="margin-bottom:6px;"><strong>Irene이 직접 만든 소중한 자료입니다.</strong></div>
+  <div class="footer-sub">무단 복제 및 배포를 금합니다.</div>
 </footer>
 
 <script>
