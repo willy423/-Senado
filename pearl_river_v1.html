@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>주강</title>
+<meta property="og:title" content="주강">
+<meta property="og:type" content="website">
+<meta property="og:description" content="마카오 곁을 흐르는 강, 주강 이야기">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --bg:#18140E;
+  --surface:#221C13;
+  --surface2:#2B2418;
+  --line:#3D3424;
+  --gold:#C9A45C;
+  --gold-soft:#E6CF9C;
+  --text:#EFE8DA;
+  --muted:#ADA28C;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+  font-size:16px;line-height:1.75;word-break:keep-all;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+button{font-family:inherit}
+
+.hero{padding:calc(env(safe-area-inset-top,0px) + 48px) 24px 40px;max-width:640px;margin:0 auto}
+.badge{display:inline-block;font-size:13px;font-weight:600;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:4px 14px;margin-bottom:28px}
+.hero h1{font-size:64px;font-weight:800;line-height:1.05;letter-spacing:-0.03em;color:var(--gold-soft)}
+.hero p{margin-top:14px;font-size:17px;color:var(--muted)}
+.hero svg{display:block;width:100%;height:36px;margin-top:28px}
+
+.tabs{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.tabs-inner{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:0 16px;max-width:640px;margin:0 auto}
+.tabs-inner::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;background:none;border:none;color:var(--muted);font-size:15px;font-weight:500;padding:14px 10px 12px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+.tab.active{color:var(--gold-soft);font-weight:700;border-bottom-color:var(--gold)}
+.tab:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+
+main{max-width:640px;margin:0 auto;padding:0 20px}
+section{padding:48px 0 16px;scroll-margin-top:60px}
+section+section{border-top:1px solid var(--line)}
+h2{font-size:26px;font-weight:800;line-height:1.35;letter-spacing:-0.02em;color:var(--gold-soft);margin-bottom:16px}
+h3{font-size:18px;font-weight:700;line-height:1.45;color:var(--text);margin-bottom:8px}
+.lead{color:var(--text);margin-bottom:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:14px}
+.card p{color:var(--text)}
+.card p+p{margin-top:10px}
+.note{font-size:14px;color:var(--muted);margin-top:10px}
+
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.stat{flex:1 1 calc(50% - 5px);min-width:140px;background:var(--surface2);border-radius:12px;padding:16px}
+.stat b{display:block;font-size:24px;font-weight:800;color:var(--gold-soft);letter-spacing:-0.02em;line-height:1.3}
+.stat span{display:block;font-size:14px;color:var(--muted);margin-top:4px}
+
+.rivers{margin-top:14px}
+.river{margin-bottom:16px}
+.river:last-child{margin-bottom:0}
+.river-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.river-head strong{font-size:16px;font-weight:700}
+.river-head em{font-style:normal;font-size:15px;color:var(--muted)}
+.river.me .river-head strong,.river.me .river-head em{color:var(--gold-soft)}
+.bar{height:6px;border-radius:3px;background:var(--line);margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:3px;background:var(--muted)}
+.river.me .bar i{background:var(--gold)}
+
+.trio{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.trio .card{margin-bottom:0}
+
+.timeline{list-style:none;position:relative;margin:8px 0 14px;padding-left:22px}
+.timeline::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.timeline li{position:relative;padding-bottom:22px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:-22px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--gold)}
+.timeline .yr{display:block;font-size:15px;font-weight:700;color:var(--gold)}
+.timeline p{color:var(--text)}
+
+.steps{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.step{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.dot{flex:0 0 auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--line)}
+.dot.d1{background:#4A4642}
+.dot.d2{background:radial-gradient(circle at 30% 35%,#8C8780 0 3px,transparent 4px),radial-gradient(circle at 65% 60%,#8C8780 0 3px,transparent 4px),#C9C4BA}
+.dot.d3{background:#F2EEE6}
+.dot.d4{background:#EBB8B4}
+.step h3{margin-bottom:2px;font-size:16px}
+.step p{font-size:15px;color:var(--muted)}
+
+.rows{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.row{background:var(--surface2);border-radius:10px;padding:14px 16px}
+.row strong{display:block;font-size:16px;font-weight:700;color:var(--gold-soft)}
+.row small{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.row p{font-size:15px;margin-top:6px}
+
+footer{max-width:640px;margin:56px auto 0;padding:28px 20px 48px;border-top:1px solid var(--line);font-size:13px;line-height:1.7;color:var(--muted)}
+footer p+p{margin-top:6px}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="badge">Irene의 소중한 자료입니다.</span>
+  <h1>주강</h1>
+  <p>마카오 곁을 흐르는 강, 주강 이야기</p>
+  <svg viewBox="0 0 600 36" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 18 C60 4 120 32 180 18 S300 4 360 18 S480 32 540 18 S600 10 600 10" fill="none" stroke="#C9A45C" stroke-width="2"/>
+    <path d="M0 26 C60 14 120 38 180 26 S300 14 360 26 S480 38 540 26 S600 20 600 20" fill="none" stroke="#3D3424" stroke-width="2"/>
+  </svg>
+</header>
+
+<nav class="tabs" aria-label="목차">
+  <div class="tabs-inner" id="tabBar">
+    <button class="tab active" data-target="s1" onclick="goTo('s1')">중국 4대 강</button>
+    <button class="tab" data-target="s2" onclick="goTo('s2')">이름의 유래</button>
+    <button class="tab" data-target="s3" onclick="goTo('s3')">하구의 역사</button>
+    <button class="tab" data-target="s4" onclick="goTo('s4')">강주아오 대교</button>
+    <button class="tab" data-target="s5" onclick="goTo('s5')">분홍 돌고래</button>
+    <button class="tab" data-target="s6" onclick="goTo('s6')">마카오 수돗물</button>
+  </div>
+</nav>
+
+<main>
+
+<section id="s1">
+  <h2>중국 4대 강, 주강은 어떤 강인가</h2>
+  <p class="lead">주강(珠江)은 중국 남부를 흐르는 큰 강입니다. 영어로는 펄 리버(Pearl River)라고 하며, 예전에는 캔턴 강(Canton River)이라고도 불렸습니다.</p>
+
+  <div class="card">
+    <h3>중국 4대 강</h3>
+    <p>중국 4대 강은 장강, 황하, 흑룡강, 주강입니다. 주강은 이 가운데 중국 남부를 흐르는 강입니다.</p>
+    <div class="rivers">
+      <div class="river">
+        <div class="river-head"><strong>장강</strong><em>6,300km</em></div>
+        <div class="bar"><i style="width:100%"></i></div>
+      </div>
+      <div class="river">
+        <div class="river-head"><strong>황하</strong><em>5,464km</em></div>
+        <div class="bar"><i style="width:86.7%"></i></div>
+      </div>
+      <div class="river">
+        <div class="river-head"><strong>흑룡강</strong><em>4,350km</em></div>
+        <div class="bar"><i style="width:69%"></i></div>
+      </div>
+      <div class="river me">
+        <div class="river-head"><strong>주강</strong><em>2,214km</em></div>
+        <div class="bar"><i style="width:35.1%"></i></div>
+      </div>
+    </div>
+    <p class="note">흑룡강은 전체 4,350km 가운데 3,101km가 중국 땅을 흐릅니다.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>2,214km</b><span>길이</span></div>
+    <div class="stat"><b>453,690㎢</b><span>유역 면적</span></div>
+    <div class="stat"><b>3,338억㎥</b><span>한 해 동안 흘러가는 물의 양</span></div>
+    <div class="stat"><b>8개</b><span>바다로 나가는 하구</span></div>
+  </div>
+
+  <div class="card">
+    <h3>물의 양은 중국에서 두 번째</h3>
+    <p>주강은 길이로는 장강, 황하, 흑룡강보다 짧지만, 흐르는 물의 양은 장강 다음으로 중국에서 두 번째로 많습니다. 그리고 8개의 하구를 통해 남중국해로 흘러갑니다.</p>
+  </div>
+
+  <div class="card">
+    <h3>사실은 여러 강이 모인 물줄기입니다</h3>
+    <p>주강은 엄밀히 말하면 하나의 강이 아닙니다. 서강, 북강, 동강 같은 여러 큰 물길이 모인 하나의 강줄기 체계입니다.</p>
+    <p>이 가운데 가장 긴 서강을 본류로 봅니다. 서강은 윈난성 마슝산에서 시작해 윈난, 구이저우, 광시, 광둥 4개 성을 지납니다.</p>
+  </div>
+</section>
+
+<section id="s2">
+  <h2>주강 이름의 유래</h2>
+  <p class="lead">주강의 '주(珠)'는 진주라는 뜻입니다. 왜 진주의 강이라는 이름이 붙었는지는 세 가지 이야기가 전해집니다.</p>
+
+  <div class="trio">
+    <div class="card">
+      <h3>진주처럼 빛나는 바위</h3>
+      <p>광저우를 지나는 강 한가운데에 해주석(海珠石)이라는 작은 바위섬이 있었는데, 물 위에서 빛나는 큰 진주처럼 보였다는 이야기입니다.</p>
+    </div>
+    <div class="card">
+      <h3>진주색 조개껍데기</h3>
+      <p>광저우 구간의 강바닥에 진주색 조개껍데기가 있어서 이름이 붙었다는 이야기입니다.</p>
+    </div>
+    <div class="card">
+      <h3>바위 밑으로 사라진 진주</h3>
+      <p>외국 상인이 자기 나라의 보물 진주를 가지고 광저우로 도망쳤는데, 그 진주가 강으로 굴러 들어가 바위 밑으로 사라졌다는 전설입니다. 해주석과 주강이라는 이름이 모두 여기서 나왔다고 합니다.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>사라진 해주석의 행방</h3>
+    <p>해주석은 길이 약 150m, 폭 약 50m의 올리브 모양 암초였습니다. 광저우의 하이주 광장도 이 바위에서 이름을 따왔습니다.</p>
+    <ul class="timeline">
+      <li><span class="yr">1931년</span><p>새 강둑을 쌓으면서 섬과 강가 사이 약 30m의 물길을 메웠습니다. 이때 해주석은 폭파되어 사라졌습니다.</p></li>
+      <li><span class="yr">2000년 초</span><p>하수관 공사로 땅을 깊이 파다가 해주석의 밑동이 발견됐습니다.</p></li>
+      <li><span class="yr">2011년</span><p>소행성 273836호에 해주석이라는 이름이 붙었습니다.</p></li>
+      <li><span class="yr">2014년 기준</span><p>땅속에 남은 잔해를 파내 원래 해주석이 있던 근처에 놓았습니다. 광저우 하이주 다리 진입로 양옆 강가에 돌이 3개씩 있고, 가장 큰 돌에 붉은 글씨로 '海珠石'이 새겨져 있습니다.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section id="s3">
+  <h2>마카오와 주강 하구의 역사</h2>
+  <p class="lead">마카오는 광저우에서 약 100km 떨어진 주강 삼각주의 반도에 있습니다. 홍콩은 같은 하구의 반대편에 있습니다.</p>
+
+  <div class="card">
+    <ul class="timeline">
+      <li><span class="yr">1513년</span><p>포르투갈의 조르제 알바레스가 유럽인으로는 처음으로 주강에 도착했습니다.</p></li>
+      <li><span class="yr">1557년</span><p>명나라가 마카오를 포르투갈에 무역 거점으로 빌려주었습니다.</p></li>
+      <li><span class="yr">1757~1842년</span><p>광저우가 서양과의 무역을 독점했습니다. 이 시기 주강 삼각주는 중국이 공식적으로 허락한 유일한 무역 창구였습니다. 외국 상인들은 마카오에서 주강을 거슬러 올라가 광저우로 향했습니다.</p></li>
+      <li><span class="yr">1839년 6월</span><p>청나라 관리 린쩌쉬가 광둥성 둥관시 후먼의 바닷가에서 아편을 공개적으로 없애고, 주강의 외국 선박을 봉쇄했습니다.</p></li>
+      <li><span class="yr">1839년 말</span><p>영국 군함 두 척이 주강 삼각주의 봉쇄를 뚫으면서 제1차 아편전쟁이 시작됐습니다.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section id="s4">
+  <h2>강주아오 대교</h2>
+  <p class="lead">강주아오 대교는 주강 하구의 링딩양(伶仃洋) 바다를 가로질러 동쪽의 홍콩과 서쪽의 광둥성 주하이와 마카오를 잇는 다리입니다.</p>
+
+  <div class="stats">
+    <div class="stat"><b>55km</b><span>총 길이</span></div>
+    <div class="stat"><b>3곳</b><span>사장교</span></div>
+    <div class="stat"><b>6.7km</b><span>해저터널 (침매 구간 5,664m)</span></div>
+    <div class="stat"><b>4개</b><span>인공섬</span></div>
+  </div>
+
+  <div class="card">
+    <h3>공사 기간과 비용</h3>
+    <ul class="timeline">
+      <li><span class="yr">2009년 12월 15일</span><p>공사를 시작했습니다.</p></li>
+      <li><span class="yr">2018년 10월 24일</span><p>일반 차량에 개통했습니다.</p></li>
+    </ul>
+    <p>총 투자액은 1,269억 위안(약 24조 6,694억 원)입니다.</p>
+  </div>
+
+  <div class="card">
+    <h3>중간 구간이 바다 밑으로 들어가는 이유</h3>
+    <p>다리 중간 6.7km는 바다 밑 터널입니다. 이 가운데 5,664m는 침매 구간으로, 33개의 관(管節)과 1개의 최종 이음부를 바다 밑에 가라앉혀 연결했습니다. 관 하나는 길이 180m, 무게 약 8만 톤입니다.</p>
+    <p>바로 옆 홍콩 국제공항을 오가는 비행기를 방해하지 않고, 배가 많이 다니는 링딩양 수로로 선박이 지나갈 수 있게 하려고 이 구간을 해저로 만들었습니다.</p>
+  </div>
+
+  <div class="card">
+    <h3>강주아오 대교 사장교 3곳의 주탑 모양</h3>
+    <p>강주아오 대교의 다리 구간에는 큰 배가 지나는 항로 위에 사장교 3곳이 있습니다. 세 다리는 주탑 모양이 모두 다릅니다.</p>
+    <div class="rows">
+      <div class="row"><strong>중국 매듭</strong><small>칭저우 항로교(青州航道橋)</small><p>세 지역이 함께 다리를 지은 마음을 뜻합니다.</p></div>
+      <div class="row"><strong>돛</strong><small>주저우 항로교(九洲航道橋)</small><p>세 지역이 공유하는 해양 문화를 뜻합니다.</p></div>
+      <div class="row"><strong>돌고래 세 마리</strong><small>장하이 직항선 항로교(江海直達船航道橋)</small><p>사람과 자연의 조화를 뜻합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="s5">
+  <h2>주강 하구의 분홍 돌고래</h2>
+  <p class="lead">주강 하구에는 중화백해돈(中華白海豚)이라는 돌고래가 삽니다. 학명은 Sousa chinensis이며, 인도태평양혹등돌고래라고도 부릅니다.</p>
+
+  <div class="card">
+    <h3>이름은 '흰' 돌고래인데 분홍색인 이유</h3>
+    <p>나이에 따라 몸 색깔이 바뀌기 때문입니다.</p>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="dot d1" aria-hidden="true"></span><div><h3>갓 태어났을 때</h3><p>회흑색입니다.</p></div></div>
+    <div class="step"><span class="dot d2" aria-hidden="true"></span><div><h3>자라는 동안</h3><p>회흑색이 옅어지면서 깨알 같은 반점이 생깁니다.</p></div></div>
+    <div class="step"><span class="dot d3" aria-hidden="true"></span><div><h3>어른이 되면</h3><p>반점이 사라지고 흰색이 됩니다.</p></div></div>
+    <div class="step"><span class="dot d4" aria-hidden="true"></span><div><h3>분홍색으로 보이는 이유</h3><p>활동할 때 혈관이 넓어지면서 흰 피부가 분홍빛을 띱니다.</p></div></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>약 2,000~2,500마리</b><span>주강 하구에서 광둥성 장먼 일대 해역</span></div>
+    <div class="stat"><b>1988년</b><span>중국 국가 1급 보호 야생동물 지정</span></div>
+  </div>
+
+  <div class="card">
+    <h3>마카오 바다의 서식 지역</h3>
+    <p>마카오 해역에서는 주로 마카오 공항의 동쪽과 남쪽에 모여 삽니다. 콜로안섬 남쪽에서도 일부 기록됩니다.</p>
+  </div>
+
+  <div class="card">
+    <h3>홍콩 반환의 마스코트</h3>
+    <p>1997년 홍콩 반환 때 이 돌고래가 마스코트로 뽑혔습니다.</p>
+  </div>
+
+  <div class="card">
+    <h3>어민들이 부르는 이름, 마조어</h3>
+    <p>광둥, 푸젠, 홍콩, 타이완, 마카오의 어민들은 이 돌고래를 바다의 여신 마조(媽祖)의 이름을 따서 '마조어(媽祖魚)'라고 부릅니다.</p>
+    <p>마카오의 마각묘(媽閣廟)가 바로 이 여신을 모시는 사원입니다. 마각묘는 마카오에 남아 있는 사원 가운데 실물로 확인되는 가장 오래된 사원입니다.</p>
+  </div>
+
+  <div class="card">
+    <h3>배가 멈추자 늘어난 돌고래</h3>
+    <p>2020년 코로나로 홍콩과 마카오를 오가는 페리가 멈추자, 홍콩과 마카오 사이 바다의 분홍 돌고래가 약 3분의 1 늘었다고 연구진이 밝혔습니다.</p>
+  </div>
+
+  <div class="card">
+    <h3>대교 공사와 돌고래</h3>
+    <p>강주아오 대교를 지을 때 연구진은 300여 차례 바다에 나가 사진 30만 장을 찍고 천여 마리의 돌고래를 하나하나 구별해 기록했습니다. 교각 수도 설계 단계의 318개에서 시공 단계의 224개로 줄였습니다.</p>
+    <p>공사하는 배마다 돌고래 관찰원이 한 명씩 탔습니다. 돌고래가 보이면 공사를 멈추고, 돌고래가 떠날 때까지 기다렸습니다.</p>
+  </div>
+</section>
+
+<section id="s6">
+  <h2>마카오의 수돗물은 주강 물</h2>
+  <p class="lead">마카오에서 쓰는 수돗물의 원수는 90% 이상이 광둥성 주하이에 있는 서강 모다오먼 수로에서 옵니다. 마카오 사람들이 마시는 물이 바로 주강 물인 셈입니다.</p>
+
+  <div class="card">
+    <h3>물을 끌어오기 시작한 해</h3>
+    <p>서강 물을 마카오로 끌어오는 공사는 2년 반 만에 1단계를 마치고 1988년부터 가동됐습니다.</p>
+  </div>
+
+  <div class="card">
+    <h3>짠물 역류(咸潮)란</h3>
+    <p>건기에 강물이 줄어들면서 강 하류의 물이 짜지는 현상입니다.</p>
+    <ul class="timeline">
+      <li><span class="yr">2006년</span><p>짠물 역류 때문에 마카오 수돗물을 몇 주 동안 마실 수 없었습니다.</p></li>
+      <li><span class="yr">2022~23년 건기</span><p>서강이 1950년 이후 두 번째로 가물었고, 주강 하구에 강한 짠물 역류가 11차례 있었습니다.</p></li>
+      <li><span class="yr">2023년 4월</span><p>마카오 당국은 짠물 역류 기간에도 수돗물 염도를 리터당 30mg 이내로 유지했다고 밝혔습니다.</p></li>
+      <li><span class="yr">2025~26년 건기</span><p>상류 저수지 덕분에 큰 짠물 역류를 피했습니다. 약 10년 만에 처음 있는 일입니다.</p></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>본 콘텐츠의 모든 저작권은 Irene에게 있으며, 복제·배포·2차 가공을 금합니다.</p>
+  <p>Copyright © 2026 IRENE. All rights reserved.</p>
+</footer>
+
+<script>
+(function(){
+  var tabBar=document.getElementById('tabBar');
+  var tabs=document.querySelectorAll('.tab');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setActive(id){
+    tabs.forEach(function(t){
+      var on=t.getAttribute('data-target')===id;
+      t.classList.toggle('active',on);
+      if(on){
+        var left=t.offsetLeft-(tabBar.clientWidth-t.clientWidth)/2;
+        tabBar.scrollTo({left:left,behavior:reduce?'auto':'smooth'});
+      }
+    });
+  }
+
+  window.goTo=function(id){
+    var el=document.getElementById(id);
+    if(!el)return;
+    var offset=document.querySelector('.tabs').offsetHeight;
+    var y=el.getBoundingClientRect().top+window.pageYOffset-offset;
+    window.scrollTo({top:y,behavior:reduce?'auto':'smooth'});
+    setActive(id);
+  };
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting) setActive(e.target.id); });
+    },{rootMargin:'-40% 0px -55% 0px'});
+    document.querySelectorAll('main section').forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
