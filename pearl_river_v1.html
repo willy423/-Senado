@@ -20,7 +20,7 @@
   --muted:#ADA28C;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{overflow-x:hidden}
+html{overflow-x:hidden}
 body{
   background:var(--bg);color:var(--text);
   font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
@@ -99,6 +99,11 @@ h3{font-size:18px;font-weight:700;line-height:1.45;color:var(--text);margin-bott
 
 footer{max-width:640px;margin:56px auto 0;padding:28px 20px 48px;border-top:1px solid var(--line);font-size:13px;line-height:1.7;color:var(--muted)}
 footer p+p{margin-top:6px}
+
+.to-top{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);z-index:30;width:48px;height:48px;border-radius:50%;border:1px solid var(--gold);background:var(--surface2);color:var(--gold-soft);display:none;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.to-top.show{display:flex}
+.to-top svg{width:22px;height:22px}
+.to-top:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px}
 
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
@@ -334,6 +339,10 @@ footer p+p{margin-top:6px}
   <p>Copyright © 2026 IRENE. All rights reserved.</p>
 </footer>
 
+<button class="to-top" id="toTop" type="button" aria-label="맨 위로" onclick="goTop()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+</button>
+
 <script>
 (function(){
   var tabBar=document.getElementById('tabBar');
@@ -359,6 +368,16 @@ footer p+p{margin-top:6px}
     window.scrollTo({top:y,behavior:reduce?'auto':'smooth'});
     setActive(id);
   };
+
+  var toTop=document.getElementById('toTop');
+  window.goTop=function(){
+    window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});
+  };
+  function checkTop(){
+    toTop.classList.toggle('show',window.pageYOffset>400);
+  }
+  window.addEventListener('scroll',checkTop,{passive:true});
+  checkTop();
 
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(entries){
