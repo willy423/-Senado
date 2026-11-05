@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+<meta name="description" content="마카오 옆 숨겨진 미래 도시 헝친도(헝친섬) 공식 정보 정리">
+<meta property="og:title" content="헝친도">
+<title>헝친도(헝친섬) — 마카오 옆 미래 도시 이야기</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --card-bg: #1C1810;
+    --card-border: #2E2416;
+    --muted: #8A7A60;
+    --text-body: #D4C9B0;
+    --text-light: #A89880;
+    --dark-bg: #0F0C07;
+    --section-pad: 2rem 1.2rem;
+  }
+
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Pretendard', sans-serif;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--dark-bg);
+    color: var(--text-body);
+    line-height: 1.85;
+    font-size: 15px;
+    overflow-x: hidden;
+  }
+
+  /* ─── 고정 탭 ─── */
+  .tabbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15,12,7,0.96);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--card-border);
+  }
+  .tab-inner {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0.65rem 0.9rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .tab-inner::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: 0 0 auto;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+    background: transparent;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    padding: 0.45rem 0.95rem;
+    min-height: 36px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab.active {
+    color: #1A1510;
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* ─── 히어로 ─── */
+  .hero {
+    position: relative;
+    min-height: calc(100svh - 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 1.2rem 3rem;
+    background:
+      linear-gradient(180deg, rgba(15,12,7,0.3) 0%, rgba(15,12,7,0.95) 100%),
+      radial-gradient(ellipse at 30% 40%, #3A2800 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 70%, #001A2E 0%, transparent 60%),
+      #0F0C07;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px);
+    pointer-events: none;
+  }
+  .hero-badge {
+    align-self: flex-start;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 1.4rem;
+    font-weight: 500;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-title {
+    font-weight: 900;
+    font-size: clamp(2rem, 8vw, 3.2rem);
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .hero-title span { color: var(--gold); display: block; }
+  .hero-subtitle {
+    font-size: 13px;
+    color: var(--text-light);
+    letter-spacing: 0.04em;
+    margin-bottom: 2rem;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .hero-tag {
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-light);
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 11px;
+    animation: fadeIn 2s 1s ease both;
+  }
+  .hero-scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+
+  /* ─── 섹션 ─── */
+  .section {
+    padding: var(--section-pad);
+    max-width: 720px;
+    margin: 0 auto;
+    scroll-margin-top: 64px;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--card-border), transparent);
+    max-width: 720px;
+    margin: 0.5rem auto;
+  }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1.4rem;
+  }
+  .section-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+  .section-title {
+    font-size: clamp(1.25rem, 5vw, 1.7rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.35;
+    word-break: keep-all;
+  }
+  .section-title em { color: var(--gold); font-style: normal; }
+
+  p {
+    color: var(--text-body);
+    margin-bottom: 1rem;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--gold-light); font-weight: 700; }
+
+  /* ─── 숫자 카드 ─── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin: 1.4rem 0;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-top: 2px solid var(--gold);
+    border-radius: 4px;
+    padding: 1rem 0.9rem;
+    min-width: 0;
+  }
+  .stat-card.full { grid-column: 1 / -1; }
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+  .stat-value {
+    font-weight: 800;
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+    color: var(--gold);
+    line-height: 1.15;
+    margin-bottom: 0.2rem;
+    word-break: keep-all;
+  }
+  .stat-desc {
+    font-size: 11.5px;
+    color: var(--text-light);
+    line-height: 1.55;
+    word-break: keep-all;
+  }
+
+  /* ─── 정보 표 ─── */
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.2rem 0;
+    font-size: 13.5px;
+  }
+  .info-table tr { border-bottom: 1px solid var(--card-border); }
+  .info-table tr:last-child { border-bottom: none; }
+  .info-table td {
+    padding: 0.75rem 0.5rem;
+    vertical-align: top;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .info-table td:first-child {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 12.5px;
+    white-space: nowrap;
+    padding-right: 1rem;
+    width: 30%;
+  }
+
+  /* ─── 강조 상자 ─── */
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.03));
+    border: 1px solid rgba(201,168,76,0.25);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 1.1rem 1.1rem 1.1rem 1.2rem;
+    margin: 1.2rem 0;
+  }
+  .highlight-box p { font-size: 14px; margin: 0; }
+  .quote-mark {
+    font-size: 2rem;
+    color: var(--gold);
+    line-height: 0.5;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+  }
+
+  /* ─── 연표 ─── */
+  .timeline { position: relative; padding-left: 1.8rem; margin: 1.2rem 0; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  .timeline-item { position: relative; margin-bottom: 1.4rem; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.52rem; top: 8px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+  }
+  .timeline-year {
+    font-size: 0.95rem;
+    color: var(--gold);
+    font-weight: 800;
+    margin-bottom: 0.2rem;
+  }
+  .timeline-text { font-size: 13.5px; margin: 0; line-height: 1.7; }
+
+  /* ─── 산업 카드 ─── */
+  .industry-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin: 1.2rem 0;
+  }
+  .industry-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+  }
+  .industry-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .industry-card.tech::before { background: linear-gradient(to right, #4A9EBF, #2A6F8A); }
+  .industry-card.med::before { background: linear-gradient(to right, #6BAF72, #3D7A44); }
+  .industry-card.culture::before { background: linear-gradient(to right, #BF7A4A, #8A4F2A); }
+  .industry-card.finance::before { background: linear-gradient(to right, var(--gold), #8A6A20); }
+  .industry-icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+  .industry-name { font-size: 12.5px; font-weight: 700; color: #fff; margin-bottom: 0.3rem; line-height: 1.4; word-break: keep-all; }
+  .industry-desc { font-size: 11.5px; color: var(--text-light); line-height: 1.55; word-break: keep-all; }
+
+  /* ─── 도시 카드 ─── */
+  .city-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    margin: 1.2rem 0;
+  }
+  .city-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 0.9rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    min-width: 0;
+  }
+  .city-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 7px; }
+  .city-name { font-size: 12.5px; font-weight: 700; color: var(--gold-light); margin-bottom: 2px; word-break: keep-all; }
+  .city-role { font-size: 11.5px; color: var(--text-light); word-break: keep-all; }
+
+  /* ─── 면적 비교 ─── */
+  .comparison {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 1.2rem;
+    margin: 1.2rem 0;
+  }
+  .comparison-title { font-size: 12px; color: var(--muted); font-weight: 600; margin-bottom: 1rem; }
+  .bar-row { margin-bottom: 1rem; }
+  .bar-row:last-child { margin-bottom: 0; }
+  .bar-label { display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; font-size: 12.5px; margin-bottom: 0.4rem; }
+  .bar-name { color: #fff; font-weight: 700; }
+  .bar-val { color: var(--gold); font-weight: 700; }
+  .bar-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .bar-fill.macau { width: 31%; background: linear-gradient(to right, #8A6A20, var(--gold)); }
+  .bar-fill.hengqin { width: 100%; background: linear-gradient(to right, #2A6F8A, #4A9EBF); }
+  .bar-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  /* ─── 사실 점검 ─── */
+  .factcheck-list { margin: 1.2rem 0; }
+  .factcheck-item {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--card-border);
+    align-items: flex-start;
+  }
+  .factcheck-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .fact-badge {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    margin-top: 2px;
+  }
+  .fact-badge.ok { background: rgba(107,175,114,0.2); border: 1px solid rgba(107,175,114,0.4); }
+  .fact-badge.fix { background: rgba(192,57,43,0.2); border: 1px solid rgba(192,57,43,0.4); }
+  .fact-content { flex: 1; min-width: 0; }
+  .fact-title { font-size: 13.5px; font-weight: 700; color: #fff; margin-bottom: 0.25rem; word-break: keep-all; }
+  .fact-desc { font-size: 12.5px; color: var(--text-light); margin: 0; line-height: 1.65; }
+
+  .source-box {
+    background: rgba(201,168,76,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px;
+    padding: 1rem 1.1rem;
+    margin: 1.5rem 0 0;
+  }
+  .source-title { font-size: 12px; color: var(--gold); margin-bottom: 0.7rem; font-weight: 700; }
+  .source-list { list-style: none; padding: 0; }
+  .source-list li {
+    font-size: 12px;
+    color: var(--text-light);
+    padding: 0.25rem 0 0.25rem 1rem;
+    position: relative;
+    line-height: 1.55;
+    word-break: break-all;
+  }
+  .source-list li::before { content: '·'; position: absolute; left: 0; color: var(--gold); }
+
+  .story-block {
+    background: linear-gradient(135deg, rgba(201,168,76,0.05), transparent);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 8px;
+    padding: 1.4rem 1.2rem;
+    margin: 1.2rem 0;
+  }
+  .story-block p { font-size: 14.5px; line-height: 1.9; }
+
+  .callout {
+    background: var(--card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    padding: 1.2rem;
+    margin: 1.2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .callout::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--gold), transparent); }
+  .callout-label { font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 0.6rem; }
+  .callout p { font-size: 13.5px; margin: 0; }
+  .callout p + p { margin-top: 0.6rem; }
+
+  /* ─── 푸터 ─── */
+  footer {
+    background: var(--card-bg);
+    border-top: 1px solid var(--card-border);
+    padding: 2rem 1.2rem 5rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .footer-notice {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  /* ─── 위로 버튼 ─── */
+  .top-btn {
+    position: fixed;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    z-index: 120;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    background: rgba(28,24,16,0.95);
+    color: var(--gold);
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+  }
+  .top-btn.show { display: flex; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+  @media (max-width: 360px) {
+    body { font-size: 14px; }
+    .stat-grid, .industry-grid, .city-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 1.8rem; }
+    .info-table td:first-child { width: 35%; font-size: 11.5px; }
+  }
+  @media (min-width: 480px) {
+    :root { --section-pad: 2.5rem 1.5rem; }
+    body { font-size: 15.5px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ═══ 고정 탭 ═══ -->
+<nav class="tabbar" id="tabbar" aria-label="구역 이동">
+  <div class="tab-inner" id="tabInner">
+    <button type="button" class="tab active" data-target="basic" onclick="goTo('basic')">한눈에 보기</button>
+    <button type="button" class="tab" data-target="story" onclick="goTo('story')">개발 배경</button>
+    <button type="button" class="tab" data-target="history" onclick="goTo('history')">연표</button>
+    <button type="button" class="tab" data-target="gba" onclick="goTo('gba')">광역만구</button>
+    <button type="button" class="tab" data-target="university" onclick="goTo('university')">마카오대학</button>
+    <button type="button" class="tab" data-target="population" onclick="goTo('population')">인구·거주</button>
+    <button type="button" class="tab" data-target="industry" onclick="goTo('industry')">핵심 산업</button>
+    <button type="button" class="tab" data-target="factcheck" onclick="goTo('factcheck')">사실 점검</button>
+  </div>
+</nav>
+
+<!-- ═══ 히어로 ═══ -->
+<section class="hero">
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    스크롤
+  </div>
+  <span class="hero-badge">공식 정보 리포트</span>
+  <h1 class="hero-title">
+    헝친도
+    <span>헝친섬 이야기</span>
+  </h1>
+  <p class="hero-subtitle">
+    Hengqin Island · 横琴島 · 광둥-마카오 심층협력구<br>
+    공식 출처 기반 · 2025–2026 정보
+  </p>
+  <div class="hero-meta">
+    <span class="hero-tag">📐 106.46㎢ (약 3,220만 평)</span>
+    <span class="hero-tag">🏛 2021년 협력구 출범</span>
+    <span class="hero-tag">🌏 광역만구 11개 도시</span>
+    <span class="hero-tag">🎓 마카오대학 이전</span>
+  </div>
+</section>
+
+<!-- ═══ 01 한눈에 보기 ═══ -->
+<section class="section" id="basic">
+  <div class="section-label">
+    <span class="section-num">01 · 기본 정보</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">기본 정보와 <em>공식 수치</em></h2>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">헝친섬 면적</div>
+      <div class="stat-value">106.46㎢</div>
+      <div class="stat-desc">(약 3,220만 평)<br>마카오의 약 3.2배</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">마카오 육지 면적</div>
+      <div class="stat-value">33.3㎢</div>
+      <div class="stat-desc">(약 1,007만 평)<br>세계 인구밀도 1위</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">협력구 등록 인구</div>
+      <div class="stat-value">48,016명</div>
+      <div class="stat-desc">2025년 11월 기준<br>(등록 인구 기준)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">마카오인 거주·취업</div>
+      <div class="stat-value">30,577명</div>
+      <div class="stat-desc">2025년 11월 기준<br>거주 25,703명 · 취업 6,122명<br>(일부는 둘 다 해당)</div>
+    </div>
+    <div class="stat-card full">
+      <div class="stat-label">마카오와의 거리</div>
+      <div class="stat-value">200m</div>
+      <div class="stat-desc">마카오 타이파섬과 좁은 수로 하나를 사이에 두고 200m 거리입니다. 마카오에서 수중 터널로 직접 연결됩니다.</div>
+    </div>
+  </div>
+
+  <table class="info-table">
+    <tr>
+      <td>정식 명칭</td>
+      <td>광둥-마카오 심층협력구<br>(粵澳深度合作區)<br>Guangdong-Macao In-Depth Cooperation Zone in Hengqin</td>
+    </tr>
+    <tr>
+      <td>위치</td>
+      <td>광둥성 주하이시 샹저우구 헝친섬</td>
+    </tr>
+    <tr>
+      <td>행정</td>
+      <td>광둥성 정부와 마카오 특별행정구 정부가 <strong>공동 관리</strong>합니다.</td>
+    </tr>
+    <tr>
+      <td>관할 체계</td>
+      <td>관리위원회 이중 수장 체제로, 광둥성 성장과 마카오 행정장관이 공동으로 주재합니다.</td>
+    </tr>
+    <tr>
+      <td>최고 지점</td>
+      <td>노부이산(Nobui Shan), 해발 457.7m</td>
+    </tr>
+    <tr>
+      <td>공식 웹사이트</td>
+      <td>hengqin.gov.cn</td>
+    </tr>
+  </table>
+
+  <div class="comparison">
+    <div class="comparison-title">면적 비교</div>
+    <div class="bar-row">
+      <div class="bar-label">
+        <span class="bar-name">마카오</span>
+        <span class="bar-val">33.3㎢ (약 1,007만 평)</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill macau"></div></div>
+      <div class="bar-sub">세계 인구밀도 1위 (2025년 기준 ㎢당 23,167명)</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">
+        <span class="bar-name">헝친섬</span>
+        <span class="bar-val">106.46㎢ (약 3,220만 평)</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill hengqin"></div></div>
+      <div class="bar-sub">마카오 대비 약 3.2배 규모</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ 02 개발 배경 ═══ -->
+<section class="section" id="story">
+  <div class="section-label">
+    <span class="section-num">02 · 개발 배경</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">왜 <em>헝친섬을</em> 개발했을까요?</h2>
+
+  <div class="story-block">
+    <p>마카오는 세계에서 인구밀도가 가장 높은 지역입니다. 2025년 기준 ㎢당 23,167명이 살고 있습니다. 좁은 땅 33.3㎢(약 1,007만 평) 위에 카지노, 호텔, 주거 단지가 빼곡하게 들어서 있고, 더 이상 새로운 산업 시설을 짓거나 주거 공간을 늘릴 땅이 거의 없었습니다.</p>
+    <p>마카오 경제의 핵심은 오랫동안 카지노였습니다. 그런데 카지노 한 가지 산업에만 의존하면 경기 변동에 취약할 수밖에 없습니다. 중국 정부는 마카오가 의료·기술·금융·문화 같은 다양한 산업을 키울 수 있도록 도와야 한다고 판단했습니다.</p>
+    <p>그 해답이 바로 옆 200m 거리에 있는 <strong>헝친섬</strong>이었습니다. 마카오의 강력한 브랜드와 헝친섬의 넓은 공간을 합치는 전략입니다. <strong>"마카오는 브랜드, 헝친은 공간"</strong> — 이 한 문장이 프로젝트의 핵심입니다.</p>
+  </div>
+
+  <div class="highlight-box">
+    <span class="quote-mark">"</span>
+    <p>마카오는 브랜드가 매우 강한데 땅이 없습니다. 그렇다면 바로 옆 중국 땅을 함께 키우면 되지 않을까요?</p>
+  </div>
+
+  <p>처음에는 도시 인프라가 사람보다 훨씬 빠르게 만들어졌습니다. 넓은 도로, 초고층 건물, 첨단 산업단지가 먼저 완성됐고, 사람이 그 속도를 따라가는 데 시간이 걸렸습니다. 그래서 한동안 "유령 도시 아니냐?"는 말이 나왔습니다.</p>
+  <p>하지만 중국의 계획은 5~10년이 아닌 <strong>20~30년 장기 계획</strong>입니다. 지금 헝친섬은 그 계획대로 조금씩 채워지고 있습니다.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ 03 연표 ═══ -->
+<section class="section" id="history">
+  <div class="section-label">
+    <span class="section-num">03 · 개발 연표</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">개발 역사 <em>연표</em></h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1992</div>
+      <p class="timeline-text">헝친 경제개발구 관리위원회가 출범했습니다. 본격적인 개발의 첫 시작입니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2009. 6</div>
+      <p class="timeline-text">중국 전국인민대표대회 상무위원회가 마카오대학 헝친섬 신캠퍼스 건설과 마카오 특별행정구 관할 허용을 의결했습니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2009. 8. 14</div>
+      <p class="timeline-text">중국 국무원이 헝친 전체 개발 계획을 공식 승인했습니다. 기존 광둥성 경제특구보다 더 많은 우대 정책을 받게 됐습니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2009. 12. 16</div>
+      <p class="timeline-text">헝친 신구(新區)가 정식으로 출범했습니다. 후진타오 당시 국가주석이 착공식에 참석했습니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2013. 7. 20</div>
+      <p class="timeline-text">마카오대학 헝친 신캠퍼스가 마카오 특별행정구에 공식 인도됐습니다. 이날부터 캠퍼스 안에서 마카오 법률이 적용됐습니다. 이 조치로 마카오의 실질 면적이 약 1㎢(약 30만 2,500평) 늘어났습니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2013. 11</div>
+      <p class="timeline-text">마카오대학 헝친 신캠퍼스가 공식 개교했습니다. 기존 타이파 캠퍼스보다 약 20배 큰 규모입니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2014. 8</div>
+      <p class="timeline-text">마카오대학이 헝친 신캠퍼스로 완전 이전을 마쳤습니다. 교직원·학생 1만여 명, 도서 65만 권, 실험실 60여 개가 옮겨졌습니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2014</div>
+      <p class="timeline-text">중국(광둥) 파일럿 자유무역구 — 주하이 헝친 신구가 설립됐습니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2021. 9. 5</div>
+      <p class="timeline-text">중국 공산당 중앙위원회와 국무원이 <strong>광둥-마카오 심층협력구</strong> 건설 전체 계획을 공식 발표했습니다. 협력구가 정식 출범했습니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2023. 12</div>
+      <p class="timeline-text">중국 국무원이 광둥-마카오 심층협력구 전체 개발 계획을 승인했습니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2024</div>
+      <p class="timeline-text">단계별 관리 시스템이 공식 시행됐습니다. 헝친과 마카오 사이 경계를 '1선', 헝친과 중국 본토 사이 경계를 '2선'으로 구분해 관리하는 방식입니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2024. 12. 9</div>
+      <p class="timeline-text">마카오대학 2호 캠퍼스 착공식이 협력구 안에서 열렸습니다. 협력구 안에서 마카오 특별행정구 관할 밖에 짓는 첫 번째 캠퍼스입니다. 의학·마이크로일렉트로닉스·창의 디자인·금융기술·신공학 분야에 집중할 예정입니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2025. 1. 1</div>
+      <p class="timeline-text">헝친 거주자의 마카오 다회 입국 허가 정책이 발효됐습니다.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2025. 7</div>
+      <p class="timeline-text">헝친 협력구가 2025~2029년 산업 개발 5개년 계획을 공식 발표했습니다. 4대 산업이 2029년까지 헝친 GDP의 약 65%를 담당하는 것이 목표입니다.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ 04 광역만구 ═══ -->
+<section class="section" id="gba">
+  <div class="section-label">
+    <span class="section-num">04 · 광역만구</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">광역만구(GBA) <em>11개 도시 연결</em></h2>
+
+  <p>헝친섬 개발의 진짜 배경에는 훨씬 더 큰 프로젝트가 있습니다. 바로 <strong>광둥-홍콩-마카오 광역만구(GBA, Greater Bay Area)</strong>입니다.</p>
+
+  <div class="callout">
+    <div class="callout-label">광역만구 공식 정의</div>
+    <p>광둥-홍콩-마카오 광역만구는 중국 남부의 11개 도시로 구성된 도시군입니다. 광둥성 9개 도시와 홍콩·마카오 2개 특별행정구로 이루어져 있습니다. 전체 면적은 약 56,000㎢(약 169억 4,000만 평)이고, 2023년 말 기준 약 8,700만 명이 살고 있습니다.</p>
+  </div>
+
+  <p>이 11개 도시는 각자 특기를 살려 하나의 초대형 경제권을 만드는 것이 목표입니다.</p>
+
+  <div class="city-grid">
+    <div class="city-card"><div class="city-dot"></div><div><div class="city-name">홍콩</div><div class="city-role">국제 금융 허브</div></div></div>
+    <div class="city-card"><div class="city-dot"></div><div><div class="city-name">마카오</div><div class="city-role">관광·문화·카지노</div></div></div>
+    <div class="city-card"><div class="city-dot"></div><div><div class="city-name">선전</div><div class="city-role">IT·혁신 기술</div></div></div>
+    <div class="city-card"><div class="city-dot"></div><div><div class="city-name">광저우</div><div class="city-role">제조업·물류</div></div></div>
+    <div class="city-card"><div class="city-dot"></div><div><div class="city-name">주하이</div><div class="city-role">헝친 협력구 소재</div></div></div>
+    <div class="city-card"><div class="city-dot"></div><div><div class="city-name">포산·후이저우<br>둥관·중산<br>장먼·자오칭</div><div class="city-role">제조·산업 핵심 도시</div></div></div>
+  </div>
+
+  <p>이 도시들을 연결하는 핵심 인프라는 <strong>강주아오대교(港珠澳大橋, 홍콩-주하이-마카오 대교)</strong>입니다. 홍콩·주하이·마카오를 잇는 세계 최장 해상 교량 중 하나로, 이 다리 덕분에 세 도시 사이 이동 시간이 크게 줄었습니다. 고속철도, 항만, 세관 시스템도 함께 연결되고 있습니다.</p>
+
+  <div class="highlight-box">
+    <p>헝친섬은 이 광역만구 연결망 위에서 <strong>마카오의 확장 공간</strong> 역할을 맡았습니다. 마카오가 카지노 의존에서 벗어나 다양한 산업을 키울 수 있는 공간입니다.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ 05 마카오대학 ═══ -->
+<section class="section" id="university">
+  <div class="section-label">
+    <span class="section-num">05 · 마카오대학</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">마카오대학 <em>헝친 캠퍼스</em></h2>
+
+  <p>헝친섬 개발의 상징적인 첫 프로젝트는 <strong>마카오대학</strong> 이전입니다. 마카오에서 가장 오래된 고등교육기관인 마카오대학은 1981년 동아시아대학으로 출발해 1991년 마카오대학으로 전환됐습니다.</p>
+
+  <div class="callout">
+    <div class="callout-label">핵심 포인트</div>
+    <p>마카오대학 헝친 캠퍼스는 중국 본토 땅 위에 있지만 <strong>마카오 특별행정구 법률이 적용</strong>됩니다. "일국양제(一國兩制)" 원칙을 혁신적으로 적용한 사례입니다. 캠퍼스 주변에 콘크리트 경계가 설치되어 있고, 캠퍼스 전용 소방서와 경찰서가 별도로 운영됩니다.</p>
+  </div>
+
+  <table class="info-table">
+    <tr>
+      <td>캠퍼스 면적</td>
+      <td>약 1.1㎢ (약 33만 3,000평)<br>기존 타이파 캠퍼스의 약 <strong>20배</strong></td>
+    </tr>
+    <tr>
+      <td>마카오 관할 시작</td>
+      <td>2013년 7월 20일 (공식 인도일)</td>
+    </tr>
+    <tr>
+      <td>공식 개교</td>
+      <td>2013년 11월</td>
+    </tr>
+    <tr>
+      <td>완전 이전 완료</td>
+      <td>2014년 8월</td>
+    </tr>
+    <tr>
+      <td>임차 비용</td>
+      <td>마카오 정부가 12억 파타카(약 1,500억 원)를 지불하고 2049년까지 임차합니다.</td>
+    </tr>
+    <tr>
+      <td>건물 수</td>
+      <td>80개 이상, 연면적 약 80만㎡(약 24만 2,000평)</td>
+    </tr>
+    <tr>
+      <td>학부</td>
+      <td>법학·교육학·디자인·경영학·과학기술·사회과학·인문·보건과학 8개 학부</td>
+    </tr>
+    <tr>
+      <td>접근</td>
+      <td>마카오에서 수중 터널로 연결되며, 출입국 심사 없이 24시간 이동할 수 있습니다.</td>
+    </tr>
+    <tr>
+      <td>2호 캠퍼스</td>
+      <td>2024년 12월 착공. 의학·마이크로일렉트로닉스·창의 디자인·금융기술·신공학 분야에 집중할 예정입니다.</td>
+    </tr>
+  </table>
+
+  <p>마카오대학은 2019년 헝친 안에 <strong>주하이 마카오대학 과학기술연구소(ZUMRI)</strong>도 설립했습니다. 한약·마이크로일렉트로닉스·스마트시티 IoT 분야 3개 국가 중점실험소 지점이 운영되고 있습니다.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ 06 인구 ═══ -->
+<section class="section" id="population">
+  <div class="section-label">
+    <span class="section-num">06 · 인구</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">인구와 <em>마카오인 거주 현황</em></h2>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">협력구 상주인구</div>
+      <div class="stat-value">49,117명</div>
+      <div class="stat-desc">2024년 말 기준 (상주인구)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">협력구 등록인구</div>
+      <div class="stat-value">48,016명</div>
+      <div class="stat-desc">2025년 11월 기준 (등록인구)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">마카오인 거주자</div>
+      <div class="stat-value">25,703명</div>
+      <div class="stat-desc">2025년 11월 기준<br>마카오 주민 합계 30,577명</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">마카오인 취업자</div>
+      <div class="stat-value">6,122명</div>
+      <div class="stat-desc">2025년 11월 기준<br>일부는 거주와 중복</div>
+    </div>
+    <div class="stat-card full">
+      <div class="stat-label">2035년 공식 목표</div>
+      <div class="stat-value" style="font-size:1.25rem;">취업자 80,000명 · 거주자 120,000명</div>
+      <div class="stat-desc">중국 국무원 발표 공식 목표 (중국일보, 2024.03.02)</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">헝친 출입경 통로 통행량 현황</div>
+    <p>2026년 9월 17일 기준, 협력구 출범 후 5년간 헝친 출입경 통로를 지난 누적 여객은 <strong>1억 600만 명</strong>을 넘었고, 차량은 <strong>1,250만 대</strong>를 넘었습니다. 최근 1년간은 여객 <strong>3,560만 명</strong>, 차량 <strong>435만 대</strong>이며, 5년간 연평균 증가율은 여객 37.3%, 차량 33.3%입니다.</p>
+  </div>
+
+  <p>헝친 협력구에는 대규모 주거 단지도 공급됐습니다. 대표적으로 <strong>마카오 신주거단지</strong>가 있습니다. 총 4,279가구 규모로, 마카오인을 대상으로 헝친에 합리적인 가격의 주거 공간을 제공하는 것이 목적입니다.</p>
+
+  <p>2025년 1월 1일부터는 헝친 거주 마카오인을 위한 <strong>마카오 다회 입국 허가</strong> 정책이 시행됐습니다. 헝친과 마카오 사이의 일상적인 왕래가 더 편리해졌습니다.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ 07 산업 ═══ -->
+<section class="section" id="industry">
+  <div class="section-label">
+    <span class="section-num">07 · 핵심 산업</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">4대 산업 <em>개발 계획</em></h2>
+
+  <p>헝친 협력구는 마카오의 경제 다각화 전략 '1+4'와 맞물려 4가지 핵심 산업을 육성하고 있습니다.</p>
+
+  <div class="industry-grid">
+    <div class="industry-card tech">
+      <span class="industry-icon">⚙️</span>
+      <div class="industry-name">기술 연구개발과 첨단 제조업</div>
+      <div class="industry-desc">AI, 마이크로일렉트로닉스, 스마트시티 등 첨단 기술 분야</div>
+    </div>
+    <div class="industry-card med">
+      <span class="industry-icon">🌿</span>
+      <div class="industry-name">중의약과 마카오 브랜드 산업</div>
+      <div class="industry-desc">전통 중의약 연구, 의약품 개발, 마카오 브랜드 제품</div>
+    </div>
+    <div class="industry-card culture">
+      <span class="industry-icon">🎭</span>
+      <div class="industry-name">문화·관광·전시 산업</div>
+      <div class="industry-desc">회의·인센티브·컨벤션·전시, 문화 콘텐츠, 관광</div>
+    </div>
+    <div class="industry-card finance">
+      <span class="industry-icon">💹</span>
+      <div class="industry-name">현대 금융과 금융기술</div>
+      <div class="industry-desc">핀테크, 국제 금융 서비스, 국경 간 금융</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">2026년 성과 (공식 발표)</div>
+    <p>2026년 상반기 기준 4대 산업이 헝친 지역내총생산의 <strong>68%</strong>를 넘었습니다. 2029년 목표인 약 65%를 이미 넘어섰습니다.</p>
+    <p>2026년 1~3분기 총 수출입 규모는 <strong>565.83억 위안</strong>(약 11조 3,223억 원, 위안 1=200.1원 기준)으로 전년 동기 대비 <strong>63.8% 증가</strong>했습니다.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">2025~2029 산업 개발 5개년 계획 핵심 목표</div>
+    <p>• 4대 산업의 GDP 기여도: 2024년 59.4% → <strong>2029년 약 65%</strong></p>
+    <p>• 헝친을 건강·웰니스, 문화, 디지털 혁신, 금융 서비스의 <strong>글로벌 허브</strong>로 발전</p>
+    <p>• 개발 모델: "마카오 플랫폼 + 국제 자원 + 헝친 공간 + 공동 성과"</p>
+  </div>
+
+  <p>2035년까지의 장기 목표는 "일국양제(一國兩制)"의 강력한 생명력을 완전히 실현하고, 협력구의 경제력과 기술 경쟁력을 대폭 향상시키는 것입니다.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ 08 사실 점검 ═══ -->
+<section class="section" id="factcheck">
+  <div class="section-label">
+    <span class="section-num">08 · 사실 점검</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">원본 자료 <em>사실 점검</em></h2>
+
+  <p>처음 유포된 자료의 내용을 공식 출처로 검증했습니다. 사실인 내용과 수정이 필요한 내용을 구분했습니다.</p>
+
+  <div class="factcheck-list">
+
+    <div class="factcheck-item">
+      <div class="fact-badge ok">✓</div>
+      <div class="fact-content">
+        <div class="fact-title">헝친섬 면적 106.46㎢(약 3,220만 평) — 사실</div>
+        <p class="fact-desc">중국 국무원·협력구 공식 홈페이지·바이두 백과 모두 106.46㎢(약 3,220만 평)로 일치합니다. 마카오(33.3㎢, 약 1,007만 평) 대비 약 3.2배입니다.</p>
+      </div>
+    </div>
+
+    <div class="factcheck-item">
+      <div class="fact-badge ok">✓</div>
+      <div class="fact-content">
+        <div class="fact-title">마카오 인구밀도 세계 1위 — 사실</div>
+        <p class="fact-desc">2025년 민간 집계(미국 인구통계국 자료 기반)에서 마카오가 ㎢당 23,167명으로 세계 1위입니다. 위키피디아도 1위로 표기합니다. 2위는 모나코(16,024명/㎢), 3위는 싱가포르(8,576명/㎢)입니다.</p>
+      </div>
+    </div>
+
+    <div class="factcheck-item">
+      <div class="fact-badge ok">✓</div>
+      <div class="fact-content">
+        <div class="fact-title">광역만구 11개 도시 — 사실</div>
+        <p class="fact-desc">광둥성 9개 도시(광저우·선전·주하이·포산·후이저우·둥관·중산·장먼·자오칭)와 홍콩·마카오 2개 특별행정구로 구성된 11개 도시입니다. 회계법인 보고서, 위키피디아, 중국 공식 자료가 모두 일치합니다.</p>
+      </div>
+    </div>
+
+    <div class="factcheck-item">
+      <div class="fact-badge ok">✓</div>
+      <div class="fact-content">
+        <div class="fact-title">마카오대학 이전 — 사실 (단, "일부"가 아닌 "전체" 이전)</div>
+        <p class="fact-desc">마카오대학은 2013년 개교 후 2014년 8월 전체 이전을 마쳤습니다. 교직원·학생 1만여 명, 도서 65만 권, 실험실 60여 개가 옮겨졌습니다. "일부 이전"이 아닙니다.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ 푸터 ═══ -->
+<footer>
+  <p class="footer-notice">Irene의 소중한 자료입니다.<br>본 콘텐츠의 모든 저작권은 Irene에게 있으며, 복제·배포·2차 가공을 금합니다.<br>Copyright © 2026 IRENE. All rights reserved.</p>
+</footer>
+
+<!-- ═══ 위로 버튼 ═══ -->
+<button type="button" class="top-btn" id="topBtn" aria-label="맨 위로 이동" onclick="goTop()">↑</button>
+
+<script>
+(function () {
+  var bar = document.getElementById('tabbar');
+  var inner = document.getElementById('tabInner');
+  var topBtn = document.getElementById('topBtn');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var ids = tabs.map(function (t) { return t.getAttribute('data-target'); });
+  var ticking = false;
+
+  function navH() { return bar ? bar.offsetHeight : 0; }
+
+  window.goTo = function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var y = el.getBoundingClientRect().top + window.pageYOffset - navH() - 4;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
+
+  window.goTop = function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  function setActive(id) {
+    tabs.forEach(function (t) {
+      var on = t.getAttribute('data-target') === id;
+      if (on && !t.classList.contains('active')) {
+        var left = t.offsetLeft - (inner.clientWidth - t.offsetWidth) / 2;
+        inner.scrollLeft = left;
+      }
+      if (on) { t.classList.add('active'); } else { t.classList.remove('active'); }
+    });
+  }
+
+  function update() {
+    ticking = false;
+    var line = navH() + 80;
+    var current = ids[0];
+    for (var i = 0; i < ids.length; i++) {
+      var el = document.getElementById(ids[i]);
+      if (el && el.getBoundingClientRect().top <= line) { current = ids[i]; }
+    }
+    setActive(current);
+    if (window.pageYOffset > 500) { topBtn.classList.add('show'); }
+    else { topBtn.classList.remove('show'); }
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+
+  /* 우클릭·복사·선택·끌기 방지 */
+  ['contextmenu', 'copy', 'cut', 'selectstart', 'dragstart'].forEach(function (name) {
+    document.addEventListener(name, function (e) { e.preventDefault(); });
+  });
+  document.addEventListener('keydown', function (e) {
+    var k = (e.key || '').toLowerCase();
+    if ((e.ctrlKey || e.metaKey) && ['c', 'x', 'a', 's', 'p', 'u'].indexOf(k) > -1) {
+      e.preventDefault();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
