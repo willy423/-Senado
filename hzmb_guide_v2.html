@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="강주아오 대교">
+<meta name="description" content="강주아오 대교(HZMB) 완전 가이드 — 제원, 건설 역사, 차량 번호판 제도 총정리">
+<title>강주아오 대교 완전 가이드</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E5C97A;
+    --gold-dark: #8B6914;
+    --dark: #0E0C0A;
+    --dark2: #1A1712;
+    --surface: #211E15;
+    --surface2: #2C2720;
+    --text-primary: #F0E8D0;
+    --text-secondary: #B8A87A;
+    --text-muted: #7A6E55;
+    --border: rgba(201,168,76,0.2);
+    --border-strong: rgba(201,168,76,0.4);
+    --teal: #4ECDC4;
+    --coral: #E8634A;
+    --blue: #5B8FD4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 52px; }
+  img, svg { max-width: 100%; height: auto; }
+  .info-val, .quota-val, .compare-val, .spec-sub, .timeline-content, p { overflow-wrap: anywhere; }
+
+  body {
+    background: var(--dark);
+    color: var(--text-primary);
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    word-break: keep-all;
+    overflow-x: hidden;
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(180deg, #0E0C0A 0%, #1A1510 60%, #0E0C0A 100%);
+    padding: 3rem 1.25rem 2.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-strong);
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    border: 1px solid var(--border-strong);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  .hero-sub { font-size: 13px; color: var(--text-secondary); margin-bottom: 0.5rem; }
+  .hero-desc { font-size: 14px; color: var(--text-muted); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+  /* ── NAV ── */
+  .nav-wrap {
+    background: var(--dark2);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-wrap::-webkit-scrollbar { display: none; }
+  .nav-inner { display: flex; min-width: max-content; padding: 0 0.5rem; }
+  .nav-inner a {
+    display: block; padding: 14px 14px; min-height: 44px;
+    font-size: 12px; color: var(--text-muted);
+    text-decoration: none; white-space: nowrap;
+    font-weight: 500; border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  .nav-inner a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 680px; margin: 0 auto; padding: 0 1rem; }
+  section { padding: 2.5rem 0 1.5rem; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  /* ── SECTION LABEL ── */
+  .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
+  .section-label-line { flex: 1; height: 1px; background: var(--border); }
+  .section-label-text { font-size: 11px; letter-spacing: .15em; color: var(--gold); font-weight: 700; white-space: nowrap; }
+  .section-num { font-size: 11px; color: var(--text-muted); letter-spacing: .1em; }
+
+  h2 {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    font-size: clamp(1.2rem, 5vw, 1.55rem);
+    color: var(--gold-light); font-weight: 700;
+    margin-bottom: 0.6rem; line-height: 1.4;
+  }
+  h3 {
+    font-size: 0.95rem; font-weight: 700; color: var(--text-primary);
+    margin: 1.5rem 0 0.6rem; padding-left: 10px;
+    border-left: 3px solid var(--gold);
+  }
+  p { color: var(--text-secondary); margin-bottom: 0.9rem; font-size: 14px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── SPEC CARDS ── */
+  .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.2rem 0; }
+  .spec-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 13px 13px 11px;
+  }
+  .spec-card.full { grid-column: 1 / -1; }
+  .spec-label { font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: .07em; margin-bottom: 5px; }
+  .spec-value { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
+  .spec-sub { font-size: 11px; color: var(--text-muted); margin-top: 3px; line-height: 1.5; }
+
+  /* ── INFO LIST (테이블 대체) ── */
+  .info-list {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; margin: 1.2rem 0;
+  }
+  .info-row {
+    display: flex; gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-key {
+    background: rgba(201,168,76,0.06);
+    padding: 10px 12px;
+    font-size: 12.5px; font-weight: 700; color: var(--text-primary);
+    flex: 0 0 38%; border-right: 1px solid var(--border);
+    display: flex; align-items: flex-start;
+    line-height: 1.5;
+  }
+  .info-val {
+    padding: 10px 12px;
+    font-size: 13px; color: var(--text-secondary);
+    flex: 1; line-height: 1.6;
+  }
+
+  /* ── PRICE CARDS (3열 데이터용) ── */
+  .price-cards { margin: 1.2rem 0; display: flex; flex-direction: column; gap: 10px; }
+  .price-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 14px 12px;
+  }
+  .price-card-period {
+    font-size: 11px; font-weight: 700; color: var(--gold);
+    letter-spacing: .06em; margin-bottom: 8px;
+  }
+  .price-card-main {
+    font-size: 1.1rem; font-weight: 700; color: var(--text-primary);
+    margin-bottom: 4px; line-height: 1.3;
+  }
+  .price-card-krw { font-size: 13px; color: var(--gold); }
+
+  /* ── 출자 분담 카드 ── */
+  .cost-cards { margin: 1.2rem 0; display: flex; flex-direction: column; gap: 8px; }
+  .cost-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  }
+  .cost-card-who { font-size: 13px; font-weight: 700; color: var(--text-primary); flex: 1; }
+  .cost-card-right { text-align: right; flex-shrink: 0; }
+  .cost-card-amt { font-size: 13px; color: var(--text-secondary); }
+  .cost-card-krw { font-size: 12px; color: var(--gold); margin-top: 2px; }
+
+  /* ── 납세 기준 카드 ── */
+  .tax-cards { margin: 1.2rem 0; display: flex; flex-direction: column; gap: 8px; }
+  .tax-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px;
+  }
+  .tax-card-type { font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+  .tax-card-body { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .tax-card-cond { font-size: 13px; color: var(--text-secondary); flex: 1; line-height: 1.5; }
+  .tax-card-krw { font-size: 12.5px; color: var(--gold); font-weight: 700; text-align: right; flex-shrink: 0; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    padding: 2px 9px; border-radius: 20px; margin: 2px 2px;
+    line-height: 1.5;
+  }
+  .badge-ok { background: rgba(78,205,196,.15); color: var(--teal); border: 1px solid rgba(78,205,196,.3); }
+  .badge-no { background: rgba(232,99,74,.15); color: var(--coral); border: 1px solid rgba(232,99,74,.3); }
+  .badge-warn { background: rgba(201,168,76,.15); color: var(--gold-light); border: 1px solid var(--border); }
+  .badge-blue { background: rgba(91,143,212,.15); color: var(--blue); border: 1px solid rgba(91,143,212,.3); }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--surface); border-left: 3px solid var(--gold);
+    border-radius: 0 10px 10px 0; padding: 13px 15px; margin: 1.2rem 0;
+  }
+  .callout-title { font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 6px; letter-spacing: .04em; }
+  .callout p { font-size: 13.5px; margin: 0; }
+  .callout-warn { border-left-color: var(--coral); background: rgba(232,99,74,.07); }
+  .callout-warn .callout-title { color: var(--coral); }
+  .callout-info { border-left-color: var(--blue); background: rgba(91,143,212,.07); }
+  .callout-info .callout-title { color: var(--blue); }
+
+  /* ── TIMELINE ── */
+  .timeline { margin: 1.2rem 0; }
+  .timeline-item { display: flex; gap: 12px; padding-bottom: 14px; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .timeline-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); border: 2px solid var(--gold-dark); flex-shrink: 0; margin-top: 4px; }
+  .timeline-line { width: 1px; flex: 1; background: var(--border); margin-top: 4px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-date { font-size: 11px; color: var(--gold); font-weight: 700; white-space: nowrap; min-width: 68px; flex-shrink: 0; padding-top: 2px; }
+  .timeline-content { font-size: 13.5px; color: var(--text-secondary); padding-top: 1px; line-height: 1.6; }
+
+  /* ── STEPS ── */
+  .steps { margin: 1.2rem 0; }
+  .step { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .step-num { width: 26px; height: 26px; border-radius: 50%; background: var(--gold-dark); color: var(--gold-light); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-title { font-size: 13.5px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
+  .step-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* ── COMPARE CARDS (강차/오차 비교) ── */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.2rem 0; }
+  .compare-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px; }
+  .compare-card-title { font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .compare-row { margin-bottom: 7px; }
+  .compare-key { font-size: 11px; color: var(--text-muted); margin-bottom: 1px; font-weight: 500; }
+  .compare-val { font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; }
+
+  /* ── QUOTA BOX ── */
+  .quota-section { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 1.2rem 0; }
+  .quota-header { background: var(--surface2); padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 12px; font-weight: 700; color: var(--gold); letter-spacing: .06em; line-height: 1.5; }
+  .quota-body { padding: 12px 14px; }
+  .quota-row { display: flex; gap: 10px; margin-bottom: 9px; align-items: flex-start; }
+  .quota-row:last-child { margin-bottom: 0; }
+  .quota-key { font-size: 12px; font-weight: 700; color: var(--text-muted); min-width: 60px; flex-shrink: 0; padding-top: 1px; line-height: 1.5; }
+  .quota-val { font-size: 13px; color: var(--text-secondary); flex: 1; line-height: 1.6; }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--surface), var(--surface2));
+    border: 1px solid var(--border-strong); border-radius: 12px;
+    padding: 16px 15px; margin: 1.2rem 0; position: relative; overflow: hidden;
+  }
+  .highlight-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .highlight-box-title { font-size: 12px; font-weight: 700; color: var(--gold-light); margin-bottom: 8px; letter-spacing: .07em; }
+  .highlight-box p { font-size: 13.5px; }
+
+  /* ── SOURCE BOX ── */
+  .source-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-top: 1.5rem; }
+  .source-title { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: .1em; margin-bottom: 6px; }
+  .source-list { list-style: none; font-size: 12px; color: var(--text-muted); line-height: 1.9; }
+  .source-list li::before { content: '· '; color: var(--gold); }
+
+  /* ── DIVIDER / UTILS ── */
+  .divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
+  .krw { color: var(--gold); font-weight: 500; }
+  .em { color: var(--text-primary); font-weight: 500; }
+  .muted { color: var(--text-muted); font-size: 12.5px; }
+  .back-top { display: block; text-align: center; padding: 10px; font-size: 12px; color: var(--text-muted); text-decoration: none; margin-top: 1rem; }
+  .back-top:hover { color: var(--gold); }
+
+  /* ── 위로 버튼 ── */
+  .to-top {
+    position: fixed; right: 16px;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--gold-dark); color: var(--gold-light);
+    border: 1px solid var(--gold); font-family: inherit;
+    font-size: 12px; font-weight: 700; line-height: 1.1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 200; box-shadow: 0 4px 14px rgba(0,0,0,.5);
+    opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s;
+  }
+  .to-top.show { opacity: 1; visibility: visible; }
+  .to-top span { font-size: 16px; }
+  .rate-note { font-size: 11.5px; color: var(--text-muted); margin-top: 0.9rem; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--dark2); border-top: 1px solid var(--border-strong); padding: 2rem 1.25rem calc(5rem + env(safe-area-inset-bottom, 0px)); text-align: center; }
+  footer::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); margin: 0 auto 1.5rem; }
+  .footer-logo { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 1rem; font-weight: 700; color: var(--gold-light); letter-spacing: .08em; margin-bottom: 0.6rem; }
+  .footer-copy { font-size: 12px; color: var(--text-muted); line-height: 1.8; max-width: 340px; margin: 0 auto; }
+  .footer-copy strong { color: var(--text-secondary); font-weight: 500; }
+
+  @media (max-width: 400px) {
+    .spec-grid { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .spec-value { font-size: 1.05rem; }
+    h2 { font-size: 1.15rem; }
+    .info-key { flex: 0 0 42%; font-size: 12px; }
+    .info-val { font-size: 12.5px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="hero-badge">정보 가이드</div>
+  <h1>강주아오 대교 완전 가이드</h1>
+  <p class="hero-sub">港珠澳大橋 · Hong Kong–Zhuhai–Macao Bridge</p>
+  <p class="rate-note">환율: USD 1=1,343.80원 / HKD 1=171.3원 / MOP 1=166.3원 / CNY 1=200.1원(2026년 11월 기준)</p>
+</header>
+
+<nav class="nav-wrap">
+  <div class="nav-inner">
+    <a href="#overview">🌊 개요</a>
+    <a href="#spec">📐 제원</a>
+    <a href="#history">🏗 역사</a>
+    <a href="#cost">💰 비용</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- 01 개요 -->
+<section id="overview">
+<div class="container">
+  <div class="section-label">
+    <span class="section-num">01</span>
+    <div class="section-label-line"></div>
+    <span class="section-label-text">이게 무엇이길래 이렇게 클까요?</span>
+    <div class="section-label-line"></div>
+  </div>
+  <h2>홍콩, 마카오, 주하이를<br>바다 위로 연결한 다리</h2>
+  <p>강주아오 대교(港珠澳大橋, HZMB)는 <span class="em">홍콩 · 마카오 · 주하이</span>를 바다 위로 연결하는 세계에서 가장 긴 해상 교량+터널 복합 구조물입니다. 이 다리가 생기기 전에는 홍콩에서 주하이·마카오까지 차로 3시간 가까이 걸렸는데, 개통 이후 <span class="em">편도 약 45분</span>으로 줄었습니다.</p>
+  <p>단순히 길만 연결한 것이 아닙니다. 홍콩·마카오·광둥성을 하나의 경제권으로 묶는 <span class="em">광둥-홍콩-마카오 대만구(Greater Bay Area)</span> 전략의 핵심 인프라입니다.</p>
+  <div class="callout">
+    <div class="callout-title">공식 명칭 정확히 알기</div>
+    <p>"세계 최장 해상 교량"이라고 흔히 불리지만, 정확한 표현은 <strong>세계 최장 해상 교량+터널 복합 구조물(Longest Sea Crossing / Longest Open-Sea Fixed Link)</strong>입니다. 단순 교량 길이만 따지면 다른 기록도 있습니다.</p>
+  </div>
+</div>
+</section>
+
+<!-- 02 제원 -->
+<section id="spec">
+<div class="container">
+  <div class="section-label">
+    <span class="section-num">02</span>
+    <div class="section-label-line"></div>
+    <span class="section-label-text">핵심 제원</span>
+    <div class="section-label-line"></div>
+  </div>
+  <h2>얼마나 크고 얼마나 튼튼할까요</h2>
+
+  <div class="spec-grid">
+    <div class="spec-card full">
+      <div class="spec-label">🌊 전체 총연장</div>
+      <div class="spec-value">55 km</div>
+      <div class="spec-sub">홍콩 연결도로(12km) + 주 교량(29.6km) + 주하이 연결도로(13.4km)</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">🌉 주 교량 구간</div>
+      <div class="spec-value">29.6 km</div>
+      <div class="spec-sub">해상 교량 22.9km + 해저 터널 6.7km</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">🚇 해저 터널</div>
+      <div class="spec-value">6.7 km</div>
+      <div class="spec-sub">이 중 침매 구간 5,664m · 세계 최장 도로용 침매 터널</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">🏝 인공섬</div>
+      <div class="spec-value">4개</div>
+      <div class="spec-sub">교량↔터널 전환 섬 2개 + 통상구 섬 2개</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">🛣 차로 수</div>
+      <div class="spec-value">편도 3차로</div>
+      <div class="spec-sub">왕복 6차로 · 최대 시속 100km</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">📅 설계 수명</div>
+      <div class="spec-value">120년</div>
+      <div class="spec-sub">규모 8 지진 · 16급 태풍 대응</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">⬇ 터널 심도</div>
+      <div class="spec-value">약 44.5m</div>
+      <div class="spec-sub">해수면 아래 최저 지점</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">🚢 선박 통과</div>
+      <div class="spec-value">30만 톤급</div>
+      <div class="spec-sub">대형 선박이 터널 위로 통과 가능</div>
+    </div>
+  </div>
+
+  <h3>해저 침매 터널의 비밀</h3>
+  <p>터널 구간은 33개의 거대한 콘크리트 세그먼트를 바다에 가라앉혀 이어붙이는 방식으로 만들었습니다. 한 세그먼트가 완성되면 바다 위에 띄운 다음 정확한 위치로 가져가 해수면 아래 최대 44.5m 깊이에 설치했습니다. 도로교통용 침매 터널 길이로는 <span class="em">세계 최장</span>입니다.</p>
+
+  <div class="callout callout-info">
+    <div class="callout-title">구간별 담당</div>
+    <p>주 교량 구간(29.6km)은 광둥·홍콩·마카오 세 지역이 함께 건설했고, 강주아오대교관리국이 건설과 운영을 맡았습니다. 홍콩 연결도로(12km)는 홍콩, 주하이·마카오 구간은 각각 해당 정부가 맡았습니다. 세 정부가 함께 만든 공동 프로젝트입니다.</p>
+  </div>
+
+</div>
+</section>
+
+<!-- 03 역사 -->
+<section id="history">
+<div class="container">
+  <div class="section-label">
+    <span class="section-num">03</span>
+    <div class="section-label-line"></div>
+    <span class="section-label-text">건설 역사</span>
+    <div class="section-label-line"></div>
+  </div>
+  <h2>꿈에서 현실이 되기까지<br>약 15년의 여정</h2>
+
+  <p>이 다리의 아이디어는 1983년으로 거슬러 올라갑니다. 홍콩의 사업가 고든 우(Gordon Wu)가 미국의 교량 건설 경험을 참고해 처음 제안했습니다. 이후 여러 정치적 사건과 논의 끝에 2003년 본격 협의가 시작됐고, 2009년 드디어 땅을 팠습니다.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">1983년</div>
+      <div class="timeline-content">홍콩 사업가 고든 우가 대교 개념 최초 제안. 미국의 교량 건설 경험을 참고했습니다.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">1997년</div>
+      <div class="timeline-content">강주아오 대교의 전신인 링딩양 대교(伶仃洋大橋) 프로젝트가 중국 국무원의 정식 승인을 받았습니다.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">2003년</div>
+      <div class="timeline-content">HZMB 사전협력그룹 설립. 홍콩·광둥·마카오 3개 정부가 착지점, 노선, 자금 조달 방안을 협의하기 시작했습니다.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">2009.12.15</div>
+      <div class="timeline-content">중국 본토 구간 착공. 리커창 당시 국무원 부총리 기념식 진행.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">2011년 12월</div>
+      <div class="timeline-content">홍콩 구간 착공 (환경영향 소송으로 약 2년 지연).</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">2016.6.2</div>
+      <div class="timeline-content">마지막 교량 타워 설치 완료.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">2017.7.7</div>
+      <div class="timeline-content">해저 터널 관통으로 주 교량(교량+해저 터널) 구간 연결.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">2018.2.6</div>
+      <div class="timeline-content">전체 공사 완공.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div class="timeline-date">2018.10.23</div>
+      <div class="timeline-content">시진핑 중국 국가주석 주관 개통식.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><div class="timeline-dot"></div></div>
+      <div class="timeline-date">2018.10.24</div>
+      <div class="timeline-content">일반 차량 통행 개시. 본격적인 3지역 연결 시대가 열렸습니다.</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- 04 건설 비용 -->
+<section id="cost">
+<div class="container">
+  <div class="section-label">
+    <span class="section-num">04</span>
+    <div class="section-label-line"></div>
+    <span class="section-label-text">건설 비용</span>
+    <div class="section-label-line"></div>
+  </div>
+  <h2>25조 원이 넘는 돈,<br>누가 얼마씩 냈을까요</h2>
+
+  <div class="spec-grid">
+    <div class="spec-card full">
+      <div class="spec-label">💴 전체 총비용</div>
+      <div class="spec-value">약 1,269억 위안</div>
+      <div class="spec-sub">한화 약 <span class="krw">25조 3,927억 원</span></div>
+    </div>
+    <div class="spec-card full">
+      <div class="spec-label">🌉 주 교량 구간만 (정부 분담 대상)</div>
+      <div class="spec-value">약 480.68억 위안</div>
+      <div class="spec-sub">한화 약 <span class="krw">9조 6,184억 원</span></div>
+    </div>
+  </div>
+
+  <h3>주 교량 구간 정부 출자 분담</h3>
+  <p>주 교량 자본금 157.3억 위안은 내지(중앙정부·광둥성)·홍콩·마카오가 직접 출자했습니다(2009년 당시 주 교량 건설비의 약 42%). 나머지는 중국은행이 대표하는 은행단 대출로 조달했습니다.</p>
+
+  <div class="cost-cards">
+    <div class="cost-card">
+      <div class="cost-card-who">🇨🇳 중국 본토 (광둥성 포함)</div>
+      <div class="cost-card-right">
+        <div class="cost-card-amt">70억 위안</div>
+        <div class="cost-card-krw">약 1조 4,007억 원</div>
+      </div>
+    </div>
+    <div class="cost-card">
+      <div class="cost-card-who">🇭🇰 홍콩</div>
+      <div class="cost-card-right">
+        <div class="cost-card-amt">67.5억 위안</div>
+        <div class="cost-card-krw">약 1조 3,507억 원</div>
+      </div>
+    </div>
+    <div class="cost-card">
+      <div class="cost-card-who">🇲🇴 마카오</div>
+      <div class="cost-card-right">
+        <div class="cost-card-amt">19.8억 위안</div>
+        <div class="cost-card-krw">약 3,962억 원</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">홍콩 단독 부담금은 훨씬 더 큽니다</div>
+    <p>홍콩은 공동 주 교량 분담금 외에도 홍콩 구간 공사비를 따로 부담했습니다. 2012년 홍콩 입법회 자료 기준, 관련 공사 승인 예산은 582.47억 홍콩달러(약 9조 9,777억 원)입니다.</p>
+  </div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+  <p class="footer-copy">
+    Irene의 소중한 자료입니다.<br>
+    본 콘텐츠의 모든 저작권은 Irene에게 있으며, 복제·배포·2차 가공을 금합니다.<br>
+    Copyright © 2026 IRENE. All rights reserved.
+  </p>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="맨 위로 이동"><span>↑</span>위로</button>
+<script>
+(function(){
+  var btn=document.getElementById('toTop');
+  function onScroll(){ if(window.scrollY>400){btn.classList.add('show');}else{btn.classList.remove('show');} }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  btn.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+})();
+</script>
+
+</body>
+</html>
